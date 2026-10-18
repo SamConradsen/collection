@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adidas Wishlist</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Responsive Header -->
+  <div class="header-container">
+    <picture>
+      <source media="(max-width: 600px)" srcset="https://lh3.googleusercontent.com/d/1C1-8NabCgu_IADNn7PiQ4uu4-PZ9UrNo">
+      <source media="(max-width: 1024px)" srcset="https://lh3.googleusercontent.com/d/1oNNqIqZQJx6MG_ijp1X0GZF0OqHEB1rf">
+      <img src="https://lh3.googleusercontent.com/d/14m-Rprm0BtqaVohizhDgPj0pSlfeIfGy" alt="Wishlist Header">
+    </picture>
+  </div>
+
+  <!-- Sticky Menu -->
+  <div class="sticky-menu">
+    <img src="https://lh3.googleusercontent.com/d/1Rr_zvVAQYIR4N1D4tfpUbryo5eiioUpq" class="menu-item" onclick="window.location.href='index.html'">
+    <img src="https://lh3.googleusercontent.com/d/1w_wkFOLBDLVanPZDswz19U744f0Dg8EL" class="menu-item" onclick="toggleSizeMenu()">
+    
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span style="font-size:10px; font-weight:bold;">SHOW SOLD</span>
+      <img src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" class="menu-item" id="toggleSold" onclick="toggleShowSold()">
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" oninput="renderItems()">
+    </div>
+
+    <img src="https://lh3.googleusercontent.com/d/1xmQ_n_7Y_pGltsocKUHVBAHdI6Gm0oes" class="menu-item" onclick="openModal('wish')">
+  </div>
+
+  <!-- Size Menu Overlay -->
+  <div class="size-dropdown" id="sizeDropdown"></div>
+
+  <!-- Main Content Layout -->
+  <div class="main-wrapper">
+    <div class="content-area" id="contentArea"></div>
+    <div class="alphabet-nav" id="alphabetNav"></div>
+  </div>
+
+  <!-- Modal Popup -->
+  <div class="modal-bg" id="modalBg">
+    <div class="modal">
+      <div class="modal-header-toggle">
+        <img id="imgCollectToggle" src="https://lh3.googleusercontent.com/d/1n40M_iQ7ulYvbfu49YoPuXXahMCaaGUE" onclick="setPageType('collect')">
+        <img id="imgWishToggle" src="https://lh3.googleusercontent.com/d/1ILimPAIFeulkojIIubsdHzPULzGOlJTC" onclick="setPageType('wish')">
+      </div>
+
+      <div class="upload-section">
+        <input type="file" id="fileInput" style="display:none;" accept="image/*" onchange="handleImage(this)">
+        <div class="upload-btn" id="uploadPreview" onclick="document.getElementById('fileInput').click()"></div>
+        
+        <div class="upload-right">
+          <div class="brand-toggle">
+            <img id="imgOrigToggle" src="https://lh3.googleusercontent.com/d/1GdaFyUnTOS1UykuvnYKA_1z4XfZx1_iz" onclick="setBrand('originals')">
+            <img id="imgPerfToggle" src="https://lh3.googleusercontent.com/d/1V27hvCkX3F7s4cV9eMOmsmINzV1QteZb" onclick="setBrand('performance')">
+          </div>
+          <div class="art-input">
+            <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1">
+            <input type="text" id="mArticle" placeholder="Article number">
+          </div>
+        </div>
+      </div>
+
+      <label style="font-size:10px;">Name</label>
+      <input type="text" id="mName">
+
+      <label style="font-size:10px;">Category</label>
+      <input type="text" id="mCategory">
+
+      <div class="three-cols">
+        <div>
+          <label style="font-size:9px;">Size</label>
+          <input type="text" id="mSize">
+        </div>
+        <div>
+          <label style="font-size:9px;">Production time</label>
+          <input type="text" id="mProduced">
+        </div>
+        <div>
+          <label style="font-size:9px;">Made in</label>
+          <input type="text" id="mMadeIn">
+        </div>
+      </div>
+
+      <div class="price-section">
+        <div style="flex:1;">
+          <label style="font-size:10px;">Materials</label>
+          <textarea id="mMaterial" rows="4"></textarea>
+        </div>
+        <div class="price-right">
+          <label style="font-size:10px;">Purchase price</label>
+          <input type="text" id="mPurchasePrice">
+          
+          <label style="font-size:10px;">Sale price</label>
+          <input type="text" id="mSalePrice" disabled>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <img src="https://lh3.googleusercontent.com/d/1ezJe2_NICuZT07YFN_1pRIQC8yiWAOHc" onclick="closeModal()">
+        <img id="btnSold" src="https://lh3.googleusercontent.com/d/1eMSGvB7LXY8SBhAkOKNJUMc9btJzE1yP" onclick="toggleSoldState()">
+        <img src="https://lh3.googleusercontent.com/d/1AjppabQ9us5pA44AK5LGZdV9MJ1YDXrC" onclick="saveData()">
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    const PAGE_MODE = "wish";
+  </script>
+</body>
+</html>

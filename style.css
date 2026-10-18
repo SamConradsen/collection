@@ -1,0 +1,337 @@
+@font-face {
+  font-family: 'AvantGarde LT Book';
+  src: local('AvantGarde LT Book'), local('ITC Avant Garde Gothic Std Book');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'AvantGarde LT Medium';
+  src: local('AvantGarde LT Medium'), local('ITC Avant Garde Gothic Std Medium');
+  font-weight: 500;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #d1e3ff;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  color: #000;
+}
+
+/* Header Responsiveness */
+.header-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Floating Sticky Menu */
+.sticky-menu {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: transparent;
+}
+
+.menu-item {
+  cursor: pointer;
+  height: 45px;
+  width: auto;
+}
+
+.search-box {
+  position: relative;
+  width: 250px;
+  height: 60px;
+  background: url('https://lh3.googleusercontent.com/d/16AEnLeUyzfPU4YTCNXWA78eKpm2aWF4v') no-repeat center/contain;
+}
+
+.search-box input {
+  position: absolute;
+  left: 17.6%;
+  top: 27.1%;
+  width: 76.2%;
+  height: 50.7%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Size Menu Overlay */
+.size-dropdown {
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  z-index: 101;
+  background: rgba(209, 227, 255, 0.85);
+  backdrop-filter: blur(5px);
+  padding: 15px;
+  border-radius: 12px;
+  display: none;
+}
+
+.size-group {
+  margin-bottom: 10px;
+}
+
+.size-group-title {
+  height: 25px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.size-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 45px);
+  gap: 8px;
+}
+
+.size-grid img {
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+
+/* Layout Main Content & Grid */
+.main-wrapper {
+  display: flex;
+  padding: 20px;
+  position: relative;
+}
+
+.content-area {
+  flex: 1;
+}
+
+.category-title {
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  margin: 20px 0 10px 0;
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+@media (max-width: 1024px) {
+  .item-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .item-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Item Card Design */
+.item-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* 1:1 Aspect Ratio */
+  border: 1px dashed #000;
+  box-sizing: border-box;
+  background-color: #fff;
+  background-size: cover;
+  background-position: center;
+}
+
+.sold-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('https://lh3.googleusercontent.com/d/1aI-Sx4t3iTxtWBZ8tTBECgleesVGC5hX') no-repeat center/cover;
+}
+
+.size-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.article-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.article-badge img {
+  height: 14px;
+  margin-right: 4px;
+}
+
+.info-box {
+  margin-top: 5px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 6px 8px;
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.info-name {
+  font-size: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 3px 0;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #4C4C4C;
+}
+
+.info-row span.val { color: #000; }
+
+.info-row img { height: 10px; }
+
+/* Category Alphabet Nav Bar */
+.alphabet-nav {
+  position: sticky;
+  top: 80px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.alphabet-nav a {
+  text-decoration: none;
+  color: #000;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 2px 6px;
+  text-align: center;
+}
+
+/* Modal Popup */
+.modal-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 380px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-header-toggle, .brand-toggle {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.modal-header-toggle img, .brand-toggle img {
+  height: 40px;
+  cursor: pointer;
+}
+
+.upload-section {
+  display: flex;
+  gap: 10px;
+}
+
+.upload-btn {
+  width: 110px;
+  height: 110px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: url('https://lh3.googleusercontent.com/d/13xCOJ9lT2wrrP9HTxleFydN8xl6bVHSY') no-repeat center/cover;
+  cursor: pointer;
+}
+
+.upload-right {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.art-input {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.art-input img { height: 16px; }
+
+input[type="text"], textarea {
+  width: 100%;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  padding: 5px;
+  background: #e0e0e0;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 11px;
+}
+
+.three-cols {
+  display: flex;
+  gap: 5px;
+}
+
+.price-section {
+  display: flex;
+  gap: 10px;
+}
+
+.price-right {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.modal-footer img {
+  height: 35px;
+  cursor: pointer;
+}
