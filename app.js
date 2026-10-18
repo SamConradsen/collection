@@ -332,7 +332,15 @@ function editItem(id) {
   document.getElementById('modalBg').style.display = 'flex';
 }
 
+let isSaving = false;
+
 function saveData() {
+  if (isSaving) return; // Forhindrer at den gemmer flere gange samtidig
+  isSaving = true;
+
+  let saveButtonImg = document.querySelector('.modal-footer img:last-child');
+  if (saveButtonImg) saveButtonImg.style.opacity = '0.5';
+
   let payload = {
     id: currentEditId,
     collect: formData.collect,
@@ -356,7 +364,15 @@ function saveData() {
   })
   .then(res => res.json())
   .then(res => {
+    isSaving = false;
+    if (saveButtonImg) saveButtonImg.style.opacity = '1';
     closeModal();
-    fetchData(); // Genindlæs data efter gem
+    fetchData(); // Henter de nyeste data og opdaterer gitteret
+  })
+  .catch(err => {
+    isSaving = false;
+    if (saveButtonImg) saveButtonImg.style.opacity = '1';
+    console.error("Fejl ved gem:", err);
+    alert("Der opstod en fejl ved gemning.");
   });
 }
