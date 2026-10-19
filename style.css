@@ -173,7 +173,7 @@ body {
   .item-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Item Card Design (1:2 Boks højde & Større læsevenlig tekst uden store mellemrum) */
+/* Item Card Design (1:2 Boks højde & Større læsevenlig tekst) */
 .item-card {
   display: flex;
   flex-direction: column;
@@ -213,12 +213,12 @@ body {
   align-items: center;
   font-family: 'AvantGarde LT Book', sans-serif;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 13px !important; /* Større artikelnummer-tekst */
 }
 
 .article-badge img {
-  height: 15px;
-  margin-right: 4px;
+  height: 11px !important; /* Formindsket a#-ikon så det matcher højden på teksten */
+  margin-right: 3px;
 }
 
 .info-box {
@@ -230,7 +230,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 110px;
+  height: 115px; /* 1:2 højdeforhold */
 }
 
 .info-header {
@@ -239,7 +239,7 @@ body {
   align-items: center;
   font-family: 'AvantGarde LT Book', sans-serif;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 14px !important; /* Større brand-tekst */
 }
 
 .item-id {
@@ -248,7 +248,7 @@ body {
 }
 
 .info-name {
-  font-size: 12px !important;
+  font-size: 13px !important; /* Tydeligt større varenavn */
   font-family: 'AvantGarde LT Medium', sans-serif;
   white-space: nowrap;
   overflow: hidden;
@@ -261,12 +261,12 @@ body {
   align-items: center;
   justify-content: space-between;
   color: #4C4C4C;
-  font-size: 11px;
+  font-size: 12px !important; /* Større sekundær tekst (Made in, priser, årstal) */
   margin: 0;
 }
 
 .info-row span.val { color: #000; }
-.info-row img { height: 12px; }
+.info-row img { height: 13px !important; }
 
 /* Category Alphabet Nav Bar */
 .alphabet-nav {
