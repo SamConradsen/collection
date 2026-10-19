@@ -49,7 +49,7 @@ html, body {
   padding: 8px 15px;
   box-sizing: border-box;
   width: 100%;
-  gap: 5px;
+  gap: 5px; 
 }
 
 .menu-left, .menu-right {
