@@ -17,29 +17,32 @@
     </picture>
   </div>
 
-  <!-- Sticky Menu (Rekkefølge rettet) -->
-  <div class="sticky-menu">
-    <div class="menu-left">
-      <img src="https://lh3.googleusercontent.com/d/1Rr_zvVAQYIR4N1D4tfpUbryo5eiioUpq" class="menu-item" onclick="window.location.href='index.html'">
-      <img src="https://lh3.googleusercontent.com/d/1w_wkFOLBDLVanPZDswz19U744f0Dg8EL" class="menu-item" onclick="toggleSizeMenu()">
-    </div>
-
-    <div class="menu-right">
-      <div class="toggle-container">
-        <span class="toggle-label">SHOW SOLD</span>
-        <img src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" class="menu-item" id="toggleSold" onclick="toggleShowSold()" style="height:35px;">
+<!-- Sticky Menu Wrapper -->
+  <div class="sticky-menu-wrapper">
+    <div class="sticky-menu">
+      <div class="menu-left">
+        <img src="https://lh3.googleusercontent.com/d/1Rr_zvVAQYIR4N1D4tfpUbryo5eiioUpq" class="menu-item" onclick="window.location.href='index.html'">
+        <img src="https://lh3.googleusercontent.com/d/1w_wkFOLBDLVanPZDswz19U744f0Dg8EL" class="menu-item" onclick="toggleSizeMenu()">
       </div>
 
-      <div class="search-box">
-        <input type="text" id="searchInput" oninput="renderItems()">
-      </div>
+      <div class="menu-right">
+        <div class="toggle-container">
+          <span class="toggle-label">SHOW SOLD</span>
+          <img src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" class="menu-item" id="toggleSold" onclick="toggleShowSold()" style="height:32px;">
+        </div>
 
-      <img src="https://lh3.googleusercontent.com/d/1xmQ_n_7Y_pGltsocKUHVBAHdI6Gm0oes" class="menu-item" onclick="openModal('wish')">
+        <div class="search-box">
+          <img src="https://lh3.googleusercontent.com/d/16AEnLeUyzfPU4YTCNXWA78eKpm2aWF4v" class="search-bg-img">
+          <input type="text" id="searchInput" oninput="renderItems()">
+        </div>
+
+        <img src="https://lh3.googleusercontent.com/d/1xmQ_n_7Y_pGltsocKUHVBAHdI6Gm0oes" class="menu-item" onclick="openModal('wish')">
+      </div>
     </div>
+
+    <!-- Size Menu Popup placeret direkte under menuen -->
+    <div class="size-dropdown" id="sizeDropdown"></div>
   </div>
-
-  <!-- Size Menu Overlay -->
-  <div class="size-dropdown" id="sizeDropdown"></div>
 
   <!-- Main Content Layout -->
   <div class="main-wrapper">
