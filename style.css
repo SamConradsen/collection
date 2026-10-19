@@ -280,7 +280,7 @@ body {
 }
 
 /* =========================================================
-   MODAL POPUP (PRÆCISE PROCENTER BASERET PÅ AFFINITY MÅL)
+   MODAL POPUP (PERFEKT SKALERET OG FASTLÅST HØJDE)
    ========================================================= */
 .modal-bg {
   position: fixed;
@@ -294,17 +294,19 @@ body {
 
 .modal {
   background: #fff;
-  border-radius: 30px;
-  width: 520px; /* Skaleret proportionalt med 1436px mockup bredde */
-  padding: 30px 40px; /* Svarer til 110px margin proportioner */
+  border-radius: 25px;
+  width: 480px;
+  max-height: 90vh; /* Sikrer at pop-uppen altid kan være på skærmen */
+  overflow-y: auto;  /* Gør den scrollbar hvis skærmen er lav */
+  padding: 20px 30px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 10px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
-/* 1. Collection / Wishlist Banners (Hver 40.95% + 40px/1216px mellemrum) */
+/* 1. Collection / Wishlist Banners */
 .modal-header-toggle {
   display: flex;
   justify-content: space-between;
@@ -312,13 +314,13 @@ body {
 }
 
 .modal-header-toggle img {
-  width: 48.3%; /* Svarer til 588px / 1216px */
+  width: 48%;
   height: auto;
   cursor: pointer;
   object-fit: contain;
 }
 
-/* 2. Upload Sektion (Upload ikon 32.73% bredde, højre side 706px / 1216px = 58%) */
+/* 2. Upload Sektion */
 .upload-section {
   display: flex;
   justify-content: space-between;
@@ -327,10 +329,11 @@ body {
 }
 
 .upload-btn {
-  width: 38.5%; /* Svarer til 470px / 1216px proportionalt */
+  width: 130px;
+  height: 130px;
   aspect-ratio: 1 / 1;
-  border: 2.5px solid #000;
-  border-radius: 20px;
+  border: 2px solid #000;
+  border-radius: 16px;
   background: url('https://lh3.googleusercontent.com/d/13xCOJ9lT2wrrP9HTxleFydN8xl6bVHSY') no-repeat center/cover;
   cursor: pointer;
   flex-shrink: 0;
@@ -341,10 +344,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 58%; /* Svarer til 706px / 1216px */
+  width: calc(100% - 142px);
+  height: 130px;
 }
 
-/* Originals & Performance knapper (Hver 333px, samlet 706px med mellemrum) */
+/* Originals & Performance knapper */
 .brand-toggle {
   display: flex;
   justify-content: space-between;
@@ -352,30 +356,29 @@ body {
 }
 
 .brand-toggle img {
-  width: 47.1%; /* Svarer til 333px / 706px */
-  height: auto;
-  aspect-ratio: 1 / 1;
+  width: 48%;
+  height: 75px;
   cursor: pointer;
   object-fit: contain;
 }
 
-/* Article Number rækken (Nøyaktig 706px bredde samlet) */
+/* Article Number rækken - Perfekt match i højde */
 .art-input {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
-  height: 52px; /* Skaleret efter 99px højde proportioner */
+  height: 42px;
 }
 
 .art-input img {
-  width: 25%; /* Svarer til 176.6px / 706px */
   height: 100%;
+  width: auto;
   object-fit: contain;
 }
 
 .art-input input {
-  width: 71%; /* Svarer til 502.2px / 706px */
+  flex: 1;
   height: 100%;
 }
 
@@ -383,34 +386,34 @@ body {
 .modal input[type="text"], .modal textarea {
   width: 100%;
   border: 1.5px solid #8c8c8c;
-  border-radius: 10px;
-  padding: 8px 12px;
+  border-radius: 8px;
+  padding: 5px 10px;
   background: #e3e3e3;
   box-sizing: border-box;
   font-family: inherit;
-  font-size: 13px;
+  font-size: 12px;
   outline: none;
 }
 
 .field-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .field-group label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: bold;
 }
 
 .three-cols {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 .price-section {
   display: flex;
-  gap: 15px;
+  gap: 10px;
 }
 
 .price-right {
@@ -420,16 +423,16 @@ body {
   flex: 1;
 }
 
-/* Footer knapper (Cancel, SOLD!, Save) */
+/* Footer knapper */
 .modal-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .modal-footer img {
-  height: 42px;
+  height: 36px;
   cursor: pointer;
   object-fit: contain;
 }
