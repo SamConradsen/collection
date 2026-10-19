@@ -198,8 +198,8 @@ body {
 
 .size-badge {
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top: 5px;
+  left: 5px;
   width: 32px;
   height: 32px;
   cursor: pointer;
@@ -207,8 +207,8 @@ body {
 
 .article-badge {
   position: absolute;
-  bottom: 8px;
-  right: 8px;
+  bottom: 5px;
+  right: 5px;
   display: flex;
   align-items: center;
   font-family: 'AvantGarde LT Book', sans-serif;
@@ -239,7 +239,7 @@ body {
   align-items: center;
   font-family: 'AvantGarde LT Book', sans-serif;
   font-weight: bold;
-  font-size: 14px !important; /* Større brand-tekst */
+  font-size: 16px !important; /* Større brand-tekst */
 }
 
 .item-id {
@@ -248,7 +248,7 @@ body {
 }
 
 .info-name {
-  font-size: 13px !important; /* Tydeligt større varenavn */
+  font-size: 14px !important; /* Tydeligt større varenavn */
   font-family: 'AvantGarde LT Medium', sans-serif;
   white-space: nowrap;
   overflow: hidden;
