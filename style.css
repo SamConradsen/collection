@@ -280,7 +280,7 @@ body {
 }
 
 /* =========================================================
-   MODAL POPUP (LAYOUT OG STØRRELSER DIREKTE MATCHET MED AFFINITY MOCKUP)
+   MODAL POPUP (PRÆCIS PLACERING & FLUGTNING EFTER MOCKUP)
    ========================================================= */
 .modal-bg {
   position: fixed;
@@ -295,42 +295,42 @@ body {
 .modal {
   background: #fff;
   border-radius: 25px;
-  width: 440px; /* Tilpasset bredde så elementer passer perfekt */
-  padding: 22px 24px;
+  width: 440px;
+  padding: 24px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
 
-/* 1. Top Knapper (Collection / Wishlist) - Strækker sig over HELE bredden */
+/* 1. Top Knapper (Collection / Wishlist) - Strækker sig præcist ud til kanterne */
 .modal-header-toggle {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
 }
 
 .modal-header-toggle img {
-  width: 50%; /* Hver knap tager præcis halvdelen af pop-uppens bredde */
+  width: 50%;
   height: auto;
   cursor: pointer;
   object-fit: contain;
 }
 
-/* 2. Upload Billede + Brand Knapper + Article Number */
+/* 2. Upload Sektion (Billede til venstre, Brand + Art.nr til højre) */
 .upload-section {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   width: 100%;
+  align-items: stretch;
 }
 
-/* Kvadratisk Upload-knap til venstre */
 .upload-btn {
-  width: 145px;
-  height: 145px;
+  width: 140px;
+  height: 140px;
   border: 2px solid #000;
-  border-radius: 16px;
+  border-radius: 14px;
   background: url('https://lh3.googleusercontent.com/d/13xCOJ9lT2wrrP9HTxleFydN8xl6bVHSY') no-repeat center/cover;
   cursor: pointer;
   flex-shrink: 0;
@@ -342,24 +342,22 @@ body {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  height: 145px; /* Flugter præcis med toppen og bunden af upload-btn */
+  height: 140px; /* Sørger for at bunden flugter præcist med upload-btn */
 }
 
-/* Brand knapperne strækker sig og fylder toppen af højre side */
 .brand-toggle {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
 }
 
 .brand-toggle img {
   width: 50%;
-  height: 85px; /* Højere knapper præcis som på Affinity mockup */
+  height: 95px; /* Fylder den øvre del ud til højre kant */
   cursor: pointer;
   object-fit: contain;
 }
 
-/* Article Number rækken i bunden af højre side */
 .art-input {
   display: flex;
   align-items: center;
@@ -368,10 +366,11 @@ body {
 }
 
 .art-input img {
-  height: 22px;
+  height: 20px;
+  width: auto;
 }
 
-/* Generel Input Styling med pæne runde kanter som i mockup */
+/* Generel Input Styling */
 .modal input[type="text"], .modal textarea {
   width: 100%;
   border: 1.5px solid #8c8c8c;
@@ -417,7 +416,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .modal-footer img {
