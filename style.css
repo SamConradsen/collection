@@ -162,7 +162,7 @@ body {
 .item-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 15px;
+  gap: 20px;
 }
 
 @media (max-width: 1024px) {
@@ -173,7 +173,7 @@ body {
   .item-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Item Card Design */
+/* Item Card Design (1:2 Boks højde & Større læsevenlig tekst) */
 .item-card {
   display: flex;
   flex-direction: column;
@@ -200,8 +200,8 @@ body {
   position: absolute;
   top: 8px;
   left: 8px;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
 }
 
@@ -213,11 +213,11 @@ body {
   align-items: center;
   font-family: 'AvantGarde LT Book', sans-serif;
   font-weight: bold;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .article-badge img {
-  height: 14px;
+  height: 15px;
   margin-right: 4px;
 }
 
@@ -225,36 +225,47 @@ body {
   margin-top: 5px;
   background: #fff;
   border: 1px solid #ddd;
-  padding: 6px 8px;
+  padding: 8px 10px;
   box-sizing: border-box;
-  font-size: 10px;
+  font-size: 12px; /* Forøget læsevenlig skriftstørrelse */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px; /* Svarer til 1:2 højde proportionalt med billedets bredde */
 }
 
 .info-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-family: 'AvantGarde LT Book', sans-serif;
   font-weight: bold;
-  font-size: 11px;
+  font-size: 13px;
+}
+
+.item-id {
+  color: #D9D9D9;
+  font-size: 9px; /* Lille og diskret ID */
 }
 
 .info-name {
-  font-size: 8px;
+  font-size: 11px; /* Større navn */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 3px 0;
+  margin: 2px 0;
 }
 
 .info-row {
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: space-between; /* Sikrer venstre/højre fordeling */
   color: #4C4C4C;
+  font-size: 11px;
 }
 
 .info-row span.val { color: #000; }
-.info-row img { height: 10px; }
+.info-row img { height: 12px; }
 
 /* Category Alphabet Nav Bar */
 .alphabet-nav {
@@ -280,7 +291,7 @@ body {
 }
 
 /* =========================================================
-   MODAL POPUP (PERFEKT SKALERET OG FASTLÅST HØJDE)
+   MODAL POPUP
    ========================================================= */
 .modal-bg {
   position: fixed;
@@ -294,19 +305,18 @@ body {
 
 .modal {
   background: #fff;
-  border-radius: 25px;
-  width: 480px;
-  max-height: 90vh; /* Sikrer at pop-uppen altid kan være på skærmen */
-  overflow-y: auto;  /* Gør den scrollbar hvis skærmen er lav */
-  padding: 20px 30px;
+  border-radius: 30px;
+  width: 580px;
+  max-height: 95vh;
+  overflow-y: auto;
+  padding: 28px 45px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
-/* 1. Collection / Wishlist Banners */
 .modal-header-toggle {
   display: flex;
   justify-content: space-between;
@@ -314,13 +324,12 @@ body {
 }
 
 .modal-header-toggle img {
-  width: 48%;
+  width: 47.5%;
   height: auto;
   cursor: pointer;
   object-fit: contain;
 }
 
-/* 2. Upload Sektion */
 .upload-section {
   display: flex;
   justify-content: space-between;
@@ -329,11 +338,10 @@ body {
 }
 
 .upload-btn {
-  width: 130px;
-  height: 130px;
+  width: 37.5%;
   aspect-ratio: 1 / 1;
   border: 2px solid #000;
-  border-radius: 16px;
+  border-radius: 18px;
   background: url('https://lh3.googleusercontent.com/d/13xCOJ9lT2wrrP9HTxleFydN8xl6bVHSY') no-repeat center/cover;
   cursor: pointer;
   flex-shrink: 0;
@@ -344,11 +352,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: calc(100% - 142px);
-  height: 130px;
+  width: 59%;
 }
 
-/* Originals & Performance knapper */
 .brand-toggle {
   display: flex;
   justify-content: space-between;
@@ -356,38 +362,37 @@ body {
 }
 
 .brand-toggle img {
-  width: 48%;
-  height: 75px;
+  width: 47.1%;
+  aspect-ratio: 1 / 1;
   cursor: pointer;
   object-fit: contain;
 }
 
-/* Article Number rækken - Perfekt match i højde */
 .art-input {
   display: flex;
   align-items: center;
   gap: 8px;
   width: 100%;
-  height: 42px;
+  height: 48px;
 }
 
 .art-input img {
+  width: 25%;
   height: 100%;
-  width: auto;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 .art-input input {
-  flex: 1;
+  width: 72%;
   height: 100%;
 }
 
-/* Input Styling */
 .modal input[type="text"], .modal textarea {
   width: 100%;
   border: 1.5px solid #8c8c8c;
   border-radius: 8px;
-  padding: 5px 10px;
+  padding: 6px 10px;
   background: #e3e3e3;
   box-sizing: border-box;
   font-family: inherit;
@@ -413,7 +418,7 @@ body {
 
 .price-section {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .price-right {
@@ -423,50 +428,15 @@ body {
   flex: 1;
 }
 
-/* Footer knapper */
 .modal-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .modal-footer img {
-  height: 36px;
+  height: 38px;
   cursor: pointer;
   object-fit: contain;
-}
-
-/* =========================================================
-   MOBIL RESPONSIVE JUSTERING AF MENU
-   ========================================================= */
-@media (max-width: 768px) {
-  .sticky-menu {
-    padding: 8px 10px;
-    gap: 8px;
-    flex-wrap: wrap; /* Gør at elementerne kan flytte sig pænt hvis pladsen er knappe */
-    justify-content: center;
-  }
-
-  .menu-left, .menu-right {
-    gap: 10px;
-  }
-
-  .menu-item {
-    height: 40px !important; /* Skalerer ikonerne ned på mobil */
-  }
-
-  .search-box {
-    height: 40px;
-    width: 160px; /* Tilpasser søgefeltets bredde til mobilskærme */
-  }
-
-  .search-box input {
-    font-size: 11px;
-  }
-
-  .toggle-container {
-    transform: scale(0.85); /* Skalerer toggle switch og tekst let ned */
-    transform-origin: center;
-  }
 }
