@@ -114,7 +114,7 @@ html, body {
   box-shadow: none !important;
   outline: none !important;
   font-size: 11px;
-  font-family: inherit;
+  font-family: 'AvantGarde LT Medium', sans-serif;
   color: #000;
   padding: 0;
   margin: 0;
@@ -218,39 +218,45 @@ html, body {
 
 .size-badge {
   position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 32px;
-  height: 32px;
+  top: 4px;
+  left: 4px;
+  width: 28px;
+  height: 28px;
   cursor: pointer;
 }
 
+/* Artikelnummer tæt på rammen og med ensartet ikon-højde */
 .article-badge {
   position: absolute;
-  bottom: 8px;
-  right: 8px;
+  bottom: 3px;
+  right: 4px;
   display: flex;
   align-items: center;
+  gap: 2px;
   font-family: 'AvantGarde LT Book', sans-serif;
   font-weight: bold;
-  font-size: 13px !important;
+  font-size: 11px;
 }
 
 .article-badge img {
-  height: 11px !important;
-  margin-right: 3px;
+  height: 10px;
+  width: auto;
+  display: block;
+  margin: 0;
 }
 
+/* Minimeret højde på info-boksen og strammere tekst */
 .info-box {
-  margin-top: 5px;
+  margin-top: 4px;
   background: #fff;
   border: 1px solid #ddd;
-  padding: 8px 10px;
+  padding: 6px 8px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 115px;
+  height: 85px; 
+  position: relative;
 }
 
 .info-header {
@@ -259,21 +265,27 @@ html, body {
   align-items: center;
   font-family: 'AvantGarde LT Book', sans-serif;
   font-weight: bold;
-  font-size: 14px !important;
+  font-size: 12px;
+  padding-right: 25px; /* Gør plads til det absolutte ID i hjørnet */
 }
 
+/* Varens ID bittesmå og helt oppe i hjørnet, næsten usynligt */
 .item-id {
+  position: absolute;
+  top: 4px;
+  right: 6px;
   color: #D9D9D9 !important;
-  font-size: 10px !important;
+  font-size: 7px !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
 }
 
 .info-name {
-  font-size: 13px !important;
+  font-size: 11px;
   font-family: 'AvantGarde LT Medium', sans-serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 0;
+  margin: 1px 0;
 }
 
 .info-row {
@@ -281,12 +293,13 @@ html, body {
   align-items: center;
   justify-content: space-between;
   color: #4C4C4C;
-  font-size: 12px !important;
+  font-size: 10.5px;
   margin: 0;
+  font-family: 'AvantGarde LT Medium', sans-serif;
 }
 
-.info-row span.val { color: #000; }
-.info-row img { height: 13px !important; }
+.info-row span.val { color: #000; font-family: 'AvantGarde LT Medium', sans-serif; }
+.info-row img { height: 10px; width: auto; }
 
 /* Category Alphabet Nav Bar */
 .alphabet-nav {
@@ -461,9 +474,7 @@ html, body {
   object-fit: contain;
 }
 
-/* =========================================================
-   MOBIL SKALERING (Tvinger elementer til at tilpasse sig skærmen)
-   ========================================================= */
+/* Mobil Skalering */
 @media (max-width: 600px) {
   .sticky-menu {
     padding: 6px 8px;
@@ -497,6 +508,6 @@ html, body {
   }
 
   .alphabet-nav {
-    display: none; /* Skjuler alfabet-nav på små skærme for bedre plads til varerne */
+    display: none;
   }
 }
