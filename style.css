@@ -173,7 +173,7 @@ body {
   .item-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Item Card Design (1:2 Boks højde & Større læsevenlig tekst) */
+/* Item Card Design (1:2 Boks højde & Større læsevenlig tekst uden store mellemrum) */
 .item-card {
   display: flex;
   flex-direction: column;
@@ -227,11 +227,10 @@ body {
   border: 1px solid #ddd;
   padding: 8px 10px;
   box-sizing: border-box;
-  font-size: 12px; /* Forøget læsevenlig skriftstørrelse */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100px; /* Svarer til 1:2 højde proportionalt med billedets bredde */
+  height: 110px;
 }
 
 .info-header {
@@ -244,24 +243,26 @@ body {
 }
 
 .item-id {
-  color: #D9D9D9;
-  font-size: 9px; /* Lille og diskret ID */
+  color: #D9D9D9 !important;
+  font-size: 10px !important;
 }
 
 .info-name {
-  font-size: 11px; /* Større navn */
+  font-size: 12px !important;
+  font-family: 'AvantGarde LT Medium', sans-serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 2px 0;
+  margin: 0;
 }
 
 .info-row {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Sikrer venstre/højre fordeling */
+  justify-content: space-between;
   color: #4C4C4C;
   font-size: 11px;
+  margin: 0;
 }
 
 .info-row span.val { color: #000; }
