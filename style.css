@@ -24,13 +24,13 @@ body {
   display: block;
 }
 
-/* Fixed Sticky Menu Overlay uden tomrum under */
+/* Fixed Sticky Menu Overlay */
 .sticky-menu-wrapper {
   position: sticky;
   top: 0;
   z-index: 100;
   width: 100%;
-  background: #d1e3ff; /* Samme farve som baggrunden så den dækker flot når man scroller */
+  background: #d1e3ff;
 }
 
 .sticky-menu {
@@ -71,7 +71,7 @@ body {
   white-space: nowrap;
 }
 
-/* Search Bar - Billedet styrer størrelsen, input feltet er 100% USYNLIGT */
+/* Search Bar */
 .search-box {
   position: relative;
   height: 55px;
@@ -87,9 +87,9 @@ body {
 
 .search-box input {
   position: absolute;
-  left: 18%;        /* Starter præcis inde i boblen */
+  left: 18%;
   top: 25%;
-  width: 58%;       /* Stop i god tid før højre kant */
+  width: 58%;
   height: 50%;
   border: none !important;
   background: transparent !important;
@@ -103,10 +103,10 @@ body {
   -webkit-appearance: none;
 }
 
-/* Size Menu Overlay - ÅBNER NEDAD (Placeret absolut under menuen) */
+/* Size Menu Overlay */
 .size-dropdown {
   position: absolute;
-  top: 100%; /* Placerer den direkte under den sticky menu */
+  top: 100%;
   left: 30px;
   z-index: 101;
   background: rgba(209, 227, 255, 0.4);
@@ -141,7 +141,7 @@ body {
   cursor: pointer;
 }
 
-/* Main Content Wrapper - Ingen uønskede afstande */
+/* Main Content Layout */
 .main-wrapper {
   display: flex;
   padding: 0 30px 30px 30px;
@@ -279,11 +279,13 @@ body {
   text-align: center;
 }
 
-/* Modal Popup */
+/* =========================================================
+   MODAL POPUP (LAYOUT OG STØRRELSER DIREKTE MATCHET MED AFFINITY MOCKUP)
+   ========================================================= */
 .modal-bg {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.4);
   display: none;
   align-items: center;
   justify-content: center;
@@ -292,42 +294,47 @@ body {
 
 .modal {
   background: #fff;
-  border-radius: 20px;
-  width: 400px;
-  padding: 20px;
+  border-radius: 25px;
+  width: 440px; /* Tilpasset bredde så elementer passer perfekt */
+  padding: 22px 24px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
 
+/* 1. Top Knapper (Collection / Wishlist) - Strækker sig over HELE bredden */
 .modal-header-toggle {
   display: flex;
-  gap: 8px;
-  justify-content: space-between;
+  gap: 12px;
   width: 100%;
 }
 
 .modal-header-toggle img {
-  height: 40px;
-  flex: 1;
+  width: 50%; /* Hver knap tager præcis halvdelen af pop-uppens bredde */
+  height: auto;
   cursor: pointer;
   object-fit: contain;
 }
 
+/* 2. Upload Billede + Brand Knapper + Article Number */
 .upload-section {
   display: flex;
-  gap: 12px;
+  gap: 14px;
+  width: 100%;
 }
 
+/* Kvadratisk Upload-knap til venstre */
 .upload-btn {
-  width: 115px;
-  height: 115px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  width: 145px;
+  height: 145px;
+  border: 2px solid #000;
+  border-radius: 16px;
   background: url('https://lh3.googleusercontent.com/d/13xCOJ9lT2wrrP9HTxleFydN8xl6bVHSY') no-repeat center/cover;
   cursor: pointer;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .upload-right {
@@ -335,39 +342,46 @@ body {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  height: 115px;
+  height: 145px; /* Flugter præcis med toppen og bunden af upload-btn */
 }
 
+/* Brand knapperne strækker sig og fylder toppen af højre side */
 .brand-toggle {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   width: 100%;
 }
 
 .brand-toggle img {
-  flex: 1;
-  height: 48px;
+  width: 50%;
+  height: 85px; /* Højere knapper præcis som på Affinity mockup */
   cursor: pointer;
   object-fit: contain;
 }
 
+/* Article Number rækken i bunden af højre side */
 .art-input {
   display: flex;
   align-items: center;
   gap: 6px;
+  width: 100%;
 }
 
-.art-input img { height: 16px; }
+.art-input img {
+  height: 22px;
+}
 
+/* Generel Input Styling med pæne runde kanter som i mockup */
 .modal input[type="text"], .modal textarea {
   width: 100%;
-  border: 1px solid #aaa;
-  border-radius: 6px;
-  padding: 5px;
-  background: #e0e0e0;
+  border: 1.5px solid #8c8c8c;
+  border-radius: 10px;
+  padding: 6px 10px;
+  background: #e3e3e3;
   box-sizing: border-box;
   font-family: inherit;
-  font-size: 11px;
+  font-size: 12px;
+  outline: none;
 }
 
 .field-group {
@@ -376,30 +390,38 @@ body {
   gap: 2px;
 }
 
+.field-group label {
+  font-size: 11px;
+  font-weight: bold;
+}
+
 .three-cols {
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 
 .price-section {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .price-right {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  justify-content: space-between;
   flex: 1;
 }
 
+/* Footer knapper (Cancel, SOLD!, Save) */
 .modal-footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 5px;
+  align-items: center;
+  margin-top: 6px;
 }
 
 .modal-footer img {
-  height: 35px;
+  height: 38px;
   cursor: pointer;
+  object-fit: contain;
 }
