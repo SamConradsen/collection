@@ -17,21 +17,25 @@
     </picture>
   </div>
 
-  <!-- Sticky Menu -->
+  <!-- Sticky Menu (Rekkefølge rettet) -->
   <div class="sticky-menu">
-    <img src="https://lh3.googleusercontent.com/d/1Rr_zvVAQYIR4N1D4tfpUbryo5eiioUpq" class="menu-item" onclick="window.location.href='index.html'">
-    <img src="https://lh3.googleusercontent.com/d/1w_wkFOLBDLVanPZDswz19U744f0Dg8EL" class="menu-item" onclick="toggleSizeMenu()">
-    
-    <div style="display:flex; align-items:center; gap:8px;">
-      <span style="font-size:10px; font-weight:bold;">SHOW SOLD</span>
-      <img src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" class="menu-item" id="toggleSold" onclick="toggleShowSold()">
+    <div class="menu-left">
+      <img src="https://lh3.googleusercontent.com/d/1Rr_zvVAQYIR4N1D4tfpUbryo5eiioUpq" class="menu-item" onclick="window.location.href='index.html'">
+      <img src="https://lh3.googleusercontent.com/d/1w_wkFOLBDLVanPZDswz19U744f0Dg8EL" class="menu-item" onclick="toggleSizeMenu()">
     </div>
 
-    <div class="search-box">
-      <input type="text" id="searchInput" oninput="renderItems()">
-    </div>
+    <div class="menu-right">
+      <div class="toggle-container">
+        <span class="toggle-label">SHOW SOLD</span>
+        <img src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" class="menu-item" id="toggleSold" onclick="toggleShowSold()" style="height:35px;">
+      </div>
 
-    <img src="https://lh3.googleusercontent.com/d/1xmQ_n_7Y_pGltsocKUHVBAHdI6Gm0oes" class="menu-item" onclick="openModal('wish')">
+      <div class="search-box">
+        <input type="text" id="searchInput" oninput="renderItems()">
+      </div>
+
+      <img src="https://lh3.googleusercontent.com/d/1xmQ_n_7Y_pGltsocKUHVBAHdI6Gm0oes" class="menu-item" onclick="openModal('wish')">
+    </div>
   </div>
 
   <!-- Size Menu Overlay -->
@@ -67,38 +71,45 @@
         </div>
       </div>
 
-      <label style="font-size:10px;">Name</label>
-      <input type="text" id="mName">
+      <div class="field-group">
+        <label style="font-size:10px;">Name</label>
+        <input type="text" id="mName">
+      </div>
 
-      <label style="font-size:10px;">Category</label>
-      <input type="text" id="mCategory">
+      <div class="field-group">
+        <label style="font-size:10px;">Category</label>
+        <input type="text" id="mCategory">
+      </div>
 
       <div class="three-cols">
-        <div>
+        <div class="field-group" style="flex:1;">
           <label style="font-size:9px;">Size</label>
           <input type="text" id="mSize">
         </div>
-        <div>
+        <div class="field-group" style="flex:1;">
           <label style="font-size:9px;">Production time</label>
           <input type="text" id="mProduced">
         </div>
-        <div>
+        <div class="field-group" style="flex:1;">
           <label style="font-size:9px;">Made in</label>
           <input type="text" id="mMadeIn">
         </div>
       </div>
 
       <div class="price-section">
-        <div style="flex:1;">
+        <div class="field-group" style="flex:1;">
           <label style="font-size:10px;">Materials</label>
-          <textarea id="mMaterial" rows="4"></textarea>
+          <textarea id="mMaterial" rows="3"></textarea>
         </div>
         <div class="price-right">
-          <label style="font-size:10px;">Purchase price</label>
-          <input type="text" id="mPurchasePrice">
-          
-          <label style="font-size:10px;">Sale price</label>
-          <input type="text" id="mSalePrice" disabled>
+          <div class="field-group">
+            <label style="font-size:10px;">Purchase price</label>
+            <input type="text" id="mPurchasePrice">
+          </div>
+          <div class="field-group">
+            <label style="font-size:10px;">Sale price</label>
+            <input type="text" id="mSalePrice" disabled>
+          </div>
         </div>
       </div>
 
