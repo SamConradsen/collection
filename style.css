@@ -280,7 +280,7 @@ body {
 }
 
 /* =========================================================
-   MODAL POPUP (PRÆCIS PLACERING & FLUGTNING EFTER MOCKUP)
+   MODAL POPUP (PRECISE MATCH TIL AFFINITY MOCKUP)
    ========================================================= */
 .modal-bg {
   position: fixed;
@@ -295,16 +295,16 @@ body {
 .modal {
   background: #fff;
   border-radius: 25px;
-  width: 440px;
-  padding: 24px;
+  width: 420px;
+  padding: 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
 
-/* 1. Top Knapper (Collection / Wishlist) - Strækker sig præcist ud til kanterne */
+/* 1. Banner-knapper i toppen (Collection / Wishlist) */
 .modal-header-toggle {
   display: flex;
   gap: 10px;
@@ -312,52 +312,59 @@ body {
 }
 
 .modal-header-toggle img {
-  width: 50%;
+  width: calc(50% - 5px);
   height: auto;
   cursor: pointer;
-  object-fit: contain;
+  display: block;
 }
 
-/* 2. Upload Sektion (Billede til venstre, Brand + Art.nr til højre) */
+/* 2. Upload Sektion (1:1 Kvadratisk Upload + Kvadratiske Brand-knapper + Article Number) */
 .upload-section {
   display: flex;
   gap: 12px;
   width: 100%;
-  align-items: stretch;
+  align-items: flex-start;
 }
 
+/* Kvadratisk Upload Billede */
 .upload-btn {
-  width: 140px;
-  height: 140px;
+  width: 130px;
+  height: 130px;
+  aspect-ratio: 1 / 1;
   border: 2px solid #000;
-  border-radius: 14px;
+  border-radius: 16px;
   background: url('https://lh3.googleusercontent.com/d/13xCOJ9lT2wrrP9HTxleFydN8xl6bVHSY') no-repeat center/cover;
   cursor: pointer;
   flex-shrink: 0;
   box-sizing: border-box;
 }
 
+/* Højre side af Upload Sektionen */
 .upload-right {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  height: 140px; /* Sørger for at bunden flugter præcist med upload-btn */
+  height: 130px; /* Flugter nøjagtigt med upload-btn højden */
 }
 
+/* 2 Kvadratiske Brand-knapper ved siden af hinanden */
 .brand-toggle {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   width: 100%;
 }
 
 .brand-toggle img {
-  width: 50%;
-  height: 95px; /* Fylder den øvre del ud til højre kant */
+  width: 75px;
+  height: 75px;
+  aspect-ratio: 1 / 1;
   cursor: pointer;
+  display: block;
   object-fit: contain;
 }
 
+/* Article Number rækken som flugter med bunden af Upload-billedet */
 .art-input {
   display: flex;
   align-items: center;
@@ -366,11 +373,16 @@ body {
 }
 
 .art-input img {
-  height: 20px;
+  height: 22px;
   width: auto;
+  flex-shrink: 0;
 }
 
-/* Generel Input Styling */
+.art-input input {
+  flex: 1;
+}
+
+/* Input Styling */
 .modal input[type="text"], .modal textarea {
   width: 100%;
   border: 1.5px solid #8c8c8c;
@@ -401,7 +413,7 @@ body {
 
 .price-section {
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }
 
 .price-right {
@@ -420,7 +432,7 @@ body {
 }
 
 .modal-footer img {
-  height: 38px;
+  height: 36px;
   cursor: pointer;
   object-fit: contain;
 }
