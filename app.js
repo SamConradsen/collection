@@ -4,6 +4,7 @@ let allItems = [];
 let showSold = false;
 let currentImageBase64 = null;
 let currentEditId = null;
+let isSaving = false;
 
 let formData = {
   collect: 'collect',
@@ -52,7 +53,6 @@ const sizesConfig = [
 
 let activeSizes = {};
 
-// Initialiser størrelsesfiltre
 sizesConfig.forEach(g => {
   g.items.forEach(i => activeSizes[i.code] = true);
 });
@@ -118,7 +118,6 @@ function renderItems() {
   content.innerHTML = '';
   nav.innerHTML = '';
 
-  // Filtrering
   let filtered = allItems.filter(item => {
     if (item.collect !== PAGE_MODE) return false;
     if (!showSold && String(item.sold).toUpperCase() === 'TRUE') return false;
@@ -132,7 +131,6 @@ function renderItems() {
     return true;
   });
 
-  // Gruppering pr. kategori
   let categories = {};
   filtered.forEach(item => {
     let cat = item.category || 'Uncategorized';
@@ -140,11 +138,9 @@ function renderItems() {
     categories[cat].push(item);
   });
 
-  // Sorter kategorier alfabetisk
   let sortedCats = Object.keys(categories).sort((a,b) => a.localeCompare(b));
 
   sortedCats.forEach(cat => {
-    // Sorter varer alfabetisk efter navn
     categories[cat].sort((a,b) => String(a.name).localeCompare(String(b.name)));
 
     let section = document.createElement('div');
@@ -161,7 +157,6 @@ function renderItems() {
     section.appendChild(grid);
     content.appendChild(section);
 
-    // Alfabet-navpunkt
     let firstLetter = cat.charAt(0).toUpperCase();
     let navLink = document.createElement('a');
     navLink.href = `#cat-${cat}`;
@@ -202,23 +197,25 @@ function createCard(item) {
     <div class="info-box">
       <div class="info-header">
         <span>${brandDisplay}</span>
-        <span style="font-size:8px;">${item.id}</span>
+        <span class="item-id">${item.id || ''}</span>
       </div>
-      <div class="info-name">${item.name || ''}</div>
+      <div class="info-name" title="${item.name || ''}">${item.name || ''}</div>
       <div class="info-row">
         <span>Made in <span class="val">${item.madein || ''}</span></span>
-        <img src="https://lh3.googleusercontent.com/d/1ij4Ek7JOZ956BKEObfNPiQUkQRFSTVBY">
-        <span class="val">${item.produced || ''}</span>
+        <div style="display:flex; align-items:center; gap:4px;">
+          <img src="https://lh3.googleusercontent.com/d/1ij4Ek7JOZ956BKEObfNPiQUkQRFSTVBY">
+          <span class="val">${item.produced || ''}</span>
+        </div>
       </div>
-      <div class="info-row" style="justify-content:space-between; margin-top:3px;">
-        <div style="display:flex; align-items:center; gap:2px;">
+      <div class="info-row" style="margin-top:2px;">
+        <div style="display:flex; align-items:center; gap:4px;">
           <img src="https://lh3.googleusercontent.com/d/1pXAS0b2IK1Z81StPX8XjWdkUli2hlz_L">
-          <span>${item.purchaseprice || ''}</span>
+          <span class="val">${item.purchaseprice || ''}</span>
         </div>
         ${isSold ? `
-        <div style="display:flex; align-items:center; gap:2px;">
+        <div style="display:flex; align-items:center; gap:4px;">
           <img src="https://lh3.googleusercontent.com/d/1Yu_Lil2oFqOlkPmjOwcmu7iL4nCMcVxI">
-          <span>${item.saleprice || ''}</span>
+          <span class="val">${item.saleprice || ''}</span>
         </div>` : ''}
       </div>
     </div>
@@ -332,14 +329,9 @@ function editItem(id) {
   document.getElementById('modalBg').style.display = 'flex';
 }
 
-let isSaving = false;
-
 function saveData() {
-  if (isSaving) return; // Forhindrer at den gemmer flere gange samtidig
+  if (isSaving) return;
   isSaving = true;
-
-  let saveButtonImg = document.querySelector('.modal-footer img:last-child');
-  if (saveButtonImg) saveButtonImg.style.opacity = '0.5';
 
   let payload = {
     id: currentEditId,
@@ -365,14 +357,11 @@ function saveData() {
   .then(res => res.json())
   .then(res => {
     isSaving = false;
-    if (saveButtonImg) saveButtonImg.style.opacity = '1';
     closeModal();
-    fetchData(); // Henter de nyeste data og opdaterer gitteret
+    fetchData();
   })
   .catch(err => {
     isSaving = false;
-    if (saveButtonImg) saveButtonImg.style.opacity = '1';
-    console.error("Fejl ved gem:", err);
-    alert("Der opstod en fejl ved gemning.");
+    console.error("Fejl:", err);
   });
 }
