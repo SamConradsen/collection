@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adidas Wishlist</title>
-  <link rel="stylesheet" href="style.css?v=9.0">
+  <link rel="stylesheet" href="style.css?v=10.0">
 </head>
 <body>
 
@@ -17,31 +17,51 @@
   <div class="sticky-menu-wrapper">
     <div class="sticky-menu">
       <div class="menu-left">
-        <!-- Knap A og Knap B -->
         <img src="https://lh3.googleusercontent.com/d/1Rr_zvVAQYIR4N1D4tfpUbryo5eiioUpq" class="menu-item" onclick="handleButtonA()" alt="Button A">
         <img src="https://lh3.googleusercontent.com/d/1xmQ_n_7Y_pGltsocKUHVBAHdI6Gm0oes" class="menu-item" onclick="handleButtonB()" alt="Button B">
       </div>
+
       <div class="search-box">
         <img src="https://lh3.googleusercontent.com/d/16AEnLeUyzfPU4YTCNXWA78eKpm2aWF4v" class="search-bg-img" alt="Search">
         <input type="text" id="searchInput" placeholder="Search..." oninput="handleSearch(this.value)">
       </div>
+
       <div class="menu-right">
-        <div class="toggle-container" onclick="toggleShowSold()">
-          <img id="showSoldToggleImg" src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" class="menu-item" alt="Show Sold">
-          <span class="toggle-label">SHOW SOLD</span>
+        <!-- Size Menu Trigger Button -->
+        <div class="size-menu-trigger" onclick="toggleSizeMenu(event)">
+          <img src="https://lh3.googleusercontent.com/d/1w_wkFOLBDLVanPZDswz19U744f0Dg8EL" class="menu-item" alt="Size Menu">
         </div>
+
+        <!-- Show Sold Container (SHOW SOLD over Toggle) -->
+        <div class="toggle-container" onclick="toggleShowSold()">
+          <span class="toggle-label">SHOW SOLD</span>
+          <img id="showSoldToggleImg" src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" class="menu-item" alt="Show Sold">
+        </div>
+      </div>
+    </div>
+
+    <!-- Dropdown Size Menu Window -->
+    <div class="size-dropdown" id="sizeDropdown">
+      <div class="size-dropdown-header">
+        <div class="size-quick-actions">
+          <img src="https://lh3.googleusercontent.com/d/1V2GovFhIyQNeToWVriLnLizmC295PoxL" onclick="selectAllSizes(true)" title="Select All" alt="Select All">
+          <img src="https://lh3.googleusercontent.com/d/18sFkDxQEW3oa79aSI-sWZLi5oSoEWOuZ" onclick="selectAllSizes(false)" title="Deselect All" alt="Deselect All">
+        </div>
+      </div>
+      <div class="size-groups-container" id="sizeGroupsContainer">
+        <!-- Renderes dynamisk i JS -->
       </div>
     </div>
   </div>
 
   <!-- Main Content Layout med Sidebar & Gitter -->
   <div class="main-wrapper">
-    <div class="alphabet-nav" id="alphabetNav">
-      <!-- Kategorier / Alfabet genveje renderes dynamisk -->
-    </div>
     <div class="content-area" id="contentArea">
       <!-- Kategorisektioner og varer renderes her -->
     </div>
+
+    <!-- Boble-sidebar placeret i HØJRE side -->
+    <div class="alphabet-nav" id="alphabetNav"></div>
   </div>
 
   <!-- Modal Popup -->
@@ -115,7 +135,7 @@
             <img id="btnSold" src="https://lh3.googleusercontent.com/d/1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK" onclick="toggleSoldState()" alt="Reselling">
           </div>
 
-          <div class="field-group">
+          <div class="field-group sale-price-group" id="salePriceGroup">
             <label>Sale price</label>
             <input type="text" id="mSalePrice" placeholder="0,00 kr." disabled>
           </div>
@@ -136,8 +156,8 @@
   </div>
 
   <script>
-    const PAGE_MODE = 'wish'; // Sætter siden til wishlist-tilstand
+    const PAGE_MODE = 'wish';
   </script>
-  <script src="app.js?v=9.0"></script>
+  <script src="app.js?v=10.0"></script>
 </body>
 </html>
