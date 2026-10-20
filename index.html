@@ -4,42 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adidas Collection</title>
-  <link rel="stylesheet" href="style.css?v=7.0">
+  <link rel="stylesheet" href="style.css?v=9.0">
 </head>
 <body>
 
   <!-- Header Banner -->
   <div class="header-container">
-    <img src="https://lh3.googleusercontent.com/d/1dWYclOTMbNctJwKXaqd6GcN5-TYx351e" alt="Collection Header">
+    <img id="headerBannerImg" src="https://lh3.googleusercontent.com/d/1BbO-EU_AmhU8XtYRuYGCFx_ZVZzK3iCA" alt="Collection Header">
   </div>
 
   <!-- Sticky Menu / Navbar -->
   <div class="sticky-menu-wrapper">
     <div class="sticky-menu">
       <div class="menu-left">
-        <img src="https://lh3.googleusercontent.com/d/17aR66nIeS8vP7m4uXoN2R7_9K2p8x3Ff" class="menu-item" onclick="location.href='index.html'" alt="Collection">
-        <img src="https://lh3.googleusercontent.com/d/1vC3z6r0j7Y6J8k9L0m1N2o3P4q5R6s7t" class="menu-item" onclick="location.href='wishlist.html'" alt="Wishlist">
+        <!-- Knap A og Knap B -->
+        <img src="https://lh3.googleusercontent.com/d/1Rr_zvVAQYIR4N1D4tfpUbryo5eiioUpq" class="menu-item" onclick="handleButtonA()" alt="Button A">
+        <img src="https://lh3.googleusercontent.com/d/1xmQ_n_7Y_pGltsocKUHVBAHdI6Gm0oes" class="menu-item" onclick="handleButtonB()" alt="Button B">
       </div>
       <div class="search-box">
-        <img src="https://lh3.googleusercontent.com/d/18x9Y2z7W6V5u4T3s2R1q0P9o8n7m6L5k" class="search-bg-img" alt="Search">
-        <input type="text" id="searchInput" placeholder="Search...">
+        <img src="https://lh3.googleusercontent.com/d/16AEnLeUyzfPU4YTCNXWA78eKpm2aWF4v" class="search-bg-img" alt="Search">
+        <input type="text" id="searchInput" placeholder="Search..." oninput="handleSearch(this.value)">
       </div>
       <div class="menu-right">
-        <div class="toggle-container" onclick="openModalForCurrentPage()">
-          <img src="https://lh3.googleusercontent.com/d/19p4A-s-KkL6B47C021cR2839x-30232x" class="menu-item" alt="Add Item">
-          <span class="toggle-label">Add Item</span>
+        <div class="toggle-container" onclick="toggleShowSold()">
+          <img id="showSoldToggleImg" src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" class="menu-item" alt="Show Sold">
+          <span class="toggle-label">SHOW SOLD</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Main Content Layout -->
+  <!-- Main Content Layout med Sidebar & Gitter -->
   <div class="main-wrapper">
-    <div class="content-area">
-      <h2 class="category-title">Bags</h2>
-      <div class="item-grid" id="itemGrid">
-        <!-- Genereres dynamisk via app.js -->
-      </div>
+    <div class="alphabet-nav" id="alphabetNav">
+      <!-- Kategorier / Alfabet genveje renderes dynamisk -->
+    </div>
+    <div class="content-area" id="contentArea">
+      <!-- Kategorisektioner og varer renderes her -->
     </div>
   </div>
 
@@ -121,7 +122,7 @@
         </div>
       </div>
 
-      <!-- Modal Footer med korrekte Cancel & Save knapper -->
+      <!-- Modal Footer -->
       <div class="modal-footer">
         <img src="https://lh3.googleusercontent.com/d/1ezJe2_NICuZT07YFN_1pRIQC8yiWAOHc" onclick="closeModal()" alt="Cancel" class="footer-btn">
         
@@ -135,8 +136,8 @@
   </div>
 
   <script>
-    const PAGE_MODE = 'collect';
+    const PAGE_MODE = 'collect'; // Sættes til 'wish' på wishlist.html
   </script>
-  <script src="app.js?v=7.0"></script>
+  <script src="app.js?v=9.0"></script>
 </body>
 </html>
