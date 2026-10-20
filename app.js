@@ -22,7 +22,7 @@ const IMAGES = {
 
 let formData = {
   collect: 'collect',
-  brand: '', // Begge starter som FALSE
+  brand: '',
   sold: 'FALSE'
 };
 
@@ -34,7 +34,15 @@ function fetchData() {
   fetch(APPS_SCRIPT_URL)
     .then(res => res.json())
     .then(data => {
-      allItems = Array.isArray(data) ? data : (data.items || []);
+      if (Array.isArray(data)) {
+        allItems = data;
+      } else if (data && Array.isArray(data.items)) {
+        allItems = data.items;
+      } else if (data && typeof data === 'object') {
+        allItems = Object.values(data);
+      } else {
+        allItems = [];
+      }
       updateCategoryDatalist();
       renderItems();
     })
@@ -49,7 +57,9 @@ function renderItems() {
   const pageMode = typeof PAGE_MODE !== 'undefined' ? PAGE_MODE : 'collect';
 
   const filtered = allItems.filter(item => {
-    const isCorrectType = (item.collect || 'collect') === pageMode;
+    if (!item) return false;
+    const itemCollect = item.collect ? String(item.collect).toLowerCase() : 'collect';
+    const isCorrectType = itemCollect === pageMode.toLowerCase();
     const isSold = String(item.sold).toUpperCase() === 'TRUE';
     if (!showSold && isSold) return false;
     return isCorrectType;
@@ -95,7 +105,7 @@ function updateCategoryDatalist() {
   const datalist = document.getElementById('categorySuggestions');
   if (!datalist) return;
   
-  const categories = [...new Set(allItems.map(item => item.category).filter(Boolean))];
+  const categories = [...new Set(allItems.map(item => item ? item.category : null).filter(Boolean))];
   datalist.innerHTML = categories.map(cat => `<option value="${cat}">`).join('');
 }
 
@@ -195,7 +205,7 @@ function handleImage(input) {
 }
 
 function editItem(id) {
-  let item = allItems.find(i => i.id == id);
+  let item = allItems.find(i => i && i.id == id);
   if (!item) return;
 
   currentEditId = item.id;
