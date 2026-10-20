@@ -7,7 +7,7 @@ let currentImageBase64 = null;
 let currentEditId = null;
 let isSaving = false;
 
-// Google Drive Image IDs fra din liste
+// Google Drive Image IDs
 const IMAGES = {
   headerCollect: "1dWYclOTMbNctJwKXaqd6GcN5-TYx351e",
   headerWish: "1oTjzdjkAa2-aNJapRQ6fXrRtFdKMwb4H",
@@ -29,7 +29,7 @@ const IMAGES = {
   iconProduced: "1ij4Ek7JOZ956BKEObfNPiQUkQRFSTVBY"
 };
 
-// Size menu data struktur med TRUE/FALSE ID'er
+// Size menu data struktur
 const SIZE_DATA = [
   {
     title: "1RZTZy5SkaYhentzK95PtHLfTLrry588t", // Women's
@@ -91,7 +91,7 @@ const SIDEBAR_BUBBLES = [
   "1wzGfk5eo1pDOmgDfLQJhNnw82DwGznhl"
 ];
 
-// Hvilke størrelser der er aktiverede (Default: ALLE er tilvalgte TRUE)
+// Default: ALLE er tilvalgte
 let selectedSizes = {};
 SIZE_DATA.forEach(group => {
   group.sizes.forEach(s => {
@@ -140,7 +140,6 @@ function fetchData() {
     .catch(err => console.error("Fejl ved hentning af data:", err));
 }
 
-/* Navigationslogik for Knap A og Knap B */
 function handleButtonA() {
   if (PAGE_TYPE === 'collect') {
     openModal('collect');
@@ -171,7 +170,7 @@ function handleSearch(val) {
   renderItems();
 }
 
-/* Size Menu Toggles */
+/* Size Menu Toggles & Rendering */
 function toggleSizeMenu(e) {
   e.stopPropagation();
   const dropdown = document.getElementById('sizeDropdown');
@@ -180,33 +179,50 @@ function toggleSizeMenu(e) {
 }
 
 function renderSizeMenuUI() {
-  const container = document.getElementById('sizeGroupsContainer');
-  if (!container) return;
-  container.innerHTML = '';
+  const dropdown = document.getElementById('sizeDropdown');
+  if (!dropdown) return;
 
-  SIZE_DATA.forEach(group => {
-    const groupDiv = document.createElement('div');
-    groupDiv.className = 'size-group';
+  // Byg layoutet kompakt som på EDITED.jpg
+  let html = `
+    <div class="size-dropdown-top">
+      <div><!-- Første titel sættes ind herunder --></div>
+      <div class="size-quick-actions">
+        <img src="https://lh3.googleusercontent.com/d/1V2GovFhIyQNeToWVriLnLizmC295PoxL" onclick="selectAllSizes(true)" title="Select All" alt="ON">
+        <img src="https://lh3.googleusercontent.com/d/18sFkDxQEW3oa79aSI-sWZLi5oSoEWOuZ" onclick="selectAllSizes(false)" title="Deselect All" alt="OFF">
+      </div>
+    </div>
+  `;
 
-    const titleImg = document.createElement('img');
-    titleImg.src = `https://lh3.googleusercontent.com/d/${group.title}`;
-    titleImg.className = 'size-group-title';
-    groupDiv.appendChild(titleImg);
+  SIZE_DATA.forEach((group, idx) => {
+    const isFirst = idx === 0;
+    
+    html += `<div class="size-group">`;
+    
+    if (isFirst) {
+      // For første gruppe (Women's) fletter vi titlen sammen med ON/OFF knapperne
+      html = `
+        <div class="size-dropdown-top">
+          <img src="https://lh3.googleusercontent.com/d/${group.title}" class="size-group-title" style="margin-bottom:0;" alt="Women's">
+          <div class="size-quick-actions">
+            <img src="https://lh3.googleusercontent.com/d/1V2GovFhIyQNeToWVriLnLizmC295PoxL" onclick="selectAllSizes(true)" title="Select All" alt="ON">
+            <img src="https://lh3.googleusercontent.com/d/18sFkDxQEW3oa79aSI-sWZLi5oSoEWOuZ" onclick="selectAllSizes(false)" title="Deselect All" alt="OFF">
+          </div>
+        </div>
+        <div class="size-group">
+      `;
+    } else {
+      html += `<img src="https://lh3.googleusercontent.com/d/${group.title}" class="size-group-title" alt="title">`;
+    }
 
-    const grid = document.createElement('div');
-    grid.className = 'size-grid';
-
+    html += `<div class="size-grid">`;
     group.sizes.forEach(s => {
       const isSelected = !!selectedSizes[s.key];
-      const img = document.createElement('img');
-      img.src = `https://lh3.googleusercontent.com/d/${isSelected ? s.trueId : s.falseId}`;
-      img.onclick = () => toggleSingleSize(s.key);
-      grid.appendChild(img);
+      html += `<img src="https://lh3.googleusercontent.com/d/${isSelected ? s.trueId : s.falseId}" onclick="toggleSingleSize('${s.key}')" alt="${s.key}">`;
     });
-
-    groupDiv.appendChild(grid);
-    container.appendChild(groupDiv);
+    html += `</div></div>`;
   });
+
+  dropdown.innerHTML = html;
 }
 
 function toggleSingleSize(sizeKey) {
@@ -225,7 +241,6 @@ function selectAllSizes(status) {
   renderItems();
 }
 
-/* Hent TRUE Badge ID til varens størrelse */
 function getSizeBadgeId(sizeStr) {
   if (!sizeStr) return null;
   const clean = sizeStr.trim().toUpperCase();
@@ -255,7 +270,6 @@ function renderItems() {
     
     if (!showSold && isSold) return false;
 
-    // Filter på valgte størrelser
     if (item.size) {
       const itemSizeKey = item.size.trim();
       if (selectedSizes.hasOwnProperty(itemSizeKey) && !selectedSizes[itemSizeKey]) {
@@ -272,7 +286,6 @@ function renderItems() {
     return isCorrectType;
   });
 
-  // Gruppér varer efter kategori
   const categories = {};
   filtered.forEach(item => {
     const cat = item.category ? item.category.trim() : 'Uncategorized';
@@ -283,7 +296,6 @@ function renderItems() {
   const sortedCats = Object.keys(categories).sort();
 
   sortedCats.forEach((cat, index) => {
-    // Boble-sidebar i HØJRE side
     if (alphabetNav) {
       const bubbleImgId = SIDEBAR_BUBBLES[index % SIDEBAR_BUBBLES.length];
       const letter = cat.charAt(0).toUpperCase();
@@ -299,7 +311,6 @@ function renderItems() {
       alphabetNav.appendChild(bubbleItem);
     }
 
-    // Opret kategori sektion
     const section = document.createElement('div');
     section.className = 'category-section';
     section.id = `cat-${encodeURIComponent(cat)}`;
@@ -322,8 +333,6 @@ function renderItems() {
       const brandText = item.brand === 'performance' ? 'adidas Performance' : 'adidas Originals';
       
       const sizeBadgeId = getSizeBadgeId(item.size);
-
-      // Tjek om salgspris skal vises (Kun hvis solgt + angivet salgspris)
       const hasSalePrice = isSold && item.saleprice && item.saleprice.trim() !== '';
 
       card.innerHTML = `
