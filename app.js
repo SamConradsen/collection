@@ -73,6 +73,8 @@ function renderItems() {
     const isSold = String(item.sold).toUpperCase() === 'TRUE';
     const bgUrl = item.imageid ? `https://lh3.googleusercontent.com/d/${item.imageid}` : '';
 
+    const brandText = item.brand === 'performance' ? 'adidas Performance' : 'adidas Originals';
+
     card.innerHTML = `
       <div class="image-wrapper" style="background-image: url('${bgUrl}');">
         ${isSold ? '<div class="sold-overlay"></div>' : ''}
@@ -84,7 +86,7 @@ function renderItems() {
       <div class="info-box">
         <span class="item-id">${item.id || ''}</span>
         <div class="info-header">
-          <span>${item.brand === 'performance' ? 'adidas Performance' : 'adidas Originals'}</span>
+          <span>${brandText}</span>
         </div>
         <div class="info-name">${item.name || ''}</div>
         <div class="info-row">
@@ -120,7 +122,7 @@ function openModal(type) {
   document.getElementById('uploadPreview').style.backgroundImage = `url('https://lh3.googleusercontent.com/d/${IMAGES.uploadPlaceholder}')`;
 
   setPageType(type);
-  setBrand('');
+  initBrand(''); // Starter uden nogen valgt ved nyoprettelse
   setSoldState('FALSE');
 
   document.getElementById('mArticle').value = '';
@@ -162,13 +164,23 @@ function setPageType(type) {
   }
 }
 
-function setBrand(brand) {
+// Klik-funktion til at vælge brand (med toggle af og på)
+function selectBrand(brand) {
   if (formData.brand === brand) {
     formData.brand = '';
   } else {
     formData.brand = brand;
   }
+  updateBrandUI();
+}
 
+// Initialiserings-funktion til at sætte brand uden toggle-effekt ved indlæsning
+function initBrand(brand) {
+  formData.brand = brand ? String(brand).toLowerCase().trim() : '';
+  updateBrandUI();
+}
+
+function updateBrandUI() {
   document.getElementById('imgOrigToggle').src = `https://lh3.googleusercontent.com/d/${formData.brand === 'originals' ? IMAGES.origTrue : IMAGES.origFalse}`;
   document.getElementById('imgPerfToggle').src = `https://lh3.googleusercontent.com/d/${formData.brand === 'performance' ? IMAGES.perfTrue : IMAGES.perfFalse}`;
 }
@@ -210,7 +222,7 @@ function editItem(id) {
 
   currentEditId = item.id;
   setPageType(item.collect || (typeof PAGE_MODE !== 'undefined' ? PAGE_MODE : 'collect'));
-  setBrand(item.brand || '');
+  initBrand(item.brand || ''); // Indlæser korrekt brand uden at slå det fra
   setSoldState(String(item.sold).toUpperCase());
 
   if (item.imageid) {
