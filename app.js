@@ -2,6 +2,7 @@ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwUo7SdjykTdMeS
 
 let allItems = [];
 let showSold = false;
+let searchQuery = "";
 let currentImageBase64 = null;
 let currentEditId = null;
 let isSaving = false;
@@ -17,7 +18,9 @@ const IMAGES = {
   soldFalse: "1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK",
   soldTrue: "1vETS8eyAKpPjy89FdnPhRyh70Jw9whoK",
   moveWish: "1fJBy15xDCzGyYaRVC7kuffylkNr8L-6m",
-  moveCollect: "1vMlgzgIov6ukflJWXYIFuC-IkbaLNztl"
+  moveCollect: "1vMlgzgIov6ukflJWXYIFuC-IkbaLNztl",
+  showSoldOff: "1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ",
+  showSoldOn: "19wTkumBvqWSzhakI3TRw6ACWI0jl2YCG"
 };
 
 let formData = {
@@ -26,7 +29,18 @@ let formData = {
   sold: 'FALSE'
 };
 
+const PAGE_TYPE = typeof PAGE_MODE !== 'undefined' ? PAGE_MODE : 'collect';
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Sæt korrekt header banner afhængigt af side
+  const headerImg = document.getElementById('headerBannerImg');
+  if (headerImg) {
+    if (PAGE_TYPE === 'collect') {
+      headerImg.src = "https://lh3.googleusercontent.com/d/1BbO-EU_AmhU8XtYRuYGCFx_ZVZzK3iCA";
+    } else {
+      headerImg.src = "https://lh3.googleusercontent.com/d/14m-Rprm0BtqaVohizhDgPj0pSlfeIfGy";
+    }
+  }
   fetchData();
 });
 
@@ -49,70 +63,142 @@ function fetchData() {
     .catch(err => console.error("Fejl ved hentning af data:", err));
 }
 
-function renderItems() {
-  const grid = document.getElementById('itemGrid');
-  if (!grid) return;
-  grid.innerHTML = '';
+/* Navigationslogik for Knap A og Knap B */
+function handleButtonA() {
+  if (PAGE_TYPE === 'collect') {
+    openModal('collect');
+  } else {
+    window.location.href = 'index.html';
+  }
+}
 
-  const pageMode = typeof PAGE_MODE !== 'undefined' ? PAGE_MODE : 'collect';
+function handleButtonB() {
+  if (PAGE_TYPE === 'collect') {
+    window.location.href = 'wishlist.html';
+  } else {
+    openModal('wish');
+  }
+}
+
+function toggleShowSold() {
+  showSold = !showSold;
+  const toggleImg = document.getElementById('showSoldToggleImg');
+  if (toggleImg) {
+    toggleImg.src = `https://lh3.googleusercontent.com/d/${showSold ? IMAGES.showSoldOn : IMAGES.showSoldOff}`;
+  }
+  renderItems();
+}
+
+function handleSearch(val) {
+  searchQuery = val.toLowerCase().trim();
+  renderItems();
+}
+
+function renderItems() {
+  const contentArea = document.getElementById('contentArea');
+  const alphabetNav = document.getElementById('alphabetNav');
+  if (!contentArea) return;
+  contentArea.innerHTML = '';
+  if (alphabetNav) alphabetNav.innerHTML = '';
 
   const filtered = allItems.filter(item => {
     if (!item) return false;
     const itemCollect = item.collect ? String(item.collect).toLowerCase() : 'collect';
-    const isCorrectType = itemCollect === pageMode.toLowerCase();
+    const isCorrectType = itemCollect === PAGE_TYPE.toLowerCase();
     const isSold = String(item.sold).toUpperCase() === 'TRUE';
     if (!showSold && isSold) return false;
+
+    if (searchQuery) {
+      const matchName = item.name && item.name.toLowerCase().includes(searchQuery);
+      const matchArt = item.articlenumber && item.articlenumber.toLowerCase().includes(searchQuery);
+      const matchCat = item.category && item.category.toLowerCase().includes(searchQuery);
+      if (!matchName && !matchArt && !matchCat) return false;
+    }
     return isCorrectType;
   });
 
+  // Gruppér varer efter kategori
+  const categories = {};
   filtered.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'item-card';
-    card.onclick = () => editItem(item.id);
+    const cat = item.category ? item.category.trim() : 'Uncategorized';
+    if (!categories[cat]) categories[cat] = [];
+    categories[cat].push(item);
+  });
 
-    const isSold = String(item.sold).toUpperCase() === 'TRUE';
-    const bgUrl = item.imageid ? `https://lh3.googleusercontent.com/d/${item.imageid}` : '';
+  const sortedCats = Object.keys(categories).sort();
 
-    const brandText = item.brand === 'performance' ? 'adidas Performance' : 'adidas Originals';
+  sortedCats.forEach(cat => {
+    // Tilføj til sidebar (alphabet-nav)
+    if (alphabetNav) {
+      const navLink = document.createElement('a');
+      navLink.href = `#cat-${encodeURIComponent(cat)}`;
+      navLink.textContent = cat;
+      alphabetNav.appendChild(navLink);
+    }
 
-    card.innerHTML = `
-      <div class="image-wrapper" style="background-image: url('${bgUrl}');">
-        ${isSold ? '<div class="sold-overlay"></div>' : ''}
-        <div class="article-badge">
-          <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
-          <span>${item.articlenumber || ''}</span>
+    // Opret kategori sektion
+    const section = document.createElement('div');
+    section.className = 'category-section';
+    section.id = `cat-${encodeURIComponent(cat)}`;
+
+    const title = document.createElement('h2');
+    title.className = 'category-title';
+    title.textContent = cat;
+    section.appendChild(title);
+
+    const grid = document.createElement('div');
+    grid.className = 'item-grid';
+
+    categories[cat].forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.onclick = () => editItem(item.id);
+
+      const isSold = String(item.sold).toUpperCase() === 'TRUE';
+      const bgUrl = item.imageid ? `https://lh3.googleusercontent.com/d/${item.imageid}` : '';
+      const brandText = item.brand === 'performance' ? 'adidas Performance' : 'adidas Originals';
+
+      card.innerHTML = `
+        <div class="image-wrapper" style="background-image: url('${bgUrl}');">
+          ${isSold ? '<div class="sold-overlay"></div>' : ''}
+          <div class="article-badge">
+            <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
+            <span>${item.articlenumber || ''}</span>
+          </div>
         </div>
-      </div>
-      <div class="info-box">
-        <span class="item-id">${item.id || ''}</span>
-        <div class="info-header">
-          <span>${brandText}</span>
+        <div class="info-box">
+          <span class="item-id">${item.id || ''}</span>
+          <div class="info-header">
+            <span>${brandText}</span>
+          </div>
+          <div class="info-name">${item.name || ''}</div>
+          <div class="info-row">
+            <span>Made in</span>
+            <span class="val">${item.madein || ''}</span>
+          </div>
+          <div class="info-row">
+            <span><img src="https://lh3.googleusercontent.com/d/19p4A-s-KkL6B47C021cR2839x-30232x" alt="price"></span>
+            <span class="val">${item.purchaseprice ? item.purchaseprice + ' kr.' : ''}</span>
+          </div>
         </div>
-        <div class="info-name">${item.name || ''}</div>
-        <div class="info-row">
-          <span>Made in</span>
-          <span class="val">${item.madein || ''}</span>
-        </div>
-        <div class="info-row">
-          <span><img src="https://lh3.googleusercontent.com/d/19p4A-s-KkL6B47C021cR2839x-30232x" alt="price"></span>
-          <span class="val">${item.purchaseprice ? item.purchaseprice + ' kr.' : ''}</span>
-        </div>
-      </div>
-    `;
-    grid.appendChild(card);
+      `;
+      grid.appendChild(card);
+    });
+
+    section.appendChild(grid);
+    contentArea.appendChild(section);
   });
 }
 
 function updateCategoryDatalist() {
   const datalist = document.getElementById('categorySuggestions');
   if (!datalist) return;
-  
   const categories = [...new Set(allItems.map(item => item ? item.category : null).filter(Boolean))];
   datalist.innerHTML = categories.map(cat => `<option value="${cat}">`).join('');
 }
 
 function openModalForCurrentPage() {
-  openModal(typeof PAGE_MODE !== 'undefined' ? PAGE_MODE : 'collect');
+  openModal(PAGE_TYPE);
 }
 
 function openModal(type) {
@@ -122,7 +208,7 @@ function openModal(type) {
   document.getElementById('uploadPreview').style.backgroundImage = `url('https://lh3.googleusercontent.com/d/${IMAGES.uploadPlaceholder}')`;
 
   setPageType(type);
-  initBrand(''); // Starter uden nogen valgt ved nyoprettelse
+  initBrand('');
   setSoldState('FALSE');
 
   document.getElementById('mArticle').value = '';
@@ -164,7 +250,6 @@ function setPageType(type) {
   }
 }
 
-// Klik-funktion til at vælge brand (med toggle af og på)
 function selectBrand(brand) {
   if (formData.brand === brand) {
     formData.brand = '';
@@ -174,7 +259,6 @@ function selectBrand(brand) {
   updateBrandUI();
 }
 
-// Initialiserings-funktion til at sætte brand uden toggle-effekt ved indlæsning
 function initBrand(brand) {
   formData.brand = brand ? String(brand).toLowerCase().trim() : '';
   updateBrandUI();
@@ -221,8 +305,8 @@ function editItem(id) {
   if (!item) return;
 
   currentEditId = item.id;
-  setPageType(item.collect || (typeof PAGE_MODE !== 'undefined' ? PAGE_MODE : 'collect'));
-  initBrand(item.brand || ''); // Indlæser korrekt brand uden at slå det fra
+  setPageType(item.collect || PAGE_TYPE);
+  initBrand(item.brand || '');
   setSoldState(String(item.sold).toUpperCase());
 
   if (item.imageid) {
