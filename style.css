@@ -121,7 +121,7 @@ html, body {
   -webkit-appearance: none;
 }
 
-/* Main Content Layout */
+/* Main Content Layout & Sidebar */
 .main-wrapper {
   display: flex;
   padding: 0 20px 20px 20px;
@@ -132,6 +132,10 @@ html, body {
 .content-area {
   flex: 1;
   min-width: 0;
+}
+
+.category-section {
+  margin-bottom: 25px;
 }
 
 .category-title {
@@ -153,6 +157,34 @@ html, body {
 
 @media (max-width: 600px) {
   .item-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Category Alphabet Nav Bar (Sidebar) */
+.alphabet-nav {
+  position: sticky;
+  top: 70px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  padding: 5px;
+  margin-right: 15px;
+  z-index: 90;
+}
+
+.alphabet-nav a {
+  text-decoration: none;
+  color: #000;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 2px 5px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .alphabet-nav { display: none; }
 }
 
 /* Item Card Design */
