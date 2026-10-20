@@ -6,7 +6,6 @@ let currentImageBase64 = null;
 let currentEditId = null;
 let isSaving = false;
 
-// Billed-ID konstanter fra dine specifikationer
 const IMAGES = {
   headerCollect: "1dWYclOTMbNctJwKXaqd6GcN5-TYx351e",
   headerWish: "1oTjzdjkAa2-aNJapRQ6fXrRtFdKMwb4H",
@@ -23,7 +22,7 @@ const IMAGES = {
 
 let formData = {
   collect: 'collect',
-  brand: 'originals',
+  brand: '', // Startes som tom/none (begge FALSE)
   sold: 'FALSE'
 };
 
@@ -41,7 +40,6 @@ function fetchData() {
     });
 }
 
-/* Opdaterer Kategori Autocomplete ud fra eksisterende Kategorier */
 function updateCategoryDatalist() {
   const datalist = document.getElementById('categorySuggestions');
   if (!datalist) return;
@@ -50,9 +48,8 @@ function updateCategoryDatalist() {
   datalist.innerHTML = categories.map(cat => `<option value="${cat}">`).join('');
 }
 
-/* Modal Åbne/Lukke Logik */
 function openModalForCurrentPage() {
-  openModal(PAGE_MODE); // Åbner til den aktuelle side (collect eller wish)
+  openModal(PAGE_MODE);
 }
 
 function openModal(type) {
@@ -62,7 +59,7 @@ function openModal(type) {
   document.getElementById('uploadPreview').style.backgroundImage = `url('https://lh3.googleusercontent.com/d/${IMAGES.uploadPlaceholder}')`;
 
   setPageType(type);
-  setBrand('originals');
+  setBrand(''); // Begge startes som FALSE
   setSoldState('FALSE');
 
   document.getElementById('mArticle').value = '';
@@ -82,7 +79,6 @@ function closeModal() {
   document.getElementById('modalBg').style.display = 'none';
 }
 
-/* Skifter visuel udformning og target-destination (Collection <-> Wishlist) */
 function toggleModalPageType() {
   const newType = formData.collect === 'collect' ? 'wish' : 'collect';
   setPageType(newType);
@@ -106,9 +102,15 @@ function setPageType(type) {
 }
 
 function setBrand(brand) {
-  formData.brand = brand;
-  document.getElementById('imgOrigToggle').src = `https://lh3.googleusercontent.com/d/${brand === 'originals' ? IMAGES.origTrue : IMAGES.origFalse}`;
-  document.getElementById('imgPerfToggle').src = `https://lh3.googleusercontent.com/d/${brand === 'performance' ? IMAGES.perfTrue : IMAGES.perfFalse}`;
+  // Hvis man klikker på den samme igen, kan den slås fra, eller skifte til den nye
+  if (formData.brand === brand) {
+    formData.brand = '';
+  } else {
+    formData.brand = brand;
+  }
+
+  document.getElementById('imgOrigToggle').src = `https://lh3.googleusercontent.com/d/${formData.brand === 'originals' ? IMAGES.origTrue : IMAGES.origFalse}`;
+  document.getElementById('imgPerfToggle').src = `https://lh3.googleusercontent.com/d/${formData.brand === 'performance' ? IMAGES.perfTrue : IMAGES.perfFalse}`;
 }
 
 function toggleSoldState() {
@@ -148,7 +150,7 @@ function editItem(id) {
 
   currentEditId = item.id;
   setPageType(item.collect || PAGE_MODE);
-  setBrand(item.brand || 'originals');
+  setBrand(item.brand || '');
   setSoldState(String(item.sold).toUpperCase());
 
   if (item.imageid) {
