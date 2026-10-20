@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adidas Collection</title>
-  <link rel="stylesheet" href="style.css?v=5.0">
+  <link rel="stylesheet" href="style.css?v=7.0">
 </head>
 <body>
 
@@ -17,14 +17,16 @@
   <div class="sticky-menu-wrapper">
     <div class="sticky-menu">
       <div class="menu-left">
-        <img src="https://lh3.googleusercontent.com/d/1_a-placeholder-left" class="menu-item" alt="Menu">
+        <img src="https://lh3.googleusercontent.com/d/17aR66nIeS8vP7m4uXoN2R7_9K2p8x3Ff" class="menu-item" onclick="location.href='index.html'" alt="Collection">
+        <img src="https://lh3.googleusercontent.com/d/1vC3z6r0j7Y6J8k9L0m1N2o3P4q5R6s7t" class="menu-item" onclick="location.href='wishlist.html'" alt="Wishlist">
       </div>
       <div class="search-box">
-        <img src="https://lh3.googleusercontent.com/d/1_search-bg" class="search-bg-img" alt="Search">
+        <img src="https://lh3.googleusercontent.com/d/18x9Y2z7W6V5u4T3s2R1q0P9o8n7m6L5k" class="search-bg-img" alt="Search">
         <input type="text" id="searchInput" placeholder="Search...">
       </div>
       <div class="menu-right">
         <div class="toggle-container" onclick="openModalForCurrentPage()">
+          <img src="https://lh3.googleusercontent.com/d/19p4A-s-KkL6B47C021cR2839x-30232x" class="menu-item" alt="Add Item">
           <span class="toggle-label">Add Item</span>
         </div>
       </div>
@@ -61,8 +63,8 @@
           </div>
 
           <div class="brand-toggle">
-            <img id="imgOrigToggle" src="https://lh3.googleusercontent.com/d/1DyIHFmCtyFQIfJoQEIKdO2KhdzngxNEy" onclick="setBrand('originals')" alt="Originals">
-            <img id="imgPerfToggle" src="https://lh3.googleusercontent.com/d/1Gups0Qilu0Zau09XiGHn4JR98etyR0ZR" onclick="setBrand('performance')" alt="Performance">
+            <img id="imgOrigToggle" src="https://lh3.googleusercontent.com/d/1DyIHFmCtyFQIfJoQEIKdO2KhdzngxNEy" onclick="selectBrand('originals')" alt="Originals">
+            <img id="imgPerfToggle" src="https://lh3.googleusercontent.com/d/1Gups0Qilu0Zau09XiGHn4JR98etyR0ZR" onclick="selectBrand('performance')" alt="Performance">
           </div>
 
           <div class="field-group">
@@ -119,7 +121,7 @@
         </div>
       </div>
 
-      <!-- Modal Footer med de korrekte Cancel & Save ID'er -->
+      <!-- Modal Footer med korrekte Cancel & Save knapper -->
       <div class="modal-footer">
         <img src="https://lh3.googleusercontent.com/d/1ezJe2_NICuZT07YFN_1pRIQC8yiWAOHc" onclick="closeModal()" alt="Cancel" class="footer-btn">
         
@@ -135,6 +137,6 @@
   <script>
     const PAGE_MODE = 'collect';
   </script>
-  <script src="app.js?v=5.0"></script>
+  <script src="app.js?v=7.0"></script>
 </body>
 </html>
