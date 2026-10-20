@@ -1,1 +1,452 @@
+@font-face {
+  font-family: 'AvantGarde LT Book';
+  src: local('AvantGarde LT Book'), local('ITC Avant Garde Gothic Std Book');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'AvantGarde LT Medium';
+  src: local('AvantGarde LT Medium'), local('ITC Avant Garde Gothic Std Medium');
+  font-weight: 500;
+}
 
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: #d1e3ff;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  color: #000;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Header Responsiveness */
+.header-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.header-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Fixed Sticky Menu Overlay */
+.sticky-menu-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: #d1e3ff;
+}
+
+.sticky-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 15px;
+  box-sizing: border-box;
+  width: 100%;
+  gap: 5px;
+}
+
+.menu-left, .menu-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.menu-item {
+  cursor: pointer;
+  height: 48px;
+  width: auto;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.toggle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.toggle-label {
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 9px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Search Bar */
+.search-box {
+  position: relative;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 1;
+  min-width: 60px;
+}
+
+.search-bg-img {
+  height: 100%;
+  width: auto;
+  display: block;
+  max-width: 100%;
+}
+
+.search-box input {
+  position: absolute;
+  left: 18%;
+  top: 25%;
+  width: 58%;
+  height: 50%;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  font-size: 11px;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  color: #000;
+  padding: 0;
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+/* Main Content Layout */
+.main-wrapper {
+  display: flex;
+  padding: 0 20px 20px 20px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.content-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.category-title {
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 15px 0 10px 0;
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+@media (max-width: 1024px) {
+  .item-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .item-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Item Card Design */
+.item-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  border: 1px dashed #000;
+  box-sizing: border-box;
+  background-color: #fff;
+  background-size: cover;
+  background-position: center;
+}
+
+.sold-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('https://lh3.googleusercontent.com/d/1aI-Sx4t3iTxtWBZ8tTBECgleesVGC5hX') no-repeat center/cover;
+}
+
+.article-badge {
+  position: absolute;
+  bottom: 3px;
+  right: 4px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.article-badge img {
+  height: 10px;
+  width: auto;
+  display: block;
+  margin: 0;
+}
+
+.info-box {
+  margin-top: 4px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 6px 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 85px; 
+  position: relative;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  padding-right: 25px;
+}
+
+.item-id {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  color: #D9D9D9 !important;
+  font-size: 7px !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+}
+
+.info-name {
+  font-size: 11px;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 1px 0;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #4C4C4C;
+  font-size: 10.5px;
+  margin: 0;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+}
+
+.info-row span.val { color: #000; font-family: 'AvantGarde LT Medium', sans-serif; }
+.info-row img { height: 10px; width: auto; }
+
+/* =========================================================
+   POPUP MODAL DESIGN (INGEN INTERN SCROLLBAR)
+   ========================================================= */
+.modal-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  backdrop-filter: blur(4px);
+  padding: 20px 0;
+  overflow-y: auto !important;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: 32px;
+  width: 480px;
+  max-width: 92vw;
+  padding: 24px 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  overflow: visible !important;
+  max-height: none !important;
+}
+
+.modal-collect {
+  border: 3.5px solid transparent;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(135deg, #1AA8FF, #24FFD8);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.modal-wishlist {
+  border: 3.5px solid transparent;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(135deg, #3E8CFF, #5D43C3);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.modal-header-banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.modal-header-banner img {
+  height: 85px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.field-group label {
+  color: #2F47B1 !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.modal input[type="text"], 
+.modal textarea {
+  width: 100%;
+  background-color: #E7EDFF !important;
+  border: 1px solid #B1C3FF !important;
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-size: 12px;
+  color: #000;
+  outline: none;
+}
+
+.price-section {
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.price-section .field-group {
+  height: 100%;
+}
+
+.modal textarea#mMaterial {
+  resize: none;
+  height: 100%;
+  min-height: 110px;
+}
+
+.price-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.upload-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 14px;
+}
+
+.upload-btn {
+  width: 135px;
+  height: 135px;
+  border-radius: 18px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.upload-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.art-input {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.art-input img {
+  height: 18px;
+  width: auto;
+}
+
+.brand-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+}
+
+.brand-toggle img {
+  height: 48px;
+  width: auto;
+  cursor: pointer;
+  object-fit: contain;
+}
+
+.three-cols {
+  display: flex;
+  gap: 8px;
+}
+
+.toggle-sold-row {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 2px 0;
+}
+
+.toggle-sold-row img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.footer-btn {
+  height: 38px;
+  width: auto;
+  cursor: pointer;
+  object-fit: contain;
+}
+
+.move-toggle-btn img {
+  height: 36px;
+  width: auto;
+  cursor: pointer;
+  object-fit: contain;
+}
