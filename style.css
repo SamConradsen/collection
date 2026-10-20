@@ -69,6 +69,7 @@ html, body {
 }
 
 .size-menu-trigger {
+  position: relative;
   cursor: pointer;
 }
 
@@ -125,32 +126,38 @@ html, body {
   -webkit-appearance: none;
 }
 
-/* Size Dropdown Menu (Glass-morphism Window) */
+/* =========================================================
+   SIZE DROPDOWN MENU (Præcis som mock-up EDITED.jpg)
+   ========================================================= */
 .size-dropdown {
   position: absolute;
   top: 100%;
-  right: 15px;
-  z-index: 101;
-  background: rgba(209, 227, 255, 0.45);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  padding: 15px 20px;
-  border-radius: 20px;
+  right: 0; /* Starter ved højre kant af size-menu knappen og folder ud mod venstre */
+  z-index: 150;
+  background: linear-gradient(135deg, rgba(210, 220, 238, 0.88), rgba(133, 171, 229, 0.88));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #2A1A6F;
+  border-radius: 24px;
+  padding: 14px 18px 18px 18px;
   display: none;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-  max-width: 380px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  width: 330px;
+  box-sizing: border-box;
 }
 
-.size-dropdown-header {
+/* Øverste sektion (Titel + Knapper i samme linje) */
+.size-dropdown-top {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .size-quick-actions {
   display: flex;
-  gap: 8px;
+  gap: 6px;
+  align-items: center;
 }
 
 .size-quick-actions img {
@@ -160,22 +167,28 @@ html, body {
   object-fit: contain;
 }
 
+.size-group {
+  margin-bottom: 10px;
+}
+
 .size-group-title {
-  height: 18px;
+  height: 20px;
   width: auto;
   display: block;
-  margin: 10px 0 6px 0;
+  margin-bottom: 6px;
+  object-fit: contain;
 }
 
 .size-grid {
   display: grid;
-  grid-template-columns: repeat(6, 40px);
+  grid-template-columns: repeat(6, 1fr);
   gap: 6px;
 }
 
 .size-grid img {
-  width: 40px;
-  height: 40px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
   cursor: pointer;
   object-fit: contain;
 }
@@ -369,9 +382,7 @@ html, body {
 .info-row span.val { color: #000; font-family: 'AvantGarde LT Medium', sans-serif; }
 .info-row img { height: 10px; width: auto; display: inline-block; vertical-align: middle; }
 
-/* =========================================================
-   POPUP MODAL DESIGN (Tæt layout uden tomrum)
-   ========================================================= */
+/* POPUP MODAL DESIGN */
 .modal-bg {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
