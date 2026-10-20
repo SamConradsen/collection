@@ -22,7 +22,7 @@ const IMAGES = {
 
 let formData = {
   collect: 'collect',
-  brand: '', // Startes som tom/none (begge FALSE)
+  brand: '', // Begge starter som FALSE
   sold: 'FALSE'
 };
 
@@ -34,10 +34,61 @@ function fetchData() {
   fetch(APPS_SCRIPT_URL)
     .then(res => res.json())
     .then(data => {
-      allItems = data;
+      allItems = Array.isArray(data) ? data : (data.items || []);
       updateCategoryDatalist();
       renderItems();
-    });
+    })
+    .catch(err => console.error("Fejl ved hentning af data:", err));
+}
+
+function renderItems() {
+  const grid = document.getElementById('itemGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  const pageMode = typeof PAGE_MODE !== 'undefined' ? PAGE_MODE : 'collect';
+
+  const filtered = allItems.filter(item => {
+    const isCorrectType = (item.collect || 'collect') === pageMode;
+    const isSold = String(item.sold).toUpperCase() === 'TRUE';
+    if (!showSold && isSold) return false;
+    return isCorrectType;
+  });
+
+  filtered.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'item-card';
+    card.onclick = () => editItem(item.id);
+
+    const isSold = String(item.sold).toUpperCase() === 'TRUE';
+    const bgUrl = item.imageid ? `https://lh3.googleusercontent.com/d/${item.imageid}` : '';
+
+    card.innerHTML = `
+      <div class="image-wrapper" style="background-image: url('${bgUrl}');">
+        ${isSold ? '<div class="sold-overlay"></div>' : ''}
+        <div class="article-badge">
+          <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
+          <span>${item.articlenumber || ''}</span>
+        </div>
+      </div>
+      <div class="info-box">
+        <span class="item-id">${item.id || ''}</span>
+        <div class="info-header">
+          <span>${item.brand === 'performance' ? 'adidas Performance' : 'adidas Originals'}</span>
+        </div>
+        <div class="info-name">${item.name || ''}</div>
+        <div class="info-row">
+          <span>Made in</span>
+          <span class="val">${item.madein || ''}</span>
+        </div>
+        <div class="info-row">
+          <span><img src="https://lh3.googleusercontent.com/d/19p4A-s-KkL6B47C021cR2839x-30232x" alt="price"></span>
+          <span class="val">${item.purchaseprice ? item.purchaseprice + ' kr.' : ''}</span>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
 }
 
 function updateCategoryDatalist() {
@@ -49,7 +100,7 @@ function updateCategoryDatalist() {
 }
 
 function openModalForCurrentPage() {
-  openModal(PAGE_MODE);
+  openModal(typeof PAGE_MODE !== 'undefined' ? PAGE_MODE : 'collect');
 }
 
 function openModal(type) {
@@ -59,7 +110,7 @@ function openModal(type) {
   document.getElementById('uploadPreview').style.backgroundImage = `url('https://lh3.googleusercontent.com/d/${IMAGES.uploadPlaceholder}')`;
 
   setPageType(type);
-  setBrand(''); // Begge startes som FALSE
+  setBrand('');
   setSoldState('FALSE');
 
   document.getElementById('mArticle').value = '';
@@ -102,7 +153,6 @@ function setPageType(type) {
 }
 
 function setBrand(brand) {
-  // Hvis man klikker på den samme igen, kan den slås fra, eller skifte til den nye
   if (formData.brand === brand) {
     formData.brand = '';
   } else {
@@ -149,7 +199,7 @@ function editItem(id) {
   if (!item) return;
 
   currentEditId = item.id;
-  setPageType(item.collect || PAGE_MODE);
+  setPageType(item.collect || (typeof PAGE_MODE !== 'undefined' ? PAGE_MODE : 'collect'));
   setBrand(item.brand || '');
   setSoldState(String(item.sold).toUpperCase());
 
@@ -205,6 +255,6 @@ function saveData() {
   })
   .catch(err => {
     isSaving = false;
-    console.error("Fejl:", err);
+    console.error("Fejl ved gemning:", err);
   });
 }
