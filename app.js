@@ -91,7 +91,7 @@ const SIDEBAR_BUBBLES = [
   "1wzGfk5eo1pDOmgDfLQJhNnw82DwGznhl"
 ];
 
-// Default: ALLE er tilvalgte
+// Default: ALLE størrelser tilvalgt
 let selectedSizes = {};
 SIZE_DATA.forEach(group => {
   group.sizes.forEach(s => {
@@ -170,7 +170,6 @@ function handleSearch(val) {
   renderItems();
 }
 
-/* Size Menu Toggles & Rendering */
 function toggleSizeMenu(e) {
   e.stopPropagation();
   const dropdown = document.getElementById('sizeDropdown');
@@ -314,4 +313,234 @@ function renderItems() {
 
     categories[cat].forEach(item => {
       const card = document.createElement('div');
-      card.className = 'item
+      card.className = 'item-card';
+      card.onclick = () => editItem(item.id);
+
+      const isSold = String(item.sold).toUpperCase() === 'TRUE';
+      const bgUrl = item.imageid ? `https://lh3.googleusercontent.com/d/${item.imageid}` : '';
+      const brandText = item.brand === 'performance' ? 'adidas Performance' : 'adidas Originals';
+      
+      const sizeBadgeId = getSizeBadgeId(item.size);
+      const hasSalePrice = isSold && item.saleprice && item.saleprice.trim() !== '';
+      
+      const cleanPurchase = item.purchaseprice ? item.purchaseprice.replace(/kr\.?/gi, '').trim() : '';
+      const cleanSale = item.saleprice ? item.saleprice.replace(/kr\.?/gi, '').trim() : '';
+
+      card.innerHTML = `
+        <div class="image-wrapper" style="background-image: url('${bgUrl}');">
+          ${isSold ? '<div class="sold-overlay"></div>' : ''}
+          ${sizeBadgeId ? `<img class="size-badge" src="https://lh3.googleusercontent.com/d/${sizeBadgeId}" alt="${item.size}">` : ''}
+          <div class="article-badge">
+            <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
+            <span>${item.articlenumber || ''}</span>
+          </div>
+        </div>
+        <div class="info-box">
+          <span class="item-id">${item.id || ''}</span>
+          <div class="info-header">
+            <span>${brandText}</span>
+          </div>
+          <div class="info-name">${item.name || ''}</div>
+          <div class="info-row">
+            <span>Made in</span>
+            <span class="val">${item.madein || ''}</span>
+          </div>
+          <div class="info-row">
+            <div class="price-left-side">
+              <img src="https://lh3.googleusercontent.com/d/${IMAGES.iconPurchasePrice}" alt="purchase">
+              <span class="val">${cleanPurchase ? cleanPurchase + ' kr.' : ''}</span>
+            </div>
+            ${hasSalePrice ? `
+            <div class="price-right-side">
+              <img src="https://lh3.googleusercontent.com/d/${IMAGES.iconSalePrice}" alt="sale">
+              <span class="val">${cleanSale ? cleanSale + ' kr.' : ''}</span>
+            </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    section.appendChild(grid);
+    contentArea.appendChild(section);
+  });
+}
+
+function updateCategoryDatalist() {
+  const datalist = document.getElementById('categorySuggestions');
+  if (!datalist) return;
+  const categories = [...new Set(allItems.map(item => item ? item.category : null).filter(Boolean))];
+  datalist.innerHTML = categories.map(cat => `<option value="${cat}">`).join('');
+}
+
+function openModalForCurrentPage() {
+  openModal(PAGE_TYPE);
+}
+
+function openModal(type) {
+  currentEditId = null;
+  currentImageBase64 = null;
+  
+  document.getElementById('uploadPreview').style.backgroundImage = `url('https://lh3.googleusercontent.com/d/${IMAGES.uploadPlaceholder}')`;
+
+  setPageType(type);
+  initBrand('');
+  setSoldState('FALSE');
+
+  document.getElementById('mArticle').value = '';
+  document.getElementById('mName').value = '';
+  document.getElementById('mCategory').value = '';
+  document.getElementById('mSize').value = '';
+  document.getElementById('mProduced').value = '';
+  document.getElementById('mMadeIn').value = '';
+  document.getElementById('mMaterial').value = '';
+  document.getElementById('mPurchasePrice').value = '';
+  document.getElementById('mSalePrice').value = '';
+
+  document.getElementById('modalBg').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('modalBg').style.display = 'none';
+}
+
+function toggleModalPageType() {
+  const newType = formData.collect === 'collect' ? 'wish' : 'collect';
+  setPageType(newType);
+}
+
+function setPageType(type) {
+  formData.collect = type;
+  const card = document.getElementById('modalCard');
+  const headerImg = document.getElementById('modalHeaderImg');
+  const moveBtn = document.getElementById('imgMoveBtn');
+
+  if (type === 'collect') {
+    card.className = 'modal modal-collect';
+    headerImg.src = `https://lh3.googleusercontent.com/d/${IMAGES.headerCollect}`;
+    moveBtn.src = `https://lh3.googleusercontent.com/d/${IMAGES.moveWish}`;
+  } else {
+    card.className = 'modal modal-wishlist';
+    headerImg.src = `https://lh3.googleusercontent.com/d/${IMAGES.headerWish}`;
+    moveBtn.src = `https://lh3.googleusercontent.com/d/${IMAGES.moveCollect}`;
+  }
+}
+
+function selectBrand(brand) {
+  if (formData.brand === brand) {
+    formData.brand = '';
+  } else {
+    formData.brand = brand;
+  }
+  updateBrandUI();
+}
+
+function initBrand(brand) {
+  formData.brand = brand ? String(brand).toLowerCase().trim() : '';
+  updateBrandUI();
+}
+
+function updateBrandUI() {
+  document.getElementById('imgOrigToggle').src = `https://lh3.googleusercontent.com/d/${formData.brand === 'originals' ? IMAGES.origTrue : IMAGES.origFalse}`;
+  document.getElementById('imgPerfToggle').src = `https://lh3.googleusercontent.com/d/${formData.brand === 'performance' ? IMAGES.perfTrue : IMAGES.perfFalse}`;
+}
+
+function toggleSoldState() {
+  let newState = formData.sold === 'TRUE' ? 'FALSE' : 'TRUE';
+  setSoldState(newState);
+}
+
+function setSoldState(state) {
+  formData.sold = state;
+  let btn = document.getElementById('btnSold');
+  let saleInput = document.getElementById('mSalePrice');
+  let saleGroup = document.getElementById('salePriceGroup');
+
+  if (state === 'TRUE') {
+    btn.src = `https://lh3.googleusercontent.com/d/${IMAGES.soldTrue}`;
+    saleInput.disabled = false;
+    if (saleGroup) saleGroup.classList.add('active');
+  } else {
+    btn.src = `https://lh3.googleusercontent.com/d/${IMAGES.soldFalse}`;
+    saleInput.disabled = true;
+    saleInput.value = '';
+    if (saleGroup) saleGroup.classList.remove('active');
+  }
+}
+
+function handleImage(input) {
+  if (input.files && input.files[0]) {
+    let reader = new FileReader();
+    reader.onload = function(e) {
+      currentImageBase64 = e.target.result;
+      document.getElementById('uploadPreview').style.backgroundImage = `url('${e.target.result}')`;
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function editItem(id) {
+  let item = allItems.find(i => i && i.id == id);
+  if (!item) return;
+
+  currentEditId = item.id;
+  setPageType(item.collect || PAGE_TYPE);
+  initBrand(item.brand || '');
+  setSoldState(String(item.sold).toUpperCase());
+
+  if (item.imageid) {
+    document.getElementById('uploadPreview').style.backgroundImage = `url('https://lh3.googleusercontent.com/d/${item.imageid}')`;
+  } else {
+    document.getElementById('uploadPreview').style.backgroundImage = `url('https://lh3.googleusercontent.com/d/${IMAGES.uploadPlaceholder}')`;
+  }
+
+  document.getElementById('mArticle').value = item.articlenumber || '';
+  document.getElementById('mName').value = item.name || '';
+  document.getElementById('mCategory').value = item.category || '';
+  document.getElementById('mSize').value = item.size || '';
+  document.getElementById('mProduced').value = item.produced || '';
+  document.getElementById('mMadeIn').value = item.madein || '';
+  document.getElementById('mMaterial').value = item.material || '';
+  document.getElementById('mPurchasePrice').value = item.purchaseprice || '';
+  document.getElementById('mSalePrice').value = item.saleprice || '';
+
+  document.getElementById('modalBg').style.display = 'flex';
+}
+
+function saveData() {
+  if (isSaving) return;
+  isSaving = true;
+
+  let payload = {
+    id: currentEditId,
+    collect: formData.collect,
+    brand: formData.brand,
+    sold: formData.sold,
+    articlenumber: document.getElementById('mArticle').value,
+    name: document.getElementById('mName').value,
+    category: document.getElementById('mCategory').value,
+    size: document.getElementById('mSize').value,
+    produced: document.getElementById('mProduced').value,
+    madein: document.getElementById('mMadeIn').value,
+    material: document.getElementById('mMaterial').value,
+    purchaseprice: document.getElementById('mPurchasePrice').value,
+    saleprice: document.getElementById('mSalePrice').value,
+    imageBase64: currentImageBase64
+  };
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
+  .then(res => res.json())
+  .then(() => {
+    isSaving = false;
+    closeModal();
+    fetchData();
+  })
+  .catch(err => {
+    isSaving = false;
+    console.error("Fejl ved gemning:", err);
+  });
+}
