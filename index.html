@@ -50,79 +50,97 @@
     <div class="alphabet-nav" id="alphabetNav"></div>
   </div>
 
-  <!-- Upload / Edit Modal -->
-  <div class="modal-bg" id="modalBg">
-    <div class="modal">
-      <div class="modal-header-toggle">
-        <img id="imgCollectToggle" src="https://lh3.googleusercontent.com/d/1n40M_iQ7ulYvbfu49YoPuXXahMCaaGUE" onclick="setPageType('collect')">
-        <img id="imgWishToggle" src="https://lh3.googleusercontent.com/d/1ILimPAIFeulkojIIubsdHzPULzGOlJTC" onclick="setPageType('wish')">
-      </div>
+<!-- Modal Popup -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal" id="modalCard">
+    <!-- Header Banner -->
+    <div class="modal-header-banner">
+      <img id="modalHeaderImg" src="https://lh3.googleusercontent.com/d/1dWYclOTMbNctJwKXaqd6GcN5-TYx351e" alt="Header">
+    </div>
 
-      <div class="upload-section">
-        <input type="file" id="fileInput" style="display:none;" accept="image/*" onchange="handleImage(this)">
-        <div class="upload-btn" id="uploadPreview" onclick="document.getElementById('fileInput').click()"></div>
-        
-        <div class="upload-right">
-          <div class="brand-toggle">
-            <img id="imgOrigToggle" src="https://lh3.googleusercontent.com/d/1GdaFyUnTOS1UykuvnYKA_1z4XfZx1_iz" onclick="setBrand('originals')">
-            <img id="imgPerfToggle" src="https://lh3.googleusercontent.com/d/1V27hvCkX3F7s4cV9eMOmsmINzV1QteZb" onclick="setBrand('performance')">
-          </div>
-          <div class="art-input">
-            <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1">
-            <input type="text" id="mArticle" placeholder="Article number">
-          </div>
-        </div>
+    <!-- Upload section & Art / Brand / Category -->
+    <div class="upload-section">
+      <div class="upload-btn" id="uploadPreview" onclick="document.getElementById('fileInput').click()">
+        <input type="file" id="fileInput" accept="image/*" style="display:none;" onchange="handleImage(this)">
       </div>
-
-      <div class="field-group">
-        <label style="font-size:10px;">Name</label>
-        <input type="text" id="mName">
-      </div>
-
-      <div class="field-group">
-        <label style="font-size:10px;">Category</label>
-        <input type="text" id="mCategory">
-      </div>
-
-      <div class="three-cols">
-        <div class="field-group" style="flex:1;">
-          <label style="font-size:9px;">Size</label>
-          <input type="text" id="mSize">
+      <div class="upload-right">
+        <div class="art-input">
+          <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
+          <input type="text" id="mArticle" placeholder="Article number">
         </div>
-        <div class="field-group" style="flex:1;">
-          <label style="font-size:9px;">Production time</label>
-          <input type="text" id="mProduced">
-        </div>
-        <div class="field-group" style="flex:1;">
-          <label style="font-size:9px;">Made in</label>
-          <input type="text" id="mMadeIn">
-        </div>
-      </div>
 
-      <div class="price-section">
-        <div class="field-group" style="flex:1;">
-          <label style="font-size:10px;">Materials</label>
-          <textarea id="mMaterial" rows="3"></textarea>
+        <div class="brand-toggle">
+          <img id="imgOrigToggle" src="https://lh3.googleusercontent.com/d/13GMah-24GEVQZgeAK4LV1MPXh1LJ7d14" onclick="setBrand('originals')" alt="Originals">
+          <img id="imgPerfToggle" src="https://lh3.googleusercontent.com/d/1Gups0Qilu0Zau09XiGHn4JR98etyR0ZR" onclick="setBrand('performance')" alt="Performance">
         </div>
-        <div class="price-right">
-          <div class="field-group">
-            <label style="font-size:10px;">Purchase price</label>
-            <input type="text" id="mPurchasePrice">
-          </div>
-          <div class="field-group">
-            <label style="font-size:10px;">Sale price</label>
-            <input type="text" id="mSalePrice" disabled>
-          </div>
-        </div>
-      </div>
 
-      <div class="modal-footer">
-        <img src="https://lh3.googleusercontent.com/d/1ezJe2_NICuZT07YFN_1pRIQC8yiWAOHc" onclick="closeModal()">
-        <img id="btnSold" src="https://lh3.googleusercontent.com/d/1eMSGvB7LXY8SBhAkOKNJUMc9btJzE1yP" onclick="toggleSoldState()">
-        <img src="https://lh3.googleusercontent.com/d/1AjppabQ9us5pA44AK5LGZdV9MJ1YDXrC" onclick="saveData()">
+        <div class="field-group">
+          <label>Category</label>
+          <input type="text" id="mCategory" list="categorySuggestions" placeholder="Category">
+          <datalist id="categorySuggestions"></datalist>
+        </div>
       </div>
     </div>
+
+    <!-- Name -->
+    <div class="field-group">
+      <label>Name</label>
+      <input type="text" id="mName" placeholder="Item name">
+    </div>
+
+    <!-- Size / Made in / Production time -->
+    <div class="three-cols">
+      <div class="field-group" style="flex: 1;">
+        <label>Size</label>
+        <input type="text" id="mSize" placeholder="Size">
+      </div>
+      <div class="field-group" style="flex: 1.2;">
+        <label>Made in</label>
+        <input type="text" id="mMadeIn" placeholder="Country">
+      </div>
+      <div class="field-group" style="flex: 1.5;">
+        <label>Production time</label>
+        <input type="text" id="mProduced" placeholder="MM/YY">
+      </div>
+    </div>
+
+    <!-- Materials / Price Section -->
+    <div class="price-section">
+      <div class="field-group" style="flex: 1.2;">
+        <label>Materials</label>
+        <textarea id="mMaterial" rows="3" placeholder="Materials..."></textarea>
+      </div>
+
+      <div class="price-right">
+        <div class="field-group">
+          <label>Purchase price</label>
+          <input type="text" id="mPurchasePrice" placeholder="0,00 kr.">
+        </div>
+
+        <div class="toggle-sold-row" onclick="toggleSoldState()">
+          <img id="btnSold" src="https://lh3.googleusercontent.com/d/1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK" alt="Reselling">
+          <span class="sold-text">Reselling?</span>
+        </div>
+
+        <div class="field-group">
+          <label>Sale price</label>
+          <input type="text" id="mSalePrice" placeholder="0,00 kr." disabled>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer">
+      <img src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" onclick="closeModal()" alt="Cancel" class="footer-btn">
+      
+      <div class="move-toggle-btn" onclick="toggleModalPageType()">
+        <img id="imgMoveBtn" src="https://lh3.googleusercontent.com/d/1fJBy15xDCzGyYaRVC7kuffylkNr8L-6m" alt="Move Item">
+      </div>
+
+      <img src="https://lh3.googleusercontent.com/d/19wTkumBvqWSzhakI3TRw6ACWI0jl2YCG" onclick="saveData()" alt="Save" class="footer-btn">
+    </div>
   </div>
+</div>
 
   <script src="app.js"></script>
   <script>
