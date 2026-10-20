@@ -55,17 +55,21 @@ html, body {
 .menu-left, .menu-right {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   min-width: 0;
 }
 
 .menu-item {
   cursor: pointer;
-  height: 48px;
+  height: 44px;
   width: auto;
   max-width: 100%;
   display: block;
   object-fit: contain;
+}
+
+.size-menu-trigger {
+  cursor: pointer;
 }
 
 .toggle-container {
@@ -73,7 +77,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1px;
+  gap: 2px;
   flex-shrink: 0;
   cursor: pointer;
 }
@@ -81,7 +85,7 @@ html, body {
 .toggle-label {
   font-family: 'AvantGarde LT Book', sans-serif;
   font-weight: bold;
-  font-size: 9px;
+  font-size: 8px;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -89,7 +93,7 @@ html, body {
 /* Search Bar */
 .search-box {
   position: relative;
-  height: 48px;
+  height: 44px;
   display: flex;
   align-items: center;
   flex-shrink: 1;
@@ -119,6 +123,61 @@ html, body {
   padding: 0;
   margin: 0;
   -webkit-appearance: none;
+}
+
+/* Size Dropdown Menu (Glass-morphism Window) */
+.size-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 15px;
+  z-index: 101;
+  background: rgba(209, 227, 255, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  padding: 15px 20px;
+  border-radius: 20px;
+  display: none;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  max-width: 380px;
+}
+
+.size-dropdown-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.size-quick-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.size-quick-actions img {
+  height: 22px;
+  width: auto;
+  cursor: pointer;
+  object-fit: contain;
+}
+
+.size-group-title {
+  height: 18px;
+  width: auto;
+  display: block;
+  margin: 10px 0 6px 0;
+}
+
+.size-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 40px);
+  gap: 6px;
+}
+
+.size-grid img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  object-fit: contain;
 }
 
 /* Main Content Layout & Sidebar */
@@ -159,28 +218,45 @@ html, body {
   .item-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Category Alphabet Nav Bar (Sidebar) */
+/* Sidebar i HØJRE side med Bobler */
 .alphabet-nav {
   position: sticky;
   top: 70px;
   height: max-content;
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 12px;
-  padding: 5px;
-  margin-right: 15px;
+  gap: 8px;
+  margin-left: 15px;
   z-index: 90;
 }
 
-.alphabet-nav a {
+.sidebar-bubble-item {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
-  color: #000;
+  cursor: pointer;
+}
+
+.sidebar-bubble-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.sidebar-bubble-letter {
+  position: relative;
+  z-index: 2;
   font-family: 'AvantGarde LT Book', sans-serif;
   font-weight: bold;
-  font-size: 13px;
-  padding: 2px 5px;
-  text-align: center;
+  font-size: 14px;
+  color: #000;
 }
 
 @media (max-width: 600px) {
@@ -209,6 +285,15 @@ html, body {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background: url('https://lh3.googleusercontent.com/d/1aI-Sx4t3iTxtWBZ8tTBECgleesVGC5hX') no-repeat center/cover;
+}
+
+.size-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
 }
 
 .article-badge {
@@ -282,10 +367,10 @@ html, body {
 }
 
 .info-row span.val { color: #000; font-family: 'AvantGarde LT Medium', sans-serif; }
-.info-row img { height: 10px; width: auto; }
+.info-row img { height: 10px; width: auto; display: inline-block; vertical-align: middle; }
 
 /* =========================================================
-   POPUP MODAL DESIGN (INGEN INTERN SCROLLBAR)
+   POPUP MODAL DESIGN (Tæt layout uden tomrum)
    ========================================================= */
 .modal-bg {
   position: fixed;
@@ -296,20 +381,20 @@ html, body {
   justify-content: center;
   z-index: 200;
   backdrop-filter: blur(4px);
-  padding: 20px 0;
+  padding: 10px 0;
   overflow-y: auto !important;
 }
 
 .modal {
   background: #ffffff;
-  border-radius: 32px;
-  width: 480px;
+  border-radius: 28px;
+  width: 460px;
   max-width: 92vw;
-  padding: 24px 30px;
+  padding: 14px 22px 16px 22px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   overflow: visible !important;
   max-height: none !important;
@@ -333,11 +418,12 @@ html, body {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 4px;
+  margin-top: -4px;
+  margin-bottom: 2px;
 }
 
 .modal-header-banner img {
-  height: 85px;
+  height: 95px;
   width: auto;
   max-width: 100%;
   object-fit: contain;
@@ -352,7 +438,7 @@ html, body {
 .field-group label {
   color: #2F47B1 !important;
   font-family: 'AvantGarde LT Book', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
 }
 
@@ -362,17 +448,17 @@ html, body {
   background-color: #E7EDFF !important;
   border: 1px solid #B1C3FF !important;
   border-radius: 8px;
-  padding: 6px 10px;
+  padding: 5px 8px;
   box-sizing: border-box;
   font-family: 'AvantGarde LT Medium', sans-serif;
-  font-size: 12px;
+  font-size: 11.5px;
   color: #000;
   outline: none;
 }
 
 .price-section {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   align-items: stretch;
 }
 
@@ -383,7 +469,7 @@ html, body {
 .modal textarea#mMaterial {
   resize: none;
   height: 100%;
-  min-height: 110px;
+  min-height: 100px;
 }
 
 .price-right {
@@ -393,17 +479,26 @@ html, body {
   flex: 1;
 }
 
+.sale-price-group {
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
+}
+
+.sale-price-group.active {
+  opacity: 1;
+}
+
 .upload-section {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  gap: 14px;
+  gap: 12px;
 }
 
 .upload-btn {
-  width: 135px;
-  height: 135px;
-  border-radius: 18px;
+  width: 125px;
+  height: 125px;
+  border-radius: 16px;
   background-size: cover;
   background-position: center;
   cursor: pointer;
@@ -425,7 +520,7 @@ html, body {
 }
 
 .art-input img {
-  height: 18px;
+  height: 16px;
   width: auto;
 }
 
@@ -434,11 +529,11 @@ html, body {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  margin: 4px 0;
+  margin: 2px 0;
 }
 
 .brand-toggle img {
-  height: 48px;
+  height: 44px;
   width: auto;
   cursor: pointer;
   object-fit: contain;
@@ -453,11 +548,11 @@ html, body {
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin: 2px 0;
+  margin: 1px 0;
 }
 
 .toggle-sold-row img {
-  height: 26px;
+  height: 24px;
   width: auto;
   display: block;
 }
@@ -466,7 +561,9 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 4px;
+  margin-bottom: -4px;
+  gap: 10px;
 }
 
 .footer-btn {
@@ -476,9 +573,16 @@ html, body {
   object-fit: contain;
 }
 
+.move-toggle-btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
 .move-toggle-btn img {
-  height: 36px;
-  width: auto;
+  height: 42px;
+  width: 100%;
+  max-width: 220px;
   cursor: pointer;
   object-fit: contain;
 }
