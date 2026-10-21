@@ -414,14 +414,14 @@ html, body {
   border-radius: 16px;
   width: 430px;
   max-width: 94vw;
-  padding: 16px 16px 16px 16px;
+  padding: 16px 0px 16px 0px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 10px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   overflow-y: hidden !important;
-  max-height: 90vh !important;
+  max-height: 95vh !important;
 }
 
 .modal-collect {
