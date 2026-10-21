@@ -20,18 +20,21 @@
   <div class="sticky-menu-wrapper">
     <div class="sticky-menu">
       <div class="menu-left">
-        <img src="https://lh3.googleusercontent.com/d/13GMah-24GEVQZgeAK4LV1MPXh1LJ7d14" class="menu-item" onclick="handleButtonA()" alt="Add">
+        <!-- Knap A -->
+        <img src="https://lh3.googleusercontent.com/d/13GMah-24GEVQZgeAK4LV1MPXh1LJ7d14" class="menu-item" onclick="handleButtonA()" alt="Add / Back">
+        <!-- Knap B -->
         <img src="https://lh3.googleusercontent.com/d/1hCj9NF8Heg5aTA_7BcCZnHmsZ4an2MBC" class="menu-item" onclick="handleButtonB()" alt="Wishlist">
         
-        <!-- Size Menu placeret lige til højre for Knap B med samme afstand -->
+        <!-- Size Menu Knap placeret til højre for Knap B -->
         <div class="size-menu-trigger" onclick="toggleSizeMenu(event)">
           <img src="https://lh3.googleusercontent.com/d/1Ln22zhv0zcnKNziXvsAIESp1oqxGIKXm" class="menu-item" alt="Sizes">
           <div class="size-dropdown" id="sizeDropdown"></div>
         </div>
       </div>
 
+      <!-- Search Bar -->
       <div class="search-box">
-        <img src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" class="search-bg-img" alt="Search">
+        <img src="https://lh3.googleusercontent.com/d/1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK" class="search-bg-img" alt="Search">
         <input type="text" placeholder="Search..." oninput="handleSearch(this.value)" list="categorySuggestions">
         <datalist id="categorySuggestions"></datalist>
       </div>
@@ -55,7 +58,7 @@
   <div class="modal-bg" id="modalBg">
     <div class="modal modal-collect" id="modalCard">
       <div class="modal-header-banner">
-        <img id="modalHeaderImg" src="" alt="Header Banner">
+        <img id="modalHeaderImg" src="https://lh3.googleusercontent.com/d/1dWYclOTMbNctJwKXaqd6GcN5-TYx351e" alt="Header Banner">
       </div>
 
       <div class="upload-section">
@@ -71,8 +74,8 @@
             </div>
           </div>
           <div class="brand-toggle">
-            <img id="imgOrigToggle" src="" onclick="selectBrand('originals')" alt="Originals">
-            <img id="imgPerfToggle" src="" onclick="selectBrand('performance')" alt="Performance">
+            <img id="imgOrigToggle" src="https://lh3.googleusercontent.com/d/1DyIHFmCtyFQIfJoQEIKdO2KhdzngxNEy" onclick="selectBrand('originals')" alt="Originals">
+            <img id="imgPerfToggle" src="https://lh3.googleusercontent.com/d/1Gups0Qilu0Zau09XiGHn4JR98etyR0ZR" onclick="selectBrand('performance')" alt="Performance">
           </div>
         </div>
       </div>
@@ -113,7 +116,7 @@
             <input type="text" id="mPurchasePrice" placeholder="0,00 kr.">
           </div>
           <div class="toggle-sold-row" onclick="toggleSoldState()">
-            <img id="btnSold" src="" alt="Reselling">
+            <img id="btnSold" src="https://lh3.googleusercontent.com/d/1vETS8eyAKpPjy89FdnPhRyh70Jw9whoK" alt="Reselling">
           </div>
           <div class="field-group sale-price-group" id="salePriceGroup">
             <label for="mSalePrice">Sale price</label>
@@ -125,7 +128,7 @@
       <div class="modal-footer">
         <img src="https://lh3.googleusercontent.com/d/1DyIHFmCtyFQIfJoQEIKdO2KhdzngxNEy" class="footer-btn" onclick="closeModal()" alt="Cancel">
         <div class="move-toggle-btn" onclick="toggleModalPageType()">
-          <img id="imgMoveBtn" src="" alt="Move">
+          <img id="imgMoveBtn" src="https://lh3.googleusercontent.com/d/1fJBy15xDCzGyYaRVC7kuffylkNr8L-6m" alt="Move">
         </div>
         <img src="https://lh3.googleusercontent.com/d/1Gups0Qilu0Zau09XiGHn4JR98etyR0ZR" class="footer-btn" onclick="saveData()" alt="Save">
       </div>
