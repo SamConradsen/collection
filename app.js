@@ -111,12 +111,14 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSizeMenuUI();
   fetchData();
 
-  // Luk size menu ved klik udenfor
+  // Luk size menu ved klik udenfor (men IKKE ved klik inde i selve dropdown)
   document.addEventListener('click', (e) => {
     const dropdown = document.getElementById('sizeDropdown');
     const trigger = document.querySelector('.size-menu-trigger');
-    if (dropdown && trigger && !dropdown.contains(e.target) && !trigger.contains(e.target)) {
-      dropdown.style.display = 'none';
+    if (dropdown && trigger && dropdown.style.display === 'block') {
+      if (!dropdown.contains(e.target) && !trigger.contains(e.target)) {
+        dropdown.style.display = 'none';
+      }
     }
   });
 });
@@ -205,7 +207,7 @@ function renderSizeMenuUI() {
     html += `<div class="size-grid">`;
     group.sizes.forEach(s => {
       const isSelected = !!selectedSizes[s.key];
-      html += `<img src="https://lh3.googleusercontent.com/d/${isSelected ? s.trueId : s.falseId}" onclick="toggleSingleSize('${s.key}')" alt="${s.key}">`;
+      html += `<img src="https://lh3.googleusercontent.com/d/${isSelected ? s.trueId : s.falseId}" onclick="toggleSingleSize(event, '${s.key}')" alt="${s.key}">`;
     });
     html += `</div></div>`;
   });
@@ -213,7 +215,8 @@ function renderSizeMenuUI() {
   dropdown.innerHTML = html;
 }
 
-function toggleSingleSize(sizeKey) {
+function toggleSingleSize(e, sizeKey) {
+  if (e) e.stopPropagation();
   selectedSizes[sizeKey] = !selectedSizes[sizeKey];
   renderSizeMenuUI();
   renderItems();
