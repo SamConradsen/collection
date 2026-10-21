@@ -20,19 +20,18 @@
   <div class="sticky-menu-wrapper">
     <div class="sticky-menu">
       <div class="menu-left">
-        <img src="https://lh3.googleusercontent.com/d/1-5E_SgN6Q1g9fFq8mX65P8zYk9JqL1V6" class="menu-item" onclick="handleButtonA()" alt="Add / Back">
-        <img src="https://lh3.googleusercontent.com/d/12a6X9b1p6R7K8L9m0N1O2P3Q4R5S6T7U" class="menu-item" onclick="handleButtonB()" alt="Wishlist">
+        <img src="https://lh3.googleusercontent.com/d/13GMah-24GEVQZgeAK4LV1MPXh1LJ7d14" class="menu-item" onclick="handleButtonA()" alt="Add">
+        <img src="https://lh3.googleusercontent.com/d/1hCj9NF8Heg5aTA_7BcCZnHmsZ4an2MBC" class="menu-item" onclick="handleButtonB()" alt="Wishlist">
         
-        <!-- Size Menu Trigger placeret til højre for Knap B -->
+        <!-- Size Menu placeret lige til højre for Knap B med samme afstand -->
         <div class="size-menu-trigger" onclick="toggleSizeMenu(event)">
           <img src="https://lh3.googleusercontent.com/d/1Ln22zhv0zcnKNziXvsAIESp1oqxGIKXm" class="menu-item" alt="Sizes">
-          <!-- Size Dropdown Vindue -->
           <div class="size-dropdown" id="sizeDropdown"></div>
         </div>
       </div>
 
       <div class="search-box">
-        <img src="https://lh3.googleusercontent.com/d/19p7LqJ1M3N7V5K8L9m0N1O2P3Q4R5S6T" class="search-bg-img" alt="Search">
+        <img src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" class="search-bg-img" alt="Search">
         <input type="text" placeholder="Search..." oninput="handleSearch(this.value)" list="categorySuggestions">
         <datalist id="categorySuggestions"></datalist>
       </div>
@@ -60,12 +59,12 @@
       </div>
 
       <div class="upload-section">
-        <div class="upload-btn" id="uploadPreview" onclick="document.getElementById('fileInput').click()" style="background-image: url('');"></div>
+        <div class="upload-btn" id="uploadPreview" onclick="document.getElementById('fileInput').click()"></div>
         <input type="file" id="fileInput" style="display:none;" onchange="handleImage(this)">
         
         <div class="upload-right">
           <div class="field-group">
-            <label>Article number</label>
+            <label for="mArticle">Article number</label>
             <div class="art-input">
               <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
               <input type="text" id="mArticle" placeholder="Article number">
@@ -79,56 +78,56 @@
       </div>
 
       <div class="field-group">
-        <label>Category</label>
+        <label for="mCategory">Category</label>
         <input type="text" id="mCategory" placeholder="Category" list="categorySuggestions">
       </div>
 
       <div class="field-group">
-        <label>Name</label>
+        <label for="mName">Name</label>
         <input type="text" id="mName" placeholder="Item name">
       </div>
 
       <div class="three-cols">
         <div class="field-group" style="flex: 1;">
-          <label>Size</label>
+          <label for="mSize">Size</label>
           <input type="text" id="mSize" placeholder="Size">
         </div>
         <div class="field-group" style="flex: 1;">
-          <label>Made in</label>
+          <label for="mMadeIn">Made in</label>
           <input type="text" id="mMadeIn" placeholder="Country">
         </div>
         <div class="field-group" style="flex: 1;">
-          <label>Production time</label>
+          <label for="mProduced">Production time</label>
           <input type="text" id="mProduced" placeholder="MM/YY">
         </div>
       </div>
 
       <div class="price-section">
         <div class="field-group" style="flex: 1;">
-          <label>Materials</label>
+          <label for="mMaterial">Materials</label>
           <textarea id="mMaterial" placeholder="Materials..."></textarea>
         </div>
         <div class="price-right" style="flex: 1;">
           <div class="field-group">
-            <label>Purchase price</label>
+            <label for="mPurchasePrice">Purchase price</label>
             <input type="text" id="mPurchasePrice" placeholder="0,00 kr.">
           </div>
           <div class="toggle-sold-row" onclick="toggleSoldState()">
-            <img id="btnSold" src="" alt="Sold">
+            <img id="btnSold" src="" alt="Reselling">
           </div>
           <div class="field-group sale-price-group" id="salePriceGroup">
-            <label>Sale price</label>
+            <label for="mSalePrice">Sale price</label>
             <input type="text" id="mSalePrice" placeholder="0,00 kr." disabled>
           </div>
         </div>
       </div>
 
       <div class="modal-footer">
-        <img src="https://lh3.googleusercontent.com/d/1B7-u8pY9zK0L1m2N3O4P5Q6R7S8T9U0V" class="footer-btn" onclick="closeModal()" alt="Cancel">
+        <img src="https://lh3.googleusercontent.com/d/1DyIHFmCtyFQIfJoQEIKdO2KhdzngxNEy" class="footer-btn" onclick="closeModal()" alt="Cancel">
         <div class="move-toggle-btn" onclick="toggleModalPageType()">
           <img id="imgMoveBtn" src="" alt="Move">
         </div>
-        <img src="https://lh3.googleusercontent.com/d/1C8-u9qZ0aL1M2N3O4P5Q6R7S8T9U0W1X" class="footer-btn" onclick="saveData()" alt="Save">
+        <img src="https://lh3.googleusercontent.com/d/1Gups0Qilu0Zau09XiGHn4JR98etyR0ZR" class="footer-btn" onclick="saveData()" alt="Save">
       </div>
     </div>
   </div>
