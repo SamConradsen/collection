@@ -494,7 +494,7 @@ html, body {
 
 .modal textarea#mMaterial {
   resize: none;
-  height: 118px !important;
+  height: 100px !important;
   box-sizing: border-box;
 }
 
