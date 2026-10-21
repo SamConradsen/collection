@@ -561,7 +561,7 @@ html, body {
 }
 
 .brand-toggle img {
-  height: 90px;
+  height: 75px;
   width: auto;
   cursor: pointer;
   object-fit: contain;
