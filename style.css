@@ -411,10 +411,10 @@ html, body {
 
 .modal {
   background: #ffffff;
-  border-radius: 28px;
+  border-radius: 16px;
   width: 430px;
   max-width: 94vw;
-  padding: 16px 24px 18px 24px;
+  padding: 16px 16px 16px 16px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -482,7 +482,7 @@ html, body {
 
 .price-section {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   align-items: stretch;
 }
 
@@ -520,13 +520,13 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  gap: 12px;
+  gap: 10px;
 }
 
 .upload-btn {
   width: 175px;
   height: 175px;
-  border-radius: 16px;
+  border-radius: 10px;
   background-size: cover;
   background-position: center;
   cursor: pointer;
@@ -556,7 +556,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 5px;
   margin: 2px 0;
 }
 
@@ -609,9 +609,9 @@ html, body {
 }
 
 .move-toggle-btn img {
-  height: 46px;
+  height: 60px;
   width: 100%;
-  max-width: 250px;
+  max-width: 100%;
   cursor: pointer;
   object-fit: contain;
 }
