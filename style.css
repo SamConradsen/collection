@@ -127,7 +127,7 @@ html, body {
 }
 
 /* =========================================================
-   SIZE DROPDOWN MENU (Gennemsigtig glas-effekt, 50% opacity, blur & overlay)
+   SIZE DROPDOWN MENU (50% opacity, gradient #D2DCEE til #85ABE5, blur, ramme #2A1A6F)
    ========================================================= */
 .size-dropdown {
   position: absolute;
@@ -487,13 +487,15 @@ html, body {
 }
 
 .price-section .field-group {
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }
 
-/* Materialer og Salgspris bunden flugter præcist */
+/* Materialer og Salgspris bunden flugter 100% snorlige */
 .modal textarea#mMaterial {
   resize: none;
-  height: 112px !important;
+  height: 118px !important;
   box-sizing: border-box;
 }
 
@@ -502,7 +504,7 @@ html, body {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  height: 112px !important;
+  height: 118px !important;
   box-sizing: border-box;
 }
 
@@ -571,13 +573,13 @@ html, body {
   gap: 8px;
 }
 
-/* Afstand mellem Purchase price og Reselling? + Salgspris */
+/* Afstand over og under Reselling? knappen */
 .toggle-sold-row {
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-top: 6px;
-  margin-bottom: 2px;
+  margin-top: 8px;
+  margin-bottom: 4px;
 }
 
 .toggle-sold-row img {
