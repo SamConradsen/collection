@@ -13,25 +13,28 @@
 
   <!-- Header Banner -->
   <div class="header-container">
-    <img src="https://lh3.googleusercontent.com/d/1oTjzdjkAa2-aNJapRQ6fXrRtFdKMwb4H" alt="Wishlist Header">
+    <img src="https://lh3.googleusercontent.com/d/14m-Rprm0BtqaVohizhDgPj0pSlfeIfGy" alt="Wishlist Header">
   </div>
 
   <!-- Sticky Menu / Navbar -->
   <div class="sticky-menu-wrapper">
     <div class="sticky-menu">
       <div class="menu-left">
-        <img src="https://lh3.googleusercontent.com/d/13GMah-24GEVQZgeAK4LV1MPXh1LJ7d14" class="menu-item" onclick="handleButtonA()" alt="Back">
-        <img src="https://lh3.googleusercontent.com/d/1hCj9NF8Heg5aTA_7BcCZnHmsZ4an2MBC" class="menu-item" onclick="handleButtonB()" alt="Add">
+        <!-- Knap A -->
+        <img src="https://lh3.googleusercontent.com/d/1Rr_zvVAQYIR4N1D4tfpUbryo5eiioUpq" class="menu-item" onclick="handleButtonA()" alt="Back">
+        <!-- Knap B -->
+        <img src="https://lh3.googleusercontent.com/d/1xmQ_n_7Y_pGltsocKUHVBAHdI6Gm0oes" class="menu-item" onclick="handleButtonB()" alt="Add">
         
-        <!-- Size Menu placeret lige til højre for Knap B med samme afstand -->
+        <!-- Size Menu Knap -->
         <div class="size-menu-trigger" onclick="toggleSizeMenu(event)">
-          <img src="https://lh3.googleusercontent.com/d/1Ln22zhv0zcnKNziXvsAIESp1oqxGIKXm" class="menu-item" alt="Sizes">
+          <img src="https://lh3.googleusercontent.com/d/1w_wkFOLBDLVanPZDswz19U744f0Dg8EL" class="menu-item" alt="Sizes">
           <div class="size-dropdown" id="sizeDropdown"></div>
         </div>
       </div>
 
+      <!-- Search Bar -->
       <div class="search-box">
-        <img src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" class="search-bg-img" alt="Search">
+        <img src="https://lh3.googleusercontent.com/d/16AEnLeUyzfPU4YTCNXWA78eKpm2aWF4v" class="search-bg-img" alt="Search">
         <input type="text" placeholder="Search..." oninput="handleSearch(this.value)" list="categorySuggestions">
         <datalist id="categorySuggestions"></datalist>
       </div>
@@ -55,9 +58,10 @@
   <div class="modal-bg" id="modalBg">
     <div class="modal modal-wishlist" id="modalCard">
       <div class="modal-header-banner">
-        <img id="modalHeaderImg" src="" alt="Header Banner">
+        <img id="modalHeaderImg" src="https://lh3.googleusercontent.com/d/1oTjzdjkAa2-aNJapRQ6fXrRtFdKMwb4H" alt="Header Banner">
       </div>
 
+      <!-- Upload sektion med korrekt rækkefølge -->
       <div class="upload-section">
         <div class="upload-btn" id="uploadPreview" onclick="document.getElementById('fileInput').click()"></div>
         <input type="file" id="fileInput" style="display:none;" onchange="handleImage(this)">
@@ -71,15 +75,14 @@
             </div>
           </div>
           <div class="brand-toggle">
-            <img id="imgOrigToggle" src="" onclick="selectBrand('originals')" alt="Originals">
-            <img id="imgPerfToggle" src="" onclick="selectBrand('performance')" alt="Performance">
+            <img id="imgOrigToggle" src="https://lh3.googleusercontent.com/d/1FN9hPeraFDuWvN83DEyFzmadO0yVZDeQ" onclick="selectBrand('originals')" alt="Originals">
+            <img id="imgPerfToggle" src="https://lh3.googleusercontent.com/d/1FN9hPeraFDuWvN83DEyFzmadO0yVZDeQ" onclick="selectBrand('performance')" alt="Performance">
+          </div>
+          <div class="field-group">
+            <label for="mCategory">Category</label>
+            <input type="text" id="mCategory" placeholder="Category" list="categorySuggestions">
           </div>
         </div>
-      </div>
-
-      <div class="field-group">
-        <label for="mCategory">Category</label>
-        <input type="text" id="mCategory" placeholder="Category" list="categorySuggestions">
       </div>
 
       <div class="field-group">
@@ -113,7 +116,7 @@
             <input type="text" id="mPurchasePrice" placeholder="0,00 kr.">
           </div>
           <div class="toggle-sold-row" onclick="toggleSoldState()">
-            <img id="btnSold" src="" alt="Reselling">
+            <img id="btnSold" src="https://lh3.googleusercontent.com/d/1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK" alt="Reselling">
           </div>
           <div class="field-group sale-price-group" id="salePriceGroup">
             <label for="mSalePrice">Sale price</label>
@@ -123,11 +126,11 @@
       </div>
 
       <div class="modal-footer">
-        <img src="https://lh3.googleusercontent.com/d/1DyIHFmCtyFQIfJoQEIKdO2KhdzngxNEy" class="footer-btn" onclick="closeModal()" alt="Cancel">
+        <img src="https://lh3.googleusercontent.com/d/1ezJe2_NICuZT07YFN_1pRIQC8yiWAOHc" class="footer-btn" onclick="closeModal()" alt="Cancel">
         <div class="move-toggle-btn" onclick="toggleModalPageType()">
-          <img id="imgMoveBtn" src="" alt="Move">
+          <img id="imgMoveBtn" src="https://lh3.googleusercontent.com/d/1fJBy15xDCzGyYaRVC7kuffylkNr8L-6m" alt="Move">
         </div>
-        <img src="https://lh3.googleusercontent.com/d/1Gups0Qilu0Zau09XiGHn4JR98etyR0ZR" class="footer-btn" onclick="saveData()" alt="Save">
+        <img src="https://lh3.googleusercontent.com/d/1AjppabQ9us5pA44AK5LGZdV9MJ1YDXrC" class="footer-btn" onclick="saveData()" alt="Save">
       </div>
     </div>
   </div>
