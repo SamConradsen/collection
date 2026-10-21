@@ -596,7 +596,7 @@ html, body {
 }
 
 .footer-btn {
-  height: 40px;
+  height: 10px;
   width: auto;
   cursor: pointer;
   object-fit: contain;
