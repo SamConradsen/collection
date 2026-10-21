@@ -3,138 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adidas Collection</title>
-  <link rel="stylesheet" href="style.css?v=10.0">
+  <title>Collection - Adidas Arkiv</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    const PAGE_MODE = 'collect';
+  </script>
 </head>
 <body>
 
   <!-- Header Banner -->
   <div class="header-container">
-    <img id="headerBannerImg" src="https://lh3.googleusercontent.com/d/1BbO-EU_AmhU8XtYRuYGCFx_ZVZzK3iCA" alt="Collection Header">
+    <img src="https://lh3.googleusercontent.com/d/1dWYclOTMbNctJwKXaqd6GcN5-TYx351e" alt="Collection Header">
   </div>
 
   <!-- Sticky Menu / Navbar -->
   <div class="sticky-menu-wrapper">
     <div class="sticky-menu">
       <div class="menu-left">
-        <img src="https://lh3.googleusercontent.com/d/1Rr_zvVAQYIR4N1D4tfpUbryo5eiioUpq" class="menu-item" onclick="handleButtonA()" alt="Button A">
-        <img src="https://lh3.googleusercontent.com/d/1xmQ_n_7Y_pGltsocKUHVBAHdI6Gm0oes" class="menu-item" onclick="handleButtonB()" alt="Button B">
+        <img src="https://lh3.googleusercontent.com/d/1-5E_SgN6Q1g9fFq8mX65P8zYk9JqL1V6" class="menu-item" onclick="handleButtonA()" alt="Add / Back">
+        <img src="https://lh3.googleusercontent.com/d/12a6X9b1p6R7K8L9m0N1O2P3Q4R5S6T7U" class="menu-item" onclick="handleButtonB()" alt="Wishlist">
+        
+        <!-- Size Menu Trigger placeret til højre for Knap B -->
+        <div class="size-menu-trigger" onclick="toggleSizeMenu(event)">
+          <img src="https://lh3.googleusercontent.com/d/1Ln22zhv0zcnKNziXvsAIESp1oqxGIKXm" class="menu-item" alt="Sizes">
+          <!-- Size Dropdown Vindue -->
+          <div class="size-dropdown" id="sizeDropdown"></div>
+        </div>
       </div>
 
       <div class="search-box">
-        <img src="https://lh3.googleusercontent.com/d/16AEnLeUyzfPU4YTCNXWA78eKpm2aWF4v" class="search-bg-img" alt="Search">
-        <input type="text" id="searchInput" placeholder="Search..." oninput="handleSearch(this.value)">
+        <img src="https://lh3.googleusercontent.com/d/19p7LqJ1M3N7V5K8L9m0N1O2P3Q4R5S6T" class="search-bg-img" alt="Search">
+        <input type="text" placeholder="Search..." oninput="handleSearch(this.value)" list="categorySuggestions">
+        <datalist id="categorySuggestions"></datalist>
       </div>
 
       <div class="menu-right">
-        <!-- Size Menu Trigger Button -->
-        <div class="size-menu-trigger" onclick="toggleSizeMenu(event)">
-          <img src="https://lh3.googleusercontent.com/d/1w_wkFOLBDLVanPZDswz19U744f0Dg8EL" class="menu-item" alt="Size Menu">
-        </div>
-
-        <!-- Show Sold Container (SHOW SOLD over Toggle) -->
         <div class="toggle-container" onclick="toggleShowSold()">
+          <img id="showSoldToggleImg" class="menu-item" src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" alt="Show Sold">
           <span class="toggle-label">SHOW SOLD</span>
-          <img id="showSoldToggleImg" src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" class="menu-item" alt="Show Sold">
         </div>
-      </div>
-    </div>
-
-    <!-- Dropdown Size Menu Window -->
-    <div class="size-dropdown" id="sizeDropdown">
-      <div class="size-dropdown-header">
-        <div class="size-quick-actions">
-          <img src="https://lh3.googleusercontent.com/d/1V2GovFhIyQNeToWVriLnLizmC295PoxL" onclick="selectAllSizes(true)" title="Select All" alt="Select All">
-          <img src="https://lh3.googleusercontent.com/d/18sFkDxQEW3oa79aSI-sWZLi5oSoEWOuZ" onclick="selectAllSizes(false)" title="Deselect All" alt="Deselect All">
-        </div>
-      </div>
-      <div class="size-groups-container" id="sizeGroupsContainer">
-        <!-- Renderes dynamisk i JS -->
       </div>
     </div>
   </div>
 
   <!-- Main Content Layout med Sidebar & Gitter -->
   <div class="main-wrapper">
-    <div class="content-area" id="contentArea">
-      <!-- Kategorisektioner og varer renderes her -->
-    </div>
-    
-    <!-- Boble-sidebar placeret i HØJRE side -->
+    <div class="content-area" id="contentArea"></div>
     <div class="alphabet-nav" id="alphabetNav"></div>
   </div>
 
   <!-- Modal Popup -->
   <div class="modal-bg" id="modalBg">
-    <div class="modal" id="modalCard">
-      <!-- Header Banner -->
+    <div class="modal modal-collect" id="modalCard">
       <div class="modal-header-banner">
-        <img id="modalHeaderImg" src="https://lh3.googleusercontent.com/d/1dWYclOTMbNctJwKXaqd6GcN5-TYx351e" alt="Header">
+        <img id="modalHeaderImg" src="" alt="Header Banner">
       </div>
 
-      <!-- Upload section & Art / Brand / Category -->
       <div class="upload-section">
-        <div class="upload-btn" id="uploadPreview" onclick="document.getElementById('fileInput').click()">
-          <input type="file" id="fileInput" accept="image/*" style="display:none;" onchange="handleImage(this)">
-        </div>
+        <div class="upload-btn" id="uploadPreview" onclick="document.getElementById('fileInput').click()" style="background-image: url('');"></div>
+        <input type="file" id="fileInput" style="display:none;" onchange="handleImage(this)">
+        
         <div class="upload-right">
-          <div class="art-input">
-            <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
-            <input type="text" id="mArticle" placeholder="Article number">
-          </div>
-
-          <div class="brand-toggle">
-            <img id="imgOrigToggle" src="https://lh3.googleusercontent.com/d/1DyIHFmCtyFQIfJoQEIKdO2KhdzngxNEy" onclick="selectBrand('originals')" alt="Originals">
-            <img id="imgPerfToggle" src="https://lh3.googleusercontent.com/d/1Gups0Qilu0Zau09XiGHn4JR98etyR0ZR" onclick="selectBrand('performance')" alt="Performance">
-          </div>
-
           <div class="field-group">
-            <label>Category</label>
-            <input type="text" id="mCategory" list="categorySuggestions" placeholder="Category">
-            <datalist id="categorySuggestions"></datalist>
+            <label>Article number</label>
+            <div class="art-input">
+              <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
+              <input type="text" id="mArticle" placeholder="Article number">
+            </div>
+          </div>
+          <div class="brand-toggle">
+            <img id="imgOrigToggle" src="" onclick="selectBrand('originals')" alt="Originals">
+            <img id="imgPerfToggle" src="" onclick="selectBrand('performance')" alt="Performance">
           </div>
         </div>
       </div>
 
-      <!-- Name -->
+      <div class="field-group">
+        <label>Category</label>
+        <input type="text" id="mCategory" placeholder="Category" list="categorySuggestions">
+      </div>
+
       <div class="field-group">
         <label>Name</label>
         <input type="text" id="mName" placeholder="Item name">
       </div>
 
-      <!-- Size / Made in / Production time -->
       <div class="three-cols">
         <div class="field-group" style="flex: 1;">
           <label>Size</label>
           <input type="text" id="mSize" placeholder="Size">
         </div>
-        <div class="field-group" style="flex: 1.2;">
+        <div class="field-group" style="flex: 1;">
           <label>Made in</label>
           <input type="text" id="mMadeIn" placeholder="Country">
         </div>
-        <div class="field-group" style="flex: 1.5;">
+        <div class="field-group" style="flex: 1;">
           <label>Production time</label>
           <input type="text" id="mProduced" placeholder="MM/YY">
         </div>
       </div>
 
-      <!-- Materials / Price Section -->
       <div class="price-section">
-        <div class="field-group" style="flex: 1.1;">
+        <div class="field-group" style="flex: 1;">
           <label>Materials</label>
           <textarea id="mMaterial" placeholder="Materials..."></textarea>
         </div>
-
-        <div class="price-right">
+        <div class="price-right" style="flex: 1;">
           <div class="field-group">
             <label>Purchase price</label>
             <input type="text" id="mPurchasePrice" placeholder="0,00 kr.">
           </div>
-
-          <div class="toggle-sold-row">
-            <img id="btnSold" src="https://lh3.googleusercontent.com/d/1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK" onclick="toggleSoldState()" alt="Reselling">
+          <div class="toggle-sold-row" onclick="toggleSoldState()">
+            <img id="btnSold" src="" alt="Sold">
           </div>
-
           <div class="field-group sale-price-group" id="salePriceGroup">
             <label>Sale price</label>
             <input type="text" id="mSalePrice" placeholder="0,00 kr." disabled>
@@ -142,22 +123,16 @@
         </div>
       </div>
 
-      <!-- Modal Footer -->
       <div class="modal-footer">
-        <img src="https://lh3.googleusercontent.com/d/1ezJe2_NICuZT07YFN_1pRIQC8yiWAOHc" onclick="closeModal()" alt="Cancel" class="footer-btn">
-        
+        <img src="https://lh3.googleusercontent.com/d/1B7-u8pY9zK0L1m2N3O4P5Q6R7S8T9U0V" class="footer-btn" onclick="closeModal()" alt="Cancel">
         <div class="move-toggle-btn" onclick="toggleModalPageType()">
-          <img id="imgMoveBtn" src="https://lh3.googleusercontent.com/d/1fJBy15xDCzGyYaRVC7kuffylkNr8L-6m" alt="Move Item">
+          <img id="imgMoveBtn" src="" alt="Move">
         </div>
-
-        <img src="https://lh3.googleusercontent.com/d/1AjppabQ9us5pA44AK5LGZdV9MJ1YDXrC" onclick="saveData()" alt="Save" class="footer-btn">
+        <img src="https://lh3.googleusercontent.com/d/1C8-u9qZ0aL1M2N3O4P5Q6R7S8T9U0W1X" class="footer-btn" onclick="saveData()" alt="Save">
       </div>
     </div>
   </div>
 
-  <script>
-    const PAGE_MODE = 'collect';
-  </script>
-  <script src="app.js?v=10.0"></script>
+  <script src="app.js"></script>
 </body>
 </html>
