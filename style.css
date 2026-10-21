@@ -503,7 +503,7 @@ html, body {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  height: 118px !important;
+  height: 100px !important;
   box-sizing: border-box;
 }
 
@@ -524,8 +524,8 @@ html, body {
 }
 
 .upload-btn {
-  width: 125px;
-  height: 125px;
+  width: 225px;
+  height: 225px;
   border-radius: 16px;
   background-size: cover;
   background-position: center;
@@ -561,7 +561,7 @@ html, body {
 }
 
 .brand-toggle img {
-  height: 44px;
+  height: 90px;
   width: auto;
   cursor: pointer;
   object-fit: contain;
