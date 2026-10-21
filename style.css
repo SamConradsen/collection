@@ -492,7 +492,6 @@ html, body {
   height: 100%;
 }
 
-/* Materialer og Salgspris bunden flugter 100% snorlige */
 .modal textarea#mMaterial {
   resize: none;
   height: 118px !important;
@@ -573,7 +572,6 @@ html, body {
   gap: 8px;
 }
 
-/* Afstand over og under Reselling? knappen */
 .toggle-sold-row {
   display: flex;
   align-items: center;
