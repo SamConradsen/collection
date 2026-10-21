@@ -127,7 +127,7 @@ html, body {
 }
 
 /* =========================================================
-   SIZE DROPDOWN MENU (Flugter med knap, #D2DCEE til #85ABE5, ramme #2A1A6F)
+   SIZE DROPDOWN MENU (Flugter med knap, venstre-forskudt)
    ========================================================= */
 .size-dropdown {
   position: absolute;
@@ -488,10 +488,11 @@ html, body {
   height: 100%;
 }
 
-/* Materialer og Salgspris bunden flugter helt præcist */
+/* Materialer og Salgspris flugter 100% i bunden */
 .modal textarea#mMaterial {
   resize: none;
-  height: 100px;
+  height: 102px !important;
+  box-sizing: border-box;
 }
 
 .price-right {
@@ -499,7 +500,8 @@ html, body {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  height: 100px;
+  height: 102px !important;
+  box-sizing: border-box;
 }
 
 .sale-price-group {
@@ -567,16 +569,16 @@ html, body {
   gap: 8px;
 }
 
+/* Mindre Reselling?-knap med korrekt afstand til salgspris */
 .toggle-sold-row {
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin: 1px 0;
+  margin: 2px 0 0 0;
 }
 
-/* Mindre Reselling?-knap */
 .toggle-sold-row img {
-  height: 21px;
+  height: 16px !important;
   width: auto;
   display: block;
 }
