@@ -544,7 +544,7 @@ html, body {
 .art-input {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .art-input img {
@@ -556,7 +556,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   margin: 2px 0;
 }
 
@@ -569,14 +569,14 @@ html, body {
 
 .three-cols {
   display: flex;
-  gap: 8px;
+  gap: 4px;
 }
 
 .toggle-sold-row {
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 4px;
   margin-bottom: 4px;
 }
 
@@ -590,13 +590,13 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 8px;
+  margin-top: 4px;
   margin-bottom: -6px;
-  gap: 12px;
+  gap: 4px;
 }
 
 .footer-btn {
-  height: 10px;
+  height: 40px;
   width: auto;
   cursor: pointer;
   object-fit: contain;
