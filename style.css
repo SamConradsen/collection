@@ -7,7 +7,7 @@
   font-family: 'AvantGarde LT Medium';
   src: local('AvantGarde LT Medium'), local('ITC Avant Garde Gothic Std Medium');
   font-weight: 500;
-} 
+}
 
 html, body {
   margin: 0;
@@ -127,7 +127,7 @@ html, body {
 }
 
 /* =========================================================
-   SIZE DROPDOWN MENU (Ægte glas-effekt med blur, overlay & ramme)
+   SIZE DROPDOWN MENU (Gennemsigtig glas-effekt, 50% opacity, blur & overlay)
    ========================================================= */
 .size-dropdown {
   position: absolute;
@@ -490,10 +490,10 @@ html, body {
   height: 100%;
 }
 
-/* Materialer og Salgspris flugter 100% i bunden med korrekt afstand til reselling */
+/* Materialer og Salgspris bunden flugter præcist */
 .modal textarea#mMaterial {
   resize: none;
-  height: 108px !important;
+  height: 112px !important;
   box-sizing: border-box;
 }
 
@@ -502,7 +502,7 @@ html, body {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  height: 108px !important;
+  height: 112px !important;
   box-sizing: border-box;
 }
 
@@ -571,12 +571,13 @@ html, body {
   gap: 8px;
 }
 
-/* Reselling? knap formindsket med præcis afstand op til purchase price og ned til sale price */
+/* Afstand mellem Purchase price og Reselling? + Salgspris */
 .toggle-sold-row {
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin: 2px 0;
+  margin-top: 6px;
+  margin-bottom: 2px;
 }
 
 .toggle-sold-row img {
