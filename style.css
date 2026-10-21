@@ -524,8 +524,8 @@ html, body {
 }
 
 .upload-btn {
-  width: 225px;
-  height: 225px;
+  width: 200px;
+  height: 200px;
   border-radius: 16px;
   background-size: cover;
   background-position: center;
