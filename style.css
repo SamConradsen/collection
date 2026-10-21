@@ -173,7 +173,7 @@ html, body {
 }
 
 .size-group-title {
-  height: 20px;
+  height: 30px;
   width: auto;
   display: block;
   margin-bottom: 6px;
@@ -305,8 +305,8 @@ html, body {
   position: absolute;
   top: 4px;
   left: 4px;
-  width: 26px;
-  height: 26px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
 }
 
@@ -420,8 +420,8 @@ html, body {
   flex-direction: column;
   gap: 10px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  overflow: visible !important;
-  max-height: none !important;
+  overflow-y: hidden !important;
+  max-height: 80vh !important;
 }
 
 .modal-collect {
@@ -442,7 +442,7 @@ html, body {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: -6px;
+  margin-top: 2px;
   margin-bottom: 2px;
 }
 
