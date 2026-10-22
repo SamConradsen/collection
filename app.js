@@ -9,15 +9,15 @@ let isSaving = false;
 
 // Google Drive Image IDs (Komplette og verificerede)
 const IMAGES = {
-  headerCollect: "1uLp25hiwtGZS970k78JIu7ew5jL_w8JS",
-  headerWish: "1DepTek0L_aBYrnNZfvUYgrC2aNODlube",
+  headerCollect: "1BbO-EU_AmhU8XtYRuYGCFx_ZVZzK3iCA",
+  headerWish: "14m-Rprm0BtqaVohizhDgPj0pSlfeIfGy",
   uploadPlaceholder: "17YobDkGOVX0dUIyLRVu_alxkMO2AnmxT",
   
   // Brand Toggles
-  origTrue: "1phuiZ7Mh7kYKfAENbCw2ah78_Tem2NAM",
-  origFalse: "152SiPw7Y39y_jeMaTdTZLXFkgR_Zu4cn",
-  perfTrue: "1ycABFjAvKvRXOgnKJ77_fO2Y0zpAh6fG",
-  perfFalse: "1wEklPrdEZ3GHbNw2ejwfYwx1nBnRxhny",
+  origTrue: "1I0BlTx_kd0XzaQ4UQ8K8uNa0QbKc2DNa",
+  origFalse: "1FN9hPeraFDuWvN83DEyFzmadO0yVZDeQ",
+  perfTrue: "1xFFMBoSoKEflLTAM4QTzuanyt3-TFatq",
+  perfFalse: "1yh7OHCks75I_aDzb4Q7Lf8STkzLag-Cj",
 
   // Sold / Reselling Toggles
   soldFalse: "1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK",
@@ -300,13 +300,15 @@ function renderItems() {
   const sortedCats = Object.keys(categories).sort();
 
   sortedCats.forEach((cat, index) => {
+    const safeCatId = encodeURIComponent(cat);
+
     if (alphabetNav) {
       const bubbleImgId = SIDEBAR_BUBBLES[index % SIDEBAR_BUBBLES.length];
       const letter = cat.charAt(0).toUpperCase();
 
       const bubbleItem = document.createElement('a');
       bubbleItem.className = 'sidebar-bubble-item';
-      bubbleItem.href = `#cat-${encodeURIComponent(cat)}`;
+      bubbleItem.href = `#cat-${safeCatId}`;
 
       bubbleItem.innerHTML = `
         <img class="sidebar-bubble-bg" src="https://lh3.googleusercontent.com/d/${bubbleImgId}" alt="bubble">
@@ -317,7 +319,7 @@ function renderItems() {
 
     const section = document.createElement('div');
     section.className = 'category-section';
-    section.id = `cat-${encodeURIComponent(cat)}`;
+    section.id = `cat-${safeCatId}`;
 
     const title = document.createElement('h2');
     title.className = 'category-title';
