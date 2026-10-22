@@ -7,40 +7,33 @@ let currentImageBase64 = null;
 let currentEditId = null;
 let isSaving = false;
 
-// Google Drive Image IDs med dine præcise rettede Brand-ikoner
 const IMAGES = {
   headerCollect: "1BbO-EU_AmhU8XtYRuYGCFx_ZVZzK3iCA",
   headerWish: "14m-Rprm0BtqaVohizhDgPj0pSlfeIfGy",
   uploadPlaceholder: "17YobDkGOVX0dUIyLRVu_alxkMO2AnmxT",
   
-  // Brand Toggles - Dine Præcise Rettede Ikoner
   origTrue: "1phuiZ7Mh7kYKfAENbCw2ah78_Tem2NAM",
   origFalse: "152SiPw7Y39y_jeMaTdTZLXFkgR_Zu4cn",
   perfTrue: "1ycABFjAvKvRXOgnKJ77_fO2Y0zpAh6fG",
   perfFalse: "1wEklPrdEZ3GHbNw2ejwfYwx1nBnRxhny",
 
-  // Sold / Reselling Toggles
   soldFalse: "1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK",
   soldTrue: "1vETS8eyAKpPjy89FdnPhRyh70Jw9whoK",
 
-  // Move Buttons
   moveWish: "1fJBy15xDCzGyYaRVC7kuffylkNr8L-6m",
   moveCollect: "1vMlgzgIov6ukflJWXYIFuC-IkbaLNztl",
 
-  // Show Sold Toggles
   showSoldOff: "1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ",
   showSoldOn: "19wTkumBvqWSzhakI3TRw6ACWI0jl2YCG",
   
-  // Priser & Tider ikoner
   iconPurchasePrice: "1pXAS0b2IK1Z81StPX8XjWdkUli2hlz_L",
   iconSalePrice: "1Yu_Lil2oFqOlkPmjOwcmu7iL4nCMcVxI",
   iconProduced: "1ij4Ek7JOZ956BKEObfNPiQUkQRFSTVBY"
 };
 
-// Size menu data struktur
 const SIZE_DATA = [
   {
-    title: "1RZTZy5SkaYhentzK95PtHLfTLrry588t", // Women's
+    title: "1RZTZy5SkaYhentzK95PtHLfTLrry588t",
     sizes: [
       { key: "EU26", trueId: "1XSVwjDADYiCZiHS4H78vrfrLpke4Jz-U", falseId: "1JyRI9YKjybxP9WsQLZFpDriITxKr_weK" },
       { key: "EU2628", trueId: "16o90DPuUgx0M9d-kE2dMd4fT241TVoJu", falseId: "16VTslGlTyERmwnB7nvNCPnF_-NmPKics" },
@@ -63,7 +56,7 @@ const SIZE_DATA = [
     ]
   },
   {
-    title: "13FXO2y9MwhBRRLfav_57fHmnawi236F2", // Men's
+    title: "13FXO2y9MwhBRRLfav_57fHmnawi236F2",
     sizes: [
       { key: "XS", trueId: "1fo2xSQdYAxc5wur2j42kqfaBNnAAowoa", falseId: "1Llb31YJSRgnlbJjQKh1_qv9Ei93hRxzF" },
       { key: "S", trueId: "12zAn5AmgyG6waKAgqioHMfB28QjAlwwY", falseId: "14q7cIEJIa2gQums81lgrMyRm08aXiu1Z" },
@@ -74,21 +67,20 @@ const SIZE_DATA = [
     ]
   },
   {
-    title: "1o-bFV6fUuz4-UOz3LHuNCmLDEQRTQpCK", // Shoes
+    title: "1o-bFV6fUuz4-UOz3LHuNCmLDEQRTQpCK",
     sizes: [
       { key: "40", trueId: "107zMXiUS71NF-yFx8-0bmicjcrH0Vjpr", falseId: "1z3t0nNPRWhfb2NZ2yyZ5yVlj1KtLeGL3" },
       { key: "40 2/3", trueId: "1dDymb3WDFjwKQswqx9JTm2a3G8eMQb87", falseId: "1EVan3IADTMUMpcjynJZeEwY_KKkdHJCX" }
     ]
   },
   {
-    title: "1YA3WaLcSWL50BHllfjRcI6Bu-qj-kP50", // Other
+    title: "1YA3WaLcSWL50BHllfjRcI6Bu-qj-kP50",
     sizes: [
       { key: "Onesize", trueId: "1_vg2cPTQQvQNyUKNgWGY_5159mFXK7MS", falseId: "1yn6-0jQ61iKVjPC7YThePp16oQE4uKgc" }
     ]
   }
 ];
 
-// Sidebar Bobler (A til M)
 const SIDEBAR_BUBBLES = [
   "13pZM4zD0ZOojOOK8Z9U-XRD_LB6jFLhv",
   "1-kkfG5BQGSEN0y5gtib-G7Bag24CS48z",
@@ -112,12 +104,7 @@ SIZE_DATA.forEach(group => {
   });
 });
 
-let formData = {
-  collect: 'collect',
-  brand: '',
-  sold: 'FALSE'
-};
-
+let formData = { collect: 'collect', brand: '', sold: 'FALSE' };
 const PAGE_TYPE = typeof PAGE_MODE !== 'undefined' ? PAGE_MODE : 'collect';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -128,4 +115,391 @@ document.addEventListener('DOMContentLoaded', () => {
     const dropdown = document.getElementById('sizeDropdown');
     const trigger = document.querySelector('.size-menu-trigger');
     if (dropdown && trigger && dropdown.style.display === 'block') {
-      if (!dropdown.contains(e.target) && !trigger.contains(
+      if (!dropdown.contains(e.target) && !trigger.contains(e.target)) {
+        dropdown.style.display = 'none';
+      }
+    }
+  });
+});
+
+function fetchData() {
+  fetch(APPS_SCRIPT_URL)
+    .then(res => res.json())
+    .then(data => {
+      if (Array.isArray(data)) allItems = data;
+      else if (data && Array.isArray(data.items)) allItems = data.items;
+      else if (data && typeof data === 'object') allItems = Object.values(data);
+      else allItems = [];
+      updateCategoryDatalist();
+      renderItems();
+    })
+    .catch(err => console.error("Fejl:", err));
+}
+
+function handleButtonA() {
+  if (PAGE_TYPE === 'collect') openModal('collect');
+  else window.location.href = 'index.html';
+}
+
+function handleButtonB() {
+  if (PAGE_TYPE === 'collect') window.location.href = 'wishlist.html';
+  else openModal('wish');
+}
+
+function toggleShowSold() {
+  showSold = !showSold;
+  const toggleImg = document.getElementById('showSoldToggleImg');
+  if (toggleImg) toggleImg.src = `https://lh3.googleusercontent.com/d/${showSold ? IMAGES.showSoldOn : IMAGES.showSoldOff}`;
+  renderItems();
+}
+
+function handleSearch(val) {
+  searchQuery = val.toLowerCase().trim();
+  renderItems();
+}
+
+function toggleSizeMenu(e) {
+  e.stopPropagation();
+  const dropdown = document.getElementById('sizeDropdown');
+  if (!dropdown) return;
+  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
+function renderSizeMenuUI() {
+  const dropdown = document.getElementById('sizeDropdown');
+  if (!dropdown) return;
+  let html = '';
+  SIZE_DATA.forEach((group, idx) => {
+    if (idx === 0) {
+      html += `
+        <div class="size-dropdown-top">
+          <img src="https://lh3.googleusercontent.com/d/${group.title}" class="size-group-title" style="margin-bottom:0;" alt="Women's">
+          <div class="size-quick-actions">
+            <img src="https://lh3.googleusercontent.com/d/1V2GovFhIyQNeToWVriLnLizmC295PoxL" onclick="selectAllSizes(true)" alt="ON">
+            <img src="https://lh3.googleusercontent.com/d/18sFkDxQEW3oa79aSI-sWZLi5oSoEWOuZ" onclick="selectAllSizes(false)" alt="OFF">
+          </div>
+        </div>
+        <div class="size-group">`;
+    } else {
+      html += `<div class="size-group"><img src="https://lh3.googleusercontent.com/d/${group.title}" class="size-group-title" alt="title">`;
+    }
+    html += `<div class="size-grid">`;
+    group.sizes.forEach(s => {
+      const isSelected = !!selectedSizes[s.key];
+      html += `<img src="https://lh3.googleusercontent.com/d/${isSelected ? s.trueId : s.falseId}" onclick="toggleSingleSize(event, '${s.key}')" alt="${s.key}">`;
+    });
+    html += `</div></div>`;
+  });
+  dropdown.innerHTML = html;
+}
+
+function toggleSingleSize(e, sizeKey) {
+  if (e) e.stopPropagation();
+  selectedSizes[sizeKey] = !selectedSizes[sizeKey];
+  renderSizeMenuUI();
+  renderItems();
+}
+
+function selectAllSizes(status) {
+  SIZE_DATA.forEach(group => group.sizes.forEach(s => selectedSizes[s.key] = status));
+  renderSizeMenuUI();
+  renderItems();
+}
+
+function getSizeBadgeId(sizeStr) {
+  if (!sizeStr) return null;
+  const clean = sizeStr.trim().toUpperCase();
+  for (let group of SIZE_DATA) {
+    for (let s of group.sizes) {
+      if (s.key.toUpperCase() === clean) return s.trueId;
+    }
+  }
+  return null;
+}
+
+function renderItems() {
+  const contentArea = document.getElementById('contentArea');
+  const alphabetNav = document.getElementById('alphabetNav');
+  if (!contentArea) return;
+  contentArea.innerHTML = '';
+  if (alphabetNav) alphabetNav.innerHTML = '';
+
+  const filtered = allItems.filter(item => {
+    if (!item) return false;
+    const itemCollect = item.collect ? String(item.collect).toLowerCase().trim() : 'collect';
+    const currentMode = PAGE_TYPE.toLowerCase().trim();
+    const isCorrectType = itemCollect === currentMode || (currentMode === 'collect' && !item.collect);
+    
+    const isSold = String(item.sold).toUpperCase() === 'TRUE';
+    if (!showSold && isSold) return false;
+
+    // Kun filtrér på størrelse hvis varen faktisk har en størrelse udfyldt!
+    if (item.size && item.size.trim() !== '') {
+      const itemSizeKey = item.size.trim();
+      if (selectedSizes.hasOwnProperty(itemSizeKey) && !selectedSizes[itemSizeKey]) {
+        return false;
+      }
+    }
+
+    if (searchQuery) {
+      const matchName = item.name && item.name.toLowerCase().includes(searchQuery);
+      const matchArt = item.articlenumber && item.articlenumber.toLowerCase().includes(searchQuery);
+      const matchCat = item.category && item.category.toLowerCase().includes(searchQuery);
+      if (!matchName && !matchArt && !matchCat) return false;
+    }
+    return isCorrectType;
+  });
+
+  const categories = {};
+  filtered.forEach(item => {
+    const cat = item.category ? item.category.trim() : 'Uncategorized';
+    if (!categories[cat]) categories[cat] = [];
+    categories[cat].push(item);
+  });
+
+  const sortedCats = Object.keys(categories).sort();
+
+  sortedCats.forEach((cat, index) => {
+    const safeCatId = encodeURIComponent(cat);
+
+    if (alphabetNav) {
+      const bubbleImgId = SIDEBAR_BUBBLES[index % SIDEBAR_BUBBLES.length];
+      const letter = cat.charAt(0).toUpperCase();
+      const bubbleItem = document.createElement('a');
+      bubbleItem.className = 'sidebar-bubble-item';
+      bubbleItem.href = `#cat-${safeCatId}`;
+      bubbleItem.innerHTML = `
+        <img class="sidebar-bubble-bg" src="https://lh3.googleusercontent.com/d/${bubbleImgId}" alt="bubble">
+        <span class="sidebar-bubble-letter">${letter}</span>
+      `;
+      alphabetNav.appendChild(bubbleItem);
+    }
+
+    const section = document.createElement('div');
+    section.className = 'category-section';
+    section.id = `cat-${safeCatId}`;
+
+    const title = document.createElement('h2');
+    title.className = 'category-title';
+    title.textContent = cat;
+    section.appendChild(title);
+
+    const grid = document.createElement('div');
+    grid.className = 'item-grid';
+
+    categories[cat].forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.onclick = () => editItem(item.id);
+
+      const isSold = String(item.sold).toUpperCase() === 'TRUE';
+      const bgUrl = item.imageid ? `https://lh3.googleusercontent.com/d/${item.imageid}` : '';
+      const brandText = item.brand === 'performance' ? 'adidas Performance' : 'adidas Originals';
+      const sizeBadgeId = getSizeBadgeId(item.size);
+      const hasSalePrice = isSold && item.saleprice && item.saleprice.trim() !== '';
+      const cleanPurchase = item.purchaseprice ? item.purchaseprice.replace(/kr\.?/gi, '').trim() : '';
+      const cleanSale = item.saleprice ? item.saleprice.replace(/kr\.?/gi, '').trim() : '';
+
+      card.innerHTML = `
+        <div class="image-wrapper" style="background-image: url('${bgUrl}');">
+          ${isSold ? '<div class="sold-overlay"></div>' : ''}
+          ${sizeBadgeId ? `<img class="size-badge" src="https://lh3.googleusercontent.com/d/${sizeBadgeId}" alt="${item.size}">` : ''}
+          <div class="article-badge">
+            <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
+            <span>${item.articlenumber || ''}</span>
+          </div>
+        </div>
+        <div class="info-box">
+          <span class="item-id">${item.id || ''}</span>
+          <div class="info-header"><span>${brandText}</span></div>
+          <div class="info-name">${item.name || ''}</div>
+          <div class="info-row">
+            <span>Made in</span>
+            <span class="val">${item.madein || ''}</span>
+          </div>
+          <div class="info-row">
+            <div class="price-left-side">
+              <img src="https://lh3.googleusercontent.com/d/${IMAGES.iconPurchasePrice}" alt="purchase">
+              <span class="val">${cleanPurchase ? cleanPurchase + ' kr.' : ''}</span>
+            </div>
+            ${hasSalePrice ? `
+            <div class="price-right-side">
+              <img src="https://lh3.googleusercontent.com/d/${IMAGES.iconSalePrice}" alt="sale">
+              <span class="val">${cleanSale ? cleanSale + ' kr.' : ''}</span>
+            </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    section.appendChild(grid);
+    contentArea.appendChild(section);
+  });
+}
+
+function updateCategoryDatalist() {
+  const datalist = document.getElementById('categorySuggestions');
+  if (!datalist) return;
+  const categories = [...new Set(allItems.map(item => item ? item.category : null).filter(Boolean))];
+  datalist.innerHTML = categories.map(cat => `<option value="${cat}">`).join('');
+}
+
+function openModal(type) {
+  currentEditId = null;
+  currentImageBase64 = null;
+  const uploadPreview = document.getElementById('uploadPreview');
+  if (uploadPreview) uploadPreview.style.backgroundImage = `url('https://lh3.googleusercontent.com/d/${IMAGES.uploadPlaceholder}')`;
+
+  setPageType(type);
+  initBrand('');
+  setSoldState('FALSE');
+
+  ['mArticle', 'mName', 'mCategory', 'mSize', 'mProduced', 'mMadeIn', 'mMaterial', 'mPurchasePrice', 'mSalePrice'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+
+  document.getElementById('modalBg').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('modalBg').style.display = 'none';
+}
+
+function toggleModalPageType() {
+  setPageType(formData.collect === 'collect' ? 'wish' : 'collect');
+}
+
+function setPageType(type) {
+  formData.collect = type;
+  const card = document.getElementById('modalCard');
+  const headerImg = document.getElementById('modalHeaderImg');
+  const moveBtn = document.getElementById('imgMoveBtn');
+
+  if (type === 'collect') {
+    card.className = 'modal modal-collect';
+    if (headerImg) headerImg.src = `https://lh3.googleusercontent.com/d/${IMAGES.headerCollect}`;
+    if (moveBtn) moveBtn.src = `https://lh3.googleusercontent.com/d/${IMAGES.moveWish}`;
+  } else {
+    card.className = 'modal modal-wishlist';
+    if (headerImg) headerImg.src = `https://lh3.googleusercontent.com/d/${IMAGES.headerWish}`;
+    if (moveBtn) moveBtn.src = `https://lh3.googleusercontent.com/d/${IMAGES.moveCollect}`;
+  }
+}
+
+function selectBrand(brand) {
+  formData.brand = (formData.brand === brand) ? '' : brand;
+  updateBrandUI();
+}
+
+function initBrand(brand) {
+  formData.brand = brand ? String(brand).toLowerCase().trim() : '';
+  updateBrandUI();
+}
+
+function updateBrandUI() {
+  const orig = document.getElementById('imgOrigToggle');
+  const perf = document.getElementById('imgPerfToggle');
+  if (orig) orig.src = `https://lh3.googleusercontent.com/d/${formData.brand === 'originals' ? IMAGES.origTrue : IMAGES.origFalse}`;
+  if (perf) perf.src = `https://lh3.googleusercontent.com/d/${formData.brand === 'performance' ? IMAGES.perfTrue : IMAGES.perfFalse}`;
+}
+
+function toggleSoldState() {
+  setSoldState(formData.sold === 'TRUE' ? 'FALSE' : 'TRUE');
+}
+
+function setSoldState(state) {
+  formData.sold = state;
+  const btn = document.getElementById('btnSold');
+  const saleInput = document.getElementById('mSalePrice');
+  const saleGroup = document.getElementById('salePriceGroup');
+
+  if (btn) btn.src = `https://lh3.googleusercontent.com/d/${state === 'TRUE' ? IMAGES.soldTrue : IMAGES.soldFalse}`;
+  if (saleInput) {
+    saleInput.disabled = (state !== 'TRUE');
+    if (state !== 'TRUE') saleInput.value = '';
+  }
+  if (saleGroup) {
+    if (state === 'TRUE') saleGroup.classList.add('active');
+    else saleGroup.classList.remove('active');
+  }
+}
+
+function handleImage(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      currentImageBase64 = e.target.result;
+      document.getElementById('uploadPreview').style.backgroundImage = `url('${e.target.result}')`;
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function editItem(id) {
+  const item = allItems.find(i => i && i.id == id);
+  if (!item) return;
+
+  currentEditId = item.id;
+  setPageType(item.collect || PAGE_TYPE);
+  initBrand(item.brand || '');
+  setSoldState(String(item.sold).toUpperCase());
+
+  const uploadPreview = document.getElementById('uploadPreview');
+  if (uploadPreview) {
+    uploadPreview.style.backgroundImage = item.imageid 
+      ? `url('https://lh3.googleusercontent.com/d/${item.imageid}')` 
+      : `url('https://lh3.googleusercontent.com/d/${IMAGES.uploadPlaceholder}')`;
+  }
+
+  document.getElementById('mArticle').value = item.articlenumber || '';
+  document.getElementById('mName').value = item.name || '';
+  document.getElementById('mCategory').value = item.category || '';
+  document.getElementById('mSize').value = item.size || '';
+  document.getElementById('mProduced').value = item.produced || '';
+  document.getElementById('mMadeIn').value = item.madein || '';
+  document.getElementById('mMaterial').value = item.material || '';
+  document.getElementById('mPurchasePrice').value = item.purchaseprice || '';
+  document.getElementById('mSalePrice').value = item.saleprice || '';
+
+  document.getElementById('modalBg').style.display = 'flex';
+}
+
+function saveData() {
+  if (isSaving) return;
+  isSaving = true;
+
+  const payload = {
+    id: currentEditId,
+    collect: formData.collect,
+    brand: formData.brand,
+    sold: formData.sold,
+    articlenumber: document.getElementById('mArticle').value,
+    name: document.getElementById('mName').value,
+    category: document.getElementById('mCategory').value,
+    size: document.getElementById('mSize').value,
+    produced: document.getElementById('mProduced').value,
+    madein: document.getElementById('mMadeIn').value,
+    material: document.getElementById('mMaterial').value,
+    purchaseprice: document.getElementById('mPurchasePrice').value,
+    saleprice: document.getElementById('mSalePrice').value,
+    imageBase64: currentImageBase64
+  };
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
+  .then(res => res.json())
+  .then(() => {
+    isSaving = false;
+    closeModal();
+    fetchData();
+  })
+  .catch(err => {
+    isSaving = false;
+    console.error("Fejl ved gemning:", err);
+  });
+}
