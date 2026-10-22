@@ -41,7 +41,7 @@ background: #d1e3ff; / <- Giver menubåndet den samme lyseblå baggrundsfarve so
 display: flex; /* <- Bruger flexbox til at placere venstre, midterste og højre elementer på række /
 align-items: center; / <- Centrerer alle knapper og felter vertikalt i menuen /
 justify-content: space-between; / <- Skubber elementerne ud til henholdsvis venstre, midte og højre /
-padding: 8px 15px; / <- Tilføjer 8px luft i top/bund og 15px luft i siderne af menuen /
+padding: 5px 15px; / <- Tilføjer 5px luft i top/bund og 15px luft i siderne af menuen /
 box-sizing: border-box; / <- Sikrer at padding tælles med i den samlede bredde /
 width: 100%; / <- Sætter selve menuens bredde til 100% /
 gap: 5px; / <- Laver 5px minimumsafstand mellem menugrupperne */
@@ -54,7 +54,7 @@ min-width: 0; / <- Tillader elementerne at skrumpe om nødvendigt på små skær
 }
 .menu-item {
 cursor: pointer; /* <- Gør musen til en pegefinger for at vise at knappen kan klikkes på /
-height: 44px; / <- Sætter højde på knapperne i menuen (Knap A, B, Size osv.) /
+height: 50px; / <- Sætter højde på knapperne i menuen (Knap A, B, Size osv.) /
 width: auto; / <- Lader bredden tilpasse sig automatisk efter billedets proportioner /
 max-width: 100%; / <- Sikrer at knapbilledet ikke stikker ud af beholderen /
 display: block; / <- Fjerner ekstra luft under billedet /
@@ -184,13 +184,13 @@ flex: 1; /* <- Lader varer-området fylde alt den plads der er til rådighed til
 min-width: 0; / <- Forhindrer gitteret i at skubbe hele layoutet ud af skærmen */
 }
 .category-section {
-margin-bottom: 25px; /* <- Giver 25px afstand mellem hver kategori (f.eks. Bags og Tops) */
+margin-bottom: 15px; /* <- Giver 25px afstand mellem hver kategori (f.eks. Bags og Tops) */
 }
 .category-title {
 font-family: 'AvantGarde LT Book', sans-serif; /* <- Sætter skrifttypen på kategori-overskrifterne /
 font-weight: bold; / <- Gør kategori-overskrifterne fede /
 font-size: 24px; / <- Sætter tekststørrelsen på kategori-overskrifterne til 24px /
-margin: 15px 0 10px 0; / <- Tilføjer 15px luft over og 10px luft under hver overskrift */
+margin: 10px 0 5px 0; / <- Tilføjer 15px luft over og 10px luft under hver overskrift */
 }
 .item-grid {
 display: grid; /* <- Sætter et gitter-layout op for produkterne /
@@ -210,7 +210,7 @@ top: 70px; / <- Placerer sidebaren 70px nede fra skærmens top (under menuen) /
 height: max-content; / <- Sætter højden til kun at fylde det antaller bobler der er /
 display: flex; / <- Arrangerer boblerne i en lodret kolonne /
 flex-direction: column; / <- Placerer boblerne over/under hinanden /
-gap: 8px; / <- Laver 8px afstand mellem hver bogstavboble /
+gap: 8px; / <- Laver 5px afstand mellem hver bogstavboble /
 margin-left: 15px; / <- Skaber 15px luft ind mod produktkortene til venstre /
 z-index: 90; / <- Placerer boblerne over kortene men under topmenuen */
 }
@@ -268,14 +268,14 @@ background: url('https://lh3.googleusercontent.com/d/1aI-Sx4t3iTxtWBZ8tTBECglees
 position: absolute; /* <- Placerer størrelsesikonet fast på billedet /
 top: 4px; / <- Sætter størrelsesikonet 4px fra billedets top /
 left: 4px; / <- Sætter størrelsesikonet 4px fra billedets venstre kant /
-width: 26px; / <- Sætter bredden på størrelsesikonet til 26px /
-height: 26px; / <- Sætter højden på størrelsesikonet til 26px /
+width: 30px; / <- Sætter bredden på størrelsesikonet til 30px /
+height: 30px; / <- Sætter højden på størrelsesikonet til 30px /
 object-fit: contain; / <- Bevarer ikonskarphed og proportioner */
 }
 .article-badge {
 position: absolute; /* <- Placerer artikelnummer-mærket fast i billedet /
 bottom: 3px; / <- Placerer mærket 3px fra billedets bund /
-right: 4px; / <- Placerer mærket 4px fra billedets højre kant /
+right: 4px; / <- Placerer mærket 3px fra billedets højre kant /
 display: flex; / <- Placerer "a#"-ikonet og nummeret på række /
 align-items: center; / <- Centrerer ikon og tekst lodret /
 gap: 2px; / <- Giver 2px afstand mellem "a#"-ikonet og nummeret /
