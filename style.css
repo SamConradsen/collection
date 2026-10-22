@@ -39,7 +39,7 @@ html, body {
   top: 0;
   z-index: 100;
   width: 100%;
-  background: #d1e3ff;
+  background: transparent !important;
 }
 
 .sticky-menu {
