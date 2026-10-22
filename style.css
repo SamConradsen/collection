@@ -275,7 +275,10 @@ html, body {
 }
 
 @media (max-width: 600px) {
-  .alphabet-nav { display: none; }
+  .alphabet-nav { display: flex; }
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  max-width: 10vw;
 }
 
 /* Item Card Design */
@@ -314,7 +317,7 @@ html, body {
 .article-badge {
   position: absolute;
   bottom: 3px;
-  right: 4px;
+  right: 3px;
   display: flex;
   align-items: center;
   gap: 2px;
