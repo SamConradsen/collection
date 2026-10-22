@@ -112,7 +112,6 @@ html, body {
   -webkit-appearance: none;
 }
 
-/* Mobil-tilpasning der bevarer visning */
 @media (max-width: 600px) {
   .sticky-menu { padding: 4px 6px; gap: 4px; }
   .menu-left, .menu-right { gap: 4px; }
@@ -159,7 +158,6 @@ html, body {
   gap: 6px;
 }
 
-/* Korrekt størrelse på størrelsesknapper i dropdown */
 .size-grid img {
   width: 100% !important;
   height: auto !important;
@@ -307,7 +305,9 @@ html, body {
 .price-left-side img, .price-right-side img { height: 11px; width: auto; display: inline-block; vertical-align: middle; }
 .info-row span.val { color: #000; font-family: 'AvantGarde LT Medium', sans-serif; }
 
-/* POPUP MODAL DESIGN */
+/* =========================================================
+   POPUP MODAL DESIGN (FASTSLÅET KORREKT PLACERING & STØRRELSER)
+   ========================================================= */
 .modal-bg {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -324,7 +324,7 @@ html, body {
   background: #ffffff;
   border-radius: 24px;
   width: 440px; max-width: 94vw;
-  padding: 12px 18px 14px 18px;
+  padding: 12px 18px 14px 18px; /* Fjerner alt unødvendigt polstring/luft */
   box-sizing: border-box;
   display: flex; flex-direction: column; gap: 6px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
@@ -347,7 +347,7 @@ html, body {
 }
 
 .modal-header-banner { width: 100%; display: flex; justify-content: center; margin-top: -4px; margin-bottom: 0px; }
-.modal-header-banner img { height: 95px !important; width: auto; max-width: 100%; object-fit: contain; }
+.modal-header-banner img { height: 90px !important; width: auto; max-width: 100%; object-fit: contain; }
 
 .field-group { display: flex; flex-direction: column; gap: 1px; }
 .field-group label { color: #2F47B1 !important; font-family: 'AvantGarde LT Book', sans-serif; font-size: 11px; font-weight: bold; }
@@ -366,8 +366,11 @@ html, body {
 }
 
 .upload-section { display: flex; justify-content: space-between; align-items: stretch; gap: 10px; }
+
+/* Varebillede / upload-placeholder forstørret */
 .upload-btn {
-  width: 130px !important; height: 130px !important;
+  width: 140px !important; 
+  height: 140px !important;
   border-radius: 14px;
   background-size: cover; background-position: center;
   cursor: pointer; flex-shrink: 0; box-sizing: border-box;
@@ -377,11 +380,13 @@ html, body {
 .art-input { display: flex; align-items: center; gap: 6px; }
 .art-input img { height: 15px; width: auto; }
 
+/* Originals og Performance knapper forstørret markant */
 .brand-toggle { display: flex; justify-content: center; align-items: center; gap: 10px; margin: 1px 0; }
-.brand-toggle img { height: 46px !important; width: auto !important; cursor: pointer; object-fit: contain; }
+.brand-toggle img { height: 52px !important; width: auto !important; cursor: pointer; object-fit: contain; }
 
 .three-cols { display: flex; gap: 6px; }
 
+/* PRISER & MATERIALER FLUGTER 100% SNORLIGE MED FAST HØJDE */
 .price-section { display: flex; gap: 10px; align-items: flex-start; }
 .price-section .field-group { display: flex; flex-direction: column; height: 108px !important; box-sizing: border-box; }
 .modal textarea#mMaterial { resize: none; height: 88px !important; box-sizing: border-box; }
@@ -404,4 +409,6 @@ html, body {
 
 .footer-btn { height: 38px !important; width: auto !important; cursor: pointer; object-fit: contain; }
 .move-toggle-btn { flex: 1; display: flex; justify-content: center; }
-.move-toggle-btn img { height: 52px !important; width: 100%; max-width: 220px; cursor: pointer; object-fit: contain; }
+
+/* Move to... knap forstørret og tilpasset midterpladsen */
+.move-toggle-btn img { height: 52px !important; width: 100%; max-width: 240px; cursor: pointer; object-fit: contain; }
