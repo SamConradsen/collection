@@ -132,7 +132,7 @@ html, body {
 .size-dropdown {
   position: absolute;
   top: 80%;
-  left: 0;
+  left: 100;
   z-index: 200;
   background: linear-gradient(135deg, rgba(210, 220, 238, 0.5), rgba(133, 171, 229, 0.5));
   backdrop-filter: blur(16px);
@@ -146,14 +146,14 @@ html, body {
   width: 330px;
   max-width: 80vw
   box-sizing: border-box;
-  margin-top: 30px;
+  margin-top: 0px;
 }
 
 .size-dropdown-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 0px;
 }
 
 .size-quick-actions {
