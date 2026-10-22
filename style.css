@@ -1,556 +1,634 @@
 @font-face {
-font-family: 'AvantGarde LT Book'; /* <- Navngiver fonten til brug i CSS /
-src: local('AvantGarde LT Book'), local('ITC Avant Garde Gothic Std Book'); / <- Henter fonten fra brugerens computer /
-font-weight: normal; / <- Sætter font-vægten til almindelig/normal */
+  font-family: 'AvantGarde LT Book'; /* <- Navngiver fonten til brug i CSS */
+  src: local('AvantGarde LT Book'), local('ITC Avant Garde Gothic Std Book'); /* <- Henter fonten fra brugerens computer */
+  font-weight: normal; /* <- Sætter font-vægten til almindelig/normal */
 }
+
 @font-face {
-font-family: 'AvantGarde LT Medium'; /* <- Navngiver den mellemtunge font /
-src: local('AvantGarde LT Medium'), local('ITC Avant Garde Gothic Std Medium'); / <- Henter den mellemtunge font fra computeren /
-font-weight: 500; / <- Sætter font-vægten til 500 (medium) */
+  font-family: 'AvantGarde LT Medium'; /* <- Navngiver den mellemtunge font */
+  src: local('AvantGarde LT Medium'), local('ITC Avant Garde Gothic Std Medium'); /* <- Henter den mellemtunge font fra computeren */
+  font-weight: 500; /* <- Sætter font-vægten til 500 (medium) */
 }
+
 html, body {
-margin: 0; /* <- Fjerner standard luft/afstand uden om siden /
-padding: 0; / <- Fjerner indvendig polstring på selve siden /
-width: 100%; / <- Tvinger siden til at fylde 100% af skærmbredden /
-max-width: 100%; / <- Forhindrer siden i at blive bredere end skærmen /
-overflow-x: hidden; / <- Skjuler vandret scrollbar, så siden ikke kan skubbes til siden /
-background-color: #d1e3ff; / <- Sætter sidens baggrundsfarve til den lyseblå nuance /
-font-family: 'AvantGarde LT Medium', sans-serif; / <- Anvender AvantGarde-fonten som standard på hele siden /
-color: #000; / <- Sætter standard tekstfarve til sort /
--webkit-text-size-adjust: 100%; / <- Forhindrer iOS/Safari i automatisk at ændre tekststørrelsen i mobilvisning */
+  margin: 0; /* <- Fjerner standard luft/afstand uden om siden */
+  padding: 0; /* <- Fjerner indvendig polstring på selve siden */
+  width: 100%; /* <- Tvinger siden til at fylde 100% af skærmbredden */
+  max-width: 100%; /* <- Forhindrer siden i at blive bredere end skærmen */
+  overflow-x: hidden; /* <- Skjuler vandret scrollbar, så siden ikke kan skubbes til siden */
+  background-color: #d1e3ff; /* <- Sætter sidens baggrundsfarve til den lyseblå nuance */
+  font-family: 'AvantGarde LT Medium', sans-serif; /* <- Anvender AvantGarde-fonten som standard på hele siden */
+  color: #000; /* <- Sætter standard tekstfarve til sort */
+  -webkit-text-size-adjust: 100%; /* <- Forhindrer iOS/Safari i automatisk at ændre tekststørrelsen i mobilvisning */
 }
-/* Header Responsiveness /
+
+/* Header Responsiveness */
 .header-container {
-width: 100%; / <- Gør header-beholderen 100% bred /
-overflow: hidden; / <- Skjuler evt. billedindhold der stikker udenfor */
+  width: 100%; /* <- Gør header-beholderen 100% bred */
+  overflow: hidden; /* <- Skjuler evt. billedindhold der stikker udenfor */
 }
+
 .header-container img {
-width: 100%; /* <- Får header-billedet til at strække sig over hele bredden /
-height: auto; / <- Bevarer billedets originale højdeforhold automatisk /
-display: block; / <- Fjerner uønsket luft i bunden af billedet */
+  width: 100%; /* <- Får header-billedet til at strække sig over hele bredden */
+  height: auto; /* <- Bevarer billedets originale højdeforhold automatisk */
+  display: block; /* <- Fjerner uønsket luft i bunden af billedet */
 }
-/* Fixed Sticky Menu Overlay /
+
+/* Fixed Sticky Menu Overlay */
 .sticky-menu-wrapper {
-position: sticky; / <- Gør at topmenuen bliver hængende i toppen når der scrolles /
-top: 0; / <- Låser menuen helt oppe i toppen af skærmen /
-z-index: 100; / <- Placerer menuen ovenpå det øvrige indhold på siden /
-width: 100%; / <- Lader menubåndet strække sig i hele bredden /
-background: #d1e3ff; / <- Giver menubåndet den samme lyseblå baggrundsfarve som siden */
+  position: sticky; /* <- Gør at topmenuen bliver hængende i toppen når der scrolles */
+  top: 0; /* <- Låser menuen helt oppe i toppen af skærmen */
+  z-index: 100; /* <- Placerer menuen ovenpå det øvrige indhold på siden */
+  width: 100%; /* <- Lader menubåndet strække sig i hele bredden */
+  background: #d1e3ff; /* <- Giver menubåndet den samme lyseblå baggrundsfarve som siden */
 }
+
 .sticky-menu {
-display: flex; /* <- Bruger flexbox til at placere venstre, midterste og højre elementer på række /
-align-items: center; / <- Centrerer alle knapper og felter vertikalt i menuen /
-justify-content: space-between; / <- Skubber elementerne ud til henholdsvis venstre, midte og højre /
-padding: 5px 15px; / <- Tilføjer 5px luft i top/bund og 15px luft i siderne af menuen /
-box-sizing: border-box; / <- Sikrer at padding tælles med i den samlede bredde /
-width: 100%; / <- Sætter selve menuens bredde til 100% /
-gap: 5px; / <- Laver 5px minimumsafstand mellem menugrupperne */
+  display: flex; /* <- Bruger flexbox til at placere venstre, midterste og højre elementer på række */
+  align-items: center; /* <- Centrerer alle knapper og felter vertikalt i menuen */
+  justify-content: space-between; /* <- Skubber elementerne ud til henholdsvis venstre, midte og højre */
+  padding: 5px 15px; /* <- Tilføjer 5px luft i top/bund og 15px luft i siderne af menuen */
+  box-sizing: border-box; /* <- Sikrer at padding tælles med i den samlede bredde */
+  width: 100%; /* <- Sætter selve menuens bredde til 100% */
+  gap: 5px; /* <- Laver 5px minimumsafstand mellem menugrupperne */
 }
+
 .menu-left, .menu-right {
-display: flex; /* <- Placerer knapperne inde i gruppen ved siden af hinanden /
-align-items: center; / <- Centrerer knapperne vertikalt i forhold til hinanden /
-gap: 12px; / <- Laver præcis 12px afstand mellem knapperne i gruppen /
-min-width: 0; / <- Tillader elementerne at skrumpe om nødvendigt på små skærme */
+  display: flex; /* <- Placerer knapperne inde i gruppen ved siden af hinanden */
+  align-items: center; /* <- Centrerer knapperne vertikalt i forhold til hinanden */
+  gap: 12px; /* <- Laver præcis 12px afstand mellem knapperne i gruppen */
+  min-width: 0; /* <- Tillader elementerne at skrumpe om nødvendigt på små skærme */
 }
+
 .menu-item {
-cursor: pointer; /* <- Gør musen til en pegefinger for at vise at knappen kan klikkes på /
-height: 50px; / <- Sætter højde på knapperne i menuen (Knap A, B, Size osv.) /
-width: auto; / <- Lader bredden tilpasse sig automatisk efter billedets proportioner /
-max-width: 100%; / <- Sikrer at knapbilledet ikke stikker ud af beholderen /
-display: block; / <- Fjerner ekstra luft under billedet /
-object-fit: contain; / <- Sikrer at billedet skaleres pænt igennem uden at blive strukket */
+  cursor: pointer; /* <- Gør musen til en pegefinger for at vise at knappen kan klikkes på */
+  height: 44px !important; /* <- Sætter fast højde på knapperne i menuen så de ikke vokser */
+  width: auto !important; /* <- Lader bredden tilpasse sig automatisk efter billedets proportioner */
+  max-width: 120px; /* <- Sikrer at knapbilledet ikke bliver for bredt */
+  display: block; /* <- Fjerner ekstra luft under billedet */
+  object-fit: contain; /* <- Sikrer at billedet skaleres pænt igennem uden at blive strukket */
 }
+
 .size-menu-trigger {
-position: relative; /* <- Låser dropdown-vinduet fast i forhold til denne knaps placering /
-cursor: pointer; / <- Gør musen til en pegefinger over Size-menuknappen */
+  position: relative; /* <- Låser dropdown-vinduet fast i forhold til denne knaps placering */
+  cursor: pointer; /* <- Gør musen til en pegefinger over Size-menuknappen */
 }
+
 .toggle-container {
-display: flex; /* <- Arrangere Show Sold ikonet og teksten lodret /
-flex-direction: column; / <- Placerer ikonet og teksten over/under hinanden /
-align-items: center; / <- Centrerer ikonet og teksten vandret i forhold til hinanden /
-justify-content: center; / <- Centrerer ikonet og teksten lodret /
-gap: 2px; / <- Giver 2px afstand mellem Show Sold ikonet og teksten /
-flex-shrink: 0; / <- Forhindrer Show Sold knappen i at blive trykket flad /
-cursor: pointer; / <- Gør musen til en pegefinger ved mouse-over */
+  display: flex; /* <- Arrangerer Show Sold ikonet og teksten lodret */
+  flex-direction: column; /* <- Placerer ikonet og teksten over/under hinanden */
+  align-items: center; /* <- Centrerer ikonet og teksten vandret i forhold til hinanden */
+  justify-content: center; /* <- Centrerer ikonet og teksten lodret */
+  gap: 2px; /* <- Giver 2px afstand mellem Show Sold ikonet og teksten */
+  flex-shrink: 0; /* <- Forhindrer Show Sold knappen i at blive trykket flad */
+  cursor: pointer; /* <- Gør musen til en pegefinger ved mouse-over */
 }
+
 .toggle-label {
-font-family: 'AvantGarde LT Book', sans-serif; /* <- Sætter fonten på SHOW SOLD teksten /
-font-weight: bold; / <- Gør SHOW SOLD teksten fed /
-font-size: 8px; / <- Sætter skriftstørrelsen på SHOW SOLD teksten til 8px /
-text-transform: uppercase; / <- Tvinger alle bogstaver til at være store bogstaver /
-white-space: nowrap; / <- Forhindrer teksten i at dele sig over 2 linjer */
+  font-family: 'AvantGarde LT Book', sans-serif; /* <- Sætter fonten på SHOW SOLD teksten */
+  font-weight: bold; /* <- Gør SHOW SOLD teksten fed */
+  font-size: 8px; /* <- Sætter skriftstørrelsen på SHOW SOLD teksten til 8px */
+  text-transform: uppercase; /* <- Tvinger alle bogstaver til at være store bogstaver */
+  white-space: nowrap; /* <- Forhindrer teksten i at dele sig over 2 linjer */
 }
-/* Search Bar /
+
+/* Search Bar */
 .search-box {
-position: relative; / <- Gør det muligt at placere skrivefeltet ovenpå søgebilledet /
-height: 44px; / <- Sætter søgefeltets samlede højde til 44px /
-display: flex; / <- Centrerer indholdet med flexbox /
-align-items: center; / <- Centrerer søgebilledet lodret /
-flex-shrink: 1; / <- Tillader søgefeltet at skrumpe hvis skærmen bliver smal /
-min-width: 60px; / <- Sætter en minimumsbredde så søgefeltet aldrig forsvinder helt */
+  position: relative; /* <- Gør det muligt at placere skrivefeltet ovenpå søgebilledet */
+  height: 44px; /* <- Sætter søgefeltets samlede højde til 44px */
+  display: flex; /* <- Centrerer indholdet med flexbox */
+  align-items: center; /* <- Centrerer søgebilledet lodret */
+  flex-shrink: 1; /* <- Tillader søgefeltet at skrumpe hvis skærmen bliver smal */
+  min-width: 60px; /* <- Sætter en minimumsbredde så søgefeltet aldrig forsvinder helt */
 }
+
 .search-bg-img {
-height: 100%; /* <- Lader baggrundsbilledet for søgefeltet fylde 100% af højden (44px) /
-width: auto; / <- Bevarer proportionerne på søgebilledet /
-display: block; / <- Fjerner bundluft på billedet /
-max-width: 100%; / <- Sikrer at billede-baggrunden ikke bliver for stor */
+  height: 44px !important; /* <- Lader baggrundsbilledet for søgefeltet fylde præcis 44px i højden */
+  width: auto !important; /* <- Bevarer proportionerne på søgebilledet */
+  display: block; /* <- Fjerner bundluft på billedet */
+  object-fit: contain; /* <- Sikrer ren skalering af søgebilledet */
 }
+
 .search-box input {
-position: absolute; /* <- Lægger skrivefeltet ovenpå søgebilledet /
-left: 18%; / <- Placerer startpunktet for teksten 18% fra søgebilledets venstre kant /
-top: 25%; / <- Placerer skrivefeltet 25% nede fra søgebilledets top /
-width: 58%; / <- Sætter skrivefeltets bredde til 58% af søgebilledets bredde /
-height: 50%; / <- Sætter skrivefeltets højde til 50% af søgebilledets højde /
-border: none !important; / <- Fjerner browserens standardramme omkring skrivefeltet /
-background: transparent !important; / <- Gør skrivefeltets baggrund usynlig så søgebilledet ses /
-box-shadow: none !important; / <- Fjerner evt. skyggeeffekt i skrivefeltet /
-outline: none !important; / <- Fjerner den blå/sorte markeringsramme ved klik i feltet /
-font-size: 11px; / <- Sætter skriftstørrelsen for søgetekst til 11px /
-font-family: 'AvantGarde LT Medium', sans-serif; / <- Sætter skrifttypen inde i søgefeltet /
-color: #000; / <- Sætter skriftfarven i søgefeltet til sort /
-padding: 0; / <- Fjerner indvendig luft i skrivefeltet /
-margin: 0; / <- Fjerner udvendig luft om skrivefeltet /
--webkit-appearance: none; / <- Fjerner iOS/Mac standardformatering på inputfeltet */
+  position: absolute; /* <- Lægger skrivefeltet ovenpå søgebilledet */
+  left: 18%; /* <- Placerer startpunktet for teksten 18% fra søgebilledets venstre kant */
+  top: 25%; /* <- Placerer skrivefeltet 25% nede fra søgebilledets top */
+  width: 58%; /* <- Sætter skrivefeltets bredde til 58% af søgebilledets bredde */
+  height: 50%; /* <- Sætter skrivefeltets højde til 50% af søgebilledets højde */
+  border: none !important; /* <- Fjerner browserens standardramme omkring skrivefeltet */
+  background: transparent !important; /* <- Gør skrivefeltets baggrund usynlig så søgebilledet ses */
+  box-shadow: none !important; /* <- Fjerner evt. skyggeeffekt i skrivefeltet */
+  outline: none !important; /* <- Fjerner den blå/sorte markeringsramme ved klik i feltet */
+  font-size: 11px; /* <- Sætter skriftstørrelsen for søgetekst til 11px */
+  font-family: 'AvantGarde LT Medium', sans-serif; /* <- Sætter skrifttypen inde i søgefeltet */
+  color: #000; /* <- Sætter skriftfarven i søgefeltet til sort */
+  padding: 0; /* <- Fjerner indvendig luft i skrivefeltet */
+  margin: 0; /* <- Fjerner udvendig luft om skrivefeltet */
+  -webkit-appearance: none; /* <- Fjerner iOS/Mac standardformatering på inputfeltet */
 }
+
 /* =========================================================
-SIZE DROPDOWN MENU
-========================================================= /
+   SIZE DROPDOWN MENU (50% opacity, gradient #D2DCEE til #85ABE5, blur, ramme #2A1A6F)
+   ========================================================= */
 .size-dropdown {
-position: absolute; / <- Placerer dropdown-vinduet svævende lige under knappen /
-top: 100%; / <- Sætter vinduets top præcis ved underkanten af Size-knappen /
-left: 0; / <- Justerer vinduets venstre kant ud for Size-knappen /
-z-index: 150; / <- Placerer dropdown-vinduet øverst over alt andet indhold på siden /
-background: linear-gradient(135deg, rgba(210, 220, 238, 0.5), rgba(133, 171, 229, 0.5)); / <- Sætter 50% gennemsigtig gradient fra top-venstre til bund-højre /
-backdrop-filter: blur(16px); / <- Skaber en blød sløring/glas-effekt af baggrunden under vinduet /
--webkit-backdrop-filter: blur(16px); / <- Sikrer glas-sløringseffekten i Safari/iOS /
-mix-blend-mode: overlay; / <- Blander farverne med baggrunden for en dyb glaseffekt /
-border: 1px solid #2A1A6F; / <- Tegner den tynde fine ramme i farven #2A1A6F omkring vinduet /
-border-radius: 24px; / <- Runder vinduets hjørner med 24px radius /
-padding: 14px 18px 18px 18px; / <- Tilføjer luft inde i vinduet (14px top, 18px i sider/bund) /
-display: none; / <- Skjuler dropdown-vinduet som standard til der klikkes på Size-knappen /
-box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15); / <- Tilføjer en blød skygge under glas-vinduet /
-width: 330px; / <- Sætter den faste bredde på Size-menu vinduet til 330px /
-box-sizing: border-box; / <- Tæller padding og border med i de 330px bredde /
-margin-top: 6px; / <- Giver 6px afstand fra Size-knappen ned til vinduets start */
+  position: absolute; /* <- Placerer dropdown-vinduet svævende lige under knappen */
+  top: 100%; /* <- Sætter vinduets top præcis ved underkanten af Size-knappen */
+  left: 0; /* <- Justerer vinduets venstre kant ud for Size-knappen */
+  z-index: 150; /* <- Placerer dropdown-vinduet øverst over alt andet indhold på siden */
+  background: linear-gradient(135deg, rgba(210, 220, 238, 0.5), rgba(133, 171, 229, 0.5)); /* <- Sætter 50% gennemsigtig gradient fra top-venstre til bund-højre */
+  backdrop-filter: blur(16px); /* <- Skaber en blød sløring/glas-effekt af baggrunden under vinduet */
+  -webkit-backdrop-filter: blur(16px); /* <- Sikrer glas-sløringseffekten i Safari/iOS */
+  mix-blend-mode: overlay; /* <- Blander farverne med baggrunden for en dyb glaseffekt */
+  border: 1px solid #2A1A6F; /* <- Tegner den tynde fine ramme i farven #2A1A6F omkring vinduet */
+  border-radius: 24px; /* <- Runder vinduets hjørner med 24px radius */
+  padding: 14px 18px 18px 18px; /* <- Tilføjer luft inde i vinduet (14px top, 18px i sider/bund) */
+  display: none; /* <- Skjuler dropdown-vinduet som standard til der klikkes på Size-knappen */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15); /* <- Tilføjer en blød skygge under glas-vinduet */
+  width: 330px; /* <- Sætter den faste bredde på Size-menu vinduet til 330px */
+  box-sizing: border-box; /* <- Tæller padding og border med i de 330px bredde */
+  margin-top: 6px; /* <- Giver 6px afstand fra Size-knappen ned til vinduets start */
 }
+
 .size-dropdown-top {
-display: flex; /* <- Placerer overskriften "Women's" og til/fravælg-knapperne på samme linje /
-justify-content: space-between; / <- Skubber overskriften helt til venstre og knapperne helt til højre /
-align-items: center; / <- Centrerer overskrift og til/fravælg knapper lodret /
-margin-bottom: 8px; / <- Giver 8px luft ned til den første række størrelser */
+  display: flex; /* <- Placerer overskriften "Women's" og til/fravælg-knapperne på samme linje */
+  justify-content: space-between; /* <- Skubber overskriften helt til venstre og knapperne helt til højre */
+  align-items: center; /* <- Centrerer overskrift og til/fravælg knapper lodret */
+  margin-bottom: 8px; /* <- Giver 8px luft ned til den første række størrelser */
 }
+
 .size-quick-actions {
-display: flex; /* <- Placerer "Vælg alle" og "Fravælg alle" knapperne ved siden af hinanden /
-gap: 6px; / <- Giver 6px afstand mellem "Vælg alle" og "Fravælg alle" knapperne /
-align-items: center; / <- Centrerer knapperne lodret i forhold til hinanden */
+  display: flex; /* <- Placerer "Vælg alle" og "Fravælg alle" knapperne ved siden af hinanden */
+  gap: 6px; /* <- Giver 6px afstand mellem "Vælg alle" og "Fravælg alle" knapperne */
+  align-items: center; /* <- Centrerer knapperne lodret i forhold til hinanden */
 }
+
 .size-quick-actions img {
-height: 22px; /* <- Sætter højden på "Vælg alle" og "Fravælg alle" knapperne til 22px /
-width: auto; / <- Tilpasser bredden automatisk /
-cursor: pointer; / <- Gør musen til en pegefinger ved mouse-over /
-object-fit: contain; / <- Sikrer at ikonerne skaleres uden at blive forvredet */
+  height: 20px !important; /* <- Sætter en fast pæn højde på "Vælg alle" og "Fravælg alle" knapperne */
+  width: auto !important; /* <- Tilpasser bredden automatisk */
+  cursor: pointer; /* <- Gør musen til en pegefinger ved mouse-over */
+  object-fit: contain; /* <- Sikrer at ikonerne skaleres uden at blive forvredet */
 }
+
 .size-group {
-margin-bottom: 10px; /* <- Giver 10px luft i bunden af hver størrelsesgruppe (f.eks. efter Men's) */
+  margin-bottom: 10px; /* <- Giver 10px luft i bunden af hver størrelsesgruppe (f.eks. efter Men's) */
 }
+
 .size-group-title {
-height: 20px; /* <- Sætter højden på overskriftsbillederne (Women's, Men's, Shoes, Other) til 20px /
-width: auto; / <- Tilpasser bredden automatisk efter billedet /
-display: block; / <- Lægger overskriften på sin egen linje /
-margin-bottom: 6px; / <- Giver 6px luft ned til selve størrelsesgitteret /
-object-fit: contain; / <- Sikrer korrekt overskrift-proportionalitet */
+  height: 18px !important; /* <- Sætter fast højde på overskriftsbillederne (Women's, Men's, Shoes, Other) */
+  width: auto !important; /* <- Tilpasser bredden automatisk efter billedet */
+  display: block; /* <- Lægger overskriften på sin egen linje */
+  margin-bottom: 6px; /* <- Giver 6px luft ned til selve størrelsesgitteret */
+  object-fit: contain; /* <- Sikrer korrekt overskrift-proportionalitet */
 }
+
 .size-grid {
-display: grid; /* <- Laver et gitter/grid til størrelsesknapperne /
-grid-template-columns: repeat(6, 1fr); / <- Deler gitteret op i præcis 6 lige store kolonner /
-gap: 6px; / <- Laver 6px afstand mellem hver størrelsesknap */
+  display: grid; /* <- Laver et gitter/grid til størrelsesknapperne */
+  grid-template-columns: repeat(6, 1fr); /* <- Deler gitteret op i præcis 6 lige store kolonner */
+  gap: 6px; /* <- Laver 6px afstand mellem hver størrelsesknap */
 }
+
 .size-grid img {
-width: 100%; /* <- Lader hver størrelsesknap udfylde sin kolonnebredde 100% /
-height: auto; / <- Tilpasser højden automatisk efter bredden /
-aspect-ratio: 1/1; / <- Tvinger hver størrelsesknap til at være perfekt kvadratisk (1:1) /
-cursor: pointer; / <- Gør musen til en pegefinger når man peger på en størrelse /
-object-fit: contain; / <- Sikrer at billedet inde i knappen ikke forvrænges */
+  width: 32px !important; /* <- Fastlåser bredden på hver størrelsesknap så de ikke blæser op */
+  height: 32px !important; /* <- Fastlåser højden på hver størrelsesknap */
+  aspect-ratio: 1/1; /* <- Tvinger hver størrelsesknap til at være perfekt kvadratisk (1:1) */
+  cursor: pointer; /* <- Gør musen til en pegefinger når man peger på en størrelse */
+  object-fit: contain; /* <- Sikrer at billedet inde i knappen ikke forvrænges */
 }
-/* Main Content Layout & Sidebar /
+
+/* Main Content Layout & Sidebar */
 .main-wrapper {
-display: flex; / <- Placerer hovedindholdet og alfabet-sidebar'en ved siden af hinanden /
-padding: 0 20px 20px 20px; / <- Tilføjer 20px luft i venstre, højre og bund af hovedområdet /
-position: relative; / <- Sætter referencepunkt for elementer inde i hovedområdet /
-box-sizing: border-box; / <- Tæller padding med i den samlede bredde */
+  display: flex; /* <- Placerer hovedindholdet og alfabet-sidebar'en ved siden af hinanden */
+  padding: 0 20px 20px 20px; /* <- Tilføjer 20px luft i venstre, højre og bund af hovedområdet */
+  position: relative; /* <- Sætter referencepunkt for elementer inde i hovedområdet */
+  box-sizing: border-box; /* <- Tæller padding med i den samlede bredde */
 }
+
 .content-area {
-flex: 1; /* <- Lader varer-området fylde alt den plads der er til rådighed til venstre /
-min-width: 0; / <- Forhindrer gitteret i at skubbe hele layoutet ud af skærmen */
+  flex: 1; /* <- Lader varer-området fylde alt den plads der er til rådighed til venstre */
+  min-width: 0; /* <- Forhindrer gitteret i at skubbe hele layoutet ud af skærmen */
 }
+
 .category-section {
-margin-bottom: 15px; /* <- Giver 25px afstand mellem hver kategori (f.eks. Bags og Tops) */
+  margin-bottom: 25px; /* <- Giver 25px afstand mellem hver kategori (f.eks. Bags og Tops) */
 }
+
 .category-title {
-font-family: 'AvantGarde LT Book', sans-serif; /* <- Sætter skrifttypen på kategori-overskrifterne /
-font-weight: bold; / <- Gør kategori-overskrifterne fede /
-font-size: 24px; / <- Sætter tekststørrelsen på kategori-overskrifterne til 24px /
-margin: 10px 0 5px 0; / <- Tilføjer 15px luft over og 10px luft under hver overskrift */
+  font-family: 'AvantGarde LT Book', sans-serif; /* <- Sætter skrifttypen på kategori-overskrifterne */
+  font-weight: bold; /* <- Gør kategori-overskrifterne fede */
+  font-size: 24px; /* <- Sætter tekststørrelsen på kategori-overskrifterne til 24px */
+  margin: 15px 0 10px 0; /* <- Tilføjer 15px luft over og 10px luft under hver overskrift */
 }
+
 .item-grid {
-display: grid; /* <- Sætter et gitter-layout op for produkterne /
-grid-template-columns: repeat(5, 1fr); / <- Viser 5 varer pr. række på pc/skærm /
-gap: 15px; / <- Laver 15px afstand/mellemrum mellem produktkortene */
+  display: grid; /* <- Sætter et gitter-layout op for produkterne */
+  grid-template-columns: repeat(5, 1fr); /* <- Viser 5 varer pr. række på pc/skærm */
+  gap: 15px; /* <- Laver 15px afstand/mellemrum mellem produktkortene */
 }
+
 @media (max-width: 1024px) {
-.item-grid { grid-template-columns: repeat(4, 1fr); } /* <- Skifter til 4 varer pr. række på tablets */
+  .item-grid { grid-template-columns: repeat(4, 1fr); } /* <- Skifter til 4 varer pr. række på tablets */
 }
+
 @media (max-width: 600px) {
-.item-grid { grid-template-columns: repeat(2, 1fr); } /* <- Skifter til 2 varer pr. række på mobiler */
+  .item-grid { grid-template-columns: repeat(2, 1fr); } /* <- Skifter til 2 varer pr. række på mobiler */
 }
-/* Sidebar i HØJRE side med Bobler /
+
+/* Sidebar i HØJRE side med Bobler */
 .alphabet-nav {
-position: sticky; / <- Gør at alfabet-sidebaren følger med ned når man scrolles /
-top: 70px; / <- Placerer sidebaren 70px nede fra skærmens top (under menuen) /
-height: max-content; / <- Sætter højden til kun at fylde det antaller bobler der er /
-display: flex; / <- Arrangerer boblerne i en lodret kolonne /
-flex-direction: column; / <- Placerer boblerne over/under hinanden /
-gap: 8px; / <- Laver 5px afstand mellem hver bogstavboble /
-margin-left: 15px; / <- Skaber 15px luft ind mod produktkortene til venstre /
-z-index: 90; / <- Placerer boblerne over kortene men under topmenuen */
+  position: sticky; /* <- Gør at alfabet-sidebaren følger med ned når man scrolles */
+  top: 70px; /* <- Placerer sidebaren 70px nede fra skærmens top (under menuen) */
+  height: max-content; /* <- Sætter højden til kun at fylde det antaller bobler der er */
+  display: flex; /* <- Arrangerer boblerne i en lodret kolonne */
+  flex-direction: column; /* <- Placerer boblerne over/under hinanden */
+  gap: 8px; /* <- Laver 8px afstand mellem hver bogstavboble */
+  margin-left: 15px; /* <- Skaber 15px luft ind mod produktkortene til venstre */
+  z-index: 90; /* <- Placerer boblerne over kortene men under topmenuen */
 }
+
 .sidebar-bubble-item {
-position: relative; /* <- Gør det muligt at lægge bogstavet præcist ovenpå boblebilledet /
-width: 36px; / <- Sætter bredden på boblen til 36px /
-height: 36px; / <- Sætter højden på boblen til 36px /
-display: flex; / <- Bruger flex til at centrere bogstavet i boblen /
-align-items: center; / <- Centrerer bogstavet lodret i boblen /
-justify-content: center; / <- Centrerer bogstavet vandret i boblen /
-text-decoration: none; / <- Fjerner understregning fra linket /
-cursor: pointer; / <- Gør musen til en pegefinger ved mouse-over på boblen */
+  position: relative; /* <- Gør det muligt at lægge bogstavet præcist ovenpå boblebilledet */
+  width: 36px; /* <- Sætter bredden på boblen til 36px */
+  height: 36px; /* <- Sætter højden på boblen til 36px */
+  display: flex; /* <- Bruger flex til at centrere bogstavet i boblen */
+  align-items: center; /* <- Centrerer bogstavet lodret i boblen */
+  justify-content: center; /* <- Centrerer bogstavet vandret i boblen */
+  text-decoration: none; /* <- Fjerner understregning fra linket */
+  cursor: pointer; /* <- Gør musen til en pegefinger ved mouse-over på boblen */
 }
+
 .sidebar-bubble-bg {
-position: absolute; /* <- Lægger boblebilledet nederst inde i elementet /
-top: 0; left: 0; / <- Fastgør billedet i øverste venstre hjørne /
-width: 100%; / <- Lader boblebilledet fylde 100% af bredden (36px) /
-height: 100%; / <- Lader boblebilledet fylde 100% af højden (36px) /
-object-fit: contain; / <- Bevarer boblens runding og proportioner /
-z-index: 1; / <- Placerer billedet under selve bogstavet */
+  position: absolute; /* <- Lægger boblebilledet nederst inde i elementet */
+  top: 0; left: 0; /* <- Fastgør billedet i øverste venstre hjørne */
+  width: 100%; /* <- Lader boblebilledet fylde 100% af bredden (36px) */
+  height: 100%; /* <- Lader boblebilledet fylde 100% af højden (36px) */
+  object-fit: contain; /* <- Bevarer boblens runding og proportioner */
+  z-index: 1; /* <- Placerer billedet under selve bogstavet */
 }
+
 .sidebar-bubble-letter {
-position: relative; /* <- Lægger teksten ovenpå baggrundsbilledet /
-z-index: 2; / <- Sikrer at bogstavet ligger øverst over boblebilledet /
-font-family: 'AvantGarde LT Book', sans-serif; / <- Sætter skrifttypen på bogstavet /
-font-weight: bold; / <- Gør bogstavet fedt /
-font-size: 14px; / <- Sætter bogstavets størrelse til 14px /
-color: #000; / <- Sætter bogstavfarven til sort */
+  position: relative; /* <- Lægger teksten ovenpå baggrundsbilledet */
+  z-index: 2; /* <- Sikrer at bogstavet ligger øverst over boblebilledet */
+  font-family: 'AvantGarde LT Book', sans-serif; /* <- Sætter skrifttypen på bogstavet */
+  font-weight: bold; /* <- Gør bogstavet fedt */
+  font-size: 14px; /* <- Sætter bogstavets størrelse til 14px */
+  color: #000; /* <- Sætter bogstavfarven til sort */
 }
+
 @media (max-width: 600px) {
-.alphabet-nav { display: none; } /* <- Skjuler boble-sidebaren på mobilskærme for at spare plads */
+  .alphabet-nav { display: none; } /* <- Skjuler boble-sidebaren på mobilskærme for at spare plads */
 }
-/* Item Card Design /
+
+/* Item Card Design */
 .item-card {
-display: flex; / <- Arrangerer produktkortets indhold i en lodret stak /
-flex-direction: column; / <- Placerer varebillede øverst og infoboks nederst /
-cursor: pointer; / <- Gør musen til en pegefinger så man ved kortet kan klikkes for redigering */
+  display: flex; /* <- Arrangerer produktkortets indhold i en lodret stak */
+  flex-direction: column; /* <- Placerer varebillede øverst og infoboks nederst */
+  cursor: pointer; /* <- Gør musen til en pegefinger så man ved kortet kan klikkes for redigering */
 }
+
 .image-wrapper {
-position: relative; /* <- Lader badges, overlays og artikelmærker placere sig fast i hjørnerne /
-width: 100%; / <- Lader billedrammen strække sig over hele kortets bredde /
-padding-top: 100%; / <- Skaber et perfekt 1:1 kvadratisk billedfelt /
-border: 1px dashed #000; / <- Tegner den stiplede sorte kant rundt om billedfeltet /
-box-sizing: border-box; / <- Tæller kanten med i den samlede størrelse /
-background-color: #fff; / <- Sætter hvid baggrund i billedfeltet hvis billedet ikke fylder alt /
-background-size: cover; / <- Tilpasser varebilledet så det fylder hele billedfeltet ud /
-background-position: center; / <- Centrerer varebilledet inde i billedrammen */
+  position: relative; /* <- Lader badges, overlays og artikelmærker placere sig fast i hjørnerne */
+  width: 100%; /* <- Lader billedrammen strække sig over hele kortets bredde */
+  padding-top: 100%; /* <- Skaber et perfekt 1:1 kvadratisk billedfelt */
+  border: 1px dashed #000; /* <- Tegner den stiplede sorte kant rundt om billedfeltet */
+  box-sizing: border-box; /* <- Tæller kanten med i den samlede størrelse */
+  background-color: #fff; /* <- Sætter hvid baggrund i billedfeltet hvis billedet ikke fylder alt */
+  background-size: cover; /* <- Tilpasser varebilledet så det fylder hele billedfeltet ud */
+  background-position: center; /* <- Centrerer varebilledet inde i billedrammen */
 }
+
 .sold-overlay {
-position: absolute; /* <- Lægger SOLD-stemplet ovenpå varebilledet /
-top: 0; left: 0; right: 0; bottom: 0; / <- Dækker billedet 100% fra hjørne til hjørne /
-background: url('https://lh3.googleusercontent.com/d/1aI-Sx4t3iTxtWBZ8tTBECgleesVGC5hX') no-repeat center/cover; / <- Viser det stiplede kryds / SOLD overlay */
+  position: absolute; /* <- Lægger SOLD-stemplet ovenpå varebilledet */
+  top: 0; left: 0; right: 0; bottom: 0; /* <- Dækker billedet 100% fra hjørne til hjørne */
+  background: url('https://lh3.googleusercontent.com/d/1aI-Sx4t3iTxtWBZ8tTBECgleesVGC5hX') no-repeat center/cover; /* <- Viser det stiplede kryds / SOLD overlay */
 }
+
 .size-badge {
-position: absolute; /* <- Placerer størrelsesikonet fast på billedet /
-top: 4px; / <- Sætter størrelsesikonet 4px fra billedets top /
-left: 4px; / <- Sætter størrelsesikonet 4px fra billedets venstre kant /
-width: 30px; / <- Sætter bredden på størrelsesikonet til 30px /
-height: 30px; / <- Sætter højden på størrelsesikonet til 30px /
-object-fit: contain; / <- Bevarer ikonskarphed og proportioner */
+  position: absolute; /* <- Placerer størrelsesikonet fast på billedet */
+  top: 4px; /* <- Sætter størrelsesikonet 4px fra billedets top */
+  left: 4px; /* <- Sætter størrelsesikonet 4px fra billedets venstre kant */
+  width: 26px; /* <- Sætter bredden på størrelsesikonet til 26px */
+  height: 26px; /* <- Sætter højden på størrelsesikonet til 26px */
+  object-fit: contain; /* <- Bevarer ikonskarphed og proportioner */
 }
+
 .article-badge {
-position: absolute; /* <- Placerer artikelnummer-mærket fast i billedet /
-bottom: 3px; / <- Placerer mærket 3px fra billedets bund /
-right: 4px; / <- Placerer mærket 3px fra billedets højre kant /
-display: flex; / <- Placerer "a#"-ikonet og nummeret på række /
-align-items: center; / <- Centrerer ikon og tekst lodret /
-gap: 2px; / <- Giver 2px afstand mellem "a#"-ikonet og nummeret /
-font-family: 'AvantGarde LT Book', sans-serif; / <- Sætter fonten på artikelnummeret /
-font-weight: bold; / <- Gør artikelnummeret fedt /
-font-size: 11px; / <- Sætter skriftstørrelsen på artikelnummeret til 11px */
+  position: absolute; /* <- Placerer artikelnummer-mærket fast i billedet */
+  bottom: 3px; /* <- Placerer mærket 3px fra billedets bund */
+  right: 4px; /* <- Placerer mærket 4px fra billedets højre kant */
+  display: flex; /* <- Placerer "a#"-ikonet og nummeret på række */
+  align-items: center; /* <- Centrerer ikon og tekst lodret */
+  gap: 2px; /* <- Giver 2px afstand mellem "a#"-ikonet og nummeret */
+  font-family: 'AvantGarde LT Book', sans-serif; /* <- Sætter fonten på artikelnummeret */
+  font-weight: bold; /* <- Gør artikelnummeret fedt */
+  font-size: 11px; /* <- Sætter skriftstørrelsen på artikelnummeret til 11px */
 }
+
 .article-badge img {
-height: 10px; /* <- Sætter højden på det lille "a#"-ikon til 10px /
-width: auto; / <- Tilpasser ikonets bredde automatisk /
-display: block; / <- Fjerner uønsket bundluft /
-margin: 0; / <- Nulstiller afstande om ikonet */
+  height: 10px; /* <- Sætter højden på det lille "a#"-ikon til 10px */
+  width: auto; /* <- Tilpasser ikonets bredde automatisk */
+  display: block; /* <- Fjerner uønsket bundluft */
+  margin: 0; /* <- Nulstiller afstande om ikonet */
 }
+
 .info-box {
-margin-top: 4px; /* <- Skaber 4px afstand fra billedkanten ned til den hvide infoboks /
-background: #fff; / <- Sætter infoboksens baggrund til ren hvid /
-border: 1px solid #ddd; / <- Tegner en meget lys grå kant om infoboksen /
-padding: 6px 8px; / <- Tilføjer 6px luft i top/bund og 8px i siderne inde i infoboksen /
-box-sizing: border-box; / <- Tæller kanten med i den samlede bredde /
-display: flex; / <- Arrangere linjerne i infoboksen lodret /
-flex-direction: column; / <- Stabler overskrift, varenavn, land og pris over hinanden /
-justify-content: space-between; / <- Fordeler tekstlinjerne jævnt fra top til bund /
-height: 85px; / <- Fastlåser den samlede højde på infoboksen til præcis 85px /
-position: relative; / <- Tillader at ID-nummeret kan placeres i øverste højre hjørne */
+  margin-top: 4px; /* <- Skaber 4px afstand fra billedkanten ned til den hvide infoboks */
+  background: #fff; /* <- Sætter infoboksens baggrund til ren hvid */
+  border: 1px solid #ddd; /* <- Tegner en meget lys grå kant om infoboksen */
+  padding: 6px 8px; /* <- Tilføjer 6px luft i top/bund og 8px i siderne inde i infoboksen */
+  box-sizing: border-box; /* <- Tæller kanten med i den samlede bredde */
+  display: flex; /* <- Arrangerer linjerne i infoboksen lodret */
+  flex-direction: column; /* <- Stabler overskrift, varenavn, land og pris over hinanden */
+  justify-content: space-between; /* <- Fordeler tekstlinjerne jævnt fra top til bund */
+  height: 85px; /* <- Fastlåser den samlede højde på infoboksen til præcis 85px */
+  position: relative; /* <- Tillader at ID-nummeret kan placeres i øverste højre hjørne */
 }
+
 .info-header {
-display: flex; /* <- Placerer mærkevare-teksten inde i overskriften /
-justify-content: space-between; / <- Skubber indhold ud i siderne /
-align-items: center; / <- Centrerer teksten lodret /
-font-family: 'AvantGarde LT Book', sans-serif; / <- Sætter skrifttypen på mærkenavnet /
-font-weight: bold; / <- Gør mærkenavnet fedt /
-font-size: 12px; / <- Sætter skriftstørrelsen på mærkenavnet til 12px /
-padding-right: 25px; / <- Giver 25px luft til højre så mærkenavnet ikke overlapper ID-nummeret */
+  display: flex; /* <- Placerer mærkevare-teksten inde i overskriften */
+  justify-content: space-between; /* <- Skubber indhold ud i siderne */
+  align-items: center; /* <- Centrerer teksten lodret */
+  font-family: 'AvantGarde LT Book', sans-serif; /* <- Sætter skrifttypen på mærkenavnet */
+  font-weight: bold; /* <- Gør mærkenavnet fedt */
+  font-size: 12px; /* <- Sætter skriftstørrelsen på mærkenavnet til 12px */
+  padding-right: 25px; /* <- Giver 25px luft til højre så mærkenavnet ikke overlapper ID-nummeret */
 }
+
 .item-id {
-position: absolute; /* <- Låser ID-nummeret fast i infoboksens øverste højre hjørne /
-top: 4px; / <- Placerer ID-nummeret 4px fra toppen /
-right: 6px; / <- Placerer ID-nummeret 6px fra højre kant /
-color: #D9D9D9 !important; / <- Sætter den meget lyse grå farve på ID-nummeret /
-font-size: 7px !important; / <- Sætter ID-nummerets skriftstørrelse til en diskret 7px /
-font-family: 'AvantGarde LT Book', sans-serif; / <- Sætter skrifttypen på ID-nummeret */
+  position: absolute; /* <- Låser ID-nummeret fast i infoboksens øverste højre hjørne */
+  top: 4px; /* <- Placerer ID-nummeret 4px fra toppen */
+  right: 6px; /* <- Placerer ID-nummeret 6px fra højre kant */
+  color: #D9D9D9 !important; /* <- Sætter den meget lyse grå farve på ID-nummeret */
+  font-size: 7px !important; /* <- Sætter ID-nummerets skriftstørrelse til en diskret 7px */
+  font-family: 'AvantGarde LT Book', sans-serif; /* <- Sætter skrifttypen på ID-nummeret */
 }
+
 .info-name {
-font-size: 11px; /* <- Sætter skriftstørrelsen på produktnavnet til 11px /
-font-family: 'AvantGarde LT Medium', sans-serif; / <- Sætter skrifttypen på produktnavnet /
-white-space: nowrap; / <- Forhindrer varenavnet i at fylde mere end én linje /
-overflow: hidden; / <- Skjuler overskydende tekst hvis navnet er for langt /
-text-overflow: ellipsis; / <- Sætter '...' for enden hvis produktnavnet er for langt /
-margin: 1px 0; / <- Giver 1px afstand over og under produktnavnet */
+  font-size: 11px; /* <- Sætter skriftstørrelsen på produktnavnet til 11px */
+  font-family: 'AvantGarde LT Medium', sans-serif; /* <- Sætter skrifttypen på produktnavnet */
+  white-space: nowrap; /* <- Forhindrer varenavnet i at fylde mere end én linje */
+  overflow: hidden; /* <- Skjuler overskydende tekst hvis navnet er for langt */
+  text-overflow: ellipsis; /* <- Sætter '...' for enden hvis produktnavnet er for langt */
+  margin: 1px 0; /* <- Giver 1px afstand over og under produktnavnet */
 }
+
 .info-row {
-display: flex; /* <- Placerer venstre tekst og højre værdier på række /
-align-items: center; / <- Centrerer indholdet lodret i linjen /
-justify-content: space-between; / <- Skubber teksten ud til henholdsvis venstre og højre kant /
-color: #4C4C4C; / <- Sætter den mørkegrå farve på ledetekster som "Made in" /
-font-size: 10.5px; / <- Sætter skriftstørrelsen på oplysningslinjerne til 10.5px /
-margin: 0; / <- Nulstiller udvendig afstand /
-font-family: 'AvantGarde LT Medium', sans-serif; / <- Sætter skrifttypen på oplysningerne */
+  display: flex; /* <- Placerer venstre tekst og højre værdier på række */
+  align-items: center; /* <- Centrerer indholdet lodret i linjen */
+  justify-content: space-between; /* <- Skubber teksten ud til henholdsvis venstre og højre kant */
+  color: #4C4C4C; /* <- Sætter den mørkegrå farve på ledetekster som "Made in" */
+  font-size: 10.5px; /* <- Sætter skriftstørrelsen på oplysningslinjerne til 10.5px */
+  margin: 0; /* <- Nulstiller udvendig afstand */
+  font-family: 'AvantGarde LT Medium', sans-serif; /* <- Sætter skrifttypen på oplysningerne */
 }
+
 .price-left-side, .price-right-side {
-display: flex; /* <- Placerer pris-ikonet og beløbet ved siden af hinanden /
-align-items: center; / <- Centrerer pris-ikonet og beløbet lodret /
-gap: 3px; / <- Laver 3px afstand mellem pris-ikonet og beløbet */
+  display: flex; /* <- Placerer pris-ikonet og beløbet ved siden af hinanden */
+  align-items: center; /* <- Centrerer pris-ikonet og beløbet lodret */
+  gap: 3px; /* <- Laver 3px afstand mellem pris-ikonet og beløbet */
 }
+
 .price-left-side img, .price-right-side img {
-height: 11px; /* <- Sætter højden på de små pris-ikoner til 11px /
-width: auto; / <- Bevarer ikonskarpheden automatisk /
-display: inline-block; / <- Lader ikonet stå på linje med teksten /
-vertical-align: middle; / <- Centrerer ikonet præcist på tekstlinjen */
+  height: 11px; /* <- Sætter højden på de små pris-ikoner til 11px */
+  width: auto; /* <- Bevarer ikonskarpheden automatisk */
+  display: inline-block; /* <- Lader ikonet stå på linje med teksten */
+  vertical-align: middle; /* <- Centrerer ikonet præcist på tekstlinjen */
 }
+
 .info-row span.val {
-color: #000; /* <- Tvinger selve tallene/værdierne (f.eks. "153,30 kr.") til at være helt sorte /
-font-family: 'AvantGarde LT Medium', sans-serif; / <- Sætter skrifttypen på værdierne */
+  color: #000; /* <- Tvinger selve tallene/værdierne (f.eks. "153,30 kr.") til at være helt sorte */
+  font-family: 'AvantGarde LT Medium', sans-serif; /* <- Sætter skrifttypen på værdierne */
 }
+
 /* =========================================================
-POPUP MODAL DESIGN
-========================================================= /
+   POPUP MODAL DESIGN
+   ========================================================= */
 .modal-bg {
-position: fixed; / <- Låser mørklægningen fast over hele skærmen /
-top: 0; left: 0; right: 0; bottom: 0; / <- Strækker baggrunden helt ud i alle fire hjørner /
-background: rgba(0, 0, 0, 0.45); / <- Gør baggrunden halvt gennemsigtig mørk (45% sort) /
-display: none; / <- Skjuler pop-up'en helt som standard indtil der klikkes på en vare/tilføj /
-align-items: center; / <- Centrerer selve pop-up vinduet lodret på skærmen /
-justify-content: center; / <- Centrerer selve pop-up vinduet vandret på skærmen /
-z-index: 200; / <- Placerer pop-up vinduet helt øverst over alt andet på siden /
-backdrop-filter: blur(4px); / <- Skaber en blød 4px sløring af selve baggrundssiden /
-padding: 10px 0; / <- Tilføjer 10px top/bund luft så vinduet ikke rører skærmkanten /
-overflow-y: auto !important; / <- Tillader at scrolle i pop-up'en hvis skærmen er meget lav */
+  position: fixed; /* <- Låser mørklægningen fast over hele skærmen */
+  top: 0; left: 0; right: 0; bottom: 0; /* <- Strækker baggrunden helt ud i alle fire hjørner */
+  background: rgba(0, 0, 0, 0.45); /* <- Gør baggrunden halvt gennemsigtig mørk (45% sort) */
+  display: none; /* <- Skjuler pop-up'en helt som standard indtil der klikkes på en vare/tilføj */
+  align-items: center; /* <- Centrerer selve pop-up vinduet lodret på skærmen */
+  justify-content: center; /* <- Centrerer selve pop-up vinduet vandret på skærmen */
+  z-index: 200; /* <- Placerer pop-up vinduet helt øverst over alt andet på siden */
+  backdrop-filter: blur(4px); /* <- Skaber en blød 4px sløring af selve baggrundssiden */
+  padding: 10px 0; /* <- Tilføjer 10px top/bund luft så vinduet ikke rører skærmkanten */
+  overflow-y: auto !important; /* <- Tillader at scrolle i pop-up'en hvis skærmen er meget lav */
 }
+
 .modal {
-background: #ffffff; /* <- Sætter pop-up vinduets baggrund til ren hvid /
-border-radius: 28px; / <- Runder pop-up vinduets hjørner flot med 28px radius /
-width: 480px; / <- Sætter den faste ideelle bredde på pop-up vinduet til 480px /
-max-width: 94vw; / <- Sikrer at pop-up vinduet maksimalt fylder 94% af skærmbredden på mobil /
-padding: 16px 24px 18px 24px; / <- Tilføjer luft inde i pop-up'en (16px top, 24px sider, 18px bund) /
-box-sizing: border-box; / <- Tæller padding med i den samlede bredde /
-display: flex; / <- Stabler indholdselementerne inde i pop-up'en lodret /
-flex-direction: column; / <- Placerer header, felter og knapper over/under hinanden /
-gap: 10px; / <- Laver præcis 10px afstand mellem hver række af felter inde i pop-up'en /
-box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); / <- Giver pop-up vinduet en dyb, blød skygge /
-overflow: visible !important; / <- Sikrer at ingen felter eller ikoner bliver skåret af i kanten /
-max-height: none !important; / <- Tillader pop-up'en at holde sin fulde højde uden at klemme felterne */
+  background: #ffffff; /* <- Sætter pop-up vinduets baggrund til ren hvid */
+  border-radius: 28px; /* <- Runder pop-up vinduets hjørner flot med 28px radius */
+  width: 480px; /* <- Sætter den faste ideelle bredde på pop-up vinduet til 480px */
+  max-width: 94vw; /* <- Sikrer at pop-up vinduet maksimalt fylder 94% af skærmbredden på mobil */
+  padding: 16px 24px 18px 24px; /* <- Tilføjer luft inde i pop-up'en (16px top, 24px sider, 18px bund) */
+  box-sizing: border-box; /* <- Tæller padding med i den samlede bredde */
+  display: flex; /* <- Stabler indholdselementerne inde i pop-up'en lodret */
+  flex-direction: column; /* <- Placerer header, felter og knapper over/under hinanden */
+  gap: 10px; /* <- Laver præcis 10px afstand mellem hver række af felter inde i pop-up'en */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* <- Giver pop-up vinduet en dyb, blød skygge */
+  overflow: visible !important; /* <- Sikrer at ingen felter eller ikoner bliver skåret af i kanten */
+  max-height: none !important; /* <- Tillader pop-up'en at holde sin fulde højde uden at klemme felterne */
 }
-/* GRADIENT RAMMER FOR SAMLING OG ØNSKELISTE /
+
+/* GRADIENT RAMMER FOR SAMLING OG ØNSKELISTE */
 .modal-collect {
-border: 3.5px solid transparent; / <- Sætter en 3.5px gennemsigtig grundramme op til gradienten /
-background-image: linear-gradient(#fff, #fff), linear-gradient(135deg, #1AA8FF, #24FFD8); / <- Tegner den lyseblå-grønne samlings-gradient på rammen /
-background-origin: border-box; / <- Starter gradient-tegningsfeltet helt ude fra kanten /
-background-clip: padding-box, border-box; / <- Sikrer at rammen får gradient mens indersiden forbliver hvid */
+  border: 3.5px solid transparent; /* <- Sætter en 3.5px gennemsigtig grundramme op til gradienten */
+  background-image: linear-gradient(#fff, #fff), linear-gradient(135deg, #1AA8FF, #24FFD8); /* <- Tegner den lyseblå-grønne samlings-gradient på rammen */
+  background-origin: border-box; /* <- Starter gradient-tegningsfeltet helt ude fra kanten */
+  background-clip: padding-box, border-box; /* <- Sikrer at rammen får gradient mens indersiden forbliver hvid */
 }
+
 .modal-wishlist {
-border: 3.5px solid transparent; /* <- Sætter en 3.5px gennemsigtig grundramme op til gradienten /
-background-image: linear-gradient(#fff, #fff), linear-gradient(135deg, #3E8CFF, #5D43C3); / <- Tegner den mørkeblå-lilla ønske-gradient på rammen /
-background-origin: border-box; / <- Starter gradient-tegningsfeltet helt ude fra kanten /
-background-clip: padding-box, border-box; / <- Sikrer at rammen får gradient mens indersiden forbliver hvid */
+  border: 3.5px solid transparent; /* <- Sætter en 3.5px gennemsigtig grundramme op til gradienten */
+  background-image: linear-gradient(#fff, #fff), linear-gradient(135deg, #3E8CFF, #5D43C3); /* <- Tegner den mørkeblå-lilla ønske-gradient på rammen */
+  background-origin: border-box; /* <- Starter gradient-tegningsfeltet helt ude fra kanten */
+  background-clip: padding-box, border-box; /* <- Sikrer at rammen får gradient mens indersiden forbliver hvid */
 }
+
 .modal-header-banner {
-width: 100%; /* <- Sætter overskriftsbanneret til at fylde hele vinduets bredde /
-display: flex; / <- Centrerer overskriftsbilledet med flexbox /
-justify-content: center; / <- Centrerer overskriftsbilledet vandret /
-margin-top: -6px; / <- Trækker banneret 6px tættere på den øverste ramme /
-margin-bottom: 2px; / <- Giver 2px luft fra banneret ned til det første skrivefelt */
+  width: 100%; /* <- Sætter overskriftsbanneret til at fylde hele vinduets bredde */
+  display: flex; /* <- Centrerer overskriftsbilledet med flexbox */
+  justify-content: center; /* <- Centrerer overskriftsbilledet vandret */
+  margin-top: -6px; /* <- Trækker banneret 6px tættere på den øverste ramme */
+  margin-bottom: 2px; /* <- Giver 2px luft fra banneret ned til det første skrivefelt */
 }
+
 .modal-header-banner img {
-height: 110px; /* <- Sætter den præcise faste højde på header-banneret til 110px /
-width: auto; / <- Bevarer proportionsforholdet på overskriften /
-max-width: 100%; / <- Sikrer at banneret ikke bliver bredere end vinduet /
-object-fit: contain; / <- Sikrer ren og skarp visning af overskriftsgrafikken */
+  height: 110px; /* <- Sætter den præcise faste højde på header-banneret til 110px */
+  width: auto; /* <- Bevarer proportionsforholdet på overskriften */
+  max-width: 100%; /* <- Sikrer at banneret ikke bliver bredere end vinduet */
+  object-fit: contain; /* <- Sikrer ren og skarp visning af overskriftsgrafikken */
 }
+
 .field-group {
-display: flex; /* <- Arrangerer overskrift/etiket og inputfelt lodret /
-flex-direction: column; / <- Placerer etiketten (f.eks. "Name") ovenover skrivefeltet /
-gap: 2px; / <- Giver 2px afstand fra overskriften ned til selve skrivefeltet */
+  display: flex; /* <- Arrangerer overskrift/etiket og inputfelt lodret */
+  flex-direction: column; /* <- Placerer etiketten (f.eks. "Name") ovenover skrivefeltet */
+  gap: 2px; /* <- Giver 2px afstand fra overskriften ned til selve skrivefeltet */
 }
+
 .field-group label {
-color: #2F47B1 !important; /* <- Tvinger alle overskrifter på felter til den mørkeblå nuance /
-font-family: 'AvantGarde LT Book', sans-serif; / <- Sætter skrifttypen på felt-etiketterne /
-font-size: 12px; / <- Sætter skriftstørrelsen på felt-etiketterne til 12px /
-font-weight: bold; / <- Gør overskrifterne over felterne fede */
+  color: #2F47B1 !important; /* <- Tvinger alle overskrifter på felter til den mørkeblå nuance */
+  font-family: 'AvantGarde LT Book', sans-serif; /* <- Sætter skrifttypen på felt-etiketterne */
+  font-size: 12px; /* <- Sætter skriftstørrelsen på felt-etiketterne til 12px */
+  font-weight: bold; /* <- Gør overskrifterne over felterne fede */
 }
-/* SKRIVEFELTER OG TEKSTAREALER I POPUP /
-.modal input[type="text"],
+
+/* SKRIVEFELTER OG TEKSTAREALER I POPUP */
+.modal input[type="text"], 
 .modal textarea {
-width: 100%; / <- Tvinger alle skrivefelter til at fylde 100% af den plads de har til rådighed /
-background-color: #E7EDFF !important; / <- Sætter den velkendte lyseblå baggrundsfarve i felterne /
-border: 1px solid #B1C3FF !important; / <- Tegner den tynde blå kant omkring alle skrivefelter /
-border-radius: 8px; / <- Runder hjørnerne på skrivefelterne med 8px radius /
-padding: 6px 9px; / <- Tilføjer 6px top/bund og 9px side-indvendig luft i skrivefelterne /
-box-sizing: border-box; / <- Tæller padding og border med i felternes samlede bredde /
-font-family: 'AvantGarde LT Medium', sans-serif; / <- Sætter skrifttypen inde i skrivefelterne /
-font-size: 11.5px; / <- Sætter skriftstørrelsen for indtastet tekst til 11.5px /
-color: #000; / <- Tvinger indtastet tekst til altid at skrive med ren sort skrift /
-outline: none; / <- Fjerner den grimme sorte/blå markering der normalt opstår ved klik i feltet */
+  width: 100%; /* <- Tvinger alle skrivefelter til at fylde 100% af den plads de har til rådighed */
+  background-color: #E7EDFF !important; /* <- Sætter den velkendte lyseblå baggrundsfarve i felterne */
+  border: 1px solid #B1C3FF !important; /* <- Tegner den tynde blå kant omkring alle skrivefelter */
+  border-radius: 8px; /* <- Runder hjørnerne på skrivefelterne med 8px radius */
+  padding: 6px 9px; /* <- Tilføjer 6px top/bund og 9px side-indvendig luft i skrivefelterne */
+  box-sizing: border-box; /* <- Tæller padding og border med i felternes samlede bredde */
+  font-family: 'AvantGarde LT Medium', sans-serif; /* <- Sætter skrifttypen inde i skrivefelterne */
+  font-size: 11.5px; /* <- Sætter skriftstørrelsen for indtastet tekst til 11.5px */
+  color: #000; /* <- Tvinger indtastet tekst til altid at skrive med ren sort skrift */
+  outline: none; /* <- Fjerner den grimme sorte/blå markering der normalt opstår ved klik i feltet */
 }
-/* UPLOAD SEKTION OG SKRIVEFELTER ØVERST /
+
+/* UPLOAD SEKTION OG SKRIVEFELTER ØVERST */
 .upload-section {
-display: flex; / <- Placerer upload-billedeknappen og højre felter (Article/Category) ved siden af hinanden /
-justify-content: space-between; / <- Skubber felterne helt ud i siderne /
-align-items: stretch; / <- Strækker upload-knap og højre side så de får samme højde /
-gap: 12px; / <- Skaber præcis 12px afstand mellem upload-billedeknappen og skrivefelterne */
+  display: flex; /* <- Placerer upload-billedeknappen og højre felter (Article/Category) ved siden af hinanden */
+  justify-content: space-between; /* <- Skubber felterne helt ud i siderne */
+  align-items: stretch; /* <- Strækker upload-knap og højre side så de får samme højde */
+  gap: 12px; /* <- Skaber præcis 12px afstand mellem upload-billedeknappen og skrivefelterne */
 }
+
 .upload-btn {
-width: 140px; /* <- Sætter den nye, større bredde på varebillede/upload-knappen /
-height: 140px; / <- Sætter den nye, større højde på varebillede/upload-knappen /
-border-radius: 16px; / <- Runder hjørnerne på billede-upload feltet med 16px radius /
-background-size: cover; / <- Tilpasser det uploadede billede så det fylder hele firkanten /
-background-position: center; / <- Centrerer billedet inde i upload-firkanten /
-cursor: pointer; / <- Gør musen til en pegefinger så man ved man kan klikke for at uploade /
-flex-shrink: 0; / <- Forhindrer billede-upload firkanten i at skrumpe eller blive skæv /
-box-sizing: border-box; / <- Tæller kanten med i målene */
+  width: 135px !important; /* <- Sætter den nye, større bredde på varebillede/upload-knappen */
+  height: 135px !important; /* <- Sætter den nye, større højde på varebillede/upload-knappen */
+  border-radius: 16px; /* <- Runder hjørnerne på billede-upload feltet med 16px radius */
+  background-size: cover; /* <- Tilpasser det uploadede billede så det fylder hele firkanten */
+  background-position: center; /* <- Centrerer billedet inde i upload-firkanten */
+  cursor: pointer; /* <- Gør musen til en pegefinger så man ved man kan klikke for at uploade */
+  flex-shrink: 0; /* <- Forhindrer billede-upload firkanten i at skrumpe eller blive skæv */
+  box-sizing: border-box; /* <- Tæller kanten med i målene */
 }
+
 .upload-right {
-display: flex; /* <- Arrangere højre side af uploadsektionen i en lodret stak /
-flex-direction: column; / <- Placerer Article Number, Mærkeknapper og Category over hinanden /
-justify-content: space-between; / <- Fordeler felterne perfekt vertikalt ud for upload-billedet /
-flex: 1; / <- Tvinger den højre side til at udnytte resten af vinduets fulde bredde */
+  display: flex; /* <- Arrangerer højre side af uploadsektionen i en lodret stak */
+  flex-direction: column; /* <- Placerer Article Number, Mærkeknapper og Category over hinanden */
+  justify-content: space-between; /* <- Fordeler felterne perfekt vertikalt ud for upload-billedet */
+  flex: 1; /* <- Tvinger den højre side til at udnytte resten af vinduets fulde bredde */
 }
+
 .art-input {
-display: flex; /* <- Placerer det lille "a#"-ikon og skrivefeltet til artikelnummer på samme linje /
-align-items: center; / <- Centrerer "a#"-ikonet og artikelnummer-feltet lodret /
-gap: 6px; / <- Laver 6px afstand fra "a#"-ikonet hen til skrivefeltet */
+  display: flex; /* <- Placerer det lille "a#"-ikon og skrivefeltet til artikelnummer på samme linje */
+  align-items: center; /* <- Centrerer "a#"-ikonet og artikelnummer-feltet lodret */
+  gap: 6px; /* <- Laver 6px afstand fra "a#"-ikonet hen til skrivefeltet */
 }
+
 .art-input img {
-height: 16px; /* <- Sætter højden på "a#"-ikonet til 16px /
-width: auto; / <- Bevarer proportionerne på ikonet automatisk */
+  height: 16px; /* <- Sætter højden på "a#"-ikonet til 16px */
+  width: auto; /* <- Bevarer proportionerne på ikonet automatisk */
 }
-/* BRAND TOGGLE KNAPPER (ORIGINALS / PERFORMANCE) /
+
+/* BRAND TOGGLE KNAPPER (ORIGINALS / PERFORMANCE) */
 .brand-toggle {
-display: flex; / <- Placerer Originals og Performance knapperne ved siden af hinanden /
-justify-content: center; / <- Centrerer knapperne vandret på linjen /
-align-items: center; / <- Centrerer knapperne lodret /
-gap: 12px; / <- Skaber 12px afstand mellem Originals og Performance knapperne /
-margin: 2px 0; / <- Tilføjer 2px luft over og under knapperne */
+  display: flex; /* <- Placerer Originals og Performance knapperne ved siden af hinanden */
+  justify-content: center; /* <- Centrerer knapperne vandret på linjen */
+  align-items: center; /* <- Centrerer knapperne lodret */
+  gap: 12px; /* <- Skaber 12px afstand mellem Originals og Performance knapperne */
+  margin: 2px 0; /* <- Tilføjer 2px luft over og under knapperne */
 }
+
 .brand-toggle img {
-height: 52px; /* <- Gør Originals og Performance knapperne markant større for bedre synlighed /
-width: auto; / <- Tilpasser bredden proportionalt automatisk /
-cursor: pointer; / <- Gør musen til en pegefinger ved mouse-over på mærkeknapperne /
-object-fit: contain; / <- Sikrer at logoerne i knapperne står helt skarpt uden forvrængning */
+  height: 48px !important; /* <- Gør Originals og Performance knapperne markant større og tydelige */
+  width: auto !important; /* <- Tilpasser bredden proportionalt automatisk */
+  cursor: pointer; /* <- Gør musen til en pegefinger ved mouse-over på mærkeknapperne */
+  object-fit: contain; /* <- Sikrer at logoerne i knapperne står helt skarpt uden forvrængning */
 }
-/* 3 KOLONNER RÆKKE (SIZE / MADE IN / PRODUCTION TIME) /
+
+/* 3 KOLONNER RÆKKE (SIZE / MADE IN / PRODUCTION TIME) */
 .three-cols {
-display: flex; / <- Placerer de 3 skrivefelter ved siden af hinanden i én linje /
-gap: 8px; / <- Laver 8px afstand mellem hvert af de tre felter */
+  display: flex; /* <- Placerer de 3 skrivefelter ved siden af hinanden i én linje */
+  gap: 8px; /* <- Laver 8px afstand mellem hvert af de tre felter */
 }
+
 .three-cols .field-group {
-flex: 1; /* <- Sikrer at alle 3 felter (Size, Made in, Production time) får præcis lige stor bredde */
+  flex: 1; /* <- Sikrer at alle 3 felter (Size, Made in, Production time) får præcis lige stor bredde */
 }
-/* PRIS OG MATERIALE SEKTION MED PERFECT BUND-FLUGTNING /
+
+/* PRIS OG MATERIALE SEKTION MED PERFECT BUND-FLUGTNING */
 .price-section {
-display: flex; / <- Placerer Materials-tekstfeltet til venstre og prisfelterne til højre /
-gap: 14px; / <- Skaber 14px afstand mellem Materials og prissektionen /
-align-items: stretch; / <- Sikrer at venstre og højre side strækker sig lige langt ned */
+  display: flex; /* <- Placerer Materials-tekstfeltet til venstre og prisfelterne til højre */
+  gap: 14px; /* <- Skaber 14px afstand mellem Materials og prissektionen */
+  align-items: stretch; /* <- Sikrer at venstre og højre side strækker sig lige langt ned */
 }
+
 .price-section .field-group {
-display: flex; /* <- Sætter opbygningen af venstre side (Materials) op /
-flex-direction: column; / <- Placerer overskriften "Materials" over tekstfeltet /
-flex: 1; / <- Lader Materials-feltet udnytte den fulde venstre halvdel af pladsen */
+  display: flex; /* <- Sætter opbygningen af venstre side (Materials) op */
+  flex-direction: column; /* <- Placerer overskriften "Materials" over tekstfeltet */
+  flex: 1; /* <- Lader Materials-feltet udnytte den fulde venstre halvdel af pladsen */
 }
+
 .modal textarea#mMaterial {
-resize: none; /* <- Forhindrer brugeren i ved et uheld at trække i hjørnet og ødelægge layoutet /
-height: 100px !important; / <- Fastlåser højden på Materials tekstfeltet til præcis 140px /
-box-sizing: border-box; / <- Tæller kanter og polstring med i de 100px højde */
+  resize: none; /* <- Forhindrer brugeren i ved et uheld at trække i hjørnet og ødelægge layoutet */
+  height: 118px !important; /* <- Fastlåser højden på Materials tekstfeltet til præcis 118px */
+  box-sizing: border-box; /* <- Tæller kanter og polstring med i de 118px højde */
 }
+
 .price-right {
-display: flex; /* <- Sætter højre side op med flexbox /
-flex-direction: column; / <- Stabler Purchase price, Reselling-knap og Sale price lodret /
-justify-content: space-between; / <- Tvinger Purchase øverst, Reselling i midten og Sale price helt i bunden /
-flex: 1; / <- Lader prissektionen udnytte den fulde højre halvdel af pladsen /
-height: 100px !important; / <- Fastlåser højden til nøjagtig 100px så bunden flugter snorlige med Materials /
-box-sizing: border-box; / <- Tæller padding og kanter med i de 100px højde */
+  display: flex; /* <- Sætter højre side op med flexbox */
+  flex-direction: column; /* <- Stabler Purchase price, Reselling-knap og Sale price lodret */
+  justify-content: space-between; /* <- Tvinger Purchase øverst, Reselling i midten og Sale price helt i bunden */
+  flex: 1; /* <- Lader prissektionen udnytte den fulde højre halvdel af pladsen */
+  height: 118px !important; /* <- Fastlåser højden til nøjagtig 118px så bunden af Sale price flugter snorlige med Materials */
+  box-sizing: border-box; /* <- Tæller padding og kanter med i de 118px højde */
 }
+
 .sale-price-group {
-opacity: 0.4; /* <- Gør Sale price feltet halvgennemsigtigt og dæmpet når varer IKKE er sat til solgt /
-transition: opacity 0.2s ease; / <- Skaber en blød glidende overgang i farven når knappen aktiveres */
+  opacity: 0.4; /* <- Gør Sale price feltet halvgennemsigtigt og dæmpet når varer IKKE er sat til solgt */
+  transition: opacity 0.2s ease; /* <- Skaber en blød glidende overgang i farven når knappen aktiveres */
 }
+
 .sale-price-group.active {
-opacity: 1; /* <- Gør Sale price feltet 100% tydeligt og aktivt når Reselling/Sold aktiveres */
+  opacity: 1; /* <- Gør Sale price feltet 100% tydeligt og aktivt når Reselling/Sold aktiveres */
 }
+
 .toggle-sold-row {
-display: flex; /* <- Placerer Reselling-ikonet og teksten ved siden af hinanden /
-align-items: center; / <- Centrerer Reselling-ikonet lodret ud for teksten /
-cursor: pointer; / <- Gør musen til en pegefinger så man ser det er en klikbar knap /
-margin-top: 8px; / <- Skaber 4px afstand fra feltet ovenover /
-margin-bottom: 2px; / <- Skaber 4px afstand ned til Sale price feltet */
+  display: flex; /* <- Placerer Reselling-ikonet og teksten ved siden af hinanden */
+  align-items: center; /* <- Centrerer Reselling-ikonet lodret ud for teksten */
+  cursor: pointer; /* <- Gør musen til en pegefinger så man ser det er en klikbar knap */
+  margin-top: 6px; /* <- Skaber afstand fra feltet ovenover */
+  margin-bottom: 2px; /* <- Skaber afstand ned til Sale price feltet */
 }
+
 .toggle-sold-row img {
-height: 18px !important; /* <- Sætter højden på Reselling/Sold toggle-knappen til 18px /
-width: auto; / <- Bevarer knappens proportioner automatisk /
-display: block; / <- Fjerner ekstra luft under knapbilledet */
+  height: 16px !important; /* <- Sætter højden på Reselling/Sold toggle-knappen til 16px */
+  width: auto; /* <- Bevarer knappens proportioner automatisk */
+  display: block; /* <- Fjerner ekstra luft under knapbilledet */
 }
-/* MODAL FOOTER (BUNDKNAPPER) /
+
+/* MODAL FOOTER (BUNDKNAPPER) */
 .modal-footer {
-display: flex; / <- Placerer Cancel, Move-toggle og Save knapperne ved siden af hinanden i bundlinjen /
-justify-content: space-between; / <- Skubber Cancel til venstre, Save til højre og Move-knap i midten /
-align-items: center; / <- Centrerer alle tre bundknapper lodret i forhold til hinanden /
-margin-top: 8px; / <- Skaber 8px afstand fra prisfelterne ned til bundknapperne /
-margin-bottom: -6px; / <- Trækker bundknapperne 6px tættere på den nederste ramme /
-gap: 12px; / <- Laver 12px minimumsafstand mellem bundknapperne */
+  display: flex; /* <- Placerer Cancel, Move-toggle og Save knapperne ved siden af hinanden i bundlinjen */
+  justify-content: space-between; /* <- Skubber Cancel til venstre, Save til højre og Move-knap i midten */
+  align-items: center; /* <- Centrerer alle tre bundknapper lodret i forhold til hinanden */
+  margin-top: 8px; /* <- Skaber 8px afstand fra prisfelterne ned til bundknapperne */
+  margin-bottom: -6px; /* <- Trækker bundknapperne 6px tættere på den nederste ramme */
+  gap: 12px; /* <- Laver 12px minimumsafstand mellem bundknapperne */
 }
+
 .footer-btn {
-height: 40px; /* <- Sætter højden på Cancel- og Save-knapperne til 40px /
-width: auto; / <- Bevarer knapbilledernes proportioner automatisk /
-cursor: pointer; / <- Gør musen til en pegefinger ved mouse-over på knapperne /
-object-fit: contain; / <- Sikrer ren og skarp visning af knapgrafikken */
+  height: 40px !important; /* <- Sætter højden på Cancel- og Save-knapperne til 40px */
+  width: auto !important; /* <- Bevarer knapbilledernes proportioner automatisk */
+  cursor: pointer; /* <- Gør musen til en pegefinger ved mouse-over på knapperne */
+  object-fit: contain; /* <- Sikrer ren og skarp visning af knapgrafikken */
 }
+
 .move-toggle-btn {
-flex: 1; /* <- Tillader at den midterste "Move to..." knap kan optage den centrale plads /
-display: flex; / <- Centrerer Move-knappen inde i sit felt /
-justify-content: center; / <- Centrerer Move-knappen vandret i midten */
+  flex: 1; /* <- Tillader at den midterste "Move to..." knap kan optage den centrale plads */
+  display: flex; /* <- Centrerer Move-knappen inde i sit felt */
+  justify-content: center; /* <- Centrerer Move-knappen vandret i midten */
 }
+
 .move-toggle-btn img {
-height: 50px; /* <- Sætter højden på den midterste Move-toggle knap til 46px /
-width: 100%; / <- Lader Move-knapbilledet udnytte sin plads optimalt /
-max-width: 250px; / <- Begrænser Move-knappens maksimale bredde så den ikke bliver for dominerende /
-cursor: pointer; / <- Gør musen til en pegefinger når man pege på Move-knappen /
-object-fit: contain; / <- Sikrer at pilen og teksten i Move-knappen ikke skævvrides */
+  height: 46px !important; /* <- Sætter højden på den midterste Move-toggle knap til 46px */
+  width: 100%; /* <- Lader Move-knapbilledet udnytte sin plads optimalt */
+  max-width: 250px; /* <- Begrænser Move-knappens maksimale bredde så den ikke bliver for dominerende */
+  cursor: pointer; /* <- Gør musen til en pegefinger når man peger på Move-knappen */
+  object-fit: contain; /* <- Sikrer at pilen og teksten i Move-knappen ikke skævvrides */
 }
