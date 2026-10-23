@@ -230,22 +230,19 @@ function renderItems() {
   contentArea.innerHTML = '';
   if (alphabetNav) alphabetNav.innerHTML = '';
 
-  // UDEN NOGET SOM HELST STØRRELSESFILTER - VI VISER ALT DER MATCHER SIDE/SOK/SØGNING
+  // INGEN FILTRERING PÅ STØRRELSER OVERHODET – VISER ALLE RÆKKER DER MATCHER SIDEN
   const filtered = allItems.filter(item => {
     if (!item) return false;
     
-    // Tjek side-type (collect vs wish)
     const itemCollect = item.collect ? String(item.collect).toLowerCase().trim() : 'collect';
     const currentMode = PAGE_TYPE.toLowerCase().trim();
     if (itemCollect !== currentMode && !(currentMode === 'collect' && !item.collect)) {
       return false;
     }
     
-    // Solgt-filter
     const isSold = String(item.sold).toUpperCase() === 'TRUE';
     if (!showSold && isSold) return false;
 
-    // Søgeord
     if (searchQuery) {
       const matchName = item.name && String(item.name).toLowerCase().includes(searchQuery);
       const matchArt = item.articlenumber && String(item.articlenumber).toLowerCase().includes(searchQuery);
@@ -256,7 +253,6 @@ function renderItems() {
     return true;
   });
 
-  // Gruppér efter kategori
   const categories = {};
   filtered.forEach(item => {
     const cat = item.category ? String(item.category).trim() : 'Uncategorized';
@@ -491,7 +487,7 @@ function saveData() {
     madein: document.getElementById('mMadeIn').value,
     material: document.getElementById('mMaterial').value,
     purchaseprice: document.getElementById('mPurchasePrice').value,
-    salepriced: document.getElementById('mSalePrice').value,
+    saleprice: document.getElementById('mSalePrice').value,
     imageBase64: currentImageBase64
   };
 
