@@ -120,21 +120,22 @@ html, body {
   .toggle-label { font-size: 7px; }
 }
 
-/* SIZE DROPDOWN MENU */
+/* =========================================================
+   SIZE DROPDOWN MENU (ENSARTET PÅ DESKTOP OG MOBIL)
+   ========================================================= */
 .size-dropdown {
   position: absolute;
   top: 100%;
   left: 0;
   z-index: 150;
-  background: linear-gradient(135deg, rgba(210, 220, 238, 0.5), rgba(133, 171, 229, 0.5));
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  mix-blend-mode: overlay;
-  border: 1px solid #2A1A6F;
+  background: rgba(186, 205, 240, 0.82) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid #2A1A6F;
   border-radius: 24px;
   padding: 14px 18px 18px 18px;
   display: none;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 32px rgba(42, 26, 111, 0.18);
   width: 330px;
   box-sizing: border-box;
   margin-top: 6px;
@@ -308,7 +309,7 @@ html, body {
 .info-row span.val { color: #000; font-family: 'AvantGarde LT Medium', sans-serif; }
 
 /* =========================================================
-   POPUP MODAL DESIGN (TVUNGET RETTET EFTER MOCKUPS)
+   POPUP MODAL DESIGN
    ========================================================= */
 .modal-bg {
   position: fixed;
@@ -391,12 +392,10 @@ html, body {
   outline: none;
 }
 
-/* TVUNGET DIREKTE STRUKTUR FOR POP-UP TOPSEKTION */
 .upload-section {
   display: flex !important;
-  flex-direction: row !important;
-  align-items: stretch !important;
   gap: 12px !important;
+  align-items: stretch !important;
   width: 100% !important;
 }
 
@@ -417,27 +416,34 @@ html, body {
   flex-direction: column !important;
   justify-content: space-between !important;
   flex-grow: 1 !important;
-  width: calc(100% - 145px) !important;
   min-width: 0 !important;
 }
 
-/* BRAND TOGGLES TVUNGET STORE OG SIDE OM SIDE */
+.art-input {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.art-input img {
+  height: 14px;
+  width: auto;
+}
+
 .brand-toggle {
   display: flex !important;
-  flex-direction: row !important;
   justify-content: space-between !important;
   align-items: center !important;
-  gap: 8px !important;
-  width: 100% !important;
+  gap: 6px !important;
   margin: 2px 0 !important;
+  width: 100% !important;
 }
 
 .brand-toggle img {
-  width: 48% !important;
   height: 52px !important;
-  max-height: 52px !important;
-  object-fit: contain !important;
+  width: 48% !important;
   cursor: pointer !important;
+  object-fit: contain !important;
 }
 
 .three-cols {
@@ -445,7 +451,6 @@ html, body {
   gap: 5px;
 }
 
-/* Materialer & Priser med snorlig bund-flugtning */
 .price-section {
   display: flex;
   gap: 10px;
