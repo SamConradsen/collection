@@ -3,6 +3,7 @@
   src: local('AvantGarde LT Book'), local('ITC Avant Garde Gothic Std Book');
   font-weight: normal;
 }
+
 @font-face {
   font-family: 'AvantGarde LT Medium';
   src: local('AvantGarde LT Medium'), local('ITC Avant Garde Gothic Std Medium');
@@ -21,8 +22,16 @@ html, body {
   -webkit-text-size-adjust: 100%;
 }
 
-.header-container { width: 100%; overflow: hidden; }
-.header-container img { width: 100%; height: auto; display: block; }
+.header-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.header-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
 .sticky-menu-wrapper {
   position: sticky;
@@ -36,29 +45,32 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 12px;
+  padding: 6px 16px;
   box-sizing: border-box;
   width: 100%;
-  gap: 6px;
+  gap: 8px;
 }
 
 .menu-left, .menu-right {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   min-width: 0;
 }
 
 .menu-item {
   cursor: pointer;
-  height: 40px !important;
+  height: 42px !important;
   width: auto !important;
-  max-width: 100px;
+  max-width: 110px;
   display: block;
   object-fit: contain;
 }
 
-.size-menu-trigger { position: relative; cursor: pointer; }
+.size-menu-trigger {
+  position: relative;
+  cursor: pointer;
+}
 
 .toggle-container {
   display: flex;
@@ -80,7 +92,7 @@ html, body {
 
 .search-box {
   position: relative;
-  height: 40px;
+  height: 42px;
   display: flex;
   align-items: center;
   flex-shrink: 1;
@@ -88,7 +100,7 @@ html, body {
 }
 
 .search-bg-img {
-  height: 40px !important;
+  height: 42px !important;
   width: auto !important;
   display: block;
   object-fit: contain;
@@ -113,13 +125,25 @@ html, body {
 }
 
 @media (max-width: 600px) {
-  .sticky-menu { padding: 4px 6px; gap: 4px; }
-  .menu-left, .menu-right { gap: 4px; }
-  .menu-item { height: 32px !important; }
-  .search-box, .search-bg-img { height: 32px !important; }
-  .toggle-label { font-size: 7px; }
+  .sticky-menu {
+    padding: 4px 8px;
+    gap: 4px;
+  }
+  .menu-left, .menu-right {
+    gap: 6px;
+  }
+  .menu-item {
+    height: 32px !important;
+  }
+  .search-box, .search-bg-img {
+    height: 32px !important;
+  }
+  .toggle-label {
+    font-size: 7px;
+  }
 }
 
+/* SIZE DROPDOWN MENU */
 .size-dropdown {
   position: absolute;
   top: 100%;
@@ -146,11 +170,30 @@ html, body {
   margin-bottom: 8px;
 }
 
-.size-quick-actions { display: flex; gap: 6px; align-items: center; }
-.size-quick-actions img { height: 20px !important; width: auto !important; cursor: pointer; object-fit: contain; }
+.size-quick-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
 
-.size-group { margin-bottom: 10px; }
-.size-group-title { height: 18px !important; width: auto !important; display: block; margin-bottom: 6px; object-fit: contain; }
+.size-quick-actions img {
+  height: 20px !important;
+  width: auto !important;
+  cursor: pointer;
+  object-fit: contain;
+}
+
+.size-group {
+  margin-bottom: 10px;
+}
+
+.size-group-title {
+  height: 18px !important;
+  width: auto !important;
+  display: block;
+  margin-bottom: 6px;
+  object-fit: contain;
+}
 
 .size-grid {
   display: grid;
@@ -166,9 +209,22 @@ html, body {
   object-fit: contain;
 }
 
-.main-wrapper { display: flex; padding: 0 20px 20px 20px; position: relative; box-sizing: border-box; }
-.content-area { flex: 1; min-width: 0; }
-.category-section { margin-bottom: 25px; }
+/* MAIN CONTENT LAYOUT */
+.main-wrapper {
+  display: flex;
+  padding: 0 20px 20px 20px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.content-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.category-section {
+  margin-bottom: 25px;
+}
 
 .category-title {
   font-family: 'AvantGarde LT Book', sans-serif;
@@ -177,9 +233,19 @@ html, body {
   margin: 15px 0 10px 0;
 }
 
-.item-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
-@media (max-width: 1024px) { .item-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 600px) { .item-grid { grid-template-columns: repeat(2, 1fr); } }
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+@media (max-width: 1024px) {
+  .item-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .item-grid { grid-template-columns: repeat(2, 1fr); }
+}
 
 .alphabet-nav {
   position: sticky;
@@ -206,7 +272,8 @@ html, body {
 .sidebar-bubble-bg {
   position: absolute;
   top: 0; left: 0;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   z-index: 1;
 }
@@ -220,9 +287,16 @@ html, body {
   color: #000;
 }
 
-@media (max-width: 600px) { .alphabet-nav { display: none; } }
+@media (max-width: 600px) {
+  .alphabet-nav { display: none; }
+}
 
-.item-card { display: flex; flex-direction: column; cursor: pointer; }
+.item-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
 .image-wrapper {
   position: relative;
   width: 100%;
@@ -242,20 +316,31 @@ html, body {
 
 .size-badge {
   position: absolute;
-  top: 4px; left: 4px;
-  width: 26px; height: 26px;
+  top: 4px;
+  left: 4px;
+  width: 26px;
+  height: 26px;
   object-fit: contain;
 }
 
 .article-badge {
   position: absolute;
-  bottom: 3px; right: 4px;
-  display: flex; align-items: center; gap: 2px;
+  bottom: 3px;
+  right: 4px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
   font-family: 'AvantGarde LT Book', sans-serif;
-  font-weight: bold; font-size: 11px;
+  font-weight: bold;
+  font-size: 11px;
 }
 
-.article-badge img { height: 10px; width: auto; display: block; margin: 0; }
+.article-badge img {
+  height: 10px;
+  width: auto;
+  display: block;
+  margin: 0;
+}
 
 .info-box {
   margin-top: 4px;
@@ -266,7 +351,7 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 85px; 
+  height: 85px;
   position: relative;
 }
 
@@ -282,7 +367,8 @@ html, body {
 
 .item-id {
   position: absolute;
-  top: 4px; right: 6px;
+  top: 4px;
+  right: 6px;
   color: #D9D9D9 !important;
   font-size: 7px !important;
   font-family: 'AvantGarde LT Book', sans-serif;
@@ -291,29 +377,50 @@ html, body {
 .info-name {
   font-size: 11px;
   font-family: 'AvantGarde LT Medium', sans-serif;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 1px 0;
 }
 
 .info-row {
-  display: flex; align-items: center; justify-content: space-between;
-  color: #4C4C4C; font-size: 10.5px; margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #4C4C4C;
+  font-size: 10.5px;
+  margin: 0;
   font-family: 'AvantGarde LT Medium', sans-serif;
 }
 
-.price-left-side, .price-right-side { display: flex; align-items: center; gap: 3px; }
-.price-left-side img, .price-right-side img { height: 11px; width: auto; display: inline-block; vertical-align: middle; }
-.info-row span.val { color: #000; font-family: 'AvantGarde LT Medium', sans-serif; }
+.price-left-side, .price-right-side {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.price-left-side img, .price-right-side img {
+  height: 11px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.info-row span.val {
+  color: #000;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+}
 
 /* =========================================================
-   POPUP MODAL DESIGN (FASTSLÅET KORREKT PLACERING & STØRRELSER)
+   POPUP MODAL DESIGN (KOMPAKT, SKARP & MED SNORLIG FLUGTNING)
    ========================================================= */
 .modal-bg {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0, 0, 0, 0.45);
   display: none;
-  align-items: center; justify-content: center;
+  align-items: center;
+  justify-content: center;
   z-index: 200;
   backdrop-filter: blur(4px);
   padding: 10px 0;
@@ -322,11 +429,14 @@ html, body {
 
 .modal {
   background: #ffffff;
-  border-radius: 24px;
-  width: 440px; max-width: 94vw;
-  padding: 12px 18px 14px 18px; /* Fjerner alt unødvendigt polstring/luft */
+  border-radius: 26px;
+  width: 450px;
+  max-width: 94vw;
+  padding: 14px 20px 16px 20px;
   box-sizing: border-box;
-  display: flex; flex-direction: column; gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   overflow: visible !important;
   max-height: none !important;
@@ -346,69 +456,183 @@ html, body {
   background-clip: padding-box, border-box;
 }
 
-.modal-header-banner { width: 100%; display: flex; justify-content: center; margin-top: -4px; margin-bottom: 0px; }
-.modal-header-banner img { height: 90px !important; width: auto; max-width: 100%; object-fit: contain; }
+.modal-header-banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: -2px;
+  margin-bottom: 2px;
+}
 
-.field-group { display: flex; flex-direction: column; gap: 1px; }
-.field-group label { color: #2F47B1 !important; font-family: 'AvantGarde LT Book', sans-serif; font-size: 11px; font-weight: bold; }
+.modal-header-banner img {
+  height: 100px !important;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
 
-.modal input[type="text"], .modal textarea {
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.field-group label {
+  color: #2F47B1 !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-size: 11.5px;
+  font-weight: bold;
+}
+
+.modal input[type="text"], 
+.modal textarea {
   width: 100%;
   background-color: #E7EDFF !important;
   border: 1px solid #B1C3FF !important;
   border-radius: 8px;
-  padding: 5px 8px;
+  padding: 6px 9px;
   box-sizing: border-box;
   font-family: 'AvantGarde LT Medium', sans-serif;
-  font-size: 11px;
+  font-size: 11.5px;
   color: #000;
   outline: none;
 }
 
-.upload-section { display: flex; justify-content: space-between; align-items: stretch; gap: 10px; }
-
-/* Varebillede / upload-placeholder forstørret */
-.upload-btn {
-  width: 140px !important; 
-  height: 140px !important;
-  border-radius: 14px;
-  background-size: cover; background-position: center;
-  cursor: pointer; flex-shrink: 0; box-sizing: border-box;
+.upload-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 12px;
 }
 
-.upload-right { display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
-.art-input { display: flex; align-items: center; gap: 6px; }
-.art-input img { height: 15px; width: auto; }
+/* Stort varebillede / upload box */
+.upload-btn {
+  width: 135px !important;
+  height: 135px !important;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
 
-/* Originals og Performance knapper forstørret markant */
-.brand-toggle { display: flex; justify-content: center; align-items: center; gap: 10px; margin: 1px 0; }
-.brand-toggle img { height: 52px !important; width: auto !important; cursor: pointer; object-fit: contain; }
+.upload-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
 
-.three-cols { display: flex; gap: 6px; }
+.art-input {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-/* PRISER & MATERIALER FLUGTER 100% SNORLIGE MED FAST HØJDE */
-.price-section { display: flex; gap: 10px; align-items: flex-start; }
-.price-section .field-group { display: flex; flex-direction: column; height: 108px !important; box-sizing: border-box; }
-.modal textarea#mMaterial { resize: none; height: 88px !important; box-sizing: border-box; }
+.art-input img {
+  height: 16px;
+  width: auto;
+}
+
+/* Originals & Performance Brand Knapper */
+.brand-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 2px 0;
+}
+
+.brand-toggle img {
+  height: 48px !important;
+  width: auto !important;
+  cursor: pointer;
+  object-fit: contain;
+}
+
+.three-cols {
+  display: flex;
+  gap: 8px;
+}
+
+/* PRISER OG MATERIALER SEKTION - PERFECT BUND-FLUGTNING */
+.price-section {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.price-section .field-group {
+  display: flex;
+  flex-direction: column;
+  height: 120px !important;
+  box-sizing: border-box;
+}
+
+.modal textarea#mMaterial {
+  resize: none;
+  height: 98px !important;
+  box-sizing: border-box;
+}
 
 .price-right {
-  display: flex; flex-direction: column; justify-content: space-between;
-  flex: 1; height: 108px !important; box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  height: 120px !important;
+  box-sizing: border-box;
 }
 
-.sale-price-group { opacity: 0.4; transition: opacity 0.2s ease; }
-.sale-price-group.active { opacity: 1; }
+.sale-price-group {
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
+}
 
-.toggle-sold-row { display: flex; align-items: center; cursor: pointer; margin: 2px 0; }
-.toggle-sold-row img { height: 15px !important; width: auto; display: block; }
+.sale-price-group.active {
+  opacity: 1;
+}
+
+.toggle-sold-row {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 3px 0;
+}
+
+.toggle-sold-row img {
+  height: 16px !important;
+  width: auto;
+  display: block;
+}
 
 .modal-footer {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-top: 4px; margin-bottom: -2px; gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+  margin-bottom: -2px;
+  gap: 10px;
 }
 
-.footer-btn { height: 38px !important; width: auto !important; cursor: pointer; object-fit: contain; }
-.move-toggle-btn { flex: 1; display: flex; justify-content: center; }
+.footer-btn {
+  height: 38px !important;
+  width: auto !important;
+  cursor: pointer;
+  object-fit: contain;
+}
 
-/* Move to... knap forstørret og tilpasset midterpladsen */
-.move-toggle-btn img { height: 52px !important; width: 100%; max-width: 240px; cursor: pointer; object-fit: contain; }
+.move-toggle-btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.move-toggle-btn img {
+  height: 50px !important;
+  width: 100%;
+  max-width: 230px;
+  cursor: pointer;
+  object-fit: contain;
+}
