@@ -7,9 +7,10 @@ let currentImageBase64 = null;
 let currentEditId = null;
 let isSaving = false;
 
+// Billed-ID'er
 const IMAGES = {
-  headerCollect: "1BbO-EU_AmhU8XtYRuYGCFx_ZVZzK3iCA",
-  headerWish: "14m-Rprm0BtqaVohizhDgPj0pSlfeIfGy",
+  headerCollect: "1uLp25hiwtGZS970k78JIu7ew5jL_w8JS",
+  headerWish: "1DepTek0L_aBYrnNZfvUYgrC2aNODlube",
   uploadPlaceholder: "17YobDkGOVX0dUIyLRVu_alxkMO2AnmxT",
   
   origTrue: "1phuiZ7Mh7kYKfAENbCw2ah78_Tem2NAM",
@@ -130,10 +131,11 @@ function fetchData() {
       else if (data && Array.isArray(data.items)) allItems = data.items;
       else if (data && typeof data === 'object') allItems = Object.values(data);
       else allItems = [];
+      
       updateCategoryDatalist();
       renderItems();
     })
-    .catch(err => console.error("Fejl:", err));
+    .catch(err => console.error("Fejl ved data-hentning:", err));
 }
 
 function handleButtonA() {
@@ -226,14 +228,18 @@ function renderItems() {
 
   const filtered = allItems.filter(item => {
     if (!item) return false;
+    
+    // Tjek om varen tilhører den aktuelle side (fanger 'collect', 'wish' og udefineret)
     const itemCollect = item.collect ? String(item.collect).toLowerCase().trim() : 'collect';
     const currentMode = PAGE_TYPE.toLowerCase().trim();
-    const isCorrectType = itemCollect === currentMode || (currentMode === 'collect' && !item.collect);
+    if (itemCollect !== currentMode && !(currentMode === 'collect' && !item.collect)) {
+      return false;
+    }
     
     const isSold = String(item.sold).toUpperCase() === 'TRUE';
     if (!showSold && isSold) return false;
 
-    // Kun filtrér på størrelse hvis varen faktisk har en størrelse udfyldt!
+    // Varer UDEN størrelse (f.eks. Bags) ignoreres af size-filteret og vises altid
     if (item.size && item.size.trim() !== '') {
       const itemSizeKey = item.size.trim();
       if (selectedSizes.hasOwnProperty(itemSizeKey) && !selectedSizes[itemSizeKey]) {
@@ -247,7 +253,8 @@ function renderItems() {
       const matchCat = item.category && item.category.toLowerCase().includes(searchQuery);
       if (!matchName && !matchArt && !matchCat) return false;
     }
-    return isCorrectType;
+    
+    return true;
   });
 
   const categories = {};
