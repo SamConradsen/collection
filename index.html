@@ -29,14 +29,14 @@
         </div>
       </div>
 
-      <!-- Search Bar -->
-      <div class="search-box">
-        <img src="https://lh3.googleusercontent.com/d/16AEnLeUyzfPU4YTCNXWA78eKpm2aWF4v" class="search-bg-img" alt="Search">
-        <input type="text" placeholder="Search..." oninput="handleSearch(this.value)" list="categorySuggestions">
-        <datalist id="categorySuggestions"></datalist>
-      </div>
-
+      <!-- Search Bar & Show Sold i højre side -->
       <div class="menu-right">
+        <div class="search-box">
+          <img src="https://lh3.googleusercontent.com/d/16AEnLeUyzfPU4YTCNXWA78eKpm2aWF4v" class="search-bg-img" alt="Search">
+          <input type="text" placeholder="Search..." oninput="handleSearch(this.value)" list="categorySuggestions">
+          <datalist id="categorySuggestions"></datalist>
+        </div>
+
         <div class="toggle-container" onclick="toggleShowSold()">
           <span class="toggle-label">SHOW SOLD</span>
           <img id="showSoldToggleImg" class="menu-item" src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" alt="Show Sold">
@@ -45,21 +45,21 @@
     </div>
   </div>
 
-  <!-- Main Content Layout -->
+  <!-- Main Content Layout med flydende Kategori-menu -->
   <div class="main-wrapper">
     <div class="content-area" id="contentArea"></div>
     <div class="alphabet-nav" id="alphabetNav"></div>
   </div>
 
   <!-- Modal Popup -->
-  <div class="modal-bg" id="modalBg">
+  <div class="modal-bg" id="modalBg" onclick="handleBackdropClick(event)">
     <div class="modal modal-collect" id="modalCard">
       
       <div class="modal-header-banner">
-        <img id="modalHeaderImg" src="https://lh3.googleusercontent.com/d/1uLp25hiwtGZS970k78JIu7ew5jL_w8JS" alt="Header Banner">
+        <img id="modalHeaderImg" src="https://lh3.googleusercontent.com/d/1gmPYQ6Regt_LEtvqxmYXH6gj2A0O2zVm" alt="Header Banner">
       </div>
 
-      <!-- UPLOAD & BRAND TOGGLES -->
+      <!-- UPLOAD ELEMENT -->
       <div class="upload-section">
         <div class="upload-btn" id="uploadPreview" onclick="document.getElementById('fileInput').click()"></div>
         <input type="file" id="fileInput" style="display:none;" onchange="handleImage(this)">
@@ -69,7 +69,7 @@
             <label for="mArticle">Article number</label>
             <div class="art-input">
               <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
-              <input type="text" id="mArticle" placeholder="Article number">
+              <input type="text" id="mArticle" placeholder="Article number" oninput="markFormDirty()">
             </div>
           </div>
 
@@ -80,55 +80,60 @@
 
           <div class="field-group">
             <label for="mCategory">Category</label>
-            <input type="text" id="mCategory" placeholder="Category" list="categorySuggestions">
+            <input type="text" id="mCategory" placeholder="Category" list="categorySuggestions" oninput="markFormDirty()">
           </div>
         </div>
       </div>
 
-      <div class="field-group">
-        <label for="mName">Name</label>
-        <input type="text" id="mName" placeholder="Item name">
+      <!-- INFORMATION ELEMENT -->
+      <div class="info-element-wrapper">
+        <div class="field-group">
+          <label for="mName">Name</label>
+          <input type="text" id="mName" placeholder="Item name" oninput="markFormDirty()">
+        </div>
+
+        <div class="three-cols">
+          <div class="field-group" style="flex: 1;">
+            <label for="mSize">Size</label>
+            <input type="text" id="mSize" placeholder="Size" oninput="markFormDirty()">
+          </div>
+          <div class="field-group" style="flex: 1;">
+            <label for="mMadeIn">Made in</label>
+            <input type="text" id="mMadeIn" placeholder="Country" oninput="markFormDirty()">
+          </div>
+          <div class="field-group" style="flex: 1;">
+            <label for="mProduced">Production time</label>
+            <input type="text" id="mProduced" placeholder="MM/YY" oninput="markFormDirty()">
+          </div>
+        </div>
       </div>
 
-      <div class="three-cols">
-        <div class="field-group" style="flex: 1;">
-          <label for="mSize">Size</label>
-          <input type="text" id="mSize" placeholder="Size">
-        </div>
-        <div class="field-group" style="flex: 1;">
-          <label for="mMadeIn">Made in</label>
-          <input type="text" id="mMadeIn" placeholder="Country">
-        </div>
-        <div class="field-group" style="flex: 1;">
-          <label for="mProduced">Production time</label>
-          <input type="text" id="mProduced" placeholder="MM/YY">
-        </div>
-      </div>
-
+      <!-- PRICE ELEMENT -->
       <div class="price-section">
         <div class="field-group">
           <label for="mMaterial">Materials</label>
-          <textarea id="mMaterial" placeholder="Materials..."></textarea>
+          <textarea id="mMaterial" placeholder="Materials..." oninput="markFormDirty()"></textarea>
         </div>
         <div class="price-right">
           <div class="field-group">
             <label for="mPurchasePrice">Purchase price</label>
-            <input type="text" id="mPurchasePrice" placeholder="0,00 kr.">
+            <input type="text" id="mPurchasePrice" placeholder="0,00 kr." oninput="markFormDirty()">
           </div>
           <div class="toggle-sold-row" onclick="toggleSoldState()">
             <img id="btnSold" src="https://lh3.googleusercontent.com/d/1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK" alt="Reselling">
           </div>
           <div class="field-group sale-price-group" id="salePriceGroup">
             <label for="mSalePrice">Sale price</label>
-            <input type="text" id="mSalePrice" placeholder="0,00 kr." disabled>
+            <input type="text" id="mSalePrice" placeholder="0,00 kr." disabled oninput="markFormDirty()">
           </div>
         </div>
       </div>
 
+      <!-- FOOTER ELEMENT -->
       <div class="modal-footer">
         <img src="https://lh3.googleusercontent.com/d/1ezJe2_NICuZT07YFN_1pRIQC8yiWAOHc" class="footer-btn" onclick="closeModal()" alt="Cancel">
         <div class="move-toggle-btn" onclick="toggleModalPageType()">
-          <img id="imgMoveBtn" src="https://lh3.googleusercontent.com/d/1we3m7rDh0tdhhbJzLc5nTUZZfr3QLUL7" alt="Move">
+          <img id="imgMoveBtn" src="https://lh3.googleusercontent.com/d/1XsICtNKjWCBHymS1GHLmU-zh8LCk0f5a" alt="Move">
         </div>
         <img src="https://lh3.googleusercontent.com/d/1AjppabQ9us5pA44AK5LGZdV9MJ1YDXrC" class="footer-btn" onclick="saveData()" alt="Save">
       </div>
