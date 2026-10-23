@@ -9,223 +9,135 @@
   font-weight: 500;
 }
 
-html, body {
+body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
   background-color: #d1e3ff;
   font-family: 'AvantGarde LT Medium', sans-serif;
   color: #000;
-  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
-.header-container { width: 100%; overflow: hidden; }
-.header-container img { width: 100%; height: auto; display: block; }
+/* Header Responsiveness */
+.header-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-.sticky-menu-wrapper {
+/* Floating Sticky Menu */
+.sticky-menu {
   position: sticky;
   top: 0;
   z-index: 100;
-  width: 100%;
-  background: #d1e3ff;
-}
-
-.sticky-menu {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 16px;
-  box-sizing: border-box;
-  width: 100%;
-  gap: 8px;
-}
-
-.menu-left, .menu-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
+  padding: 10px 20px;
+  background: transparent;
 }
 
 .menu-item {
   cursor: pointer;
-  height: 42px !important;
-  width: auto !important;
-  max-width: 110px;
-  display: block;
-  object-fit: contain;
-}
-
-.size-menu-trigger { position: relative; cursor: pointer; }
-
-.toggle-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  flex-shrink: 0;
-  cursor: pointer;
-}
-
-.toggle-label {
-  font-family: 'AvantGarde LT Book', sans-serif;
-  font-weight: bold;
-  font-size: 8px;
-  text-transform: uppercase;
-  white-space: nowrap;
+  height: 45px;
+  width: auto;
 }
 
 .search-box {
   position: relative;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  flex-shrink: 1;
-  min-width: 60px;
-}
-
-.search-bg-img {
-  height: 42px !important;
-  width: auto !important;
-  display: block;
-  object-fit: contain;
+  width: 250px;
+  height: 60px;
+  background: url('https://lh3.googleusercontent.com/d/16AEnLeUyzfPU4YTCNXWA78eKpm2aWF4v') no-repeat center/contain;
 }
 
 .search-box input {
   position: absolute;
-  left: 18%;
-  top: 25%;
-  width: 58%;
-  height: 50%;
-  border: none !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  outline: none !important;
-  font-size: 11px;
-  font-family: 'AvantGarde LT Medium', sans-serif;
-  color: #000;
-  padding: 0;
-  margin: 0;
-  -webkit-appearance: none;
+  left: 17.6%;
+  top: 27.1%;
+  width: 76.2%;
+  height: 50.7%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
 }
 
-@media (max-width: 600px) {
-  .sticky-menu { padding: 4px 8px; gap: 4px; }
-  .menu-left, .menu-right { gap: 6px; }
-  .menu-item { height: 32px !important; }
-  .search-box, .search-bg-img { height: 32px !important; }
-  .toggle-label { font-size: 7px; }
-}
-
-/* =========================================================
-   SIZE DROPDOWN MENU (ENSARTET PÅ DESKTOP OG MOBIL)
-   ========================================================= */
+/* Size Menu Overlay */
 .size-dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 150;
-  background: rgba(186, 205, 240, 0.82) !important;
+  top: 70px;
+  left: 20px;
+  z-index: 101;
+  background: rgba(186, 205, 240, 0.82);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  padding: 15px;
   border: 1.5px solid #2A1A6F;
   border-radius: 24px;
-  padding: 14px 18px 18px 18px;
   display: none;
   box-shadow: 0 12px 32px rgba(42, 26, 111, 0.18);
-  width: 330px;
-  box-sizing: border-box;
-  margin-top: 6px;
 }
 
-.size-dropdown-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
+.size-group {
+  margin-bottom: 10px;
 }
 
-.size-quick-actions { display: flex; gap: 6px; align-items: center; }
-.size-quick-actions img { height: 20px !important; width: auto !important; cursor: pointer; object-fit: contain; }
-
-.size-group { margin-bottom: 10px; }
-.size-group-title { height: 18px !important; width: auto !important; display: block; margin-bottom: 6px; object-fit: contain; }
+.size-group-title {
+  height: 25px;
+  display: block;
+  margin-bottom: 5px;
+}
 
 .size-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 6px;
+  grid-template-columns: repeat(6, 45px);
+  gap: 8px;
 }
 
 .size-grid img {
-  width: 100% !important;
-  height: auto !important;
-  aspect-ratio: 1/1;
+  width: 45px;
+  height: 45px;
   cursor: pointer;
-  object-fit: contain;
 }
 
-/* MAIN CONTENT LAYOUT */
-.main-wrapper { display: flex; padding: 0 20px 20px 20px; position: relative; box-sizing: border-box; }
-.content-area { flex: 1; min-width: 0; }
-.category-section { margin-bottom: 25px; }
+/* Layout Main Content & Grid */
+.main-wrapper {
+  display: flex;
+  padding: 20px;
+  position: relative;
+}
+
+.content-area {
+  flex: 1;
+}
 
 .category-title {
   font-family: 'AvantGarde LT Book', sans-serif;
   font-weight: bold;
-  font-size: 24px;
-  margin: 15px 0 10px 0;
+  font-size: 28px;
+  margin: 20px 0 10px 0;
 }
 
-.item-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
-@media (max-width: 1024px) { .item-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 600px) { .item-grid { grid-template-columns: repeat(2, 1fr); } }
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
 
-.alphabet-nav {
-  position: sticky;
-  top: 70px;
-  height: max-content;
+@media (max-width: 1024px) {
+  .item-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .item-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Item Card Design */
+.item-card {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-left: 15px;
-  z-index: 90;
 }
 
-.sidebar-bubble-item {
-  position: relative;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.sidebar-bubble-bg {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: contain;
-  z-index: 1;
-}
-
-.sidebar-bubble-letter {
-  position: relative;
-  z-index: 2;
-  font-family: 'AvantGarde LT Book', sans-serif;
-  font-weight: bold;
-  font-size: 14px;
-  color: #000;
-}
-
-@media (max-width: 600px) { .alphabet-nav { display: none; } }
-
-.item-card { display: flex; flex-direction: column; cursor: pointer; }
 .image-wrapper {
   position: relative;
   width: 100%;
@@ -245,95 +157,110 @@ html, body {
 
 .size-badge {
   position: absolute;
-  top: 4px; left: 4px;
-  width: 26px; height: 26px;
-  object-fit: contain;
+  top: 8px;
+  left: 8px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 
 .article-badge {
   position: absolute;
-  bottom: 3px; right: 4px;
-  display: flex; align-items: center; gap: 2px;
+  bottom: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
   font-family: 'AvantGarde LT Book', sans-serif;
-  font-weight: bold; font-size: 11px;
+  font-weight: bold;
+  font-size: 11px;
 }
 
-.article-badge img { height: 10px; width: auto; display: block; margin: 0; }
+.article-badge img {
+  height: 14px;
+  margin-right: 4px;
+}
 
 .info-box {
-  margin-top: 4px;
+  margin-top: 5px;
   background: #fff;
   border: 1px solid #ddd;
   padding: 6px 8px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 85px; 
-  position: relative;
+  font-size: 10px;
 }
 
 .info-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   font-family: 'AvantGarde LT Book', sans-serif;
   font-weight: bold;
-  font-size: 12px;
-  padding-right: 25px;
-}
-
-.item-id {
-  position: absolute;
-  top: 4px; right: 6px;
-  color: #D9D9D9 !important;
-  font-size: 7px !important;
-  font-family: 'AvantGarde LT Book', sans-serif;
+  font-size: 11px;
 }
 
 .info-name {
-  font-size: 11px;
-  font-family: 'AvantGarde LT Medium', sans-serif;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  margin: 1px 0;
+  font-size: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 3px 0;
 }
 
 .info-row {
-  display: flex; align-items: center; justify-content: space-between;
-  color: #4C4C4C; font-size: 10.5px; margin: 0;
-  font-family: 'AvantGarde LT Medium', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #4C4C4C;
 }
 
-.price-left-side, .price-right-side { display: flex; align-items: center; gap: 3px; }
-.price-left-side img, .price-right-side img { height: 11px; width: auto; display: inline-block; vertical-align: middle; }
-.info-row span.val { color: #000; font-family: 'AvantGarde LT Medium', sans-serif; }
+.info-row span.val { color: #000; }
+.info-row img { height: 10px; }
 
-/* =========================================================
-   POPUP MODAL DESIGN
-   ========================================================= */
+/* Category Alphabet Nav Bar */
+.alphabet-nav {
+  position: sticky;
+  top: 80px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.alphabet-nav a {
+  text-decoration: none;
+  color: #000;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 2px 6px;
+  text-align: center;
+}
+
+/* Modal Popup & Elementer */
 .modal-bg {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0,0,0,0.5);
   display: none;
-  align-items: center; justify-content: center;
+  align-items: center;
+  justify-content: center;
   z-index: 200;
   backdrop-filter: blur(4px);
-  padding: 10px;
-  box-sizing: border-box;
 }
 
 .modal {
-  background: #ffffff;
+  background: #fff;
   border-radius: 24px;
-  width: 440px !important;
+  width: 440px;
   max-width: 95vw;
-  padding: 10px 16px 12px 16px !important;
+  padding: 12px 16px 14px 16px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 4px !important;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  gap: 6px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
 }
 
 .modal-collect {
@@ -354,14 +281,12 @@ html, body {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: -2px;
-  margin-bottom: 0px;
+  margin-bottom: 2px;
 }
 
 .modal-header-banner img {
-  height: 72px !important;
+  height: 72px;
   width: auto;
-  max-width: 100%;
   object-fit: contain;
 }
 
@@ -372,17 +297,16 @@ html, body {
 }
 
 .field-group label {
-  color: #2F47B1 !important;
+  color: #2F47B1;
   font-family: 'AvantGarde LT Book', sans-serif;
   font-size: 10.5px;
   font-weight: bold;
 }
 
-.modal input[type="text"], 
-.modal textarea {
+input[type="text"], textarea {
   width: 100%;
-  background-color: #E7EDFF !important;
-  border: 1px solid #B1C3FF !important;
+  background-color: #E7EDFF;
+  border: 1px solid #B1C3FF;
   border-radius: 7px;
   padding: 4px 7px;
   box-sizing: border-box;
@@ -393,10 +317,9 @@ html, body {
 }
 
 .upload-section {
-  display: flex !important;
-  gap: 12px !important;
-  align-items: stretch !important;
-  width: 100% !important;
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
 }
 
 .upload-btn {
@@ -404,19 +327,20 @@ html, body {
   height: 135px !important;
   min-width: 135px !important;
   min-height: 135px !important;
-  border-radius: 14px !important;
-  background-size: cover !important;
-  background-position: center !important;
-  cursor: pointer !important;
-  flex-shrink: 0 !important;
+  border-radius: 14px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: 1px dashed #b1c3ff;
 }
 
 .upload-right {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-  flex-grow: 1 !important;
-  min-width: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
 }
 
 .art-input {
@@ -430,20 +354,21 @@ html, body {
   width: auto;
 }
 
+/* Brand Toggles - Store og side om side */
 .brand-toggle {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  gap: 6px !important;
-  margin: 2px 0 !important;
-  width: 100% !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin: 2px 0;
 }
 
 .brand-toggle img {
   height: 52px !important;
   width: 48% !important;
-  cursor: pointer !important;
-  object-fit: contain !important;
+  cursor: pointer;
+  object-fit: contain;
 }
 
 .three-cols {
@@ -458,25 +383,21 @@ html, body {
 }
 
 .price-section .field-group {
-  display: flex;
-  flex-direction: column;
-  height: 104px !important;
-  box-sizing: border-box;
+  flex: 1;
+  height: 108px;
 }
 
-.modal textarea#mMaterial {
+textarea#mMaterial {
   resize: none;
-  height: 84px !important;
-  box-sizing: border-box;
+  height: 88px;
 }
 
 .price-right {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 1;
-  height: 104px !important;
-  box-sizing: border-box;
+  height: 108px;
 }
 
 .sale-price-group {
@@ -496,9 +417,8 @@ html, body {
 }
 
 .toggle-sold-row img {
-  height: 14px !important;
+  height: 14px;
   width: auto;
-  display: block;
 }
 
 .modal-footer {
@@ -511,10 +431,8 @@ html, body {
 
 .footer-btn {
   height: 32px !important;
-  width: auto !important;
   cursor: pointer;
   object-fit: contain;
-  flex-shrink: 0;
 }
 
 .move-toggle-btn {
