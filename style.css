@@ -308,7 +308,7 @@ html, body {
 .info-row span.val { color: #000; font-family: 'AvantGarde LT Medium', sans-serif; }
 
 /* =========================================================
-   POPUP MODAL DESIGN (RETIDET 100% EFTER DINE MOCKUPS)
+   POPUP MODAL DESIGN (PRÆCIS EFTER DINE MOCKUPS)
    ========================================================= */
 .modal-bg {
   position: fixed;
@@ -398,7 +398,7 @@ html, body {
   gap: 10px;
 }
 
-/* Kvadratisk upload-billede præcis som i mockup */
+/* Kvadratisk upload-billede præcis som i mockup[cite: 28] */
 .upload-btn {
   width: 136px !important;
   height: 136px !important;
@@ -429,7 +429,7 @@ html, body {
   width: auto;
 }
 
-/* Forstørrede brand-toggles der flugter perfekt med upload-billedebredden */
+/* Forstørrede brand-toggles der flugter perfekt[cite: 28] */
 .brand-toggle {
   display: flex;
   justify-content: space-between;
