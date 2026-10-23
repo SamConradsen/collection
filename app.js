@@ -7,7 +7,6 @@ let currentImageBase64 = null;
 let currentEditId = null;
 let isSaving = false;
 
-// Billed-ID'er
 const IMAGES = {
   headerCollect: "1uLp25hiwtGZS970k78JIu7ew5jL_w8JS",
   headerWish: "1DepTek0L_aBYrnNZfvUYgrC2aNODlube",
@@ -101,7 +100,7 @@ const SIDEBAR_BUBBLES = [
 let selectedSizes = {};
 SIZE_DATA.forEach(group => {
   group.sizes.forEach(s => {
-    selectedSizes[s.key] = true;
+    selectedSizes[s.key.toLowerCase()] = true;
   });
 });
 
@@ -187,7 +186,7 @@ function renderSizeMenuUI() {
     }
     html += `<div class="size-grid">`;
     group.sizes.forEach(s => {
-      const isSelected = !!selectedSizes[s.key];
+      const isSelected = !!selectedSizes[s.key.toLowerCase()];
       html += `<img src="https://lh3.googleusercontent.com/d/${isSelected ? s.trueId : s.falseId}" onclick="toggleSingleSize(event, '${s.key}')" alt="${s.key}">`;
     });
     html += `</div></div>`;
@@ -197,13 +196,14 @@ function renderSizeMenuUI() {
 
 function toggleSingleSize(e, sizeKey) {
   if (e) e.stopPropagation();
-  selectedSizes[sizeKey] = !selectedSizes[sizeKey];
+  const keyLower = sizeKey.toLowerCase();
+  selectedSizes[keyLower] = !selectedSizes[keyLower];
   renderSizeMenuUI();
   renderItems();
 }
 
 function selectAllSizes(status) {
-  SIZE_DATA.forEach(group => group.sizes.forEach(s => selectedSizes[s.key] = status));
+  SIZE_DATA.forEach(group => group.sizes.forEach(s => selectedSizes[s.key.toLowerCase()] = status));
   renderSizeMenuUI();
   renderItems();
 }
@@ -229,28 +229,29 @@ function renderItems() {
   const filtered = allItems.filter(item => {
     if (!item) return false;
     
-    // Tjek om varen tilhører den aktuelle side (fanger 'collect', 'wish' og udefineret)
-    const itemCollect = item.collect ? String(item.collect).toLowerCase().trim() : 'collect';
+    // Tjek om varen tilhører den aktuelle side ('collect' eller 'wish')
+    const rawCollect = item.collect ? String(item.collect).toLowerCase().trim() : 'collect';
     const currentMode = PAGE_TYPE.toLowerCase().trim();
-    if (itemCollect !== currentMode && !(currentMode === 'collect' && !item.collect)) {
+    if (rawCollect !== currentMode && !(currentMode === 'collect' && !item.collect)) {
       return false;
     }
     
     const isSold = String(item.sold).toUpperCase() === 'TRUE';
     if (!showSold && isSold) return false;
 
-    // Varer UDEN størrelse (f.eks. Bags) ignoreres af size-filteret og vises altid
-    if (item.size && item.size.trim() !== '') {
-      const itemSizeKey = item.size.trim();
+    // Størrelsesfiltrering: Hvis varen HAR en størrelse angivet
+    if (item.size && String(item.size).trim() !== '') {
+      const itemSizeKey = String(item.size).trim().toLowerCase();
+      // Hvis størrelsen findes i vores størrelses-liste, og den er sat til false, skjules varen
       if (selectedSizes.hasOwnProperty(itemSizeKey) && !selectedSizes[itemSizeKey]) {
         return false;
       }
     }
 
     if (searchQuery) {
-      const matchName = item.name && item.name.toLowerCase().includes(searchQuery);
-      const matchArt = item.articlenumber && item.articlenumber.toLowerCase().includes(searchQuery);
-      const matchCat = item.category && item.category.toLowerCase().includes(searchQuery);
+      const matchName = item.name && String(item.name).toLowerCase().includes(searchQuery);
+      const matchArt = item.articlenumber && String(item.articlenumber).toLowerCase().includes(searchQuery);
+      const matchCat = item.category && String(item.category).toLowerCase().includes(searchQuery);
       if (!matchName && !matchArt && !matchCat) return false;
     }
     
@@ -259,7 +260,7 @@ function renderItems() {
 
   const categories = {};
   filtered.forEach(item => {
-    const cat = item.category ? item.category.trim() : 'Uncategorized';
+    const cat = item.category ? String(item.category).trim() : 'Uncategorized';
     if (!categories[cat]) categories[cat] = [];
     categories[cat].push(item);
   });
@@ -301,11 +302,11 @@ function renderItems() {
 
       const isSold = String(item.sold).toUpperCase() === 'TRUE';
       const bgUrl = item.imageid ? `https://lh3.googleusercontent.com/d/${item.imageid}` : '';
-      const brandText = item.brand === 'performance' ? 'adidas Performance' : 'adidas Originals';
+      const brandText = String(item.brand).toLowerCase() === 'performance' ? 'adidas Performance' : 'adidas Originals';
       const sizeBadgeId = getSizeBadgeId(item.size);
-      const hasSalePrice = isSold && item.saleprice && item.saleprice.trim() !== '';
-      const cleanPurchase = item.purchaseprice ? item.purchaseprice.replace(/kr\.?/gi, '').trim() : '';
-      const cleanSale = item.saleprice ? item.saleprice.replace(/kr\.?/gi, '').trim() : '';
+      const hasSalePrice = isSold && item.saleprice && String(item.saleprice).trim() !== '';
+      const cleanPurchase = item.purchaseprice ? String(item.purchaseprice).replace(/kr\.?/gi, '').trim() : '';
+      const cleanSale = item.saleprice ? String(item.saleprice).replace(/kr\.?/gi, '').trim() : '';
 
       card.innerHTML = `
         <div class="image-wrapper" style="background-image: url('${bgUrl}');">
