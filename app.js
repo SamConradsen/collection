@@ -100,7 +100,7 @@ const SIDEBAR_BUBBLES = [
 let selectedSizes = {};
 SIZE_DATA.forEach(group => {
   group.sizes.forEach(s => {
-    selectedSizes[s.key.toLowerCase()] = true;
+    selectedSizes[s.key] = true;
   });
 });
 
@@ -126,10 +126,15 @@ function fetchData() {
   fetch(APPS_SCRIPT_URL)
     .then(res => res.json())
     .then(data => {
-      if (Array.isArray(data)) allItems = data;
-      else if (data && Array.isArray(data.items)) allItems = data.items;
-      else if (data && typeof data === 'object') allItems = Object.values(data);
-      else allItems = [];
+      if (Array.isArray(data)) {
+        allItems = data;
+      } else if (data && Array.isArray(data.items)) {
+        allItems = data.items;
+      } else if (data && typeof data === 'object') {
+        allItems = Object.values(data);
+      } else {
+        allItems = [];
+      }
       
       updateCategoryDatalist();
       renderItems();
@@ -186,7 +191,7 @@ function renderSizeMenuUI() {
     }
     html += `<div class="size-grid">`;
     group.sizes.forEach(s => {
-      const isSelected = !!selectedSizes[s.key.toLowerCase()];
+      const isSelected = !!selectedSizes[s.key];
       html += `<img src="https://lh3.googleusercontent.com/d/${isSelected ? s.trueId : s.falseId}" onclick="toggleSingleSize(event, '${s.key}')" alt="${s.key}">`;
     });
     html += `</div></div>`;
@@ -196,21 +201,20 @@ function renderSizeMenuUI() {
 
 function toggleSingleSize(e, sizeKey) {
   if (e) e.stopPropagation();
-  const keyLower = sizeKey.toLowerCase();
-  selectedSizes[keyLower] = !selectedSizes[keyLower];
+  selectedSizes[sizeKey] = !selectedSizes[sizeKey];
   renderSizeMenuUI();
   renderItems();
 }
 
 function selectAllSizes(status) {
-  SIZE_DATA.forEach(group => group.sizes.forEach(s => selectedSizes[s.key.toLowerCase()] = status));
+  SIZE_DATA.forEach(group => group.sizes.forEach(s => selectedSizes[s.key] = status));
   renderSizeMenuUI();
   renderItems();
 }
 
 function getSizeBadgeId(sizeStr) {
   if (!sizeStr) return null;
-  const clean = sizeStr.trim().toUpperCase();
+  const clean = String(sizeStr).trim().toUpperCase();
   for (let group of SIZE_DATA) {
     for (let s of group.sizes) {
       if (s.key.toUpperCase() === clean) return s.trueId;
@@ -226,28 +230,22 @@ function renderItems() {
   contentArea.innerHTML = '';
   if (alphabetNav) alphabetNav.innerHTML = '';
 
+  // UDEN NOGET SOM HELST STØRRELSESFILTER - VI VISER ALT DER MATCHER SIDE/SOK/SØGNING
   const filtered = allItems.filter(item => {
     if (!item) return false;
     
-    // Tjek om varen tilhører den aktuelle side ('collect' eller 'wish')
-    const rawCollect = item.collect ? String(item.collect).toLowerCase().trim() : 'collect';
+    // Tjek side-type (collect vs wish)
+    const itemCollect = item.collect ? String(item.collect).toLowerCase().trim() : 'collect';
     const currentMode = PAGE_TYPE.toLowerCase().trim();
-    if (rawCollect !== currentMode && !(currentMode === 'collect' && !item.collect)) {
+    if (itemCollect !== currentMode && !(currentMode === 'collect' && !item.collect)) {
       return false;
     }
     
+    // Solgt-filter
     const isSold = String(item.sold).toUpperCase() === 'TRUE';
     if (!showSold && isSold) return false;
 
-    // Størrelsesfiltrering: Hvis varen HAR en størrelse angivet
-    if (item.size && String(item.size).trim() !== '') {
-      const itemSizeKey = String(item.size).trim().toLowerCase();
-      // Hvis størrelsen findes i vores størrelses-liste, og den er sat til false, skjules varen
-      if (selectedSizes.hasOwnProperty(itemSizeKey) && !selectedSizes[itemSizeKey]) {
-        return false;
-      }
-    }
-
+    // Søgeord
     if (searchQuery) {
       const matchName = item.name && String(item.name).toLowerCase().includes(searchQuery);
       const matchArt = item.articlenumber && String(item.articlenumber).toLowerCase().includes(searchQuery);
@@ -258,6 +256,7 @@ function renderItems() {
     return true;
   });
 
+  // Gruppér efter kategori
   const categories = {};
   filtered.forEach(item => {
     const cat = item.category ? String(item.category).trim() : 'Uncategorized';
@@ -492,7 +491,7 @@ function saveData() {
     madein: document.getElementById('mMadeIn').value,
     material: document.getElementById('mMaterial').value,
     purchaseprice: document.getElementById('mPurchasePrice').value,
-    saleprice: document.getElementById('mSalePrice').value,
+    salepriced: document.getElementById('mSalePrice').value,
     imageBase64: currentImageBase64
   };
 
