@@ -223,6 +223,17 @@ function getSizeBadgeId(sizeStr) {
   return null;
 }
 
+// HJÆLPEFUNKTION TIL PRECIS DANSK PRISFORMATTERING MED ALTIID 2 DECIMALER
+function formatDanishPrice(val) {
+  if (val === undefined || val === null || val === '') return '';
+  let strVal = String(val).replace('kr.', '').replace('kr', '').trim();
+  // Erstat dansk komma med punktum for at parse tallet korrekt
+  strVal = strVal.replace(',', '.');
+  const num = parseFloat(strVal);
+  if (isNaN(num)) return String(val);
+  return num.toLocaleString('da-DK', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' kr.';
+}
+
 function renderItems() {
   const contentArea = document.getElementById('contentArea');
   const alphabetNav = document.getElementById('alphabetNav');
@@ -230,7 +241,6 @@ function renderItems() {
   contentArea.innerHTML = '';
   if (alphabetNav) alphabetNav.innerHTML = '';
 
-  // INGEN FILTRERING PÅ STØRRELSER OVERHODET – VISER ALLE RÆKKER DER MATCHER SIDEN
   const filtered = allItems.filter(item => {
     if (!item) return false;
     
@@ -300,8 +310,9 @@ function renderItems() {
       const brandText = String(item.brand).toLowerCase() === 'performance' ? 'adidas Performance' : 'adidas Originals';
       const sizeBadgeId = getSizeBadgeId(item.size);
       const hasSalePrice = isSold && item.saleprice && String(item.saleprice).trim() !== '';
-      const cleanPurchase = item.purchaseprice ? String(item.purchaseprice).replace(/kr\.?/gi, '').trim() : '';
-      const cleanSale = item.saleprice ? String(item.saleprice).replace(/kr\.?/gi, '').trim() : '';
+
+      const purchaseFormatted = formatDanishPrice(item.purchaseprice);
+      const saleFormatted = formatDanishPrice(item.saleprice);
 
       card.innerHTML = `
         <div class="image-wrapper" style="background-image: url('${bgUrl}');">
@@ -323,12 +334,12 @@ function renderItems() {
           <div class="info-row">
             <div class="price-left-side">
               <img src="https://lh3.googleusercontent.com/d/${IMAGES.iconPurchasePrice}" alt="purchase">
-              <span class="val">${cleanPurchase ? cleanPurchase + ' kr.' : ''}</span>
+              <span class="val">${purchaseFormatted}</span>
             </div>
             ${hasSalePrice ? `
             <div class="price-right-side">
               <img src="https://lh3.googleusercontent.com/d/${IMAGES.iconSalePrice}" alt="sale">
-              <span class="val">${cleanSale ? cleanSale + ' kr.' : ''}</span>
+              <span class="val">${saleFormatted}</span>
             </div>
             ` : ''}
           </div>
