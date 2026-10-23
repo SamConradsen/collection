@@ -391,59 +391,53 @@ html, body {
   outline: none;
 }
 
+/* TVUNGET DIREKTE STRUKTUR FOR POP-UP TOPSEKTION */
 .upload-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 10px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  gap: 12px !important;
+  width: 100% !important;
 }
 
-/* Kvadratisk upload-billede */
 .upload-btn {
-  width: 125px !important;
-  height: 125px !important;
-  border-radius: 14px;
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  box-sizing: border-box;
+  width: 135px !important;
+  height: 135px !important;
+  min-width: 135px !important;
+  min-height: 135px !important;
+  border-radius: 14px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
 }
 
 .upload-right {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 1;
-  min-width: 0;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  flex-grow: 1 !important;
+  width: calc(100% - 145px) !important;
+  min-width: 0 !important;
 }
 
-.art-input {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.art-input img {
-  height: 14px;
-  width: auto;
-}
-
-/* TVUNGET STORE BRAND IKONER VED SIDE AF UPLOAD-BILLEDET */
+/* BRAND TOGGLES TVUNGET STORE OG SIDE OM SIDE */
 .brand-toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 6px;
-  margin: 2px 0;
-  width: 100%;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  margin: 2px 0 !important;
 }
 
 .brand-toggle img {
-  height: 54px !important;
   width: 48% !important;
-  cursor: pointer;
-  object-fit: contain;
+  height: 52px !important;
+  max-height: 52px !important;
+  object-fit: contain !important;
+  cursor: pointer !important;
 }
 
 .three-cols {
