@@ -20,12 +20,9 @@
   <div class="sticky-menu-wrapper">
     <div class="sticky-menu">
       <div class="menu-left">
-        <!-- Knap A (Add) -->
         <img src="https://lh3.googleusercontent.com/d/1Rr_zvVAQYIR4N1D4tfpUbryo5eiioUpq" class="menu-item" onclick="handleButtonA()" alt="Add">
-        <!-- Knap B (Wishlist) -->
         <img src="https://lh3.googleusercontent.com/d/1xmQ_n_7Y_pGltsocKUHVBAHdI6Gm0oes" class="menu-item" onclick="handleButtonB()" alt="Wishlist">
         
-        <!-- Size Menu Knap -->
         <div class="size-menu-trigger" onclick="toggleSizeMenu(event)">
           <img src="https://lh3.googleusercontent.com/d/1w_wkFOLBDLVanPZDswz19U744f0Dg8EL" class="menu-item" alt="Sizes">
           <div class="size-dropdown" id="sizeDropdown"></div>
@@ -40,7 +37,6 @@
       </div>
 
       <div class="menu-right">
-        <!-- SHOW SOLD OVEN OVER TOGGLE KNAP -->
         <div class="toggle-container" onclick="toggleShowSold()">
           <span class="toggle-label">SHOW SOLD</span>
           <img id="showSoldToggleImg" class="menu-item" src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" alt="Show Sold">
@@ -49,93 +45,92 @@
     </div>
   </div>
 
-  <!-- Main Content Layout med Sidebar & Gitter -->
+  <!-- Main Content Layout -->
   <div class="main-wrapper">
     <div class="content-area" id="contentArea"></div>
     <div class="alphabet-nav" id="alphabetNav"></div>
   </div>
 
   <!-- Modal Popup -->
-  <div class="modal-bg" id="modalBg" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.45); display: none; align-items: center; justify-content: center; z-index: 200; backdrop-filter: blur(4px); padding: 10px; box-sizing: border-box;">
-    <div class="modal modal-collect" id="modalCard" style="background: #ffffff; border-radius: 24px; width: 440px; max-width: 95vw; padding: 12px 16px 14px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 15px 35px rgba(0,0,0,0.25);">
+  <div class="modal-bg" id="modalBg">
+    <div class="modal modal-collect" id="modalCard">
       
-      <div class="modal-header-banner" style="width: 100%; display: flex; justify-content: center; margin-bottom: 2px;">
-        <img id="modalHeaderImg" src="https://lh3.googleusercontent.com/d/1uLp25hiwtGZS970k78JIu7ew5jL_w8JS" alt="Header Banner" style="height: 72px; width: auto; object-fit: contain;">
+      <div class="modal-header-banner">
+        <img id="modalHeaderImg" src="https://lh3.googleusercontent.com/d/1uLp25hiwtGZS970k78JIu7ew5jL_w8JS" alt="Header Banner">
       </div>
 
-      <!-- UPLOAD & HØJRE SIDE SEKTION -->
-      <div class="upload-section" style="display: flex; gap: 12px; align-items: stretch;">
-        <div class="upload-btn" id="uploadPreview" onclick="document.getElementById('fileInput').click()" style="width: 135px; height: 135px; border-radius: 14px; background-size: cover; background-position: center; cursor: pointer; flex-shrink: 0; border: 1px dashed #b1c3ff;"></div>
+      <!-- UPLOAD & BRAND TOGGLES -->
+      <div class="upload-section">
+        <div class="upload-btn" id="uploadPreview" onclick="document.getElementById('fileInput').click()"></div>
         <input type="file" id="fileInput" style="display:none;" onchange="handleImage(this)">
         
-        <div class="upload-right" style="display: flex; flex-direction: column; justify-content: space-between; flex: 1; min-width: 0;">
-          <div class="field-group" style="display: flex; flex-direction: column; gap: 1px;">
-            <label for="mArticle" style="color: #2F47B1; font-family: 'AvantGarde LT Book', sans-serif; font-size: 10.5px; font-weight: bold;">Article number</label>
-            <div class="art-input" style="display: flex; align-items: center; gap: 5px;">
-              <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#" style="height: 14px; width: auto;">
-              <input type="text" id="mArticle" placeholder="Article number" style="width: 100%; background-color: #E7EDFF; border: 1px solid #B1C3FF; border-radius: 7px; padding: 4px 7px; font-size: 10.5px; outline: none;">
+        <div class="upload-right">
+          <div class="field-group">
+            <label for="mArticle">Article number</label>
+            <div class="art-input">
+              <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
+              <input type="text" id="mArticle" placeholder="Article number">
             </div>
           </div>
 
-          <!-- BRAND TOGGLES - TVUNGET STORE -->
-          <div class="brand-toggle" style="display: flex; justify-content: space-between; align-items: center; gap: 6px; width: 100%;">
-            <img id="imgOrigToggle" src="https://lh3.googleusercontent.com/d/152SiPw7Y39y_jeMaTdTZLXFkgR_Zu4cn" onclick="selectBrand('originals')" alt="Originals" style="width: 48%; height: 52px; object-fit: contain; cursor: pointer;">
-            <img id="imgPerfToggle" src="https://lh3.googleusercontent.com/d/1wEklPrdEZ3GHbNw2ejwfYwx1nBnRxhny" onclick="selectBrand('performance')" alt="Performance" style="width: 48%; height: 52px; object-fit: contain; cursor: pointer;">
+          <div class="brand-toggle">
+            <img id="imgOrigToggle" src="https://lh3.googleusercontent.com/d/152SiPw7Y39y_jeMaTdTZLXFkgR_Zu4cn" onclick="selectBrand('originals')" alt="Originals">
+            <img id="imgPerfToggle" src="https://lh3.googleusercontent.com/d/1wEklPrdEZ3GHbNw2ejwfYwx1nBnRxhny" onclick="selectBrand('performance')" alt="Performance">
           </div>
 
-          <div class="field-group" style="display: flex; flex-direction: column; gap: 1px;">
-            <label for="mCategory" style="color: #2F47B1; font-family: 'AvantGarde LT Book', sans-serif; font-size: 10.5px; font-weight: bold;">Category</label>
-            <input type="text" id="mCategory" placeholder="Category" list="categorySuggestions" style="width: 100%; background-color: #E7EDFF; border: 1px solid #B1C3FF; border-radius: 7px; padding: 4px 7px; font-size: 10.5px; outline: none;">
-          </div>
-        </div>
-      </div>
-
-      <div class="field-group" style="display: flex; flex-direction: column; gap: 1px;">
-        <label for="mName" style="color: #2F47B1; font-family: 'AvantGarde LT Book', sans-serif; font-size: 10.5px; font-weight: bold;">Name</label>
-        <input type="text" id="mName" placeholder="Item name" style="width: 100%; background-color: #E7EDFF; border: 1px solid #B1C3FF; border-radius: 7px; padding: 4px 7px; font-size: 10.5px; outline: none;">
-      </div>
-
-      <div class="three-cols" style="display: flex; gap: 5px;">
-        <div class="field-group" style="flex: 1; display: flex; flex-direction: column; gap: 1px;">
-          <label for="mSize" style="color: #2F47B1; font-family: 'AvantGarde LT Book', sans-serif; font-size: 10.5px; font-weight: bold;">Size</label>
-          <input type="text" id="mSize" placeholder="Size" style="width: 100%; background-color: #E7EDFF; border: 1px solid #B1C3FF; border-radius: 7px; padding: 4px 7px; font-size: 10.5px; outline: none;">
-        </div>
-        <div class="field-group" style="flex: 1; display: flex; flex-direction: column; gap: 1px;">
-          <label for="mMadeIn" style="color: #2F47B1; font-family: 'AvantGarde LT Book', sans-serif; font-size: 10.5px; font-weight: bold;">Made in</label>
-          <input type="text" id="mMadeIn" placeholder="Country" style="width: 100%; background-color: #E7EDFF; border: 1px solid #B1C3FF; border-radius: 7px; padding: 4px 7px; font-size: 10.5px; outline: none;">
-        </div>
-        <div class="field-group" style="flex: 1; display: flex; flex-direction: column; gap: 1px;">
-          <label for="mProduced" style="color: #2F47B1; font-family: 'AvantGarde LT Book', sans-serif; font-size: 10.5px; font-weight: bold;">Production time</label>
-          <input type="text" id="mProduced" placeholder="MM/YY" style="width: 100%; background-color: #E7EDFF; border: 1px solid #B1C3FF; border-radius: 7px; padding: 4px 7px; font-size: 10.5px; outline: none;">
-        </div>
-      </div>
-
-      <div class="price-section" style="display: flex; gap: 10px; align-items: flex-start;">
-        <div class="field-group" style="flex: 1; display: flex; flex-direction: column; height: 108px;">
-          <label for="mMaterial" style="color: #2F47B1; font-family: 'AvantGarde LT Book', sans-serif; font-size: 10.5px; font-weight: bold;">Materials</label>
-          <textarea id="mMaterial" placeholder="Materials..." style="width: 100%; height: 88px; background-color: #E7EDFF; border: 1px solid #B1C3FF; border-radius: 7px; padding: 4px 7px; font-size: 10.5px; resize: none; outline: none;"></textarea>
-        </div>
-        <div class="price-right" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; height: 108px;">
-          <div class="field-group" style="display: flex; flex-direction: column; gap: 1px;">
-            <label for="mPurchasePrice" style="color: #2F47B1; font-family: 'AvantGarde LT Book', sans-serif; font-size: 10.5px; font-weight: bold;">Purchase price</label>
-            <input type="text" id="mPurchasePrice" placeholder="0,00 kr." style="width: 100%; background-color: #E7EDFF; border: 1px solid #B1C3FF; border-radius: 7px; padding: 4px 7px; font-size: 10.5px; outline: none;">
-          </div>
-          <div class="toggle-sold-row" onclick="toggleSoldState()" style="display: flex; align-items: center; cursor: pointer; margin: 2px 0;">
-            <img id="btnSold" src="https://lh3.googleusercontent.com/d/1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK" alt="Reselling" style="height: 14px; width: auto;">
-          </div>
-          <div class="field-group sale-price-group" id="salePriceGroup" style="display: flex; flex-direction: column; gap: 1px; opacity: 0.4;">
-            <label for="mSalePrice" style="color: #2F47B1; font-family: 'AvantGarde LT Book', sans-serif; font-size: 10.5px; font-weight: bold;">Sale price</label>
-            <input type="text" id="mSalePrice" placeholder="0,00 kr." disabled style="width: 100%; background-color: #E7EDFF; border: 1px solid #B1C3FF; border-radius: 7px; padding: 4px 7px; font-size: 10.5px; outline: none;">
+          <div class="field-group">
+            <label for="mCategory">Category</label>
+            <input type="text" id="mCategory" placeholder="Category" list="categorySuggestions">
           </div>
         </div>
       </div>
 
-      <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px; gap: 8px;">
-        <img src="https://lh3.googleusercontent.com/d/1ezJe2_NICuZT07YFN_1pRIQC8yiWAOHc" class="footer-btn" onclick="closeModal()" alt="Cancel" style="height: 32px; cursor: pointer;">
-        <div class="move-toggle-btn" onclick="toggleModalPageType()" style="flex: 1; display: flex; justify-content: center; align-items: center;">
-          <img id="imgMoveBtn" src="https://lh3.googleusercontent.com/d/1we3m7rDh0tdhhbJzLc5nTUZZfr3QLUL7" alt="Move" style="height: 44px; width: 100%; object-fit: contain; cursor: pointer;">
+      <div class="field-group">
+        <label for="mName">Name</label>
+        <input type="text" id="mName" placeholder="Item name">
+      </div>
+
+      <div class="three-cols">
+        <div class="field-group" style="flex: 1;">
+          <label for="mSize">Size</label>
+          <input type="text" id="mSize" placeholder="Size">
         </div>
-        <img src="https://lh3.googleusercontent.com/d/1AjppabQ9us5pA44AK5LGZdV9MJ1YDXrC" class="footer-btn" onclick="saveData()" alt="Save" style="height: 32px; cursor: pointer;">
+        <div class="field-group" style="flex: 1;">
+          <label for="mMadeIn">Made in</label>
+          <input type="text" id="mMadeIn" placeholder="Country">
+        </div>
+        <div class="field-group" style="flex: 1;">
+          <label for="mProduced">Production time</label>
+          <input type="text" id="mProduced" placeholder="MM/YY">
+        </div>
+      </div>
+
+      <div class="price-section">
+        <div class="field-group">
+          <label for="mMaterial">Materials</label>
+          <textarea id="mMaterial" placeholder="Materials..."></textarea>
+        </div>
+        <div class="price-right">
+          <div class="field-group">
+            <label for="mPurchasePrice">Purchase price</label>
+            <input type="text" id="mPurchasePrice" placeholder="0,00 kr.">
+          </div>
+          <div class="toggle-sold-row" onclick="toggleSoldState()">
+            <img id="btnSold" src="https://lh3.googleusercontent.com/d/1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK" alt="Reselling">
+          </div>
+          <div class="field-group sale-price-group" id="salePriceGroup">
+            <label for="mSalePrice">Sale price</label>
+            <input type="text" id="mSalePrice" placeholder="0,00 kr." disabled>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <img src="https://lh3.googleusercontent.com/d/1ezJe2_NICuZT07YFN_1pRIQC8yiWAOHc" class="footer-btn" onclick="closeModal()" alt="Cancel">
+        <div class="move-toggle-btn" onclick="toggleModalPageType()">
+          <img id="imgMoveBtn" src="https://lh3.googleusercontent.com/d/1we3m7rDh0tdhhbJzLc5nTUZZfr3QLUL7" alt="Move">
+        </div>
+        <img src="https://lh3.googleusercontent.com/d/1AjppabQ9us5pA44AK5LGZdV9MJ1YDXrC" class="footer-btn" onclick="saveData()" alt="Save">
       </div>
 
     </div>
