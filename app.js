@@ -6,10 +6,11 @@ let searchQuery = "";
 let currentImageBase64 = null;
 let currentEditId = null;
 let isSaving = false;
+let isFormDirty = false;
 
 const IMAGES = {
-  headerCollect: "1uLp25hiwtGZS970k78JIu7ew5jL_w8JS",
-  headerWish: "1DepTek0L_aBYrnNZfvUYgrC2aNODlube",
+  headerCollect: "1gmPYQ6Regt_LEtvqxmYXH6gj2A0O2zVm",
+  headerWish: "1jDUHm6gbM6adDlhTJVOFNG_MZo8_Xeuy",
   uploadPlaceholder: "17YobDkGOVX0dUIyLRVu_alxkMO2AnmxT",
   
   origTrue: "1phuiZ7Mh7kYKfAENbCw2ah78_Tem2NAM",
@@ -20,8 +21,8 @@ const IMAGES = {
   soldFalse: "1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK",
   soldTrue: "1vETS8eyAKpPjy89FdnPhRyh70Jw9whoK",
 
-  moveWish: "1AeIbSXDiSqhPg1enT6nMWzt2lklS5XpF",
-  moveCollect: "1Flpel4yhx-nUhPdNCWwA2bICP6IyZWRU",
+  moveWish: "1XsICtNKjWCBHymS1GHLmU-zh8LCk0f5a",
+  moveCollect: "1G6bh59wDqrV1XJ8tIZsDJniycS4BHwZ_",
 
   showSoldOff: "1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ",
   showSoldOn: "19wTkumBvqWSzhakI3TRw6ACWI0jl2YCG",
@@ -121,6 +122,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+function markFormDirty() {
+  isFormDirty = true;
+}
+
+function handleBackdropClick(e) {
+  if (e.target.id === 'modalBg') {
+    if (!isFormDirty) {
+      closeModal();
+    }
+  }
+}
 
 function fetchData() {
   fetch(APPS_SCRIPT_URL)
@@ -223,11 +236,9 @@ function getSizeBadgeId(sizeStr) {
   return null;
 }
 
-// HJÆLPEFUNKTION TIL PRECIS DANSK PRISFORMATTERING MED ALTIID 2 DECIMALER
 function formatDanishPrice(val) {
   if (val === undefined || val === null || val === '') return '';
   let strVal = String(val).replace('kr.', '').replace('kr', '').trim();
-  // Erstat dansk komma med punktum for at parse tallet korrekt
   strVal = strVal.replace(',', '.');
   const num = parseFloat(strVal);
   if (isNaN(num)) return String(val);
@@ -363,6 +374,8 @@ function updateCategoryDatalist() {
 function openModal(type) {
   currentEditId = null;
   currentImageBase64 = null;
+  isFormDirty = false;
+  
   const uploadPreview = document.getElementById('uploadPreview');
   if (uploadPreview) uploadPreview.style.backgroundImage = `url('https://lh3.googleusercontent.com/d/${IMAGES.uploadPlaceholder}')`;
 
@@ -380,9 +393,11 @@ function openModal(type) {
 
 function closeModal() {
   document.getElementById('modalBg').style.display = 'none';
+  isFormDirty = false;
 }
 
 function toggleModalPageType() {
+  markFormDirty();
   setPageType(formData.collect === 'collect' ? 'wish' : 'collect');
 }
 
@@ -404,6 +419,7 @@ function setPageType(type) {
 }
 
 function selectBrand(brand) {
+  markFormDirty();
   formData.brand = (formData.brand === brand) ? '' : brand;
   updateBrandUI();
 }
@@ -421,6 +437,7 @@ function updateBrandUI() {
 }
 
 function toggleSoldState() {
+  markFormDirty();
   setSoldState(formData.sold === 'TRUE' ? 'FALSE' : 'TRUE');
 }
 
@@ -443,6 +460,7 @@ function setSoldState(state) {
 
 function handleImage(input) {
   if (input.files && input.files[0]) {
+    markFormDirty();
     const reader = new FileReader();
     reader.onload = function(e) {
       currentImageBase64 = e.target.result;
@@ -457,6 +475,8 @@ function editItem(id) {
   if (!item) return;
 
   currentEditId = item.id;
+  isFormDirty = false;
+
   setPageType(item.collect || PAGE_TYPE);
   initBrand(item.brand || '');
   setSoldState(String(item.sold).toUpperCase());
