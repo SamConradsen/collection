@@ -20,7 +20,7 @@ const IMAGES = {
   soldFalse: "1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK",
   soldTrue: "1vETS8eyAKpPjy89FdnPhRyh70Jw9whoK",
 
-  moveWish: "1we3m7rDh0tdhhbJzLc5nTUZZfr3QLUL7",
+  moveWish: "1AeIbSXDiSqhPg1enT6nMWzt2lklS5XpF",
   moveCollect: "1Flpel4yhx-nUhPdNCWwA2bICP6IyZWRU",
 
   showSoldOff: "1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ",
