@@ -308,7 +308,7 @@ html, body {
 .info-row span.val { color: #000; font-family: 'AvantGarde LT Medium', sans-serif; }
 
 /* =========================================================
-   POPUP MODAL DESIGN (PRÆCIS EFTER DINE MOCKUPS)
+   POPUP MODAL DESIGN (TVUNGET RETTET EFTER MOCKUPS)
    ========================================================= */
 .modal-bg {
   position: fixed;
@@ -398,10 +398,10 @@ html, body {
   gap: 10px;
 }
 
-/* Kvadratisk upload-billede præcis som i mockup[cite: 28] */
+/* Kvadratisk upload-billede */
 .upload-btn {
-  width: 136px !important;
-  height: 136px !important;
+  width: 125px !important;
+  height: 125px !important;
   border-radius: 14px;
   background-size: cover;
   background-position: center;
@@ -429,18 +429,18 @@ html, body {
   width: auto;
 }
 
-/* Forstørrede brand-toggles der flugter perfekt[cite: 28] */
+/* TVUNGET STORE BRAND IKONER VED SIDE AF UPLOAD-BILLEDET */
 .brand-toggle {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 6px;
-  margin: 1px 0;
+  margin: 2px 0;
   width: 100%;
 }
 
 .brand-toggle img {
-  height: 48px !important;
+  height: 54px !important;
   width: 48% !important;
   cursor: pointer;
   object-fit: contain;
@@ -461,13 +461,13 @@ html, body {
 .price-section .field-group {
   display: flex;
   flex-direction: column;
-  height: 108px !important;
+  height: 104px !important;
   box-sizing: border-box;
 }
 
 .modal textarea#mMaterial {
   resize: none;
-  height: 88px !important;
+  height: 84px !important;
   box-sizing: border-box;
 }
 
@@ -476,7 +476,7 @@ html, body {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  height: 108px !important;
+  height: 104px !important;
   box-sizing: border-box;
 }
 
@@ -506,7 +506,7 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 3px;
+  margin-top: 4px;
   gap: 8px;
 }
 
