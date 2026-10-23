@@ -21,7 +21,7 @@ html, body {
   -webkit-text-size-adjust: 100%;
 }
 
-/* HEADER BANNER */
+/* TOP HEADER & STICKY NAVBAR */
 .header-container {
   width: 100%;
   overflow: hidden;
@@ -33,7 +33,6 @@ html, body {
   display: block;
 }
 
-/* TOP MENU / STICKY NAVBAR */
 .sticky-menu-wrapper {
   position: sticky;
   top: 0;
@@ -91,7 +90,6 @@ html, body {
   white-space: nowrap;
 }
 
-/* SØGEFELT INKL. BAGGRUNDSBILLEDE */
 .search-box {
   position: relative;
   height: 42px;
@@ -134,7 +132,7 @@ html, body {
   .toggle-label { font-size: 7px; }
 }
 
-/* SIZE DROPDOWN MENU OVERLAY */
+/* SIZE DROPDOWN MENU */
 .size-dropdown {
   position: absolute;
   top: 100%;
@@ -213,7 +211,7 @@ html, body {
 @media (max-width: 1024px) { .item-grid { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 600px) { .item-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* SIDEBAR ALFABET BOBLER - FASTE KORREKTE DIMENSIONER */
+/* SIDEBAR ALFABET BOBLER */
 .alphabet-nav {
   position: sticky;
   top: 70px;
@@ -346,7 +344,7 @@ html, body {
 .info-row span.val { color: #000; font-family: 'AvantGarde LT Medium', sans-serif; }
 
 /* =========================================================
-   POPUP MODAL DESIGN
+   POPUP MODAL DESIGN (ISOLERET & RETTET EFTER MOCKUPS)
    ========================================================= */
 .modal-bg {
   position: fixed;
@@ -417,16 +415,16 @@ html, body {
 
 .modal input[type="text"], 
 .modal textarea {
-  width: 100%;
+  width: 100% !important;
   background-color: #E7EDFF !important;
   border: 1px solid #B1C3FF !important;
-  border-radius: 7px;
-  padding: 4px 7px;
-  box-sizing: border-box;
-  font-family: 'AvantGarde LT Medium', sans-serif;
-  font-size: 10.5px;
-  color: #000;
-  outline: none;
+  border-radius: 7px !important;
+  padding: 4px 7px !important;
+  box-sizing: border-box !important;
+  font-family: 'AvantGarde LT Medium', sans-serif !important;
+  font-size: 10.5px !important;
+  color: #000 !important;
+  outline: none !important;
 }
 
 .upload-section {
@@ -446,6 +444,7 @@ html, body {
   background-position: center !important;
   cursor: pointer !important;
   flex-shrink: 0 !important;
+  border: 1px dashed #b1c3ff !important;
 }
 
 .upload-right {
@@ -457,14 +456,14 @@ html, body {
 }
 
 .art-input {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
 }
 
 .art-input img {
-  height: 14px;
-  width: auto;
+  height: 14px !important;
+  width: auto !important;
 }
 
 .brand-toggle {
@@ -484,36 +483,36 @@ html, body {
 }
 
 .three-cols {
-  display: flex;
-  gap: 5px;
+  display: flex !important;
+  gap: 5px !important;
 }
 
 .price-section {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
+  display: flex !important;
+  gap: 10px !important;
+  align-items: flex-start !important;
 }
 
 .price-section .field-group {
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
   height: 104px !important;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 .modal textarea#mMaterial {
-  resize: none;
+  resize: none !important;
   height: 84px !important;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 .price-right {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 1;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  flex: 1 !important;
   height: 104px !important;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 .sale-price-group {
@@ -526,44 +525,44 @@ html, body {
 }
 
 .toggle-sold-row {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  margin: 2px 0;
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  margin: 2px 0 !important;
 }
 
 .toggle-sold-row img {
   height: 14px !important;
-  width: auto;
-  display: block;
+  width: auto !important;
+  display: block !important;
 }
 
 .modal-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 4px;
-  gap: 8px;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-top: 4px !important;
+  gap: 8px !important;
 }
 
 .footer-btn {
   height: 32px !important;
   width: auto !important;
-  cursor: pointer;
-  object-fit: contain;
-  flex-shrink: 0;
+  cursor: pointer !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
 }
 
 .move-toggle-btn {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 1 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 .move-toggle-btn img {
   height: 44px !important;
   width: 100% !important;
-  object-fit: contain;
-  cursor: pointer;
+  object-fit: contain !important;
+  cursor: pointer !important;
 }
