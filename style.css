@@ -7,7 +7,12 @@
   font-family: 'AvantGarde LT Medium';
   src: local('AvantGarde LT Medium'), local('ITC Avant Garde Gothic Std Medium');
   font-weight: 500;
-} 
+}
+@font-face {
+  font-family: 'AvantGarde LT Medium';
+  src: local('AvantGarde LT Medium'), local('ITC Avant Garde Gothic Std Medium');
+  font-weight: normal;
+}
 
 html, body {
   margin: 0;
@@ -296,7 +301,7 @@ html, body {
   .content-area { padding-right: 0; }
 }
 
-/* ITEM CARD DESIGN MED KORREKT AVANTGARDE LT BOOK FONT PÅ ADIDAS ORIGINALS */
+/* ITEM CARD DESIGN MED PRÆCIS FONT-STYRING */
 .item-card {
   display: flex;
   flex-direction: column;
@@ -332,7 +337,8 @@ html, body {
   bottom: 3px; right: 4px;
   display: flex; align-items: center; gap: 2px;
   font-family: 'AvantGarde LT Book', sans-serif;
-  font-weight: bold; font-size: 11px;
+  font-weight: bold; 
+  font-size: 11px;
 }
 
 .article-badge img { height: 10px; width: auto; display: block; margin: 0; }
@@ -370,8 +376,8 @@ html, body {
 
 .info-name {
   font-size: 11px;
-  font-family: 'AvantGarde LT Book', sans-serif;
-  font-weight: bold;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-weight: normal; /* Almindelig font style */
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   margin: 1px 0;
 }
@@ -380,11 +386,36 @@ html, body {
   display: flex; align-items: center; justify-content: space-between;
   color: #4C4C4C; font-size: 10.5px; margin: 0;
   font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold; /* Made in & Produced i AvantGarde LT Book fed */
 }
 
-.price-left-side, .price-right-side { display: flex; align-items: center; gap: 3px; }
+.info-row span.val {
+  color: #000;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+}
+
+.price-left-side, .price-right-side { 
+  display: flex; 
+  align-items: center; 
+  gap: 3px; 
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-weight: bold; /* Purchase price & Sale price i AvantGarde LT Medium fed */
+}
+
 .price-left-side img, .price-right-side img { height: 11px; width: auto; display: inline-block; vertical-align: middle; }
-.info-row span.val { color: #000; font-family: 'AvantGarde LT Book', sans-serif; font-weight: bold; }
+
+.price-left-side span.val {
+  color: #000;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-weight: bold;
+}
+
+.price-right-side span.val {
+  color: #001EB7 !important; /* Sale price i specifik farve */
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-weight: bold;
+}
 
 /* =========================================================
    POPUP MODAL DESIGN - 381 : 558 PROPORTIONER OG FYLDET UD
