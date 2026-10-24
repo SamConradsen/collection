@@ -240,10 +240,15 @@ html, body {
 }
 
 @media (max-width: 1024px) { 
-  .item-grid { grid-template-columns: repeat(4, 1fr); } 
+  .item-grid { 
+    grid-template-columns: repeat(4, 1fr); 
+  } 
 }
+
 @media (max-width: 600px) { 
-  .item-grid { grid-template-columns: repeat(2, 1fr); } 
+  .item-grid { 
+    grid-template-columns: repeat(2, 1fr) !important; 
+  } 
 }
 
 /* SIDEBAR ALFABET BOBLER - DYNAMISK LÆBOPOMADE / MIDTE-LÅS */
@@ -314,14 +319,16 @@ html, body {
   cursor: pointer;
   grid-column: span 1 !important;
   width: 100% !important;
-  min-width: 0 !important; /* VIGTIGT: Forhindrer flexbox i at tvinge kolonnen til at udvide sig */
+  max-width: 100% !important;
+  min-width: 0 !important;
   box-sizing: border-box;
 }
 
 .image-wrapper {
   position: relative;
   width: 100% !important;
-  padding-top: 100%;
+  aspect-ratio: 1 / 1 !important; /* Tvinger billedet til at være 100% kvadratisk uanset alt andet */
+  padding-top: 0 !important; /* Erstatter padding-top trick for at undgå at elementet strækkes */
   border: 1px dashed #000;
   box-sizing: border-box;
   background-color: #fff;
