@@ -421,7 +421,9 @@ function closeModal() {
 
 function toggleModalPageType() {
   markFormDirty();
-  setPageType(formData.collect === 'collect' ? 'wish' : 'collect');
+  // Skift mellem 'collect' og 'wish'
+  const newType = formData.collect === 'collect' ? 'wish' : 'collect';
+  setPageType(newType);
 }
 
 function setPageType(type) {
@@ -530,7 +532,7 @@ function saveData() {
 
   const payload = {
     id: currentEditId,
-    collect: formData.collect,
+    collect: formData.collect, // Sender nu korrekt 'wish' eller 'collect' i stedet for ID'et
     brand: formData.brand,
     sold: formData.sold,
     articlenumber: document.getElementById('mArticle').value,
