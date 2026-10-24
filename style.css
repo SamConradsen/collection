@@ -306,6 +306,8 @@ html, body {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  grid-column: span 1 !important; /* Låser kortet fast til præcis én kolonne */
+  width: 100%;
 }
 
 .image-wrapper {
