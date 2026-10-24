@@ -32,6 +32,13 @@ const IMAGES = {
   iconProduced: "1ij4Ek7JOZ956BKEObfNPiQUkQRFSTVBY"
 };
 
+const SIDEBAR_BUBBLES = [
+  "1zQ83_O1G7nZJp4H9V8tB46b3b5qY6C7X",
+  "1W1xW5-2Cg8v8tH8zJ7X6C5V4B3N2M1K0",
+  "1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7",
+  "1Q2W3E4R5T6Y7U8I9O0P1A2S3D4F5G6H7"
+];
+
 const SIZE_DATA = [
   {
     title: "1RZTZy5SkaYhentzK95PtHLfTLrry588t",
@@ -96,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSizeMenuUI();
   fetchData();
 
-  // Læbepomade-logik: Tjek scroll-position for at afgøre, om menuen skal vige for headeren
   window.addEventListener('scroll', handleSmartNavbarNavigation);
   handleSmartNavbarNavigation();
 
@@ -117,8 +123,6 @@ function handleSmartNavbarNavigation() {
   if (!headerContainer || !alphabetNav) return;
 
   const headerRect = headerContainer.getBoundingClientRect();
-  // Hvis headerens bund er tættere på toppen end ca. 60px, betyder det at headeren er oppe og blokere. 
-  // Så skal menuen trække sig ud af skærmen (til højre). Ellers dukker den op i midten af skærmen.
   if (headerRect.bottom <= 70) {
     alphabetNav.classList.remove('hidden-by-header');
   } else {
