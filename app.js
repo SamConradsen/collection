@@ -533,7 +533,7 @@ function saveData() {
 
   const payload = {
     id: currentEditId,
-    collect: formCollectState, // Sender nu altid rent tekst ('wish' eller 'collect')
+    collect: formCollectState,
     brand: formBrandState,
     sold: formSoldState,
     articlenumber: document.getElementById('mArticle').value,
