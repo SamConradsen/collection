@@ -312,10 +312,10 @@ html, body {
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
   grid-column: span 1 !important;
+  width: 100% !important;
+  min-width: 0 !important; /* VIGTIGT: Forhindrer flexbox i at tvinge kolonnen til at udvide sig */
+  box-sizing: border-box;
 }
 
 .image-wrapper {
@@ -360,6 +360,7 @@ html, body {
   padding: 6px 8px;
   box-sizing: border-box;
   width: 100% !important;
+  min-width: 0 !important; /* Sikrer at infoboksen ikke presser kolonnen ud */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
