@@ -235,12 +235,11 @@ html, body {
 @media (max-width: 1024px) { .item-grid { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 600px) { .item-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* SIDEBAR ALFABET BOBLER - INTELIGENT LÆBOPOMADE-LOGIK (FIXED MED TRANSITION) */
+/* SIDEBAR ALFABET BOBLER - DYNAMISK LÆBOPOMADE / MIDTE-LÅS */
 .alphabet-nav {
-  position: fixed;
+  position: absolute;
   right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 150px;
   height: max-content;
   max-height: calc(100vh - 120px);
   overflow-y: auto;
@@ -249,15 +248,12 @@ html, body {
   gap: 6px;
   z-index: 120;
   padding: 2px;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: auto;
 }
 
-/* Når headeren er tæt på i toppen, trækker menuen sig blidt ud af skærmen (gemmer sig) */
-.alphabet-nav.hidden-by-header {
-  opacity: 0;
-  transform: translateY(-50%) translateX(60px);
-  pointer-events: none;
+.alphabet-nav.fixed-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .alphabet-nav::-webkit-scrollbar {
