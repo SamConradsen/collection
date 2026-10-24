@@ -82,22 +82,6 @@ const SIZE_DATA = [
   }
 ];
 
-const SIDEBAR_BUBBLES = [
-  "13pZM4zD0ZOojOOK8Z9U-XRD_LB6jFLhv",
-  "1-kkfG5BQGSEN0y5gtib-G7Bag24CS48z",
-  "1Ee96od3smLEBunbehTGh3pO-IB8-dwuB",
-  "1ph54eAPqFOmK8vTK66MRjRqwvQ0bTPDB",
-  "1FF7BwwV62D1SPG_LafWYg-bcBkPS-9Ze",
-  "1b4KYFbxWVtbxe-Ye9-xToCMPc5SFRdyr",
-  "1pBaobKsdrgze1xHFuKeluNh92gXYJe2w",
-  "1h_iBEd6GdVI-zQ7KSjkxMb0nY5eXThb7",
-  "1QyCpAEWxB62D5FamJVosBbk8dVlmSqA8",
-  "1YNpfOx62ScrIRv9ujFDrYymp-HWSnYpg",
-  "1kdlJZkZDI8ZQLZ0cFZeUyUp4P4z2Wwmz",
-  "1xwj9oQKB5u8848iS6rt5Hp1Ps7ohosE7",
-  "1xzJ46Zv8wXrFOl7sOYHpS8S9_Pc4yz-B"
-];
-
 let selectedSizes = {};
 SIZE_DATA.forEach(group => {
   group.sizes.forEach(s => {
@@ -112,6 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSizeMenuUI();
   fetchData();
 
+  // Læbepomade-logik: Tjek scroll-position for at afgøre, om menuen skal vige for headeren
+  window.addEventListener('scroll', handleSmartNavbarNavigation);
+  handleSmartNavbarNavigation();
+
   document.addEventListener('click', (e) => {
     const dropdown = document.getElementById('sizeDropdown');
     const trigger = document.querySelector('.size-menu-trigger');
@@ -122,6 +110,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+function handleSmartNavbarNavigation() {
+  const headerContainer = document.querySelector('.header-container');
+  const alphabetNav = document.getElementById('alphabetNav');
+  if (!headerContainer || !alphabetNav) return;
+
+  const headerRect = headerContainer.getBoundingClientRect();
+  // Hvis headerens bund er tættere på toppen end ca. 60px, betyder det at headeren er oppe og blokere. 
+  // Så skal menuen trække sig ud af skærmen (til højre). Ellers dukker den op i midten af skærmen.
+  if (headerRect.bottom <= 70) {
+    alphabetNav.classList.remove('hidden-by-header');
+  } else {
+    alphabetNav.classList.add('hidden-by-header');
+  }
+}
 
 function markFormDirty() {
   isFormDirty = true;
@@ -151,6 +154,7 @@ function fetchData() {
       
       updateCategoryDatalist();
       renderItems();
+      handleSmartNavbarNavigation();
     })
     .catch(err => console.error("Fejl ved data-hentning:", err));
 }
