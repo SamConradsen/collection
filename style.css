@@ -25,6 +25,8 @@ html, body {
 .header-container {
   width: 100%;
   overflow: hidden;
+  position: relative;
+  z-index: 10;
 }
 
 .header-container img {
@@ -33,7 +35,7 @@ html, body {
   display: block;
 }
 
-/* TOP MENU / STICKY NAVBAR */
+/* TOP MENU / STICKY NAVBAR - CENTRERET MIDTERSEKTION */
 .sticky-menu-wrapper {
   position: sticky;
   top: 0;
@@ -49,7 +51,7 @@ html, body {
   padding: 6px 20px;
   box-sizing: border-box;
   width: 100%;
-  gap: 16px;
+  position: relative;
 }
 
 .menu-left {
@@ -57,13 +59,26 @@ html, body {
   align-items: center;
   gap: 10px;
   min-width: 0;
+  z-index: 2;
+}
+
+/* Midtergruppe: Søgefelt og Show Sold rykket ind på midten */
+.menu-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1;
 }
 
 .menu-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   min-width: 0;
+  z-index: 2;
 }
 
 .menu-item {
@@ -98,14 +113,11 @@ html, body {
   white-space: nowrap;
 }
 
-/* SØGEFELT OG SHOW SOLD PLACERING */
 .search-box {
   position: relative;
   height: 42px;
   display: flex;
   align-items: center;
-  flex-shrink: 1;
-  min-width: 140px;
   width: 220px;
 }
 
@@ -134,28 +146,28 @@ html, body {
   -webkit-appearance: none;
 }
 
-@media (max-width: 600px) {
-  .sticky-menu { padding: 4px 8px; gap: 6px; }
-  .menu-left, .menu-right { gap: 6px; }
-  .menu-item { height: 32px !important; }
-  .search-box, .search-bg-img { height: 32px !important; width: 140px; }
-  .toggle-label { font-size: 7px; }
+@media (max-width: 768px) {
+  .menu-center {
+    position: static;
+    transform: none;
+  }
+  .search-box { width: 140px; }
 }
 
-/* SIZE DROPDOWN MENU OVERLAY (PERFEKT GLAS-EFFEKT) */
+/* SIZE DROPDOWN MENU OVERLAY (ÆGTE FROSTED GLAS-EFFEKT) */
 .size-dropdown {
   position: absolute;
   top: 100%;
   left: 0;
   z-index: 150;
-  background: rgba(209, 227, 255, 0.85) !important;
-  backdrop-filter: blur(15px) !important;
-  -webkit-backdrop-filter: blur(15px) !important;
-  border: 1.5px solid #2A1A6F;
+  background: rgba(209, 227, 255, 0.72) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1.5px solid rgba(42, 26, 111, 0.4);
   border-radius: 24px;
   padding: 14px 18px 18px 18px;
   display: none;
-  box-shadow: 0 12px 32px rgba(42, 26, 111, 0.18);
+  box-shadow: 0 16px 40px rgba(42, 26, 111, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.6);
   width: 330px;
   box-sizing: border-box;
   margin-top: 6px;
@@ -195,12 +207,13 @@ html, body {
   position: relative;
   box-sizing: border-box;
   width: 100%;
+  align-items: flex-start;
 }
 
 .content-area {
   flex: 1;
   min-width: 0;
-  padding-right: 50px; /* Giver plads til den flydende kategori-menu */
+  padding-right: 55px;
 }
 
 .category-section {
@@ -223,20 +236,20 @@ html, body {
 @media (max-width: 1024px) { .item-grid { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 600px) { .item-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* SIDEBAR ALFABET BOBLER - FLYDENDE OVENPÅ SIDEN FRA LIGE UNDER HEADER */
+/* SIDEBAR ALFABET BOBLER - STICKY UNDER HEADER & SVÆVER NÅR DER SCROLLES */
 .alphabet-nav {
-  position: fixed;
-  top: 75px;
-  right: 20px;
+  position: sticky;
+  top: 60px;
+  margin-top: 5px;
   height: max-content;
-  max-height: calc(100vh - 90px);
+  max-height: calc(100vh - 80px);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  z-index: 120;
-  padding: 4px;
-  pointer-events: auto;
+  z-index: 90;
+  padding: 2px;
+  flex-shrink: 0;
 }
 
 .alphabet-nav::-webkit-scrollbar {
@@ -370,7 +383,7 @@ html, body {
 .info-row span.val { color: #000; font-family: 'AvantGarde LT Book', sans-serif; font-weight: bold; }
 
 /* =========================================================
-   POPUP MODAL DESIGN - STØRRE SKALERING & DYNAMISK TILPASSET
+   POPUP MODAL DESIGN - SKALERET SYMMETRISK MED FASTE PROPORTIONER (381 : 558)
    ========================================================= */
 .modal-bg {
   position: fixed;
@@ -380,22 +393,23 @@ html, body {
   align-items: center; justify-content: center;
   z-index: 200;
   backdrop-filter: blur(4px);
-  padding: 10px;
+  padding: 12px;
   box-sizing: border-box;
 }
 
 .modal {
   background: #ffffff;
   border-radius: 24px;
-  width: 480px;
-  max-width: 95vw;
-  max-height: 92vh;
+  /* Låser det eksakte 381px x 558px højde/bredde forhold */
+  aspect-ratio: 381 / 558;
+  height: min(88vh, 600px);
+  width: auto;
+  max-width: 92vw;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 8px;
-  padding: 16px 20px 16px 20px;
+  padding: 2.2% 3.5%;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 }
@@ -414,19 +428,18 @@ html, body {
   background-clip: padding-box, border-box;
 }
 
-/* POPUP TITLE HEADER */
+/* TITLE HEADER (17.9% af modalens højde) */
 .modal-header-banner {
   width: 100%;
+  height: 17.9%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  padding: 2px 0;
 }
 
 .modal-header-banner img {
-  max-height: 90px;
-  height: 12vh;
+  height: 100%;
   width: auto;
   max-width: 100%;
   object-fit: contain;
@@ -441,7 +454,7 @@ html, body {
 .field-group label {
   color: #2F47B1 !important;
   font-family: 'AvantGarde LT Book', sans-serif;
-  font-size: 11px;
+  font-size: clamp(9px, 1.6vh, 11px);
   font-weight: bold;
 }
 
@@ -450,31 +463,30 @@ html, body {
   width: 100% !important;
   background-color: #E7EDFF !important;
   border: 1px solid #B1C3FF !important;
-  border-radius: 8px !important;
-  padding: 5px 8px !important;
+  border-radius: 7px !important;
+  padding: 3px 6px !important;
   box-sizing: border-box !important;
   font-family: 'AvantGarde LT Medium', sans-serif !important;
-  font-size: 11px !important;
+  font-size: clamp(9px, 1.5vh, 11px) !important;
   color: #000 !important;
   outline: none !important;
 }
 
-/* UPLOAD ELEMENT */
+/* UPLOAD ELEMENT (28.5% af modalens højde) */
 .upload-section {
   display: flex !important;
-  gap: 14px !important;
+  gap: 3% !important;
   align-items: stretch !important;
   width: 100% !important;
-  height: 175px;
+  height: 28.5%;
   flex-shrink: 0;
 }
 
 .upload-btn {
-  width: 175px !important;
-  height: 175px !important;
-  min-width: 175px !important;
-  min-height: 175px !important;
-  border-radius: 16px !important;
+  aspect-ratio: 1 / 1;
+  height: 100% !important;
+  width: auto !important;
+  border-radius: 12px !important;
   background-size: cover !important;
   background-position: center !important;
   cursor: pointer !important;
@@ -488,17 +500,17 @@ html, body {
   justify-content: space-between !important;
   flex: 1 !important;
   min-width: 0 !important;
-  height: 175px !important;
+  height: 100% !important;
 }
 
 .art-input {
   display: flex !important;
   align-items: center !important;
-  gap: 6px !important;
+  gap: 4px !important;
 }
 
 .art-input img {
-  height: 15px !important;
+  height: 13px !important;
   width: auto !important;
 }
 
@@ -506,51 +518,52 @@ html, body {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 4px !important;
   width: 100% !important;
-  height: 68px !important;
+  height: 39.6% !important;
 }
 
 .brand-toggle img {
-  height: 68px !important;
+  height: 100% !important;
   width: 48% !important;
   cursor: pointer !important;
   object-fit: contain !important;
 }
 
-/* INFORMATION ELEMENT */
+/* INFORMATION ELEMENT (16.3% af modalens højde) */
 .info-element-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  justify-content: space-between;
+  height: 16.3%;
   flex-shrink: 0;
 }
 
 .three-cols {
   display: flex !important;
-  gap: 6px !important;
+  gap: 4px !important;
 }
 
-/* PRICE ELEMENT */
+/* PRICE ELEMENT (18.5% af modalens højde) */
 .price-section {
   display: flex !important;
-  gap: 12px !important;
-  align-items: flex-start !important;
-  height: 115px !important;
+  gap: 3% !important;
+  align-items: stretch !important;
+  height: 18.5% !important;
   flex-shrink: 0;
 }
 
 .price-section .field-group {
   display: flex !important;
   flex-direction: column !important;
-  height: 115px !important;
+  height: 100% !important;
   box-sizing: border-box !important;
   flex: 1 !important;
 }
 
 .modal textarea#mMaterial {
   resize: none !important;
-  height: 92px !important;
+  height: 100% !important;
   box-sizing: border-box !important;
 }
 
@@ -559,7 +572,7 @@ html, body {
   flex-direction: column !important;
   justify-content: space-between !important;
   flex: 1 !important;
-  height: 115px !important;
+  height: 100% !important;
   box-sizing: border-box !important;
 }
 
@@ -576,29 +589,28 @@ html, body {
   display: flex !important;
   align-items: center !important;
   cursor: pointer !important;
-  margin: 2px 0 !important;
+  margin: 1px 0 !important;
 }
 
 .toggle-sold-row img {
-  height: 18px !important;
+  height: 14px !important;
   width: auto !important;
   display: block !important;
 }
 
-/* FOOTER ELEMENT */
+/* FOOTER ELEMENT (10.7% af modalens højde) */
 .modal-footer {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  height: 60px !important;
-  margin-top: 2px !important;
-  gap: 10px !important;
+  height: 10.7% !important;
+  gap: 6px !important;
   flex-shrink: 0;
 }
 
 .footer-btn {
-  height: 32px !important;
-  width: 88px !important;
+  height: 50% !important;
+  width: auto !important;
   cursor: pointer !important;
   object-fit: contain !important;
   flex-shrink: 0 !important;
@@ -609,21 +621,12 @@ html, body {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  height: 60px !important;
+  height: 100% !important;
 }
 
 .move-toggle-btn img {
-  height: 60px !important;
+  height: 100% !important;
   width: 100% !important;
-  max-width: 200px !important;
   object-fit: contain !important;
   cursor: pointer !important;
-}
-
-/* AUTOMATISK SKALERING TIL MINDER SKÆRME / LAVERE SKÆRMHØJDER */
-@media (max-height: 700px) {
-  .modal {
-    transform: scale(0.88);
-    transform-origin: center center;
-  }
 }
