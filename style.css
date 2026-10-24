@@ -153,20 +153,20 @@ html, body {
   .search-box { width: 140px; }
 }
 
-/* SIZE DROPDOWN MENU OVERLAY (MARKANT GLAS-EFFEKT) */
+/* SIZE DROPDOWN MENU OVERLAY (ÆGTE GLAS-EFFEKT MED 45% OPACITET) */
 .size-dropdown {
   position: absolute;
   top: 100%;
   left: 0;
   z-index: 150;
-  background: rgba(209, 227, 255, 0.88) !important;
-  backdrop-filter: blur(25px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(25px) saturate(190%) !important;
-  border: 1.5px solid rgba(42, 26, 111, 0.45);
+  background: rgba(209, 227, 255, 0.45) !important;
+  backdrop-filter: blur(22px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(190%) !important;
+  border: 1.5px solid rgba(42, 26, 111, 0.35);
   border-radius: 24px;
   padding: 14px 18px 18px 18px;
   display: none;
-  box-shadow: 0 16px 40px rgba(42, 26, 111, 0.28), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 16px 40px rgba(42, 26, 111, 0.18), inset 0 1px 2px rgba(255, 255, 255, 0.6);
   width: 330px;
   box-sizing: border-box;
   margin-top: 6px;
@@ -235,20 +235,19 @@ html, body {
 @media (max-width: 1024px) { .item-grid { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 600px) { .item-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* SIDEBAR ALFABET BOBLER - STICKY DER STOPPER UNDER HEADER OG SVÆVER */
+/* SIDEBAR ALFABET BOBLER - FASTLÅST (FIXED) SÅ DEN ALTID ER SYNLIG NÅR MAN SCROLLER */
 .alphabet-nav {
-  position: sticky;
-  top: 70px;
+  position: fixed;
+  top: 75px;
+  right: 20px;
   height: max-content;
   max-height: calc(100vh - 90px);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  z-index: 90;
+  gap: 6px;
+  z-index: 120;
   padding: 2px;
-  flex-shrink: 0;
-  margin-left: auto;
 }
 
 .alphabet-nav::-webkit-scrollbar {
@@ -382,7 +381,7 @@ html, body {
 .info-row span.val { color: #000; font-family: 'AvantGarde LT Book', sans-serif; font-weight: bold; }
 
 /* =========================================================
-   POPUP MODAL DESIGN - OPTIMAL FYLDET UD UDEN TOMRUM (381 : 558)
+   POPUP MODAL DESIGN - 381 : 558 PROPORTIONER OG FYLDET UD
    ========================================================= */
 .modal-bg {
   position: fixed;
