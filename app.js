@@ -105,7 +105,9 @@ SIZE_DATA.forEach(group => {
   });
 });
 
-let formData = { collect: 'collect', brand: '', sold: 'FALSE' };
+let formCollectState = 'collect';
+let formBrandState = '';
+let formSoldState = 'FALSE';
 const PAGE_TYPE = typeof PAGE_MODE !== 'undefined' ? PAGE_MODE : 'collect';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -421,13 +423,12 @@ function closeModal() {
 
 function toggleModalPageType() {
   markFormDirty();
-  // Skift mellem 'collect' og 'wish'
-  const newType = formData.collect === 'collect' ? 'wish' : 'collect';
+  const newType = formCollectState === 'collect' ? 'wish' : 'collect';
   setPageType(newType);
 }
 
 function setPageType(type) {
-  formData.collect = type;
+  formCollectState = type;
   const card = document.getElementById('modalCard');
   const headerImg = document.getElementById('modalHeaderImg');
   const moveBtn = document.getElementById('imgMoveBtn');
@@ -445,29 +446,29 @@ function setPageType(type) {
 
 function selectBrand(brand) {
   markFormDirty();
-  formData.brand = (formData.brand === brand) ? '' : brand;
+  formBrandState = (formBrandState === brand) ? '' : brand;
   updateBrandUI();
 }
 
 function initBrand(brand) {
-  formData.brand = brand ? String(brand).toLowerCase().trim() : '';
+  formBrandState = brand ? String(brand).toLowerCase().trim() : '';
   updateBrandUI();
 }
 
 function updateBrandUI() {
   const orig = document.getElementById('imgOrigToggle');
   const perf = document.getElementById('imgPerfToggle');
-  if (orig) orig.src = `https://lh3.googleusercontent.com/d/${formData.brand === 'originals' ? IMAGES.origTrue : IMAGES.origFalse}`;
-  if (perf) perf.src = `https://lh3.googleusercontent.com/d/${formData.brand === 'performance' ? IMAGES.perfTrue : IMAGES.perfFalse}`;
+  if (orig) orig.src = `https://lh3.googleusercontent.com/d/${formBrandState === 'originals' ? IMAGES.origTrue : IMAGES.origFalse}`;
+  if (perf) perf.src = `https://lh3.googleusercontent.com/d/${formBrandState === 'performance' ? IMAGES.perfTrue : IMAGES.perfFalse}`;
 }
 
 function toggleSoldState() {
   markFormDirty();
-  setSoldState(formData.sold === 'TRUE' ? 'FALSE' : 'TRUE');
+  setSoldState(formSoldState === 'TRUE' ? 'FALSE' : 'TRUE');
 }
 
 function setSoldState(state) {
-  formData.sold = state;
+  formSoldState = state;
   const btn = document.getElementById('btnSold');
   const saleInput = document.getElementById('mSalePrice');
   const saleGroup = document.getElementById('salePriceGroup');
@@ -532,9 +533,9 @@ function saveData() {
 
   const payload = {
     id: currentEditId,
-    collect: formData.collect, // Sender nu korrekt 'wish' eller 'collect' i stedet for ID'et
-    brand: formData.brand,
-    sold: formData.sold,
+    collect: formCollectState, // Sender nu altid rent tekst ('wish' eller 'collect')
+    brand: formBrandState,
+    sold: formSoldState,
     articlenumber: document.getElementById('mArticle').value,
     name: document.getElementById('mName').value,
     category: document.getElementById('mCategory').value,
