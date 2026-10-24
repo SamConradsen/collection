@@ -404,7 +404,10 @@ function openModal(type) {
   const uploadPreview = document.getElementById('uploadPreview');
   if (uploadPreview) uploadPreview.style.backgroundImage = `url('https://lh3.googleusercontent.com/d/${IMAGES.uploadPlaceholder}')`;
 
-  setPageType(type);
+  // Sørg for at typen ('collect' eller 'wish') bliver sat fuldstændig rent her
+  const targetType = (type === 'wish' || type === 'collect') ? type : PAGE_TYPE;
+  setPageType(targetType);
+  
   initBrand('');
   setSoldState('FALSE');
 
@@ -428,17 +431,19 @@ function toggleModalPageType() {
 }
 
 function setPageType(type) {
-  formCollectState = type;
+  // Tving værdien til udelukkende at være 'wish' eller 'collect' som rent tekst
+  formCollectState = (type === 'wish') ? 'wish' : 'collect';
+  
   const card = document.getElementById('modalCard');
   const headerImg = document.getElementById('modalHeaderImg');
   const moveBtn = document.getElementById('imgMoveBtn');
 
-  if (type === 'collect') {
-    card.className = 'modal modal-collect';
+  if (formCollectState === 'collect') {
+    if (card) card.className = 'modal modal-collect';
     if (headerImg) headerImg.src = `https://lh3.googleusercontent.com/d/${IMAGES.headerCollect}`;
     if (moveBtn) moveBtn.src = `https://lh3.googleusercontent.com/d/${IMAGES.moveWish}`;
   } else {
-    card.className = 'modal modal-wishlist';
+    if (card) card.className = 'modal modal-wishlist';
     if (headerImg) headerImg.src = `https://lh3.googleusercontent.com/d/${IMAGES.headerWish}`;
     if (moveBtn) moveBtn.src = `https://lh3.googleusercontent.com/d/${IMAGES.moveCollect}`;
   }
@@ -503,7 +508,11 @@ function editItem(id) {
   currentEditId = item.id;
   isFormDirty = false;
 
-  setPageType(item.collect || PAGE_TYPE);
+  // Sikr at eksisterende varer også fanger reelt 'wish' eller 'collect'
+  const rawCollect = item.collect ? String(item.collect).toLowerCase().trim() : '';
+  const itemType = (rawCollect === 'wish') ? 'wish' : 'collect';
+  
+  setPageType(itemType);
   initBrand(item.brand || '');
   setSoldState(String(item.sold).toUpperCase());
 
@@ -531,9 +540,12 @@ function saveData() {
   if (isSaving) return;
   isSaving = true;
 
+  // Sikkerhedsvalidering: Garanter at collect-feltet KUN er 'wish' eller 'collect'
+  const finalCollectValue = (formCollectState === 'wish') ? 'wish' : 'collect';
+
   const payload = {
     id: currentEditId,
-    collect: formCollectState,
+    collect: finalCollectValue,
     brand: formBrandState,
     sold: formSoldState,
     articlenumber: document.getElementById('mArticle').value,
