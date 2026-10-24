@@ -235,20 +235,29 @@ html, body {
 @media (max-width: 1024px) { .item-grid { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 600px) { .item-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* SIDEBAR ALFABET BOBLER - STICKY DER BLOKERES AF HEADER I TOPPEN OG FØLGER MED NED */
+/* SIDEBAR ALFABET BOBLER - INTELIGENT LÆBOPOMADE-LOGIK (FIXED MED TRANSITION) */
 .alphabet-nav {
-  position: sticky;
-  top: 65px; /* Lægger sig lige under sticky navbar når man scroller forbi headeren */
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   height: max-content;
-  max-height: calc(100vh - 80px);
+  max-height: calc(100vh - 120px);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  z-index: 90;
+  z-index: 120;
   padding: 2px;
-  margin-left: auto;
-  flex-shrink: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: auto;
+}
+
+/* Når headeren er tæt på i toppen, trækker menuen sig blidt ud af skærmen (gemmer sig) */
+.alphabet-nav.hidden-by-header {
+  opacity: 0;
+  transform: translateY(-50%) translateX(60px);
+  pointer-events: none;
 }
 
 .alphabet-nav::-webkit-scrollbar {
@@ -553,7 +562,6 @@ html, body {
   height: 100% !important;
   box-sizing: border-box !important;
   flex: 1 !important;
-  display: flex;
 }
 
 .modal textarea#mMaterial {
