@@ -12,11 +12,11 @@
 <body>
 
   <!-- Header Banner -->
-  <div class="header-container">
+  <div class="header-container" id="headerContainer">
     <img src="https://lh3.googleusercontent.com/d/1BbO-EU_AmhU8XtYRuYGCFx_ZVZzK3iCA" alt="Collection Header">
   </div>
 
-  <!-- Sticky Menu / Navbar med centreret midtersektion -->
+  <!-- Sticky Menu / Navbar -->
   <div class="sticky-menu-wrapper">
     <div class="sticky-menu">
       <div class="menu-left">
@@ -29,24 +29,55 @@
         </div>
       </div>
 
-      <div class="menu-center">
+      <div class="menu-center desktop-menu-center">
+        <!-- Search Box -->
         <div class="search-box">
           <img src="https://lh3.googleusercontent.com/d/16AEnLeUyzfPU4YTCNXWA78eKpm2aWF4v" class="search-bg-img" alt="Search">
           <input type="text" placeholder="Search..." oninput="handleSearch(this.value)" list="categorySuggestions">
           <datalist id="categorySuggestions"></datalist>
         </div>
 
+        <!-- Brand Filter Buttons (punkt 6) -->
+        <div class="brand-filter-group">
+          <img id="topBrandOrig" src="https://lh3.googleusercontent.com/d/1phuiZ7Mh7kYKfAENbCw2ah78_Tem2NAM" onclick="toggleBrandFilter('originals')" alt="Originals">
+          <img id="topBrandPerf" src="https://lh3.googleusercontent.com/d/1ycABFjAvKvRXOgnKJ77_fO2Y0zpAh6fG" onclick="toggleBrandFilter('performance')" alt="Performance">
+        </div>
+
+        <!-- Show Sold Toggle -->
         <div class="toggle-container" onclick="toggleShowSold()">
           <span class="toggle-label">SHOW SOLD</span>
           <img id="showSoldToggleImg" class="menu-item" src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" alt="Show Sold">
         </div>
       </div>
 
-      <div class="menu-right"></div>
+      <div class="menu-right">
+        <!-- Mobile Dropdown Fold Out Button (punkt 7) -->
+        <div class="mobile-foldout-trigger" onclick="toggleMobileDropdown(event)">
+          <img src="https://lh3.googleusercontent.com/d/1uAKwyD0PDeKZ8p-C4xMuNnaMW314ayjp" class="menu-item" alt="Menu">
+          <div class="mobile-dropdown-panel" id="mobileDropdownPanel" onclick="event.stopPropagation()">
+            <div class="search-box mobile-search-box">
+              <img src="https://lh3.googleusercontent.com/d/16AEnLeUyzfPU4YTCNXWA78eKpm2aWF4v" class="search-bg-img" alt="Search">
+              <input type="text" placeholder="Search..." oninput="handleSearch(this.value)" list="categorySuggestions">
+            </div>
+            
+            <div class="mobile-dropdown-row">
+              <div class="brand-filter-group">
+                <img id="mobBrandOrig" src="https://lh3.googleusercontent.com/d/1phuiZ7Mh7kYKfAENbCw2ah78_Tem2NAM" onclick="toggleBrandFilter('originals')" alt="Originals">
+                <img id="mobBrandPerf" src="https://lh3.googleusercontent.com/d/1ycABFjAvKvRXOgnKJ77_fO2Y0zpAh6fG" onclick="toggleBrandFilter('performance')" alt="Performance">
+              </div>
+
+              <div class="toggle-container" onclick="toggleShowSold()">
+                <span class="toggle-label">SHOW SOLD?</span>
+                <img id="mobShowSoldToggleImg" class="menu-item" src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" alt="Show Sold">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Main Content Layout med svævende Kategori-menu -->
+  <!-- Main Content Layout med Kategori-menu -->
   <div class="main-wrapper">
     <div class="content-area" id="contentArea"></div>
     <div class="alphabet-nav" id="alphabetNav"></div>
@@ -130,13 +161,13 @@
         </div>
       </div>
 
-      <!-- FOOTER ELEMENT -->
+      <!-- FOOTER ELEMENT (punkt 5: Opdaterede Image IDs for Cancel & Save) -->
       <div class="modal-footer">
-        <img src="https://lh3.googleusercontent.com/d/1ezJe2_NICuZT07YFN_1pRIQC8yiWAOHc" class="footer-btn" onclick="closeModal()" alt="Cancel">
+        <img src="https://lh3.googleusercontent.com/d/1bIswf5T_aL4D3FBBkKJzgrP2c3qv1aUp" class="footer-btn" onclick="closeModal()" alt="Cancel">
         <div class="move-toggle-btn" onclick="toggleModalPageType()">
           <img id="imgMoveBtn" src="https://lh3.googleusercontent.com/d/1XsICtNKjWCBHymS1GHLmU-zh8LCk0f5a" alt="Move">
         </div>
-        <img src="https://lh3.googleusercontent.com/d/1AjppabQ9us5pA44AK5LGZdV9MJ1YDXrC" class="footer-btn" onclick="saveData()" alt="Save">
+        <img src="https://lh3.googleusercontent.com/d/18Nxk5H4uAA2pAktW6TkC7l8WEpZVpvZT" class="footer-btn" onclick="saveData()" alt="Save">
       </div>
 
     </div>
