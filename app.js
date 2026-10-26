@@ -8,7 +8,7 @@ let currentEditId = null;
 let isSaving = false;
 let isFormDirty = false;
 
-// Brand filter tilstande (punkt 6)
+// Brand filter tilstande
 let filterOriginals = true;
 let filterPerformance = true;
 
@@ -35,7 +35,6 @@ const IMAGES = {
   iconSalePrice: "1Yu_Lil2oFqOlkPmjOwcmu7iL4nCMcVxI",
   iconProduced: "1ij4Ek7JOZ956BKEObfNPiQUkQRFSTVBY",
 
-  // Size menu overskrifter (punkt 4)
   titleWomens: "1wVjPm2JnH3qFR2A51le5mgsPfGEx_bDr",
   titleMens: "1FZvtiQzeDmPki0rl8e0oghjUt-vH13WN",
   titleFootwear: "1tc7sTYRoi5CS7788eTezlKtMawesYidv",
@@ -43,7 +42,6 @@ const IMAGES = {
   titleOther: "1DX0MkbLgzYaT1w6QwDjh5DeinyGxb3go"
 };
 
-// 28 BOBLER (PUNKT 2)
 const BUBBLE_POOL = [
   { on: "18V3bOgkpHGlp-fFcVFJHuNNo8jCNw4LL", off: "1pkKSSyo0tbHDQmeAaoUS68ElJ2Jhd9ET" },
   { on: "1ZMlmib2UXIWF9c__7Nu-EqRcooLylicb", off: "1sEfR1M1Vp1orAeZxiDH3VokM0y_SaEeY" },
@@ -75,7 +73,6 @@ const BUBBLE_POOL = [
   { on: "1IWWuErWK-CwcFfqbXtpytmG6c36eXHaR", off: "1ekEKVuW7HFpnoQhP4hv2D0X3QDG7luyq" }
 ];
 
-// DYNAMISK STØRRELSES-STRUKTUR MED TEKST / FARVER / FONTS (PUNKT 3 & 4)
 const SIZE_CATEGORIES = [
   {
     titleId: IMAGES.titleWomens,
@@ -190,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// STYRER KATEGORI-NAVIGATIONEN I HØJRE SIDE (PUNKT 8: HEADER ER EN MUR)
 function handleSmartNavbarNavigation() {
   const header = document.getElementById('headerContainer');
   const alphabetNav = document.getElementById('alphabetNav');
@@ -199,7 +195,6 @@ function handleSmartNavbarNavigation() {
   const headerRect = header.getBoundingClientRect();
   const headerBottom = Math.max(0, headerRect.bottom);
   
-  // Sæt den øverste position så nav ALDRIG kan gå ind i headeren
   alphabetNav.style.top = `${headerBottom + 10}px`;
   alphabetNav.style.maxHeight = `calc(100vh - ${headerBottom + 20}px)`;
 }
@@ -247,7 +242,6 @@ function handleButtonB() {
   else openModal('wish');
 }
 
-// TOGGLE BRAND FILTER (PUNKT 6)
 function toggleBrandFilter(brand) {
   if (brand === 'originals') {
     filterOriginals = !filterOriginals;
@@ -300,7 +294,6 @@ function toggleMobileDropdown(e) {
   panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
 }
 
-// SHUFFLE HULPJÆLP TIL 28 BOBLER (PUNKT 2)
 function getRandomBubble(seedStr) {
   let hash = 0;
   if (seedStr) {
@@ -314,7 +307,7 @@ function getRandomBubble(seedStr) {
   return BUBBLE_POOL[index];
 }
 
-// RENDERING AF TEKST OVENPÅ DYNAMISKE BOBLER (PUNKT 2, 3 & 4)
+// RETTET CANVAS-FUNKTION MED KORREKTE HEX-KODER OG ULTRATYND STROKE
 function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
   let sizeObj = null;
   for (let cat of SIZE_CATEGORIES) {
@@ -360,12 +353,13 @@ function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
         gradient.addColorStop(1, gradColors[1]);
         ctx.fillStyle = gradient;
       } else {
-        ctx.fillStyle = color;
+        ctx.fillStyle = color || "#000000";
       }
 
       if (strokeColor) {
         ctx.strokeStyle = strokeColor;
-        ctx.lineWidth = Math.max(1, 2 * scale);
+        // Sørg for at omridset er helt tyndt (0.35px skaleret), så bogstaverne ikke bliver tykke/klodsede
+        ctx.lineWidth = Math.max(0.5, 0.35 * scale * (sizePt / 20));
         ctx.strokeText(text, targetPx / 2, centerY);
       }
       ctx.fillText(text, targetPx / 2, centerY);
@@ -468,12 +462,10 @@ function renderItems() {
       return false;
     }
     
-    // Brand filter (punkt 6)
     const brand = item.brand ? String(item.brand).toLowerCase().trim() : 'originals';
     if (brand === 'performance' && !filterPerformance) return false;
     if (brand === 'originals' && !filterOriginals) return false;
 
-    // Size filter (punkt 3)
     if (item.size) {
       const cleanSize = String(item.size).trim().toUpperCase();
       let matched = false;
@@ -511,7 +503,6 @@ function renderItems() {
   sortedCats.forEach((cat, index) => {
     const safeCatId = encodeURIComponent(cat);
 
-    // SIDEBAR BOBLER MED RANDOMISED BAGGRUND OG FLOT TEXT-STROKE (PUNKT 2 & 8)
     if (alphabetNav) {
       const bubbleData = getRandomBubble(cat);
       const letter = cat.charAt(0).toUpperCase();
@@ -568,7 +559,6 @@ function renderItems() {
           <div class="info-header"><span>${brandText}</span></div>
           <div class="info-name">${item.name || ''}</div>
           
-          <!-- Made in & Production time (Punkt 1: KUN synlige hvis der er information) -->
           <div class="info-row">
             ${hasMadeIn ? `
               <div class="info-row-left">
@@ -585,7 +575,6 @@ function renderItems() {
             ` : ''}
           </div>
 
-          <!-- Prices (Punkt 1: KUN synlige hvis udfyldt) -->
           <div class="info-row">
             ${hasPurchase ? `
               <div class="price-left-side">
@@ -604,7 +593,6 @@ function renderItems() {
         </div>
       `;
 
-      // Tilføj dynamisk størrelses-bobbel på varen (punkt 3)
       if (item.size) {
         const badgeCanvas = renderDynamicSizeBubbleCanvas(item.size, true, 40);
         badgeCanvas.className = 'size-badge-canvas';
