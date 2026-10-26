@@ -219,7 +219,9 @@ html, body {
   padding: 14px 18px 18px 18px;
   display: none;
   box-shadow: 0 16px 40px rgba(42, 26, 111, 0.18), inset 0 1px 2px rgba(255, 255, 255, 0.6);
-  width: 330px;
+  width: min(330px, 90vw); /* Sørg for den aldrig er bredere end skærmen på mobiler */
+  max-height: 80vh;
+  overflow-y: auto;
   box-sizing: border-box;
   margin-top: 6px;
 }
@@ -256,8 +258,9 @@ html, body {
 }
 
 .size-grid-item {
-  width: 50px !important;
-  height: 50px !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1 !important;
   cursor: pointer;
   object-fit: contain;
   box-sizing: border-box;
