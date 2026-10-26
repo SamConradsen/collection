@@ -221,8 +221,7 @@ html, body {
   box-shadow: 0 16px 40px rgba(42, 26, 111, 0.18);
   width: 330px;
   max-width: 92vw;
-  max-height: 80vh;
-  overflow-y: auto;
+  max-height: 100%
   box-sizing: border-box;
   margin-top: 4px;
 }
