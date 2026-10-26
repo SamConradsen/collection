@@ -328,9 +328,14 @@ function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
   const imgId = isSelected ? bubbleData.on : bubbleData.off;
   
   const canvas = document.createElement('canvas');
-  canvas.width = targetPx;
-  canvas.height = targetPx;
+  const dpr = window.devicePixelRatio || 2; // Gør billedet knivskarpt på mobiler og skærme
+  canvas.width = targetPx * dpr;
+  canvas.height = targetPx * dpr;
+  canvas.style.width = targetPx + 'px';
+  canvas.style.height = targetPx + 'px';
+  
   const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
 
   const scale = targetPx / 156.0;
 
@@ -358,7 +363,6 @@ function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
 
       if (strokeColor) {
         ctx.strokeStyle = strokeColor;
-        // Sørg for at omridset er helt tyndt (0.35px skaleret), så bogstaverne ikke bliver tykke/klodsede
         ctx.lineWidth = Math.max(0.5, 0.35 * scale * (sizePt / 20));
         ctx.strokeText(text, targetPx / 2, centerY);
       }
