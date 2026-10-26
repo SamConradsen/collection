@@ -65,7 +65,7 @@ const BUBBLE_POOL = [
   { on: "1i-VkvED22ru-DmUFV2svhqqbj3PIsOjr", off: "1rwOhdjENReR3fJQaFpJR4GoGrFTW1SIS" },
   { on: "1CQ55OXxE7wRcaKsARRNgzTvUvQAEm7pA", off: "1ovl4ruHjf9VqKnKPx0wN6DcM5vePvYoP" },
   { on: "1F67Ka5frutFnwiFoHPPPJ6CiPyMiEemO", off: "1Yu6f7T4EK1qqu7TZqjsbVDcKUJI7QpUM" },
-  { on: "1qATXW5iUluj3ZSC4tNgj8c2gvf7qmEmH", off: "1qfxsEa3iFAWmqFp5AvvOWhjk" },
+  { on: "1qATXW5iUluj3ZSC4tNgj8c2gvf7qmEmH", off: "1qfxsEa3iFAWmqPfiZlnB4Fp5AvvOWhjk" },
   { on: "1dXO7MrbLa__c5_tBxxBVDCMvq4yluVu_", off: "184TXG10iz7iEhLOz32qZtA3AYnQkOjx9" },
   { on: "1ZtXnmvwXZJHSrWX7VPGPDqRVSIgsN1ex", off: "1brODnN1-Lqtpg12qNKHs1HPR1ar-LemJ" },
   { on: "1iEp6ckPiMLfxrXBY_cLhevhVYU3T7L4c", off: "188Uo2UMz_rP8YY5gOS-3vsVdB-cJO8Cv" },
@@ -113,7 +113,7 @@ const SIZE_CATEGORIES = [
     titleId: IMAGES.titleFootwear,
     name: "Footwear",
     sizes: [
-      { key: "40", l1: "40", s1: 40, c1: "#319F00", b1: "#0D4C00" },
+      { key: "40", l1: "40", s1: 40, c1: "#7FE055", b1: "#28BF0A" },
       { key: "40 1/2", l1: "40½", s1: 40, c1: "#7FE055", b1: "#28BF0A" },
       { key: "40 2/3", l1: "40⅔", s1: 40, c1: "#7FE055", b1: "#28BF0A" },
       { key: "39-42", l1: "39-42", s1: 40, c1: "#7FE055", b1: "#28BF0A" },
@@ -141,8 +141,8 @@ const SIZE_CATEGORIES = [
       { key: "Unisex M", l1: "UNISEX", s1: 16, c1: "#A276F5", b1: "#A276F5", l2: "M", s2: 64, grad: ["#F772A9", "#5863F5"], lead: 48 },
       { key: "Unisex L", l1: "UNISEX", s1: 16, c1: "#A276F5", b1: "#A276F5", l2: "L", s2: 64, grad: ["#F772A9", "#5863F5"], lead: 48 },
       { key: "Unisex XL", l1: "UNISEX", s1: 16, c1: "#A276F5", b1: "#A276F5", l2: "XL", s2: 64, grad: ["#F772A9", "#5863F5"], lead: 48 },
-      { key: "29\"", l1: "29\"", s1: 33, c1: "#F78145", b1: "#F56016" },
-      { key: "32\"/32\"", l1: "32\"/32", s1: 33, c1: "#F78145", b1: "#F56016" }
+      { key: "29\"", l1: "29\"", s1: 32, c1: "#F78145", b1: "#F56016" },
+      { key: "32\"/32\"", l1: "32\"/32\"", s1: 32, c1: "#F78145", b1: "#F56016" }
     ]
   }
 ];
