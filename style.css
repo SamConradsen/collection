@@ -716,7 +716,7 @@ html, body {
 }
 
 .footer-btn {
-  height: 38px !important; /* Genskaber original størrelse */
+  height: 20px !important; /* Genskaber original størrelse */
   width: auto !important;
   cursor: pointer !important;
   object-fit: contain !important;
