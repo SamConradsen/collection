@@ -8,7 +8,6 @@ let currentEditId = null;
 let isSaving = false;
 let isFormDirty = false;
 
-// Brand filter tilstande
 let filterOriginals = true;
 let filterPerformance = true;
 
@@ -78,24 +77,24 @@ const SIZE_CATEGORIES = [
     titleId: IMAGES.titleWomens,
     name: "Women's",
     sizes: [
-      { key: "EU26", l1: "2XS", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "26", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU2628", l1: "2XS", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "26-28", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU28", l1: "2XS", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "28", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU30", l1: "XS", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "30", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU3032", l1: "XS", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "30-32", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU32", l1: "XS", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "32", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU34", l1: "S", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "34", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU3436", l1: "S", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "34-36", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU36", l1: "S", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "36", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU38", l1: "M", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "38", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU3840", l1: "M", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "38-40", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU40", l1: "M", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "40", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU42", l1: "L", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "42", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU4244", l1: "L", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "42-44", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU44", l1: "L", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "44", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU46", l1: "XL", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "46", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU4648", l1: "XL", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "46-48", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
-      { key: "EU48", l1: "XL", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "48", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 }
+      { key: "EU26", l1: "2XS", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "26", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU2628", l1: "2XS", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "26-28", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU28", l1: "2XS", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "28", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU30", l1: "XS", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "30", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU3032", l1: "XS", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "30-32", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU32", l1: "XS", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "32", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU34", l1: "S", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "34", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU3436", l1: "S", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "34-36", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU36", l1: "S", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "36", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU38", l1: "M", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "38", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU3840", l1: "M", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "38-40", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU40", l1: "M", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "40", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU42", l1: "L", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "42", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU4244", l1: "L", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "42-44", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU44", l1: "L", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "44", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU46", l1: "XL", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "46", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU4648", l1: "XL", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "46-48", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 },
+      { key: "EU48", l1: "XL", s1: 32, c1: "#FF477E", b1: "#D63031", l2: "48", s2: 40, c2: "#FF477E", b2: "#D63031", lead: 32 }
     ]
   },
   {
@@ -307,7 +306,7 @@ function getRandomBubble(seedStr) {
   return BUBBLE_POOL[index];
 }
 
-// RETTET CANVAS-FUNKTION MED KORREKTE HEX-KODER OG ULTRATYND STROKE
+// CANVAS RENDERING MED VENSTRE-TIL-HØJRE GRADIENT OG SARTIKE PINK / RENE FARVER
 function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
   let sizeObj = null;
   for (let cat of SIZE_CATEGORIES) {
@@ -328,7 +327,7 @@ function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
   const imgId = isSelected ? bubbleData.on : bubbleData.off;
   
   const canvas = document.createElement('canvas');
-  const dpr = window.devicePixelRatio || 2; // Gør billedet knivskarpt på mobiler og skærme
+  const dpr = window.devicePixelRatio || 1;
   canvas.width = targetPx * dpr;
   canvas.height = targetPx * dpr;
   canvas.style.width = targetPx + 'px';
@@ -348,36 +347,40 @@ function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
 
-    const drawTextLine = (text, sizePt, color, strokeColor, gradColors, centerY) => {
-      const pxSize = sizePt * scale * 1.333;
+    const drawTextLine = (text, sizePt, color, strokeColor, gradColors, centerY, isUnisexTop) => {
+      const pxSize = (sizePt / 156.0) * targetPx * 1.15; 
       ctx.font = `bold ${pxSize}px 'AvantGarde LT Book', sans-serif`;
 
       if (gradColors && gradColors.length >= 2) {
-        const gradient = ctx.createLinearGradient(0, centerY - pxSize/2, 0, centerY + pxSize/2);
+        // GRADIENT FRA VENSTRE TIL HØJRE (X-AKSEN)
+        const gradient = ctx.createLinearGradient(0, 0, targetPx, 0);
         gradient.addColorStop(0, gradColors[0]);
         gradient.addColorStop(1, gradColors[1]);
         ctx.fillStyle = gradient;
+      } else if (isUnisexTop) {
+        ctx.fillStyle = "#000000"; // UNISEX OVERSTE LINJE SKAL VÆRE SORT
       } else {
         ctx.fillStyle = color || "#000000";
       }
 
-      if (strokeColor) {
+      if (strokeColor && !isUnisexTop) {
         ctx.strokeStyle = strokeColor;
-        ctx.lineWidth = Math.max(0.5, 0.35 * scale * (sizePt / 20));
+        ctx.lineWidth = Math.max(0.3, 0.4 * scale);
         ctx.strokeText(text, targetPx / 2, centerY);
       }
       ctx.fillText(text, targetPx / 2, centerY);
     };
 
     if (sizeObj.l2) {
-      const leadPx = (sizeObj.lead || 32) * scale;
+      const leadPx = (sizeObj.lead || 32) * (targetPx / 156.0);
       const centerY1 = (targetPx / 2) - (leadPx / 2);
       const centerY2 = (targetPx / 2) + (leadPx / 2);
       
-      drawTextLine(sizeObj.l1, sizeObj.s1, sizeObj.c1, sizeObj.b1, sizeObj.grad, centerY1);
-      drawTextLine(sizeObj.l2, sizeObj.s2, sizeObj.c2, sizeObj.b2, sizeObj.grad, centerY2);
+      const isUnisexTop = (sizeObj.l1 === "Unisex");
+      drawTextLine(sizeObj.l1, sizeObj.s1, sizeObj.c1, sizeObj.b1, sizeObj.grad, centerY1, isUnisexTop);
+      drawTextLine(sizeObj.l2, sizeObj.s2, sizeObj.c2, sizeObj.b2, sizeObj.grad, centerY2, false);
     } else {
-      drawTextLine(sizeObj.l1, sizeObj.s1, sizeObj.c1, sizeObj.b1, sizeObj.grad, targetPx / 2);
+      drawTextLine(sizeObj.l1, sizeObj.s1, sizeObj.c1, sizeObj.b1, sizeObj.grad, targetPx / 2, false);
     }
   };
 
@@ -417,7 +420,7 @@ function renderSizeMenuUI() {
 
     cat.sizes.forEach(s => {
       const isSelected = !!selectedSizes[s.key];
-      const canvas = renderDynamicSizeBubbleCanvas(s.key, isSelected, 50);
+      const canvas = renderDynamicSizeBubbleCanvas(s.key, isSelected, 46);
       canvas.className = 'size-grid-item';
       canvas.onclick = (e) => toggleSingleSize(e, s.key);
       gridDiv.appendChild(canvas);
