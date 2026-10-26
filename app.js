@@ -8,6 +8,10 @@ let currentEditId = null;
 let isSaving = false;
 let isFormDirty = false;
 
+// Brand filter tilstande (punkt 6)
+let filterOriginals = true;
+let filterPerformance = true;
+
 const IMAGES = {
   headerCollect: "1gmPYQ6Regt_LEtvqxmYXH6gj2A0O2zVm",
   headerWish: "1jDUHm6gbM6adDlhTJVOFNG_MZo8_Xeuy",
@@ -29,77 +33,126 @@ const IMAGES = {
   
   iconPurchasePrice: "1pXAS0b2IK1Z81StPX8XjWdkUli2hlz_L",
   iconSalePrice: "1Yu_Lil2oFqOlkPmjOwcmu7iL4nCMcVxI",
-  iconProduced: "1ij4Ek7JOZ956BKEObfNPiQUkQRFSTVBY"
+  iconProduced: "1ij4Ek7JOZ956BKEObfNPiQUkQRFSTVBY",
+
+  // Size menu overskrifter (punkt 4)
+  titleWomens: "1wVjPm2JnH3qFR2A51le5mgsPfGEx_bDr",
+  titleMens: "1FZvtiQzeDmPki0rl8e0oghjUt-vH13WN",
+  titleFootwear: "1tc7sTYRoi5CS7788eTezlKtMawesYidv",
+  titleHeadwear: "1f_c7F_RwTZw3qK9dhlqyCepYOFmLGDEM",
+  titleOther: "1DX0MkbLgzYaT1w6QwDjh5DeinyGxb3go"
 };
 
-const SIDEBAR_BUBBLES = [
-  "13pZM4zD0ZOojOOK8Z9U-XRD_LB6jFLhv",
-  "1-kkfG5BQGSEN0y5gtib-G7Bag24CS48z",
-  "1Ee96od3smLEBunbehTGh3pO-IB8-dwuB",
-  "1ph54eAPqFOmK8vTK66MRjRqwvQ0bTPDB",
-  "1FF7BwwV62D1SPG_LafWYg-bcBkPS-9Ze",
-  "1b4KYFbxWVtbxe-Ye9-xToCMPc5SFRdyr",
-  "1pBaobKsdrgze1xHFuKeluNh92gXYJe2w",
-  "1h_iBEd6GdVI-zQ7KSjkxMb0nY5eXThb7",
-  "1QyCpAEWxB62D5FamJVosBbk8dVlmSqA8",
-  "1YNpfOx62ScrIRv9ujFDrYymp-HWSnYpg",
-  "1kdlJZkZDI8ZQLZ0cFZeUyUp4P4z2Wwmz",
-  "1xwj9oQKB5u8848iS6rt5Hp1Ps7ohosE7",
-  "1xzJ46Zv8wXrFOl7sOYHpS8S9_Pc4yz-B"
+// 28 BOBLER (PUNKT 2)
+const BUBBLE_POOL = [
+  { on: "18V3bOgkpHGlp-fFcVFJHuNNo8jCNw4LL", off: "1pkKSSyo0tbHDQmeAaoUS68ElJ2Jhd9ET" },
+  { on: "1ZMlmib2UXIWF9c__7Nu-EqRcooLylicb", off: "1sEfR1M1Vp1orAeZxiDH3VokM0y_SaEeY" },
+  { on: "1Wzo1zKsOrIU5J8j13ium8a_eZ9-mmOtx", off: "1Gl131d3_nC3SIynCCtC74PWVIe0nrGir" },
+  { on: "1uIfxgxAMAEuDiPeCaUOl57Le7pK5dGWT", off: "1aTc32NKICNVQUHKJly85Ndv8aZ95Ghq3" },
+  { on: "16ZHHEoqaCx0SMnK-MEdtZAmSnYfjv2Wd", off: "1qHGZX5TwaMOYtwbaePE7Aa8Twk3OQWvJ" },
+  { on: "1tRm8jsYtmUziULmdS1q98IcMK8Xo4Xjq", off: "19JyfAfNbmiXsNXcwo7UyBo3NR0hX6yKE" },
+  { on: "1oiswxXbQsL5RDvsBrW1TtczEhvmqAwFp", off: "1s4fTbbDLv_LJY-yaoe5ubldkRlMOTKm5" },
+  { on: "1adzOgZa1M8OU0xvC7X2eMkWxEq9PiYh-", off: "1XRvel_Cd3YIhDs7veUyMBq2IsxR462CR" },
+  { on: "1gMDiy7x60TLmyAswSGmG3odBA54WI1w4", off: "12a0Xd7D_PUXNSM7BO_yRyc9rwTpVXua1" },
+  { on: "1gCyqkr2qP_olXaaVuvCZ4NsDMx3Ln2MD", off: "1JYq9OV2DINTs2d_7Ch4RC6dRDIYznOnV" },
+  { on: "1GodcEgj1FdJeMUkgTRKD2O2nlyzu0vTr", off: "16OujFERmv8a_AixsUMdWxgtCGqaU2lI4" },
+  { on: "1ajrg3nq1dpGA334MgW04iYRbPYQlZ0-3", off: "1gZW-XlkBdVNMLb9Z8yEEeDX0ZPbXFF_K" },
+  { on: "1mPc4jKFtGS0eWnU6x-thW3LHpuQZcIDr", off: "1lR0GBIDDyCeIYrVOIbMyOtWZHDXyQ4TK" },
+  { on: "1YlcPKCN_dq_ddQhb8rH1K3Ji0ChTMoIr", off: "1rufTPPPm3Yvzh49bhBhvLv45-NcFhlOc" },
+  { on: "1fYCNnZS76348yrKfAK_3X9KgIcYEvG7a", off: "1bQ34d2kP-QFz2rNmWhF5UOrNemwPzB_7" },
+  { on: "1l42K24GwlDMxSIhoIeSWO6yCY-XG38jP", off: "1RNwSAdOzwaEWGR57qSMydY77cJlmTMp1" },
+  { on: "1apVWju7a3NTvFBt9VQ1Jrv8ldpsruWsQ", off: "1SsxxfvLaGvvLMZqI0uz4PqldtkG_Cchw" },
+  { on: "1ww6UXnYh9865-kEYrlYP-laNtM7iwcCv", off: "1PhBcrs90GYw8mNQDBbDC0envfCi-ool6" },
+  { on: "17Mwesxav8zD2AR3umu-xWNUDfjXurahB", off: "1qxyMd-qQJ9nAnn2avJeFzJZVt29qdyDv" },
+  { on: "1hSI6Z01L5n3LsvZOxFHI2xuBjhNV6P_8", off: "1veq6e0u7CK803no3Fr8fZ8-kmILHcbdX" },
+  { on: "1i-VkvED22ru-DmUFV2svhqqbj3PIsOjr", off: "1rwOhdjENReR3fJQaFpJR4GoGrFTW1SIS" },
+  { on: "1CQ55OXxE7wRcaKsARRNgzTvUvQAEm7pA", off: "1ovl4ruHjf9VqKnKPx0wN6DcM5vePvYoP" },
+  { on: "1F67Ka5frutFnwiFoHPPPJ6CiPyMiEemO", off: "1Yu6f7T4EK1qqu7TZqjsbVDcKUJI7QpUM" },
+  { on: "1qATXW5iUluj3ZSC4tNgj8c2gvf7qmEmH", off: "1qfxsEa3iFAWmqFp5AvvOWhjk" },
+  { on: "1dXO7MrbLa__c5_tBxxBVDCMvq4yluVu_", off: "184TXG10iz7iEhLOz32qZtA3AYnQkOjx9" },
+  { on: "1ZtXnmvwXZJHSrWX7VPGPDqRVSIgsN1ex", off: "1brODnN1-Lqtpg12qNKHs1HPR1ar-LemJ" },
+  { on: "1iEp6ckPiMLfxrXBY_cLhevhVYU3T7L4c", off: "188Uo2UMz_rP8YY5gOS-3vsVdB-cJO8Cv" },
+  { on: "1IWWuErWK-CwcFfqbXtpytmG6c36eXHaR", off: "1ekEKVuW7HFpnoQhP4hv2D0X3QDG7luyq" }
 ];
 
-const SIZE_DATA = [
+// DYNAMISK STØRRELSES-STRUKTUR MED TEKST / FARVER / FONTS (PUNKT 3 & 4)
+const SIZE_CATEGORIES = [
   {
-    title: "1RZTZy5SkaYhentzK95PtHLfTLrry588t",
+    titleId: IMAGES.titleWomens,
+    name: "Women's",
     sizes: [
-      { key: "EU26", trueId: "1XSVwjDADYiCZiHS4H78vrfrLpke4Jz-U", falseId: "1JyRI9YKjybxP9WsQLZFpDriITxKr_weK" },
-      { key: "EU2628", trueId: "16o90DPuUgx0M9d-kE2dMd4fT241TVoJu", falseId: "16VTslGlTyERmwnB7nvNCPnF_-NmPKics" },
-      { key: "EU28", trueId: "1EwNUNR0SdBW1BFbsSH4m98otcLVctxIx", falseId: "15CFzgd1FZGCckxbD6mwyGq7XozdIbQ4T" },
-      { key: "EU30", trueId: "1Fre7X7orUM_he3lORr8QSwgVmf1-uU2l", falseId: "1JKS36Y-YBeZBWYQl9yCXHj_jjGwE6DIu" },
-      { key: "EU3032", trueId: "1v9aFTb9A6CbHlpDTcPZ9QhxBV2sY3ilo", falseId: "1vEa-Ze_BE-AN7fzXeo1UZpn59g9-yIZh" },
-      { key: "EU32", trueId: "1Y92_reAKvB6EYw1fMHnrsgSTVKTrreBh", falseId: "1AGat9CErbnJUxBmMjhovNMu6jxDLuObk" },
-      { key: "EU34", trueId: "1oCfPD4FC89QSOnrPGnokkBusdXZzTaQx", falseId: "12MQXuKYSc2typ5lV2bER0YQFD72ge3IV" },
-      { key: "EU3436", trueId: "1FsA-E8nfgmvlUvYgDC-f8V--3a3N04Jg", falseId: "1z3TIRPLCDKQmLDn7AHPEvdmIuRnH7ZQm" },
-      { key: "EU36", trueId: "1-joZHg6tLlLA9jYYFXS6PxfP7KeHBFTo", falseId: "1ZoMjpnbtblGmh31UniOzphCVOEN-Ucl_" },
-      { key: "EU38", trueId: "1G2MRIHrsCFVvHEGOlR541ye6YOs8MOlQ", falseId: "1tY9jv9a7vNP0Gv9yup840ufsKWmmxq2X" },
-      { key: "EU3840", trueId: "1fzI9fG-nZRN-x1goIhHQyFmBCxLt-8nt", falseId: "1Ft-sbNlOjJKgSsx4Nf9f3PyqkcbL8wZK" },
-      { key: "EU40", trueId: "1NsfHw2LdRBWYMEq1xAseeRMMPiXIMeyH", falseId: "19VCAb2KT79Ldz6ocGZMq6r54ASXWGMK9" },
-      { key: "EU42", trueId: "1d4wCqI9Vno9wwNwrEbkibQGUgxPejm5Z", falseId: "1TkN5oFFGDq_bYO56lnNw_BvwWxm5pdjc" },
-      { key: "EU4244", trueId: "1Vt-_beDKLLItf-mQIqIGjBUOaAZTSL6o", falseId: "1EcElReHP3DYzfcQnXVj6n7VJufOfwaNF" },
-      { key: "EU44", trueId: "1SPpECUO78hFYv6P0V6xryLgMXx-KkWwn", falseId: "1WTUrVCgOm3NfWiRdUBXcNlmDFzRn6R0k" },
-      { key: "EU46", trueId: "1NyKPsEfo9q_t9k0WgEvLkU7LxKbASFks", falseId: "1dfAiO_QutWbCDB-kgFQiAkyUNE5E5aLc" },
-      { key: "EU4648", trueId: "1oq82XfHZevnKU0EBbImNaGwKTMJPwsJR", falseId: "1J7uSFTMr7M8k0BTld8yuRVJFjqUl-xaB" },
-      { key: "EU48", trueId: "15Qs7Tk4BEcOERurOSonCWE9e6h5yTF_B", falseId: "1wEFnYzeZaryR2sQZanF-zB5oNb5W8Jqi" }
+      { key: "EU26", l1: "2XS", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "26", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU2628", l1: "2XS", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "26-28", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU28", l1: "2XS", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "28", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU30", l1: "XS", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "30", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU3032", l1: "XS", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "30-32", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU32", l1: "XS", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "32", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU34", l1: "S", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "34", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU3436", l1: "S", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "34-36", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU36", l1: "S", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "36", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU38", l1: "M", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "38", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU3840", l1: "M", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "38-40", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU40", l1: "M", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "40", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU42", l1: "L", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "42", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU4244", l1: "L", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "42-44", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU44", l1: "L", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "44", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU46", l1: "XL", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "46", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU4648", l1: "XL", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "46-48", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 },
+      { key: "EU48", l1: "XL", s1: 32, c1: "#2844C1", b1: "#0E1DDD", l2: "48", s2: 40, c2: "#FF3552", b2: "#FF0024", lead: 32 }
     ]
   },
   {
-    title: "13FXO2y9MwhBRRLfav_57fHmnawi236F2",
+    titleId: IMAGES.titleMens,
+    name: "Men's",
     sizes: [
-      { key: "XS", trueId: "1fo2xSQdYAxc5wur2j42kqfaBNnAAowoa", falseId: "1Llb31YJSRgnlbJjQKh1_qv9Ei93hRxzF" },
-      { key: "S", trueId: "12zAn5AmgyG6waKAgqioHMfB28QjAlwwY", falseId: "14q7cIEJIa2gQums81lgrMyRm08aXiu1Z" },
-      { key: "M", trueId: "1x0udUH6RqecdbHD_WJvDlqHSjldmlBVB", falseId: "15l9nD1AdqM-h9d9RIMTA9m1VNrRuhImc" },
-      { key: "L", trueId: "1xGlMfaxmVWQiS-3XHJc8EypOFV7m5bl4", falseId: "1u4Ll51Phy5tKvoBpK1YXd0W7m4UbcFV2" },
-      { key: "XL", trueId: "1yvfJqilhdUw0NgOvwKXkn8piHKNVFIoH", falseId: "1LlqkDB-YcBkk7g74OjXVHfm7qmutg5gs" },
-      { key: "2XL", trueId: "1rswUnEgd7jMZPbsTMp_aVaHmx9N2AXlU", falseId: "1PcZwwRdqnoz1FvDxtVf7aQJKCtvu62rK" }
+      { key: "XS", l1: "XS", s1: 60, c1: "#2844C1", b1: "#0E1DDD" },
+      { key: "S", l1: "S", s1: 60, c1: "#2844C1", b1: "#0E1DDD" },
+      { key: "M", l1: "M", s1: 60, c1: "#2844C1", b1: "#0E1DDD" },
+      { key: "L", l1: "L", s1: 60, c1: "#2844C1", b1: "#0E1DDD" },
+      { key: "XL", l1: "XL", s1: 60, c1: "#2844C1", b1: "#0E1DDD" },
+      { key: "2XL", l1: "2XL", s1: 60, c1: "#2844C1", b1: "#0E1DDD" }
     ]
   },
   {
-    title: "1o-bFV6fUuz4-UOz3LHuNCmLDEQRTQpCK",
+    titleId: IMAGES.titleFootwear,
+    name: "Footwear",
     sizes: [
-      { key: "40", trueId: "107zMXiUS71NF-yFx8-0bmicjcrH0Vjpr", falseId: "1z3t0nNPRWhfb2NZ2yyZ5yVlj1KtLeGL3" },
-      { key: "40 2/3", trueId: "1dDymb3WDFjwKQswqx9JTm2a3G8eMQb87", falseId: "1EVan3IADTMUMpcjynJZeEwY_KKkdHJCX" }
+      { key: "40", l1: "40", s1: 40, c1: "#319F00", b1: "#0D4C00" },
+      { key: "40 1/2", l1: "40½", s1: 40, c1: "#319F00", b1: "#0D4C00" },
+      { key: "40 2/3", l1: "40⅔", s1: 40, c1: "#319F00", b1: "#0D4C00" },
+      { key: "39-42", l1: "39-42", s1: 40, c1: "#319F00", b1: "#0D4C00" },
+      { key: "40-42", l1: "40-42", s1: 40, c1: "#319F00", b1: "#0D4C00" }
     ]
   },
   {
-    title: "1YA3WaLcSWL50BHllfjRcI6Bu-qj-kP50",
+    titleId: IMAGES.titleHeadwear,
+    name: "Headwear",
     sizes: [
-      { key: "Onesize", trueId: "1_vg2cPTQQvQNyUKNgWGY_5159mFXK7MS", falseId: "1yn6-0jQ61iKVjPC7YThePp16oQE4uKgc" }
+      { key: "OSFA", l1: "OSFA", s1: 35, c1: "#4344C1", b1: "#2C17DD" },
+      { key: "OSFW", l1: "OSFW", s1: 35, c1: "#4344C1", b1: "#2C17DD" },
+      { key: "OSFM", l1: "OSFM", s1: 35, c1: "#4344C1", b1: "#2C17DD" },
+      { key: "S/M", l1: "S/M", s1: 35, c1: "#4344C1", b1: "#2C17DD" },
+      { key: "L/XL", l1: "L/XL", s1: 35, c1: "#4344C1", b1: "#2C17DD" }
+    ]
+  },
+  {
+    titleId: IMAGES.titleOther,
+    name: "Other",
+    sizes: [
+      { key: "Onesize", l1: "Onesize", s1: 28, c1: "#FF9E0E", b1: "#8F4600" },
+      { key: "Unisex XS", l1: "Unisex", s1: 16, c1: "#000000", l2: "XS", s2: 64, grad: ["#FF0024", "#0E1DDD"], lead: 48 },
+      { key: "Unisex S", l1: "Unisex", s1: 16, c1: "#000000", l2: "S", s2: 64, grad: ["#FF0024", "#0E1DDD"], lead: 48 },
+      { key: "Unisex M", l1: "Unisex", s1: 16, c1: "#000000", l2: "M", s2: 64, grad: ["#FF0024", "#0E1DDD"], lead: 48 },
+      { key: "Unisex L", l1: "Unisex", s1: 16, c1: "#000000", l2: "L", s2: 64, grad: ["#FF0024", "#0E1DDD"], lead: 48 },
+      { key: "Unisex XL", l1: "Unisex", s1: 16, c1: "#000000", l2: "XL", s2: 64, grad: ["#FF0024", "#0E1DDD"], lead: 48 },
+      { key: "29\"", l1: "29\"", s1: 30, c1: "#DE540E", b1: "#CF251E" },
+      { key: "32\"/32\"", l1: "32\"/32", s1: 30, c1: "#DE540E", b1: "#CF251E" }
     ]
   }
 ];
 
 let selectedSizes = {};
-SIZE_DATA.forEach(group => {
+SIZE_CATEGORIES.forEach(group => {
   group.sizes.forEach(s => {
     selectedSizes[s.key] = true;
   });
@@ -126,23 +179,29 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdown.style.display = 'none';
       }
     }
+
+    const mobPanel = document.getElementById('mobileDropdownPanel');
+    const mobTrigger = document.querySelector('.mobile-foldout-trigger');
+    if (mobPanel && mobTrigger && mobPanel.style.display === 'flex') {
+      if (!mobPanel.contains(e.target) && !mobTrigger.contains(e.target)) {
+        mobPanel.style.display = 'none';
+      }
+    }
   });
 });
 
+// STYRER KATEGORI-NAVIGATIONEN I HØJRE SIDE (PUNKT 8: HEADER ER EN MUR)
 function handleSmartNavbarNavigation() {
-  const headerContainer = document.querySelector('.header-container');
+  const header = document.getElementById('headerContainer');
   const alphabetNav = document.getElementById('alphabetNav');
-  if (!headerContainer || !alphabetNav) return;
+  if (!header || !alphabetNav) return;
 
-  const headerRect = headerContainer.getBoundingClientRect();
-  const navHeight = alphabetNav.offsetHeight || 200;
-  const triggerPoint = (window.innerHeight / 2) - (navHeight / 2);
-
-  if (headerRect.bottom > triggerPoint) {
-    alphabetNav.classList.remove('fixed-nav');
-  } else {
-    alphabetNav.classList.add('fixed-nav');
-  }
+  const headerRect = header.getBoundingClientRect();
+  const headerBottom = Math.max(0, headerRect.bottom);
+  
+  // Sæt den øverste position så nav ALDRIG kan gå ind i headeren
+  alphabetNav.style.top = `${headerBottom + 10}px`;
+  alphabetNav.style.maxHeight = `calc(100vh - ${headerBottom + 20}px)`;
 }
 
 function markFormDirty() {
@@ -188,10 +247,37 @@ function handleButtonB() {
   else openModal('wish');
 }
 
+// TOGGLE BRAND FILTER (PUNKT 6)
+function toggleBrandFilter(brand) {
+  if (brand === 'originals') {
+    filterOriginals = !filterOriginals;
+  } else if (brand === 'performance') {
+    filterPerformance = !filterPerformance;
+  }
+
+  const topOrig = document.getElementById('topBrandOrig');
+  const topPerf = document.getElementById('topBrandPerf');
+  const mobOrig = document.getElementById('mobBrandOrig');
+  const mobPerf = document.getElementById('mobBrandPerf');
+
+  const origSrc = `https://lh3.googleusercontent.com/d/${filterOriginals ? IMAGES.origTrue : IMAGES.origFalse}`;
+  const perfSrc = `https://lh3.googleusercontent.com/d/${filterPerformance ? IMAGES.perfTrue : IMAGES.perfFalse}`;
+
+  if (topOrig) topOrig.src = origSrc;
+  if (mobOrig) mobOrig.src = origSrc;
+  if (topPerf) topPerf.src = perfSrc;
+  if (mobPerf) mobPerf.src = perfSrc;
+
+  renderItems();
+}
+
 function toggleShowSold() {
   showSold = !showSold;
   const toggleImg = document.getElementById('showSoldToggleImg');
-  if (toggleImg) toggleImg.src = `https://lh3.googleusercontent.com/d/${showSold ? IMAGES.showSoldOn : IMAGES.showSoldOff}`;
+  const mobToggleImg = document.getElementById('mobShowSoldToggleImg');
+  const src = `https://lh3.googleusercontent.com/d/${showSold ? IMAGES.showSoldOn : IMAGES.showSoldOff}`;
+  if (toggleImg) toggleImg.src = src;
+  if (mobToggleImg) mobToggleImg.src = src;
   renderItems();
 }
 
@@ -207,32 +293,141 @@ function toggleSizeMenu(e) {
   dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
 }
 
+function toggleMobileDropdown(e) {
+  e.stopPropagation();
+  const panel = document.getElementById('mobileDropdownPanel');
+  if (!panel) return;
+  panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// SHUFFLE HULPJÆLP TIL 28 BOBLER (PUNKT 2)
+function getRandomBubble(seedStr) {
+  let hash = 0;
+  if (seedStr) {
+    for (let i = 0; i < seedStr.length; i++) {
+      hash = seedStr.charCodeAt(i) + ((hash << 5) - hash);
+    }
+  } else {
+    hash = Math.floor(Math.random() * 100000);
+  }
+  const index = Math.abs(hash) % BUBBLE_POOL.length;
+  return BUBBLE_POOL[index];
+}
+
+// RENDERING AF TEKST OVENPÅ DYNAMISKE BOBLER (PUNKT 2, 3 & 4)
+function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
+  let sizeObj = null;
+  for (let cat of SIZE_CATEGORIES) {
+    for (let s of cat.sizes) {
+      if (s.key.toUpperCase() === String(sizeKey).trim().toUpperCase()) {
+        sizeObj = s;
+        break;
+      }
+    }
+    if (sizeObj) break;
+  }
+
+  if (!sizeObj) {
+    sizeObj = { key: sizeKey, l1: sizeKey, s1: 35, c1: "#000000", b1: "#ffffff" };
+  }
+
+  const bubbleData = getRandomBubble(sizeKey);
+  const imgId = isSelected ? bubbleData.on : bubbleData.off;
+  
+  const canvas = document.createElement('canvas');
+  canvas.width = targetPx;
+  canvas.height = targetPx;
+  const ctx = canvas.getContext('2d');
+
+  const scale = targetPx / 156.0;
+
+  const img = new Image();
+  img.crossOrigin = "anonymous";
+  img.src = `https://lh3.googleusercontent.com/d/${imgId}`;
+  img.onload = () => {
+    ctx.drawImage(img, 0, 0, targetPx, targetPx);
+
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    const drawTextLine = (text, sizePt, color, strokeColor, gradColors, centerY) => {
+      const pxSize = sizePt * scale * 1.333;
+      ctx.font = `bold ${pxSize}px 'AvantGarde LT Book', sans-serif`;
+
+      if (gradColors && gradColors.length >= 2) {
+        const gradient = ctx.createLinearGradient(0, centerY - pxSize/2, 0, centerY + pxSize/2);
+        gradient.addColorStop(0, gradColors[0]);
+        gradient.addColorStop(1, gradColors[1]);
+        ctx.fillStyle = gradient;
+      } else {
+        ctx.fillStyle = color;
+      }
+
+      if (strokeColor) {
+        ctx.strokeStyle = strokeColor;
+        ctx.lineWidth = Math.max(1, 2 * scale);
+        ctx.strokeText(text, targetPx / 2, centerY);
+      }
+      ctx.fillText(text, targetPx / 2, centerY);
+    };
+
+    if (sizeObj.l2) {
+      const leadPx = (sizeObj.lead || 32) * scale;
+      const centerY1 = (targetPx / 2) - (leadPx / 2);
+      const centerY2 = (targetPx / 2) + (leadPx / 2);
+      
+      drawTextLine(sizeObj.l1, sizeObj.s1, sizeObj.c1, sizeObj.b1, sizeObj.grad, centerY1);
+      drawTextLine(sizeObj.l2, sizeObj.s2, sizeObj.c2, sizeObj.b2, sizeObj.grad, centerY2);
+    } else {
+      drawTextLine(sizeObj.l1, sizeObj.s1, sizeObj.c1, sizeObj.b1, sizeObj.grad, targetPx / 2);
+    }
+  };
+
+  return canvas;
+}
+
 function renderSizeMenuUI() {
   const dropdown = document.getElementById('sizeDropdown');
   if (!dropdown) return;
-  let html = '';
-  SIZE_DATA.forEach((group, idx) => {
-    if (idx === 0) {
-      html += `
-        <div class="size-dropdown-top">
-          <img src="https://lh3.googleusercontent.com/d/${group.title}" class="size-group-title" style="margin-bottom:0;" alt="Women's">
-          <div class="size-quick-actions">
-            <img src="https://lh3.googleusercontent.com/d/1V2GovFhIyQNeToWVriLnLizmC295PoxL" onclick="selectAllSizes(true)" alt="ON">
-            <img src="https://lh3.googleusercontent.com/d/18sFkDxQEW3oa79aSI-sWZLi5oSoEWOuZ" onclick="selectAllSizes(false)" alt="OFF">
-          </div>
-        </div>
-        <div class="size-group">`;
-    } else {
-      html += `<div class="size-group"><img src="https://lh3.googleusercontent.com/d/${group.title}" class="size-group-title" alt="title">`;
+  dropdown.innerHTML = '';
+
+  const topDiv = document.createElement('div');
+  topDiv.className = 'size-dropdown-top';
+  topDiv.innerHTML = `
+    <img src="https://lh3.googleusercontent.com/d/${IMAGES.titleWomens}" class="size-group-title" style="margin-bottom:0;" alt="Women's">
+    <div class="size-quick-actions">
+      <img src="https://lh3.googleusercontent.com/d/1V2GovFhIyQNeToWVriLnLizmC295PoxL" onclick="selectAllSizes(true)" alt="ON">
+      <img src="https://lh3.googleusercontent.com/d/18sFkDxQEW3oa79aSI-sWZLi5oSoEWOuZ" onclick="selectAllSizes(false)" alt="OFF">
+    </div>
+  `;
+  dropdown.appendChild(topDiv);
+
+  SIZE_CATEGORIES.forEach((cat, idx) => {
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'size-group';
+
+    if (idx > 0) {
+      const titleImg = document.createElement('img');
+      titleImg.className = 'size-group-title';
+      titleImg.src = `https://lh3.googleusercontent.com/d/${cat.titleId}`;
+      titleImg.alt = cat.name;
+      groupDiv.appendChild(titleImg);
     }
-    html += `<div class="size-grid">`;
-    group.sizes.forEach(s => {
+
+    const gridDiv = document.createElement('div');
+    gridDiv.className = 'size-grid';
+
+    cat.sizes.forEach(s => {
       const isSelected = !!selectedSizes[s.key];
-      html += `<img src="https://lh3.googleusercontent.com/d/${isSelected ? s.trueId : s.falseId}" onclick="toggleSingleSize(event, '${s.key}')" alt="${s.key}">`;
+      const canvas = renderDynamicSizeBubbleCanvas(s.key, isSelected, 50);
+      canvas.className = 'size-grid-item';
+      canvas.onclick = (e) => toggleSingleSize(e, s.key);
+      gridDiv.appendChild(canvas);
     });
-    html += `</div></div>`;
+
+    groupDiv.appendChild(gridDiv);
+    dropdown.appendChild(groupDiv);
   });
-  dropdown.innerHTML = html;
 }
 
 function toggleSingleSize(e, sizeKey) {
@@ -243,20 +438,9 @@ function toggleSingleSize(e, sizeKey) {
 }
 
 function selectAllSizes(status) {
-  SIZE_DATA.forEach(group => group.sizes.forEach(s => selectedSizes[s.key] = status));
+  SIZE_CATEGORIES.forEach(group => group.sizes.forEach(s => selectedSizes[s.key] = status));
   renderSizeMenuUI();
   renderItems();
-}
-
-function getSizeBadgeId(sizeStr) {
-  if (!sizeStr) return null;
-  const clean = String(sizeStr).trim().toUpperCase();
-  for (let group of SIZE_DATA) {
-    for (let s of group.sizes) {
-      if (s.key.toUpperCase() === clean) return s.trueId;
-    }
-  }
-  return null;
 }
 
 function formatDanishPrice(val) {
@@ -284,6 +468,24 @@ function renderItems() {
       return false;
     }
     
+    // Brand filter (punkt 6)
+    const brand = item.brand ? String(item.brand).toLowerCase().trim() : 'originals';
+    if (brand === 'performance' && !filterPerformance) return false;
+    if (brand === 'originals' && !filterOriginals) return false;
+
+    // Size filter (punkt 3)
+    if (item.size) {
+      const cleanSize = String(item.size).trim().toUpperCase();
+      let matched = false;
+      for (let key in selectedSizes) {
+        if (key.toUpperCase() === cleanSize) {
+          if (!selectedSizes[key]) return false;
+          matched = true;
+          break;
+        }
+      }
+    }
+
     const isSold = String(item.sold).toUpperCase() === 'TRUE';
     if (!showSold && isSold) return false;
 
@@ -309,14 +511,15 @@ function renderItems() {
   sortedCats.forEach((cat, index) => {
     const safeCatId = encodeURIComponent(cat);
 
+    // SIDEBAR BOBLER MED RANDOMISED BAGGRUND OG FLOT TEXT-STROKE (PUNKT 2 & 8)
     if (alphabetNav) {
-      const bubbleImgId = SIDEBAR_BUBBLES[index % SIDEBAR_BUBBLES.length];
+      const bubbleData = getRandomBubble(cat);
       const letter = cat.charAt(0).toUpperCase();
       const bubbleItem = document.createElement('a');
       bubbleItem.className = 'sidebar-bubble-item';
       bubbleItem.href = `#cat-${safeCatId}`;
       bubbleItem.innerHTML = `
-        <img class="sidebar-bubble-bg" src="https://lh3.googleusercontent.com/d/${bubbleImgId}" alt="bubble">
+        <img class="sidebar-bubble-bg" src="https://lh3.googleusercontent.com/d/${bubbleData.on}" alt="bubble">
         <span class="sidebar-bubble-letter">${letter}</span>
       `;
       alphabetNav.appendChild(bubbleItem);
@@ -342,16 +545,19 @@ function renderItems() {
       const isSold = String(item.sold).toUpperCase() === 'TRUE';
       const bgUrl = item.imageid ? `https://lh3.googleusercontent.com/d/${item.imageid}` : '';
       const brandText = String(item.brand).toLowerCase() === 'performance' ? 'adidas Performance' : 'adidas Originals';
-      const sizeBadgeId = getSizeBadgeId(item.size);
-      const hasSalePrice = isSold && item.saleprice && String(item.saleprice).trim() !== '';
-
+      
       const purchaseFormatted = formatDanishPrice(item.purchaseprice);
       const saleFormatted = formatDanishPrice(item.saleprice);
+
+      const hasMadeIn = item.madein && String(item.madein).trim() !== '';
+      const hasProduced = item.produced && String(item.produced).trim() !== '';
+      const hasPurchase = item.purchaseprice && String(item.purchaseprice).trim() !== '';
+      const hasSale = isSold && item.saleprice && String(item.saleprice).trim() !== '';
 
       card.innerHTML = `
         <div class="image-wrapper" style="background-image: url('${bgUrl}');">
           ${isSold ? '<div class="sold-overlay"></div>' : ''}
-          ${sizeBadgeId ? `<img class="size-badge" src="https://lh3.googleusercontent.com/d/${sizeBadgeId}" alt="${item.size}">` : ''}
+          <div class="size-badge-container"></div>
           <div class="article-badge">
             <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
             <span>${item.articlenumber || ''}</span>
@@ -361,24 +567,50 @@ function renderItems() {
           <span class="item-id">${item.id || ''}</span>
           <div class="info-header"><span>${brandText}</span></div>
           <div class="info-name">${item.name || ''}</div>
+          
+          <!-- Made in & Production time (Punkt 1: KUN synlige hvis der er information) -->
           <div class="info-row">
-            <span>Made in</span>
-            <span class="val">${item.madein || ''}</span>
+            ${hasMadeIn ? `
+              <div class="info-row-left">
+                <span>Made in</span>
+                <span class="val">${item.madein}</span>
+              </div>
+            ` : '<div></div>'}
+            
+            ${hasProduced ? `
+              <div class="info-row-right">
+                <img src="https://lh3.googleusercontent.com/d/${IMAGES.iconProduced}" alt="produced">
+                <span class="val">${item.produced}</span>
+              </div>
+            ` : ''}
           </div>
+
+          <!-- Prices (Punkt 1: KUN synlige hvis udfyldt) -->
           <div class="info-row">
-            <div class="price-left-side">
-              <img src="https://lh3.googleusercontent.com/d/${IMAGES.iconPurchasePrice}" alt="purchase">
-              <span class="val">${purchaseFormatted}</span>
-            </div>
-            ${hasSalePrice ? `
-            <div class="price-right-side">
-              <img src="https://lh3.googleusercontent.com/d/${IMAGES.iconSalePrice}" alt="sale">
-              <span class="val">${saleFormatted}</span>
-            </div>
+            ${hasPurchase ? `
+              <div class="price-left-side">
+                <img src="https://lh3.googleusercontent.com/d/${IMAGES.iconPurchasePrice}" alt="purchase">
+                <span class="val">${purchaseFormatted}</span>
+              </div>
+            ` : '<div></div>'}
+            
+            ${hasSale ? `
+              <div class="price-right-side">
+                <img src="https://lh3.googleusercontent.com/d/${IMAGES.iconSalePrice}" alt="sale">
+                <span class="val">${saleFormatted}</span>
+              </div>
             ` : ''}
           </div>
         </div>
       `;
+
+      // Tilføj dynamisk størrelses-bobbel på varen (punkt 3)
+      if (item.size) {
+        const badgeCanvas = renderDynamicSizeBubbleCanvas(item.size, true, 40);
+        badgeCanvas.className = 'size-badge-canvas';
+        card.querySelector('.image-wrapper').appendChild(badgeCanvas);
+      }
+
       grid.appendChild(card);
     });
 
@@ -404,7 +636,6 @@ function openModal(type) {
   const uploadPreview = document.getElementById('uploadPreview');
   if (uploadPreview) uploadPreview.style.backgroundImage = `url('https://lh3.googleusercontent.com/d/${IMAGES.uploadPlaceholder}')`;
 
-  // Sørg for at typen ('collect' eller 'wish') bliver sat fuldstændig rent her
   const targetType = (type === 'wish' || type === 'collect') ? type : PAGE_TYPE;
   setPageType(targetType);
   
@@ -431,7 +662,6 @@ function toggleModalPageType() {
 }
 
 function setPageType(type) {
-  // Tving værdien til udelukkende at være 'wish' eller 'collect' som rent tekst
   formCollectState = (type === 'wish') ? 'wish' : 'collect';
   
   const card = document.getElementById('modalCard');
@@ -502,13 +732,12 @@ function handleImage(input) {
 }
 
 function editItem(id) {
-  const item = allItems.find(i => i && i.id == id);
+  const item = allItems.find(i => i && String(i.id) === String(id));
   if (!item) return;
 
   currentEditId = item.id;
   isFormDirty = false;
 
-  // Sikr at eksisterende varer også fanger reelt 'wish' eller 'collect'
   const rawCollect = item.collect ? String(item.collect).toLowerCase().trim() : '';
   const itemType = (rawCollect === 'wish') ? 'wish' : 'collect';
   
@@ -540,7 +769,6 @@ function saveData() {
   if (isSaving) return;
   isSaving = true;
 
-  // Sikkerhedsvalidering: Garanter at collect-feltet KUN er 'wish' eller 'collect'
   const finalCollectValue = (formCollectState === 'wish') ? 'wish' : 'collect';
 
   const payload = {
