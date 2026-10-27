@@ -532,7 +532,7 @@ html, body {
   font-weight: bold;
 }
 
-/* POPUP MODAL DESIGN */
+/* POPUP MODAL DESIGN - OPTIMERET TIL PRÆCIS FLUGTNING */
 .modal-bg {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -548,12 +548,12 @@ html, body {
 .modal {
   background: #ffffff;
   border-radius: 22px;
-  width: 380px;
+  width: 410px;
   max-width: 95vw;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 12px 16px;
+  padding: 12px 16px 12px 16px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   gap: 6px;
@@ -575,11 +575,12 @@ html, body {
 
 .modal-header-banner {
   width: 100%;
-  height: 55px;
+  height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
+  margin-bottom: -2px;
 }
 
 .modal-header-banner img {
@@ -602,7 +603,21 @@ html, body {
   font-weight: bold;
 }
 
-.modal input[type="text"], 
+/* ALLE STANDARD TEKSTFELTER HAR NU PRÆCIS SAMME HØJDE (25px) */
+.modal input[type="text"] {
+  width: 100% !important;
+  height: 25px !important;
+  background-color: #E7EDFF !important;
+  border: 1px solid #B1C3FF !important;
+  border-radius: 6px !important;
+  padding: 0 6px !important;
+  box-sizing: border-box !important;
+  font-family: 'AvantGarde LT Medium', sans-serif !important;
+  font-size: 11px !important;
+  color: #000 !important;
+  outline: none !important;
+}
+
 .modal textarea {
   width: 100% !important;
   background-color: #E7EDFF !important;
@@ -614,6 +629,7 @@ html, body {
   font-size: 11px !important;
   color: #000 !important;
   outline: none !important;
+  resize: none !important;
 }
 
 .icon-input-row {
@@ -632,17 +648,17 @@ html, body {
 
 .upload-section {
   display: flex !important;
-  gap: 12px !important;
+  gap: 10px !important;
   align-items: stretch !important;
   width: 100% !important;
-  height: 135px;
+  height: 122px;
   flex-shrink: 0;
 }
 
 .upload-btn {
-  width: 135px !important;
-  height: 135px !important;
-  border-radius: 14px !important;
+  width: 122px !important;
+  height: 122px !important;
+  border-radius: 12px !important;
   background-size: cover !important;
   background-position: center !important;
   cursor: pointer !important;
@@ -676,7 +692,7 @@ html, body {
   align-items: center !important;
   gap: 6px !important;
   width: 100% !important;
-  height: 52px !important;
+  height: 46px !important;
 }
 
 .brand-toggle img {
@@ -698,10 +714,10 @@ html, body {
   gap: 6px !important;
 }
 
-/* NØJAGTIG FLUGTNING FOR MATERIALES OG PRICE SEKTIONER */
+/* PRÆCIS FLUGTNING AF MATERIALS OG RESELLING/SOLD HØJDER (ORANGE LINIE 56px SAMLET HØJDE) */
 .price-section {
   display: flex !important;
-  gap: 12px !important;
+  gap: 10px !important;
   align-items: flex-start !important;
   flex-shrink: 0;
 }
@@ -714,22 +730,15 @@ html, body {
   gap: 6px;
 }
 
-/* Materials tekstfelt har nøjagtig højde til at bunden flugter med Reselling/Sold rækken */
+/* Materials tekstfelt har nøjagtig 56px i højde, så det flugter perfekt med Purchase price + gap + Reselling/sold rækken */
 .materials-column .field-group:first-child textarea {
-  resize: none !important;
-  height: 62px !important;
-  box-sizing: border-box !important;
+  height: 56px !important;
 }
 
-/* Lining og Sold for tekstfelterne er præcis lige høje og flugter i top og bund */
+/* Lining og Sold for.. har præcis samme standardhøjde (25px) og flugter i bunden */
 .materials-column .field-group:last-child textarea,
 .price-right .sale-price-group input {
-  height: 28px !important;
-  box-sizing: border-box !important;
-}
-
-.materials-column .field-group:last-child textarea {
-  resize: none !important;
+  height: 25px !important;
 }
 
 .price-right {
@@ -746,8 +755,7 @@ html, body {
   align-items: center !important;
   justify-content: space-between !important;
   gap: 4px !important;
-  height: 22px !important;
-  margin: 2px 0 !important;
+  height: 25px !important;
   width: 100% !important;
 }
 
@@ -789,55 +797,53 @@ html, body {
   transition: opacity 0.2s ease;
 }
 
-/* FOOTER STYRING (CANCEL, MOVE TO, SAVE) */
+/* FOOTER STYRING - PRÆCISE DIMENSIONER (MOVE TO: 60px / CANCEL & SAVE: 20px) */
 .modal-footer {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  height: 56px !important;
+  height: 60px !important;            /* Højden matcher Move to.. knappen */
   width: 100% !important;
   box-sizing: border-box !important;
   padding: 0 !important;
   margin-top: 4px !important;
 }
 
+/* CANCEL: Præcis 20px høj (ca. 81.2px bred ud fra billedets forhold) og centreret vertikalt */
 .modal-footer > img.footer-btn:first-child {
-  width: 20% !important;
-  max-width: 20% !important;
-  flex: 0 0 20% !important;
-  height: 100% !important;
-  max-height: 100% !important;
+  height: 20px !important;
+  width: auto !important;
   object-fit: contain !important;
-  cursor: pointer !important;
+  cursor: w-resize !important;
+  align-self: center !important;
+  flex-shrink: 0 !important;
 }
 
+/* MOVE TO..: Præcis 60px høj, fylder den centrale plads ud med 3.8px gap i siderne */
 .move-toggle-btn {
-  width: 60% !important;
-  max-width: 60% !important;
-  flex: 0 0 60% !important;
-  height: 56px !important;
+  height: 60px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   box-sizing: border-box !important;
-  overflow: hidden !important;
+  margin: 0 3.8px !important;        /* Præcis 3.8px luft til hver side */
+  flex-shrink: 0 !important;
 }
 
 .move-toggle-btn img {
-  width: 100% !important;
-  max-width: 100% !important;
-  height: 56px !important;
-  max-height: 56px !important;
-  object-fit: fill !important;
-  cursor: pointer !important;
+  height: 60px !important;
+  width: auto !important;            /* Bevarer det naturlige breddeforhold (ca. 185px) */
+  object-fit: contain !important;
+  cursor: ew-resize !important;
+  display: block !important;
 }
 
+/* SAVE: Præcis 20px høj (ca. 81.2px bred) og centreret vertikalt */
 .modal-footer > img.footer-btn:last-child {
-  width: 20% !important;
-  max-width: 20% !important;
-  flex: 0 0 20% !important;
-  height: 100% !important;
-  max-height: 100% !important;
+  height: 20px !important;
+  width: auto !important;
   object-fit: contain !important;
-  cursor: pointer !important;
+  cursor: e-resize !important;
+  align-self: center !important;
+  flex-shrink: 0 !important;
 }
