@@ -784,7 +784,7 @@ html, body {
   transition: opacity 0.2s ease;
 }
 
-/* STRENG 1/5 - 3/5 - 1/5 FOOTER STYRING */
+/* NØEJAGTIG 1/5 - 3/5 - 1/5 FOOTER STYRING (CANCEL, MOVE TO, SAVE) */
 .modal-footer {
   display: flex !important;
   align-items: center !important;
@@ -796,19 +796,18 @@ html, body {
   margin: 0 !important;
 }
 
-/* Cancel: Præcis 20% bredde */
+/* Cancel: Præcis 20% (1/5) i bredden */
 .modal-footer > img.footer-btn:first-child {
   width: 20% !important;
   max-width: 20% !important;
   flex: 0 0 20% !important;
   height: 100% !important;
-  max-height: 28px !important;
+  max-height: 100% !important;
   object-fit: contain !important;
-  object-position: left center !important;
   cursor: pointer !important;
 }
 
-/* Move to...: Præcis 60% bredde */
+/* Move to...: Præcis 60% (3/5) i bredden - Fyldner fuldt ud */
 .move-toggle-btn {
   width: 60% !important;
   max-width: 60% !important;
@@ -817,6 +816,7 @@ html, body {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  box-sizing: border-box !important;
   overflow: hidden !important;
 }
 
@@ -824,20 +824,18 @@ html, body {
   width: 100% !important;
   max-width: 100% !important;
   height: 100% !important;
-  max-height: 28px !important;
-  object-fit: contain !important;
-  object-position: center !important;
+  max-height: 100% !important;
+  object-fit: fill !important; /* Strækker knappen ud, så den fylder hele 3/5-delers felt */
   cursor: pointer !important;
 }
 
-/* Save: Præcis 20% bredde */
+/* Save: Præcis 20% (1/5) i bredden */
 .modal-footer > img.footer-btn:last-child {
   width: 20% !important;
   max-width: 20% !important;
   flex: 0 0 20% !important;
   height: 100% !important;
-  max-height: 28px !important;
+  max-height: 100% !important;
   object-fit: contain !important;
-  object-position: right center !important;
   cursor: pointer !important;
 }
