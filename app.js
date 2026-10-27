@@ -306,12 +306,9 @@ function toggleMobileCategoryNav(e) {
 
 function getRandomBubble(seedStr) {
   let hash = 0;
-  if (seedStr) {
-    for (let i = 0; i < seedStr.length; i++) {
-      hash = seedStr.charCodeAt(i) + ((hash << 5) - hash);
-    }
-  } else {
-    hash = Math.floor(Math.random() * 100000);
+  const str = String(seedStr || '');
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
   }
   const index = Math.abs(hash) % BUBBLE_POOL.length;
   return BUBBLE_POOL[index];
@@ -333,7 +330,7 @@ function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx, seed) {
     sizeObj = { key: sizeKey, l1: sizeKey, s1: 35, c1: "#000000", b1: "#ffffff" };
   }
 
-  // Bruger varens helt unikke ID/seed, så ens størrelser (fx Onesize) får forskellige tilfældige bobler
+  // Tvinger brug af et unikt seed pr. vare (fx ID + art.nummer), så selvom størrelsen er den samme, vælges en anden boble
   const bubbleData = getRandomBubble(seed || sizeKey);
   const imgId = isSelected ? bubbleData.on : bubbleData.off;
   
@@ -580,7 +577,7 @@ function renderItems() {
           ${overlayHTML}
           <div class="size-badge-container"></div>
           <div class="article-badge">
-            <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
+            <img src="https://lh3.googleusercontent.com/d/${1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1}" alt="a#">
             <span>${item.articlenumber || ''}</span>
           </div>
         </div>
@@ -624,8 +621,8 @@ function renderItems() {
       `;
 
       if (item.size) {
-        // Unikt seed sendes med som 4. parameter, så hver vare får en tilfældig unik boble
-        const uniqueSeed = item.id || item.articlenumber || Math.random();
+        // Her sikres et helt unikt seed pr. vare, så hver enkelt vare (også i Onesize) får sin egen tilfældige boble fra puljen
+        const uniqueSeed = `${item.id || ''}_${item.articlenumber || ''}_${item.name || ''}`;
         const badgeCanvas = renderDynamicSizeBubbleCanvas(item.size, true, 40, uniqueSeed);
         badgeCanvas.className = 'size-badge-canvas';
         card.querySelector('.image-wrapper').appendChild(badgeCanvas);
