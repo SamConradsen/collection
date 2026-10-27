@@ -81,7 +81,7 @@ html, body {
 }
 
 .menu-item {
-  cursor: pointer;
+  cursor: cell;
   height: 42px !important;
   width: auto !important;
   max-width: 110px;
@@ -104,7 +104,7 @@ html, body {
 
 .size-menu-trigger {
   position: relative;
-  cursor: pointer;
+  cursor: cell;
 }
 
 .toggle-container {
@@ -242,7 +242,7 @@ html, body {
 }
 
 .size-quick-actions { display: flex; gap: 6px; align-items: center; }
-.size-quick-actions img { height: 18px !important; width: auto !important; cursor: pointer; object-fit: contain; }
+.size-quick-actions img { height: 18px !important; width: auto !important; cursor: cell; object-fit: contain; }
 
 .size-group { 
   margin-bottom: 6px; 
@@ -270,7 +270,7 @@ html, body {
   width: 100% !important;
   height: auto !important;
   aspect-ratio: 1 / 1 !important;
-  cursor: pointer;
+  cursor: cell;
   object-fit: contain;
   box-sizing: border-box;
   display: block;
@@ -340,7 +340,7 @@ html, body {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  cursor: pointer;
+  cursor: ns-resize;
   flex-shrink: 0;
 }
 
@@ -389,7 +389,7 @@ html, body {
 .item-card {
   display: flex;
   flex-direction: column;
-  cursor: pointer;
+  cursor: cell;
   width: 100% !important;
   max-width: 100% !important;
   min-width: 0 !important;
@@ -663,7 +663,7 @@ html, body {
   border-radius: 12px !important;
   background-size: cover !important;
   background-position: center !important;
-  cursor: pointer !important;
+  cursor: cell !important;
   flex-shrink: 0 !important;
   border: 1px dashed #b1c3ff !important;
 }
@@ -801,7 +801,7 @@ html, body {
   margin-top: 6px !important;
 }
 
-/* Cancel: w-resize cursor */
+/* CANCEL */
 .modal-footer > img.footer-btn:first-child {
   height: 20px !important;
   width: auto !important;
@@ -811,7 +811,7 @@ html, body {
   flex-shrink: 0 !important;
 }
 
-/* Move to..: ew-resize cursor */
+/* MOVE TO.. */
 .move-toggle-btn {
   height: 60px !important;
   display: flex !important;
@@ -831,7 +831,7 @@ html, body {
   display: block !important;
 }
 
-/* Save: e-resize cursor */
+/* SAVE */
 .modal-footer > img.footer-btn:last-child {
   height: 20px !important;
   width: auto !important;
