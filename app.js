@@ -317,7 +317,7 @@ function getRandomBubble(seedStr) {
   return BUBBLE_POOL[index];
 }
 
-function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
+function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx, seed) {
   let sizeObj = null;
   for (let cat of SIZE_CATEGORIES) {
     for (let s of cat.sizes) {
@@ -333,7 +333,8 @@ function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
     sizeObj = { key: sizeKey, l1: sizeKey, s1: 35, c1: "#000000", b1: "#ffffff" };
   }
 
-  const bubbleData = getRandomBubble(sizeKey);
+  // Bruger det unikke seed (fx varens ID) hvis det gives, ellers sizeKey
+  const bubbleData = getRandomBubble(seed || sizeKey);
   const imgId = isSelected ? bubbleData.on : bubbleData.off;
   
   const canvas = document.createElement('canvas');
@@ -361,7 +362,6 @@ function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
       const pxSize = (sizePt / 156.0) * targetPx * 1.15; 
       ctx.font = `bold ${pxSize}px 'AvantGarde LT Book', sans-serif`;
 
-      // KORREKT RÆKKEFØLGE: Tjek isUnisexTop FØRST, så UNISEX altid bliver sort
       if (isUnisexTop) {
         ctx.fillStyle = "#000000";
       } else if (gradColors && gradColors.length >= 2) {
@@ -624,7 +624,8 @@ function renderItems() {
       `;
 
       if (item.size) {
-        const badgeCanvas = renderDynamicSizeBubbleCanvas(item.size, true, 40);
+        // Sender item.id med som unikt seed, så hver vare får sin egen tilfældige boble
+        const badgeCanvas = renderDynamicSizeBubbleCanvas(item.size, true, 40, item.id);
         badgeCanvas.className = 'size-badge-canvas';
         card.querySelector('.image-wrapper').appendChild(badgeCanvas);
       }
