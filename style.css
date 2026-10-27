@@ -784,40 +784,60 @@ html, body {
   transition: opacity 0.2s ease;
 }
 
-/* KORREKT 1/5 - 3/5 - 1/5 FOOTER PROPORTIONER */
+/* STRENG 1/5 - 3/5 - 1/5 FOOTER STYRING */
 .modal-footer {
   display: flex !important;
-  justify-content: space-between !important;
   align-items: center !important;
-  height: 11.5%;
-  gap: 4px !important;
-  flex-shrink: 0;
+  justify-content: space-between !important;
+  height: 11.5% !important;
   width: 100% !important;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-.footer-btn {
+/* Cancel: Præcis 20% bredde */
+.modal-footer > img.footer-btn:first-child {
+  width: 20% !important;
+  max-width: 20% !important;
   flex: 0 0 20% !important;
   height: 100% !important;
   max-height: 28px !important;
-  width: 100% !important;
-  cursor: pointer !important;
   object-fit: contain !important;
+  object-position: left center !important;
+  cursor: pointer !important;
 }
 
+/* Move to...: Præcis 60% bredde */
 .move-toggle-btn {
-  flex: 0 0 58% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
+  width: 60% !important;
+  max-width: 60% !important;
+  flex: 0 0 60% !important;
   height: 100% !important;
-  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
 }
 
 .move-toggle-btn img {
-  height: 100% !important;
-  max-height: 32px !important;
   width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  max-height: 28px !important;
   object-fit: contain !important;
+  object-position: center !important;
+  cursor: pointer !important;
+}
+
+/* Save: Præcis 20% bredde */
+.modal-footer > img.footer-btn:last-child {
+  width: 20% !important;
+  max-width: 20% !important;
+  flex: 0 0 20% !important;
+  height: 100% !important;
+  max-height: 28px !important;
+  object-fit: contain !important;
+  object-position: right center !important;
   cursor: pointer !important;
 }
