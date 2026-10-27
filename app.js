@@ -171,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', handleSmartNavbarNavigation);
   handleSmartNavbarNavigation();
 
-  // Tilføj automatisk " kr." på Purchase price ved onblur
   const pInput = document.getElementById('mPurchasePrice');
   if (pInput) {
     pInput.addEventListener('blur', () => {
@@ -657,7 +656,6 @@ function renderItems() {
     contentArea.appendChild(section);
   });
 
-  // Opret KUN X-knappen på MOBIL, aldrig på desktop!
   if (alphabetNav && sortedCats.length > 0 && window.innerWidth <= 600) {
     const closeBtn = document.createElement('a');
     closeBtn.className = 'sidebar-bubble-item sidebar-close-btn';
@@ -862,7 +860,6 @@ function editItem(id) {
 function saveData() {
   if (isSaving) return;
 
-  // Tjek og tilføj automatisk " kr." hvis beløb er indtastet uden
   const pInput = document.getElementById('mPurchasePrice');
   if (pInput) formatPurchasePriceInput(pInput);
   
