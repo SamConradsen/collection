@@ -548,15 +548,12 @@ html, body {
 .modal {
   background: #ffffff;
   border-radius: 22px;
-  aspect-ratio: 381 / 558;
-  height: min(90vh, 580px);
-  width: auto;
+  width: 380px;
   max-width: 95vw;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 10px 14px;
+  padding: 12px 16px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   gap: 6px;
@@ -578,7 +575,7 @@ html, body {
 
 .modal-header-banner {
   width: 100%;
-  height: 12%;
+  height: 55px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -601,7 +598,7 @@ html, body {
 .field-group label {
   color: #2F47B1 !important;
   font-family: 'AvantGarde LT Book', sans-serif;
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: bold;
 }
 
@@ -611,10 +608,10 @@ html, body {
   background-color: #E7EDFF !important;
   border: 1px solid #B1C3FF !important;
   border-radius: 6px !important;
-  padding: 3px 6px !important;
+  padding: 4px 6px !important;
   box-sizing: border-box !important;
   font-family: 'AvantGarde LT Medium', sans-serif !important;
-  font-size: 10.5px !important;
+  font-size: 11px !important;
   color: #000 !important;
   outline: none !important;
 }
@@ -635,18 +632,17 @@ html, body {
 
 .upload-section {
   display: flex !important;
-  gap: 10px !important;
+  gap: 12px !important;
   align-items: stretch !important;
   width: 100% !important;
-  height: 27%;
+  height: 135px;
   flex-shrink: 0;
 }
 
 .upload-btn {
-  aspect-ratio: 1 / 1;
-  height: 100% !important;
-  width: auto !important;
-  border-radius: 12px !important;
+  width: 135px !important;
+  height: 135px !important;
+  border-radius: 14px !important;
   background-size: cover !important;
   background-position: center !important;
   cursor: pointer !important;
@@ -680,7 +676,7 @@ html, body {
   align-items: center !important;
   gap: 6px !important;
   width: 100% !important;
-  height: 40% !important;
+  height: 52px !important;
 }
 
 .brand-toggle img {
@@ -693,21 +689,20 @@ html, body {
 .info-element-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 4px;
+  gap: 6px;
   flex-shrink: 0;
 }
 
 .three-cols {
   display: flex !important;
-  gap: 5px !important;
+  gap: 6px !important;
 }
 
-/* PRICE & MATERIALS FLUGTNING */
+/* NØJAGTIG FLUGTNING FOR MATERIALES OG PRICE SEKTIONER */
 .price-section {
   display: flex !important;
-  gap: 10px !important;
-  align-items: stretch !important;
+  gap: 12px !important;
+  align-items: flex-start !important;
   flex-shrink: 0;
 }
 
@@ -716,17 +711,25 @@ html, body {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  gap: 4px;
+  gap: 6px;
 }
 
-.materials-column textarea {
+/* Materials tekstfelt har nøjagtig højde til at bunden flugter med Reselling/Sold rækken */
+.materials-column .field-group:first-child textarea {
   resize: none !important;
-  height: 38px !important;
+  height: 62px !important;
+  box-sizing: border-box !important;
+}
+
+/* Lining og Sold for tekstfelterne er præcis lige høje og flugter i top og bund */
+.materials-column .field-group:last-child textarea,
+.price-right .sale-price-group input {
+  height: 28px !important;
   box-sizing: border-box !important;
 }
 
 .materials-column .field-group:last-child textarea {
-  height: 25px !important;
+  resize: none !important;
 }
 
 .price-right {
@@ -734,12 +737,8 @@ html, body {
   flex-direction: column !important;
   justify-content: space-between !important;
   flex: 1 !important;
-  gap: 4px;
+  gap: 6px;
   box-sizing: border-box !important;
-}
-
-.price-right .sale-price-group input {
-  height: 25px !important;
 }
 
 .reselling-sold-container {
@@ -747,9 +746,9 @@ html, body {
   align-items: center !important;
   justify-content: space-between !important;
   gap: 4px !important;
-  margin: 1px 0 !important;
-  width: 100% !important;
   height: 22px !important;
+  margin: 2px 0 !important;
+  width: 100% !important;
 }
 
 .resell-toggle-btn {
@@ -795,11 +794,11 @@ html, body {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  height: 36px !important;
+  height: 38px !important;
   width: 100% !important;
   box-sizing: border-box !important;
   padding: 0 !important;
-  margin-top: 2px !important;
+  margin-top: 4px !important;
 }
 
 .modal-footer > img.footer-btn:first-child {
