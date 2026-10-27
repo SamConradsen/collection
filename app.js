@@ -171,6 +171,21 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', handleSmartNavbarNavigation);
   handleSmartNavbarNavigation();
 
+  // Tilføj automatisk " kr." på Purchase price ved onblur
+  const pInput = document.getElementById('mPurchasePrice');
+  if (pInput) {
+    pInput.addEventListener('blur', () => {
+      formatPurchasePriceInput(pInput);
+    });
+  }
+
+  const sInput = document.getElementById('mSalePrice');
+  if (sInput) {
+    sInput.addEventListener('blur', () => {
+      formatPurchasePriceInput(sInput);
+    });
+  }
+
   document.addEventListener('click', (e) => {
     const dropdown = document.getElementById('sizeDropdown');
     const trigger = document.querySelector('.size-menu-trigger');
@@ -190,16 +205,25 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+function formatPurchasePriceInput(inputEl) {
+  let val = inputEl.value.trim();
+  if (!val) return;
+  if (!val.toLowerCase().includes('kr')) {
+    inputEl.value = val + " kr.";
+  }
+}
+
 function handleSmartNavbarNavigation() {
   const header = document.getElementById('headerContainer');
   const alphabetNav = document.getElementById('alphabetNav');
-  if (!header || !alphabetNav) return;
+  const stickyWrapper = document.querySelector('.sticky-menu-wrapper');
+  if (!alphabetNav) return;
 
-  const headerRect = header.getBoundingClientRect();
-  const headerBottom = Math.max(0, headerRect.bottom);
-  
-  alphabetNav.style.top = `${headerBottom + 10}px`;
-  alphabetNav.style.maxHeight = `calc(100vh - ${headerBottom + 20}px)`;
+  const stickyBottom = stickyWrapper ? stickyWrapper.getBoundingClientRect().bottom : 50;
+  const topPos = Math.max(10, stickyBottom + 6);
+
+  alphabetNav.style.top = `${topPos}px`;
+  alphabetNav.style.maxHeight = `calc(100vh - ${topPos + 10}px)`;
 }
 
 function markFormDirty() {
@@ -633,7 +657,8 @@ function renderItems() {
     contentArea.appendChild(section);
   });
 
-  if (alphabetNav && sortedCats.length > 0) {
+  // Opret KUN X-knappen på MOBIL, aldrig på desktop!
+  if (alphabetNav && sortedCats.length > 0 && window.innerWidth <= 600) {
     const closeBtn = document.createElement('a');
     closeBtn.className = 'sidebar-bubble-item sidebar-close-btn';
     closeBtn.onclick = (e) => {
@@ -836,6 +861,14 @@ function editItem(id) {
 
 function saveData() {
   if (isSaving) return;
+
+  // Tjek og tilføj automatisk " kr." hvis beløb er indtastet uden
+  const pInput = document.getElementById('mPurchasePrice');
+  if (pInput) formatPurchasePriceInput(pInput);
+  
+  const sInput = document.getElementById('mSalePrice');
+  if (sInput) formatPurchasePriceInput(sInput);
+
   isSaving = true;
 
   const finalCollectValue = (formCollectState === 'wish') ? 'wish' : 'collect';
