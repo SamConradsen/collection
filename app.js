@@ -44,7 +44,6 @@ const IMAGES = {
   titleOther: "1DX0MkbLgzYaT1w6QwDjh5DeinyGxb3go"
 };
 
-// OPPDATEREDE BUBBLE IMAGES (PUNKT 3)
 const BUBBLE_POOL = [
   { on: "19Sngi-ZMh3nI6EqQGFmBu-ohRNGyXaUB", off: "1b0vczDVmwLnTOb_keGHLGLOsC0NYvmxB" },
   { on: "1oSaYImJ6EwqGaI4x-Q2snVjBsO_AD_of", off: "1bTbH9-lfxX8MJZA2Fl99zYHg4zh7n5eT" },
@@ -172,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', handleSmartNavbarNavigation);
   handleSmartNavbarNavigation();
 
-  // PUNKT 1: Luk kun Size menu ved klik udenfor
   document.addEventListener('click', (e) => {
     const dropdown = document.getElementById('sizeDropdown');
     const trigger = document.querySelector('.size-menu-trigger');
@@ -299,7 +297,6 @@ function toggleMobileDropdown(e) {
   panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
 }
 
-// PUNKT 4: Mobil Category Navigation Toggle
 function toggleMobileCategoryNav(e) {
   if (e) e.stopPropagation();
   const nav = document.getElementById('alphabetNav');
@@ -364,13 +361,14 @@ function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
       const pxSize = (sizePt / 156.0) * targetPx * 1.15; 
       ctx.font = `bold ${pxSize}px 'AvantGarde LT Book', sans-serif`;
 
-      if (gradColors && gradColors.length >= 2) {
+      // KORREKT RÆKKEFØLGE: Tjek isUnisexTop FØRST, så UNISEX altid bliver sort
+      if (isUnisexTop) {
+        ctx.fillStyle = "#000000";
+      } else if (gradColors && gradColors.length >= 2) {
         const gradient = ctx.createLinearGradient(0, 0, targetPx, 0);
         gradient.addColorStop(0, gradColors[0]);
         gradient.addColorStop(1, gradColors[1]);
         ctx.fillStyle = gradient;
-      } else if (isUnisexTop) {
-        ctx.fillStyle = "#000000";
       } else {
         ctx.fillStyle = color || "#000000";
       }
@@ -444,7 +442,7 @@ function renderSizeMenuUI() {
 }
 
 function toggleSingleSize(e, sizeKey) {
-  if (e) e.stopPropagation(); // Stop lukning af Size menu
+  if (e) e.stopPropagation();
   selectedSizes[sizeKey] = !selectedSizes[sizeKey];
   renderSizeMenuUI();
   renderItems();
@@ -530,7 +528,6 @@ function renderItems() {
       bubbleItem.className = 'sidebar-bubble-item';
       bubbleItem.href = `#cat-${safeCatId}`;
       bubbleItem.onclick = () => {
-        // Skjul mobil-cat-nav efter klik
         const nav = document.getElementById('alphabetNav');
         if (nav) nav.classList.remove('mobile-active');
       };
@@ -571,7 +568,6 @@ function renderItems() {
       const hasPurchase = item.purchaseprice && String(item.purchaseprice).trim() !== '';
       const hasSale = isSold && item.saleprice && String(item.saleprice).trim() !== '';
 
-      // PUNKT 9: Gråt overlay v. Reselling & Solgt-overlay v. SOLD!
       let overlayHTML = '';
       if (isSold) {
         overlayHTML = '<div class="sold-overlay"></div>';
@@ -640,7 +636,6 @@ function renderItems() {
     contentArea.appendChild(section);
   });
 
-  // PUNKT 4: Tilføj 'X' lukke-boble i bunden af mobil-kategorinavigationen
   if (alphabetNav && sortedCats.length > 0) {
     const closeBtn = document.createElement('a');
     closeBtn.className = 'sidebar-bubble-item sidebar-close-btn';
@@ -733,7 +728,6 @@ function updateBrandUI() {
   if (perf) perf.src = `https://lh3.googleusercontent.com/d/${formBrandState === 'performance' ? IMAGES.perfTrue : IMAGES.perfFalse}`;
 }
 
-// PUNKT 8: Reselling toggle & logik
 function toggleResellingState() {
   markFormDirty();
   const newState = (formResellingState === 'TRUE') ? 'FALSE' : 'TRUE';
@@ -755,16 +749,14 @@ function setResellingState(state) {
     if (txt) txt.textContent = 'Reselling?';
     if (soldWrapper) soldWrapper.classList.add('dimmed');
     
-    // Hvis Reselling slås fra, resettes Sold også
     if (formSoldState === 'TRUE') {
       setSoldState('FALSE');
     }
   }
 }
 
-// PUNKT 8: Sold toggle & logik
 function toggleSoldState() {
-  if (formResellingState !== 'TRUE') return; // Må kun aktiveres hvis Reselling er aktiv
+  if (formResellingState !== 'TRUE') return;
   markFormDirty();
   const newState = (formSoldState === 'TRUE') ? 'FALSE' : 'TRUE';
   setSoldState(newState);
