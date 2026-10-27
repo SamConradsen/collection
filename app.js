@@ -21,8 +21,11 @@ const IMAGES = {
   perfTrue: "1ycABFjAvKvRXOgnKJ77_fO2Y0zpAh6fG",
   perfFalse: "1wEklPrdEZ3GHbNw2ejwfYwx1nBnRxhny",
 
-  soldFalse: "1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK",
-  soldTrue: "1vETS8eyAKpPjy89FdnPhRyh70Jw9whoK",
+  resellingFalse: "1ZgqEp1y0HhGzAgEuo3k7wsO649HFDkkq",
+  resellingTrue: "1hIqnBUEUonxCP1qxlFVw2TduFihALI_z",
+
+  soldFalse: "1qrY7_DlZXQsGCG4XxSvVPB6sGR-SUigi",
+  soldTrue: "1Zt0UksdR_2Qs6PxTQzep8Ggs3VZOANeS",
 
   moveWish: "1XsICtNKjWCBHymS1GHLmU-zh8LCk0f5a",
   moveCollect: "1G6bh59wDqrV1XJ8tIZsDJniycS4BHwZ_",
@@ -30,9 +33,9 @@ const IMAGES = {
   showSoldOff: "1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ",
   showSoldOn: "19wTkumBvqWSzhakI3TRw6ACWI0jl2YCG",
   
-  iconPurchasePrice: "1pXAS0b2IK1Z81StPX8XjWdkUli2hlz_L",
-  iconSalePrice: "1Yu_Lil2oFqOlkPmjOwcmu7iL4nCMcVxI",
-  iconProduced: "1ij4Ek7JOZ956BKEObfNPiQUkQRFSTVBY",
+  iconPurchasePrice: "161MpMU1eBg3tkn6EEyzR8lCPmTur-SOY",
+  iconSalePrice: "1AL23h0itXKmbWh_P4v_PL-J-AiXC1Nax",
+  iconProduced: "1C0naWRde39PV2fVvuN8VCmBBYK2Z_JGV",
 
   titleWomens: "1wVjPm2JnH3qFR2A51le5mgsPfGEx_bDr",
   titleMens: "1FZvtiQzeDmPki0rl8e0oghjUt-vH13WN",
@@ -41,35 +44,36 @@ const IMAGES = {
   titleOther: "1DX0MkbLgzYaT1w6QwDjh5DeinyGxb3go"
 };
 
+// OPPDATEREDE BUBBLE IMAGES (PUNKT 3)
 const BUBBLE_POOL = [
-  { on: "18V3bOgkpHGlp-fFcVFJHuNNo8jCNw4LL", off: "1pkKSSyo0tbHDQmeAaoUS68ElJ2Jhd9ET" },
-  { on: "1ZMlmib2UXIWF9c__7Nu-EqRcooLylicb", off: "1sEfR1M1Vp1orAeZxiDH3VokM0y_SaEeY" },
-  { on: "1Wzo1zKsOrIU5J8j13ium8a_eZ9-mmOtx", off: "1Gl131d3_nC3SIynCCtC74PWVIe0nrGir" },
-  { on: "1uIfxgxAMAEuDiPeCaUOl57Le7pK5dGWT", off: "1aTc32NKICNVQUHKJly85Ndv8aZ95Ghq3" },
-  { on: "16ZHHEoqaCx0SMnK-MEdtZAmSnYfjv2Wd", off: "1qHGZX5TwaMOYtwbaePE7Aa8Twk3OQWvJ" },
-  { on: "1tRm8jsYtmUziULmdS1q98IcMK8Xo4Xjq", off: "19JyfAfNbmiXsNXcwo7UyBo3NR0hX6yKE" },
-  { on: "1oiswxXbQsL5RDvsBrW1TtczEhvmqAwFp", off: "1s4fTbbDLv_LJY-yaoe5ubldkRlMOTKm5" },
-  { on: "1adzOgZa1M8OU0xvC7X2eMkWxEq9PiYh-", off: "1XRvel_Cd3YIhDs7veUyMBq2IsxR462CR" },
-  { on: "1gMDiy7x60TLmyAswSGmG3odBA54WI1w4", off: "12a0Xd7D_PUXNSM7BO_yRyc9rwTpVXua1" },
-  { on: "1gCyqkr2qP_olXaaVuvCZ4NsDMx3Ln2MD", off: "1JYq9OV2DINTs2d_7Ch4RC6dRDIYznOnV" },
-  { on: "1GodcEgj1FdJeMUkgTRKD2O2nlyzu0vTr", off: "16OujFERmv8a_AixsUMdWxgtCGqaU2lI4" },
-  { on: "1ajrg3nq1dpGA334MgW04iYRbPYQlZ0-3", off: "1gZW-XlkBdVNMLb9Z8yEEeDX0ZPbXFF_K" },
-  { on: "1mPc4jKFtGS0eWnU6x-thW3LHpuQZcIDr", off: "1lR0GBIDDyCeIYrVOIbMyOtWZHDXyQ4TK" },
-  { on: "1YlcPKCN_dq_ddQhb8rH1K3Ji0ChTMoIr", off: "1rufTPPPm3Yvzh49bhBhvLv45-NcFhlOc" },
-  { on: "1fYCNnZS76348yrKfAK_3X9KgIcYEvG7a", off: "1bQ34d2kP-QFz2rNmWhF5UOrNemwPzB_7" },
-  { on: "1l42K24GwlDMxSIhoIeSWO6yCY-XG38jP", off: "1RNwSAdOzwaEWGR57qSMydY77cJlmTMp1" },
-  { on: "1apVWju7a3NTvFBt9VQ1Jrv8ldpsruWsQ", off: "1SsxxfvLaGvvLMZqI0uz4PqldtkG_Cchw" },
-  { on: "1ww6UXnYh9865-kEYrlYP-laNtM7iwcCv", off: "1PhBcrs90GYw8mNQDBbDC0envfCi-ool6" },
-  { on: "17Mwesxav8zD2AR3umu-xWNUDfjXurahB", off: "1qxyMd-qQJ9nAnn2avJeFzJZVt29qdyDv" },
-  { on: "1hSI6Z01L5n3LsvZOxFHI2xuBjhNV6P_8", off: "1veq6e0u7CK803no3Fr8fZ8-kmILHcbdX" },
-  { on: "1i-VkvED22ru-DmUFV2svhqqbj3PIsOjr", off: "1rwOhdjENReR3fJQaFpJR4GoGrFTW1SIS" },
-  { on: "1CQ55OXxE7wRcaKsARRNgzTvUvQAEm7pA", off: "1ovl4ruHjf9VqKnKPx0wN6DcM5vePvYoP" },
-  { on: "1F67Ka5frutFnwiFoHPPPJ6CiPyMiEemO", off: "1Yu6f7T4EK1qqu7TZqjsbVDcKUJI7QpUM" },
-  { on: "1qATXW5iUluj3ZSC4tNgj8c2gvf7qmEmH", off: "1qfxsEa3iFAWmqPfiZlnB4Fp5AvvOWhjk" },
-  { on: "1dXO7MrbLa__c5_tBxxBVDCMvq4yluVu_", off: "184TXG10iz7iEhLOz32qZtA3AYnQkOjx9" },
-  { on: "1ZtXnmvwXZJHSrWX7VPGPDqRVSIgsN1ex", off: "1brODnN1-Lqtpg12qNKHs1HPR1ar-LemJ" },
-  { on: "1iEp6ckPiMLfxrXBY_cLhevhVYU3T7L4c", off: "188Uo2UMz_rP8YY5gOS-3vsVdB-cJO8Cv" },
-  { on: "1IWWuErWK-CwcFfqbXtpytmG6c36eXHaR", off: "1ekEKVuW7HFpnoQhP4hv2D0X3QDG7luyq" }
+  { on: "19Sngi-ZMh3nI6EqQGFmBu-ohRNGyXaUB", off: "1b0vczDVmwLnTOb_keGHLGLOsC0NYvmxB" },
+  { on: "1oSaYImJ6EwqGaI4x-Q2snVjBsO_AD_of", off: "1bTbH9-lfxX8MJZA2Fl99zYHg4zh7n5eT" },
+  { on: "1EWmg1Rq9ZDo3LG0oc_qlDkwKl6OdPNnT", off: "1-7Rfh1XAprYJM-o29DrLn9DxHinULSBc" },
+  { on: "1-Dn4ewUwcfseW_dmrTFnSCMUTxns0Zbp", off: "1AChcQE0xQBCQ5Cowmnm2K1SiB-8cCH1R" },
+  { on: "1XFzy-8D7fm64AL0zo6GnRZTJvN6GuTCZ", off: "1SqwJ9Al4D7QFRGTKJrqd4tyv6m1n6Q_s" },
+  { on: "1C7iDywweLy5Q35n1kc9zOjKCpHts4wgX", off: "1lXuArcFoewpEgLoiqwwEsW3mCg6lyeP0" },
+  { on: "1sg0YdPg7oSg5kljwOA8w4gDhzJ0mELAq", off: "1KpgjuRsvcpIRk1K8EaIipwrLW5vC2jFn" },
+  { on: "1c95c2nJOJpB-oo0Zjrd0_xsVrFA4NDj0", off: "131hweeGwyX6Q2Rzf-iQP7m7IJZ_zpCVe" },
+  { on: "130z7JUCjpz2eNuZPkZA9jpujkp5C9AQR", off: "1iQcUr14XvmMhZakvX2NHYakEcytCh3JE" },
+  { on: "1ooFPtS3MxVWIstynwqx_kMFW9efv6qI4", off: "1myaJLxFY7Wy6OhQA8VjifZl1fBQeKW4C" },
+  { on: "1-x27Gket_w9Yfro1wurmYVhelV1nYJoy", off: "1QewCyyXho4XdQ3tjGbrpQU6d50qOHTnn" },
+  { on: "10KQziPm5tUJ7s42AGM9nDgcswotOhU3C", off: "1WDfwN9pAk6wjNrdQe6FbjOrXNd6F8r0K" },
+  { on: "16EK8zSE42eyOhJDqpxZzGWj1k3ZxBobA", off: "11pcGjGD5BB-TdTb5w9fV97TrzzBUqnBi" },
+  { on: "1oWAK0dPmHGaB1JNiIKgPybSRVLGnC0sl", off: "1I368gvq6D7Z2-qnkxh_jKJfG7_SPKCAh" },
+  { on: "1FAMypHwXrjNpr9NobPMCOi6zC1C99Z63", off: "1r0GfzpuNNzHINSBt1xO3XKDWG-BKxecw" },
+  { on: "1YnIPeN0MtHlutha69usdcUEA-KQn0Ey-", off: "1IIV_b2gGiuh4wU4dUeM7iZvuEzmsNJvy" },
+  { on: "1N0i1b4f2gZ609l9ER7bZjDFvGn91C6Y1", off: "1a9rPFGonOUwikHdEw5PxXLROqKQ5CesQ" },
+  { on: "1PVtO-H3PJD-LRftB7RGpJp993FPoiR4k", off: "1DaZwKCK7-lzo78bgIwLfhrC6moMqCCgn" },
+  { on: "1Ds8bP-GbZKX1ieKg6h5YG0DPdgnzgzdn", off: "1bOMft5dEZAF_WdNfa-IwkOpXHxBoo-Dz" },
+  { on: "1pfxnzJGSGieHyhpyqbk2NSn3r9cMvcef", off: "1XkV2IpIToHBmlacAAgrHdQMLIE_fbPWh" },
+  { on: "1HTbasj_4NLz-sCZymmNzEDvVu97kxNl-", off: "16Ah_DpANrMiSxouhpoKqjEy0f0pN0FjV" },
+  { on: "1Pg-knrds52-fmR54pcXyYerceVmE-Ey0", off: "1yYm7O7ACi4t9FYgPxUzs8yy6isSpQCoU" },
+  { on: "1e4cjMqC4vdekMR-dPjSQbwbCNoOzfm5a", off: "1_KBqDxgXbzySXPaxzIKWqEQh_8WIkZdE" },
+  { on: "1PesIx3AgXNuYMTdwp2ww6Hz1_jR2xp6T", off: "1DdyNgsLWwnjQScJj40Tmsj0N6l869IoU" },
+  { on: "1FFVxTe-d9frBr10-4PSsivGy8WnCg6wv", off: "1otWFgBRhkUdga2vgptbG64w7woaz-bqp" },
+  { on: "1C49F9AAn1moWHWE5oDwTI-rPQYFRFXIj", off: "1Q9UKOqM97JSZ8tllwnr7vFSSvmFJtch8" },
+  { on: "1cK3B8AyWurHV9UIE1yFp38fL_-KkYjXr", off: "1SwGtajJFbaoncR6KZYwlSKVEmW6WnmTo" },
+  { on: "14_jemxg2kx7NfjP9Cou0W5J_K8zFNAVc", off: "1jxtJcM08QV5Z0OVB_0wrMAr5Shi25tTB" }
 ];
 
 const SIZE_CATEGORIES = [
@@ -77,24 +81,24 @@ const SIZE_CATEGORIES = [
     titleId: IMAGES.titleWomens,
     name: "Women's",
     sizes: [
-      { key: "EU26", l1: "2XS", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "26", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
-      { key: "EU2628", l1: "2XS", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "26-28", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 },
-      { key: "EU28", l1: "2XS", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "28", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 },
-      { key: "EU30", l1: "XS", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "30", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 },
-      { key: "EU3032", l1: "XS", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "30-32", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 },
-      { key: "EU32", l1: "XS", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "32", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 },
-      { key: "EU34", l1: "S", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "34", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 },
-      { key: "EU3436", l1: "S", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "34-36", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 },
-      { key: "EU36", l1: "S", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "36", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 },
-      { key: "EU38", l1: "M", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "38", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
-      { key: "EU3840", l1: "M", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "38-40", s2: 40, c2: "#FC6A96", b2: "#EB074C", lead: 32 },
-      { key: "EU40", l1: "M", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "40", s2: 40, c2: "#FC6A96", b2: "#F595B2", lead: 32 },
-      { key: "EU42", l1: "L", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "42", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 },
-      { key: "EU4244", l1: "L", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "42-44", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 },
-      { key: "EU44", l1: "L", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "44", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 },
-      { key: "EU46", l1: "XL", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "46", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 },
-      { key: "EU4648", l1: "XL", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "46-48", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 },
-      { key: "EU48", l1: "XL", s1: 32, c1: "#4C6BF5", b1: "#2241C9", l2: "48", s2: 40, c2: "#FC6A96", b2: "#D63031", lead: 32 }
+      { key: "EU26", l1: "2XS", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "26", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU2628", l1: "2XS", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "26-28", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU28", l1: "2XS", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "28", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU30", l1: "XS", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "30", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU3032", l1: "XS", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "30-32", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU32", l1: "XS", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "32", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU34", l1: "S", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "34", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU3436", l1: "S", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "34-36", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU36", l1: "S", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "36", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU38", l1: "M", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "38", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU3840", l1: "M", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "38-40", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU40", l1: "M", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "40", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU42", l1: "L", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "42", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU4244", l1: "L", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "42-44", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU44", l1: "L", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "44", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU46", l1: "XL", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "46", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU4648", l1: "XL", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "46-48", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 },
+      { key: "EU48", l1: "XL", s1: 32, c1: "#FC6A96", b1: "#F22E69", l2: "48", s2: 40, c2: "#FC6A96", b2: "#F22E69", lead: 32 }
     ]
   },
   {
@@ -136,11 +140,11 @@ const SIZE_CATEGORIES = [
     name: "Other",
     sizes: [
       { key: "Onesize", l1: "Onesize", s1: 28, c1: "#F5BF64", b1: "#F79525" },
-      { key: "Unisex XS", l1: "UNISEX", s1: 16, c1: "#000000", b1: "#390994", l2: "XS", s2: 64, c2: "#A276F5", b2: "#A276F5", lead: 48 },
-      { key: "Unisex S", l1: "UNISEX", s1: 16, c1: "#000000", b1: "#390994", l2: "S", s2: 64, c2: "#A276F5", b2: "#A276F5", lead: 48 },
-      { key: "Unisex M", l1: "UNISEX", s1: 16, c1: "#000000", b1: "#390994", l2: "M", s2: 64, c2: "#A276F5", b2: "#A276F5", lead: 48 },
-      { key: "Unisex L", l1: "UNISEX", s1: 16, c1: "#000000", b1: "#390994", l2: "L", s2: 64, c2: "#A276F5", b2: "#A276F5", lead: 48 },
-      { key: "Unisex XL", l1: "UNISEX", s1: 16, c1: "#000000", b1: "#390994", l2: "XL", s2: 64, c2: "#A276F5", b2: "#A276F5", lead: 48 },
+      { key: "Unisex XS", l1: "UNISEX", s1: 16, c1: "#000000", b1: "#390994", l2: "XS", s2: 64, grad: ["#FC6A96", "#2844C1"], lead: 48 },
+      { key: "Unisex S", l1: "UNISEX", s1: 16, c1: "#000000", b1: "#390994", l2: "S", s2: 64, grad: ["#FC6A96", "#2844C1"], lead: 48 },
+      { key: "Unisex M", l1: "UNISEX", s1: 16, c1: "#000000", b1: "#390994", l2: "M", s2: 64, grad: ["#FC6A96", "#2844C1"], lead: 48 },
+      { key: "Unisex L", l1: "UNISEX", s1: 16, c1: "#000000", b1: "#390994", l2: "L", s2: 64, grad: ["#FC6A96", "#2844C1"], lead: 48 },
+      { key: "Unisex XL", l1: "UNISEX", s1: 16, c1: "#000000", b1: "#390994", l2: "XL", s2: 64, grad: ["#FC6A96", "#2844C1"], lead: 48 },
       { key: "29\"", l1: "29\"", s1: 64, c1: "#F78145", b1: "#F56016" },
       { key: "32/32\"", l1: "32/32\"", s1: 36, c1: "#F78145", b1: "#F56016" }
     ]
@@ -156,6 +160,7 @@ SIZE_CATEGORIES.forEach(group => {
 
 let formCollectState = 'collect';
 let formBrandState = '';
+let formResellingState = 'FALSE';
 let formSoldState = 'FALSE';
 const PAGE_TYPE = typeof PAGE_MODE !== 'undefined' ? PAGE_MODE : 'collect';
 
@@ -167,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', handleSmartNavbarNavigation);
   handleSmartNavbarNavigation();
 
+  // PUNKT 1: Luk kun Size menu ved klik udenfor
   document.addEventListener('click', (e) => {
     const dropdown = document.getElementById('sizeDropdown');
     const trigger = document.querySelector('.size-menu-trigger');
@@ -293,6 +299,14 @@ function toggleMobileDropdown(e) {
   panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
 }
 
+// PUNKT 4: Mobil Category Navigation Toggle
+function toggleMobileCategoryNav(e) {
+  if (e) e.stopPropagation();
+  const nav = document.getElementById('alphabetNav');
+  if (!nav) return;
+  nav.classList.toggle('mobile-active');
+}
+
 function getRandomBubble(seedStr) {
   let hash = 0;
   if (seedStr) {
@@ -306,7 +320,6 @@ function getRandomBubble(seedStr) {
   return BUBBLE_POOL[index];
 }
 
-// CANVAS RENDERING MED VENSTRE-TIL-HØJRE GRADIENT OG SARTIKE PINK / RENE FARVER
 function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
   let sizeObj = null;
   for (let cat of SIZE_CATEGORIES) {
@@ -352,13 +365,12 @@ function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
       ctx.font = `bold ${pxSize}px 'AvantGarde LT Book', sans-serif`;
 
       if (gradColors && gradColors.length >= 2) {
-        // GRADIENT FRA VENSTRE TIL HØJRE (X-AKSEN)
         const gradient = ctx.createLinearGradient(0, 0, targetPx, 0);
         gradient.addColorStop(0, gradColors[0]);
         gradient.addColorStop(1, gradColors[1]);
         ctx.fillStyle = gradient;
       } else if (isUnisexTop) {
-        ctx.fillStyle = "#000000"; // UNISEX OVERSTE LINJE SKAL VÆRE SORT
+        ctx.fillStyle = "#000000";
       } else {
         ctx.fillStyle = color || "#000000";
       }
@@ -376,7 +388,7 @@ function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx) {
       const centerY1 = (targetPx / 2) - (leadPx / 2);
       const centerY2 = (targetPx / 2) + (leadPx / 2);
       
-      const isUnisexTop = (sizeObj.l1 === "Unisex");
+      const isUnisexTop = (sizeObj.l1 === "UNISEX" || sizeObj.l1 === "Unisex");
       drawTextLine(sizeObj.l1, sizeObj.s1, sizeObj.c1, sizeObj.b1, sizeObj.grad, centerY1, isUnisexTop);
       drawTextLine(sizeObj.l2, sizeObj.s2, sizeObj.c2, sizeObj.b2, sizeObj.grad, centerY2, false);
     } else {
@@ -397,8 +409,8 @@ function renderSizeMenuUI() {
   topDiv.innerHTML = `
     <img src="https://lh3.googleusercontent.com/d/${IMAGES.titleWomens}" class="size-group-title" style="margin-bottom:0;" alt="Women's">
     <div class="size-quick-actions">
-      <img src="https://lh3.googleusercontent.com/d/1V2GovFhIyQNeToWVriLnLizmC295PoxL" onclick="selectAllSizes(true)" alt="ON">
-      <img src="https://lh3.googleusercontent.com/d/18sFkDxQEW3oa79aSI-sWZLi5oSoEWOuZ" onclick="selectAllSizes(false)" alt="OFF">
+      <img src="https://lh3.googleusercontent.com/d/1V2GovFhIyQNeToWVriLnLizmC295PoxL" onclick="selectAllSizes(true, event)" alt="ON">
+      <img src="https://lh3.googleusercontent.com/d/18sFkDxQEW3oa79aSI-sWZLi5oSoEWOuZ" onclick="selectAllSizes(false, event)" alt="OFF">
     </div>
   `;
   dropdown.appendChild(topDiv);
@@ -432,13 +444,14 @@ function renderSizeMenuUI() {
 }
 
 function toggleSingleSize(e, sizeKey) {
-  if (e) e.stopPropagation();
+  if (e) e.stopPropagation(); // Stop lukning af Size menu
   selectedSizes[sizeKey] = !selectedSizes[sizeKey];
   renderSizeMenuUI();
   renderItems();
 }
 
-function selectAllSizes(status) {
+function selectAllSizes(status, e) {
+  if (e) e.stopPropagation();
   SIZE_CATEGORIES.forEach(group => group.sizes.forEach(s => selectedSizes[s.key] = status));
   renderSizeMenuUI();
   renderItems();
@@ -516,6 +529,11 @@ function renderItems() {
       const bubbleItem = document.createElement('a');
       bubbleItem.className = 'sidebar-bubble-item';
       bubbleItem.href = `#cat-${safeCatId}`;
+      bubbleItem.onclick = () => {
+        // Skjul mobil-cat-nav efter klik
+        const nav = document.getElementById('alphabetNav');
+        if (nav) nav.classList.remove('mobile-active');
+      };
       bubbleItem.innerHTML = `
         <img class="sidebar-bubble-bg" src="https://lh3.googleusercontent.com/d/${bubbleData.on}" alt="bubble">
         <span class="sidebar-bubble-letter">${letter}</span>
@@ -540,6 +558,7 @@ function renderItems() {
       card.className = 'item-card';
       card.onclick = () => editItem(item.id);
 
+      const isReselling = String(item.reselling).toUpperCase() === 'TRUE';
       const isSold = String(item.sold).toUpperCase() === 'TRUE';
       const bgUrl = item.imageid ? `https://lh3.googleusercontent.com/d/${item.imageid}` : '';
       const brandText = String(item.brand).toLowerCase() === 'performance' ? 'adidas Performance' : 'adidas Originals';
@@ -552,9 +571,17 @@ function renderItems() {
       const hasPurchase = item.purchaseprice && String(item.purchaseprice).trim() !== '';
       const hasSale = isSold && item.saleprice && String(item.saleprice).trim() !== '';
 
+      // PUNKT 9: Gråt overlay v. Reselling & Solgt-overlay v. SOLD!
+      let overlayHTML = '';
+      if (isSold) {
+        overlayHTML = '<div class="sold-overlay"></div>';
+      } else if (isReselling) {
+        overlayHTML = '<div class="reselling-gray-overlay"></div>';
+      }
+
       card.innerHTML = `
         <div class="image-wrapper" style="background-image: url('${bgUrl}');">
-          ${isSold ? '<div class="sold-overlay"></div>' : ''}
+          ${overlayHTML}
           <div class="size-badge-container"></div>
           <div class="article-badge">
             <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
@@ -613,6 +640,19 @@ function renderItems() {
     contentArea.appendChild(section);
   });
 
+  // PUNKT 4: Tilføj 'X' lukke-boble i bunden af mobil-kategorinavigationen
+  if (alphabetNav && sortedCats.length > 0) {
+    const closeBtn = document.createElement('a');
+    closeBtn.className = 'sidebar-bubble-item sidebar-close-btn';
+    closeBtn.onclick = (e) => {
+      e.preventDefault();
+      const nav = document.getElementById('alphabetNav');
+      if (nav) nav.classList.remove('mobile-active');
+    };
+    closeBtn.innerHTML = `<span>X</span>`;
+    alphabetNav.appendChild(closeBtn);
+  }
+
   handleSmartNavbarNavigation();
 }
 
@@ -635,9 +675,10 @@ function openModal(type) {
   setPageType(targetType);
   
   initBrand('');
+  setResellingState('FALSE');
   setSoldState('FALSE');
 
-  ['mArticle', 'mName', 'mCategory', 'mSize', 'mProduced', 'mMadeIn', 'mMaterial', 'mPurchasePrice', 'mSalePrice'].forEach(id => {
+  ['mArticle', 'mName', 'mCategory', 'mSize', 'mProduced', 'mMadeIn', 'mMaterial', 'mLining', 'mPurchasePrice', 'mSalePrice'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.value = '';
   });
@@ -692,25 +733,66 @@ function updateBrandUI() {
   if (perf) perf.src = `https://lh3.googleusercontent.com/d/${formBrandState === 'performance' ? IMAGES.perfTrue : IMAGES.perfFalse}`;
 }
 
-function toggleSoldState() {
+// PUNKT 8: Reselling toggle & logik
+function toggleResellingState() {
   markFormDirty();
-  setSoldState(formSoldState === 'TRUE' ? 'FALSE' : 'TRUE');
+  const newState = (formResellingState === 'TRUE') ? 'FALSE' : 'TRUE';
+  setResellingState(newState);
+}
+
+function setResellingState(state) {
+  formResellingState = state;
+  const btn = document.getElementById('btnReselling');
+  const txt = document.getElementById('txtReselling');
+  const soldWrapper = document.getElementById('soldToggleWrapper');
+
+  if (state === 'TRUE') {
+    if (btn) btn.src = `https://lh3.googleusercontent.com/d/${IMAGES.resellingTrue}`;
+    if (txt) txt.textContent = (formSoldState === 'TRUE') ? 'Resold' : 'Listed';
+    if (soldWrapper) soldWrapper.classList.remove('dimmed');
+  } else {
+    if (btn) btn.src = `https://lh3.googleusercontent.com/d/${IMAGES.resellingFalse}`;
+    if (txt) txt.textContent = 'Reselling?';
+    if (soldWrapper) soldWrapper.classList.add('dimmed');
+    
+    // Hvis Reselling slås fra, resettes Sold også
+    if (formSoldState === 'TRUE') {
+      setSoldState('FALSE');
+    }
+  }
+}
+
+// PUNKT 8: Sold toggle & logik
+function toggleSoldState() {
+  if (formResellingState !== 'TRUE') return; // Må kun aktiveres hvis Reselling er aktiv
+  markFormDirty();
+  const newState = (formSoldState === 'TRUE') ? 'FALSE' : 'TRUE';
+  setSoldState(newState);
 }
 
 function setSoldState(state) {
   formSoldState = state;
   const btn = document.getElementById('btnSold');
+  const txt = document.getElementById('txtSold');
+  const txtResell = document.getElementById('txtReselling');
   const saleInput = document.getElementById('mSalePrice');
   const saleGroup = document.getElementById('salePriceGroup');
 
-  if (btn) btn.src = `https://lh3.googleusercontent.com/d/${state === 'TRUE' ? IMAGES.soldTrue : IMAGES.soldFalse}`;
-  if (saleInput) {
-    saleInput.disabled = (state !== 'TRUE');
-    if (state !== 'TRUE') saleInput.value = '';
-  }
-  if (saleGroup) {
-    if (state === 'TRUE') saleGroup.classList.add('active');
-    else saleGroup.classList.remove('active');
+  if (state === 'TRUE') {
+    if (btn) btn.src = `https://lh3.googleusercontent.com/d/${IMAGES.soldTrue}`;
+    if (txt) txt.textContent = 'SOLD!';
+    if (txtResell && formResellingState === 'TRUE') txtResell.textContent = 'Resold';
+    if (saleGroup) saleGroup.classList.remove('dimmed');
+    if (saleInput) saleInput.disabled = false;
+  } else {
+    if (btn) btn.src = `https://lh3.googleusercontent.com/d/${IMAGES.soldFalse}`;
+    if (txt) txt.textContent = 'SOLD?';
+    if (txtResell && formResellingState === 'TRUE') txtResell.textContent = 'Listed';
+    if (saleGroup) saleGroup.classList.add('dimmed');
+    if (saleInput) {
+      saleInput.disabled = true;
+      saleInput.value = '';
+    }
   }
 }
 
@@ -738,7 +820,6 @@ function editItem(id) {
   
   setPageType(itemType);
   initBrand(item.brand || '');
-  setSoldState(String(item.sold).toUpperCase());
 
   const uploadPreview = document.getElementById('uploadPreview');
   if (uploadPreview) {
@@ -754,8 +835,12 @@ function editItem(id) {
   document.getElementById('mProduced').value = item.produced || '';
   document.getElementById('mMadeIn').value = item.madein || '';
   document.getElementById('mMaterial').value = item.material || '';
+  document.getElementById('mLining').value = item.lining || '';
   document.getElementById('mPurchasePrice').value = item.purchaseprice || '';
   document.getElementById('mSalePrice').value = item.saleprice || '';
+
+  setResellingState(String(item.reselling).toUpperCase());
+  setSoldState(String(item.sold).toUpperCase());
 
   document.getElementById('modalBg').style.display = 'flex';
 }
@@ -770,6 +855,7 @@ function saveData() {
     id: currentEditId,
     collect: finalCollectValue,
     brand: formBrandState,
+    reselling: formResellingState,
     sold: formSoldState,
     articlenumber: document.getElementById('mArticle').value,
     name: document.getElementById('mName').value,
@@ -778,6 +864,7 @@ function saveData() {
     produced: document.getElementById('mProduced').value,
     madein: document.getElementById('mMadeIn').value,
     material: document.getElementById('mMaterial').value,
+    lining: document.getElementById('mLining').value,
     purchaseprice: document.getElementById('mPurchasePrice').value,
     saleprice: document.getElementById('mSalePrice').value,
     imageBase64: currentImageBase64
