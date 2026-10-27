@@ -784,29 +784,29 @@ html, body {
   transition: opacity 0.2s ease;
 }
 
-/* KORREKT 1/5 - 3/5 - 1/5 FOOTER LAYOUT */
+/* KORREKT 1/5 - 3/5 - 1/5 FOOTER PROPORTIONER */
 .modal-footer {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
   height: 11.5%;
-  gap: 8px !important;
+  gap: 4px !important;
   flex-shrink: 0;
   width: 100% !important;
   box-sizing: border-box;
 }
 
 .footer-btn {
-  flex: 0 0 calc(20% - 6px) !important;
-  height: auto !important;
-  max-height: 22px !important;
+  flex: 0 0 20% !important;
+  height: 100% !important;
+  max-height: 28px !important;
   width: 100% !important;
   cursor: pointer !important;
   object-fit: contain !important;
 }
 
 .move-toggle-btn {
-  flex: 0 0 calc(60% - 6px) !important;
+  flex: 0 0 58% !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -815,8 +815,8 @@ html, body {
 }
 
 .move-toggle-btn img {
-  height: auto !important;
-  max-height: 24px !important;
+  height: 100% !important;
+  max-height: 32px !important;
   width: 100% !important;
   object-fit: contain !important;
   cursor: pointer !important;
