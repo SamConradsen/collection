@@ -25,7 +25,7 @@
         
         <div class="size-menu-trigger" onclick="toggleSizeMenu(event)">
           <img src="https://lh3.googleusercontent.com/d/1w_wkFOLBDLVanPZDswz19U744f0Dg8EL" class="menu-item" alt="Sizes">
-          <div class="size-dropdown" id="sizeDropdown"></div>
+          <div class="size-dropdown" id="sizeDropdown" onclick="event.stopPropagation()"></div>
         </div>
       </div>
 
@@ -37,7 +37,7 @@
           <datalist id="categorySuggestions"></datalist>
         </div>
 
-        <!-- Brand Filter Buttons (punkt 6) -->
+        <!-- Brand Filter Buttons -->
         <div class="brand-filter-group">
           <img id="topBrandOrig" src="https://lh3.googleusercontent.com/d/1phuiZ7Mh7kYKfAENbCw2ah78_Tem2NAM" onclick="toggleBrandFilter('originals')" alt="Originals">
           <img id="topBrandPerf" src="https://lh3.googleusercontent.com/d/1ycABFjAvKvRXOgnKJ77_fO2Y0zpAh6fG" onclick="toggleBrandFilter('performance')" alt="Performance">
@@ -51,9 +51,9 @@
       </div>
 
       <div class="menu-right">
-        <!-- Mobile Dropdown Fold Out Button (punkt 7) -->
+        <!-- Mobile Dropdown Fold Out Button -->
         <div class="mobile-foldout-trigger" onclick="toggleMobileDropdown(event)">
-          <img src="https://lh3.googleusercontent.com/d/1uAKwyD0PDeKZ8p-C4xMuNnaMW314ayjp" class="menu-item" alt="Menu">
+          <img src="https://lh3.googleusercontent.com/d/12kTHcKnkMJSGLnuDeuSdsu1NO1W1ZXpP" class="menu-item" alt="Menu">
           <div class="mobile-dropdown-panel" id="mobileDropdownPanel" onclick="event.stopPropagation()">
             <div class="search-box mobile-search-box">
               <img src="https://lh3.googleusercontent.com/d/16AEnLeUyzfPU4YTCNXWA78eKpm2aWF4v" class="search-bg-img" alt="Search">
@@ -72,6 +72,11 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- Mobile Category Navigation Toggle -->
+        <div class="mobile-cat-trigger" onclick="toggleMobileCategoryNav(event)">
+          <img src="https://lh3.googleusercontent.com/d/17AW3h4PPmWoj6pPSnmsECmSh1HMf_BGP" class="menu-item" alt="Categories">
         </div>
       </div>
     </div>
@@ -135,33 +140,60 @@
           </div>
           <div class="field-group" style="flex: 1;">
             <label for="mProduced">Production time</label>
-            <input type="text" id="mProduced" placeholder="MM/YY" oninput="markFormDirty()">
+            <div class="icon-input-row">
+              <img src="https://lh3.googleusercontent.com/d/1C0naWRde39PV2fVvuN8VCmBBYK2Z_JGV" class="field-icon" alt="prod">
+              <input type="text" id="mProduced" placeholder="MM/YY" oninput="markFormDirty()">
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- PRICE ELEMENT -->
+      <!-- PRICE & MATERIALS ELEMENT -->
       <div class="price-section">
-        <div class="field-group">
-          <label for="mMaterial">Materials</label>
-          <textarea id="mMaterial" placeholder="Materials..." oninput="markFormDirty()"></textarea>
+        <div class="materials-column">
+          <div class="field-group">
+            <label for="mMaterial">Materials</label>
+            <textarea id="mMaterial" placeholder="Materials..." oninput="markFormDirty()"></textarea>
+          </div>
+          <div class="field-group">
+            <label for="mLining">Lining</label>
+            <textarea id="mLining" placeholder="Lining..." oninput="markFormDirty()"></textarea>
+          </div>
         </div>
+
         <div class="price-right">
           <div class="field-group">
             <label for="mPurchasePrice">Purchase price</label>
-            <input type="text" id="mPurchasePrice" placeholder="0,00 kr." oninput="markFormDirty()">
+            <div class="icon-input-row">
+              <img src="https://lh3.googleusercontent.com/d/161MpMU1eBg3tkn6EEyzR8lCPmTur-SOY" class="field-icon" alt="purchase">
+              <input type="text" id="mPurchasePrice" placeholder="0,00 kr." oninput="markFormDirty()">
+            </div>
           </div>
-          <div class="toggle-sold-row" onclick="toggleSoldState()">
-            <img id="btnSold" src="https://lh3.googleusercontent.com/d/1K9HrpK2swbPdadOZPbrPVT3-V7k7bwCK" alt="Reselling">
+
+          <!-- RESELLING / LISTED / SOLD ROW -->
+          <div class="reselling-sold-container">
+            <div class="resell-toggle-btn" onclick="toggleResellingState()">
+              <img id="btnReselling" src="https://lh3.googleusercontent.com/d/1ZgqEp1y0HhGzAgEuo3k7wsO649HFDkkq" alt="Reselling">
+              <span id="txtReselling" class="status-text">Reselling?</span>
+            </div>
+
+            <div class="sold-toggle-btn dimmed" id="soldToggleWrapper" onclick="toggleSoldState()">
+              <img id="btnSold" src="https://lh3.googleusercontent.com/d/1qrY7_DlZXQsGCG4XxSvVPB6sGR-SUigi" alt="Sold">
+              <span id="txtSold" class="status-text">SOLD?</span>
+            </div>
           </div>
-          <div class="field-group sale-price-group" id="salePriceGroup">
-            <label for="mSalePrice">Sale price</label>
-            <input type="text" id="mSalePrice" placeholder="0,00 kr." disabled oninput="markFormDirty()">
+
+          <!-- SALE PRICE FIELD -->
+          <div class="field-group sale-price-group dimmed" id="salePriceGroup">
+            <div class="icon-input-row">
+              <img src="https://lh3.googleusercontent.com/d/1AL23h0itXKmbWh_P4v_PL-J-AiXC1Nax" class="field-icon" alt="sale">
+              <input type="text" id="mSalePrice" placeholder="Sold for..." disabled oninput="markFormDirty()">
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- FOOTER ELEMENT (punkt 5: Opdaterede Image IDs for Cancel & Save) -->
+      <!-- FOOTER ELEMENT -->
       <div class="modal-footer">
         <img src="https://lh3.googleusercontent.com/d/1bIswf5T_aL4D3FBBkKJzgrP2c3qv1aUp" class="footer-btn" onclick="closeModal()" alt="Cancel">
         <div class="move-toggle-btn" onclick="toggleModalPageType()">
