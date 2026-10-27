@@ -207,7 +207,7 @@ html, body {
   .mobile-cat-trigger { display: block !important; }
 }
 
-/* SIZE DROPDOWN MENU OVERLAY (PUNKT 2: Mobil-placeret helt til venstre) */
+/* SIZE DROPDOWN MENU OVERLAY */
 .size-dropdown {
   position: absolute;
   top: 100%;
@@ -318,7 +318,7 @@ html, body {
 @media (max-width: 1024px) { .item-grid { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 600px) { .item-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* SIDEBAR ALFABET BOBLER (PUNKT 4: Mobil-overlay funktion) */
+/* SIDEBAR ALFABET BOBLER */
 .alphabet-nav {
   position: fixed;
   right: 20px;
@@ -389,7 +389,7 @@ html, body {
   .content-area { padding-right: 0; }
 }
 
-/* ITEM CARD DESIGN (PUNKT 9: Gråt overlay ved Reselling & Solgt-overlay ved SOLD!) */
+/* ITEM CARD DESIGN */
 .item-card {
   display: flex;
   flex-direction: column;
@@ -536,7 +536,7 @@ html, body {
   font-weight: bold;
 }
 
-/* POPUP MODAL DESIGN (PUNKT 5, 6, 7, 8: Opdaterede felter, ikoner og reselling/sold layout) */
+/* POPUP MODAL DESIGN */
 .modal-bg {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -743,14 +743,24 @@ html, body {
   justify-content: space-between !important;
   gap: 4px !important;
   margin: 2px 0 !important;
+  width: 100% !important;
 }
 
-.resell-toggle-btn,
+.resell-toggle-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+  cursor: pointer !important;
+  min-width: 78px !important;
+  flex-shrink: 0 !important;
+}
+
 .sold-toggle-btn {
   display: flex !important;
   align-items: center !important;
   gap: 3px !important;
   cursor: pointer !important;
+  flex-shrink: 0 !important;
 }
 
 .resell-toggle-btn img,
@@ -765,6 +775,7 @@ html, body {
   font-weight: bold;
   font-size: 11px;
   color: #2F47B1;
+  white-space: nowrap;
 }
 
 .dimmed {
@@ -773,6 +784,7 @@ html, body {
   transition: opacity 0.2s ease;
 }
 
+/* KORREKT FOOTER LAYOUT (PUNKT 1) */
 .modal-footer {
   display: flex !important;
   justify-content: space-between !important;
@@ -783,7 +795,7 @@ html, body {
 }
 
 .footer-btn {
-  height: 20px !important;
+  height: 24px !important;
   width: auto !important;
   cursor: pointer !important;
   object-fit: contain !important;
@@ -796,11 +808,13 @@ html, body {
   justify-content: center !important;
   align-items: center !important;
   height: 100% !important;
+  min-width: 0 !important;
 }
 
 .move-toggle-btn img {
-  height: 100% !important;
-  width: 100% !important;
+  height: 24px !important;
+  width: auto !important;
+  max-width: 100% !important;
   object-fit: contain !important;
   cursor: pointer !important;
 }
