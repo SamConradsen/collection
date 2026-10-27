@@ -800,7 +800,7 @@ html, body {
   cursor: pointer !important;
   object-fit: contain !important;
   flex-shrink: 0 !important;
-}
+} 
 
 .move-toggle-btn {
   flex: 1 !important;
