@@ -794,7 +794,7 @@ html, body {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  height: 38px !important;
+  height: 56px !important;
   width: 100% !important;
   box-sizing: border-box !important;
   padding: 0 !important;
@@ -815,7 +815,7 @@ html, body {
   width: 60% !important;
   max-width: 60% !important;
   flex: 0 0 60% !important;
-  height: 100% !important;
+  height: 56px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -826,7 +826,7 @@ html, body {
 .move-toggle-btn img {
   width: 100% !important;
   max-width: 100% !important;
-  height: 100% !important;
+  height: 56px !important;
   max-height: 100% !important;
   object-fit: fill !important;
   cursor: pointer !important;
