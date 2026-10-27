@@ -784,7 +784,7 @@ html, body {
   transition: opacity 0.2s ease;
 }
 
-/* KORREKT FOOTER LAYOUT (PUNKT 1) */
+/* KORREKT 1/5 - 3/5 - 1/5 FOOTER LAYOUT */
 .modal-footer {
   display: flex !important;
   justify-content: space-between !important;
@@ -792,18 +792,21 @@ html, body {
   height: 11.5%;
   gap: 8px !important;
   flex-shrink: 0;
+  width: 100% !important;
+  box-sizing: border-box;
 }
 
 .footer-btn {
-  height: 24px !important;
-  width: auto !important;
+  flex: 0 0 calc(20% - 6px) !important;
+  height: auto !important;
+  max-height: 22px !important;
+  width: 100% !important;
   cursor: pointer !important;
   object-fit: contain !important;
-  flex-shrink: 0 !important;
-} 
+}
 
 .move-toggle-btn {
-  flex: 1 !important;
+  flex: 0 0 calc(60% - 6px) !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -812,9 +815,9 @@ html, body {
 }
 
 .move-toggle-btn img {
-  height: 24px !important;
-  width: auto !important;
-  max-width: 100% !important;
+  height: auto !important;
+  max-height: 24px !important;
+  width: 100% !important;
   object-fit: contain !important;
   cursor: pointer !important;
 }
