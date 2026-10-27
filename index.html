@@ -90,121 +90,122 @@
 
   <!-- Modal Popup -->
   <div class="modal-bg" id="modalBg" onclick="handleBackdropClick(event)">
-    <div class="modal modal-collect" id="modalCard">
-      
-      <div class="modal-header-banner">
-        <img id="modalHeaderImg" src="https://lh3.googleusercontent.com/d/1gmPYQ6Regt_LEtvqxmYXH6gj2A0O2zVm" alt="Header Banner">
-      </div>
-
-      <!-- UPLOAD ELEMENT -->
-      <div class="upload-section">
-        <div class="upload-btn" id="uploadPreview" onclick="document.getElementById('fileInput').click()"></div>
-        <input type="file" id="fileInput" style="display:none;" onchange="handleImage(this)">
-        
-        <div class="upload-right">
-          <div class="field-group">
-            <label for="mArticle">Article number</label>
-            <div class="art-input">
-              <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
-              <input type="text" id="mArticle" placeholder="Article number" oninput="markFormDirty()">
-            </div>
-          </div>
-
-          <div class="brand-toggle">
-            <img id="imgOrigToggle" src="https://lh3.googleusercontent.com/d/152SiPw7Y39y_jeMaTdTZLXFkgR_Zu4cn" onclick="selectBrand('originals')" alt="Originals">
-            <img id="imgPerfToggle" src="https://lh3.googleusercontent.com/d/1wEklPrdEZ3GHbNw2ejwfYwx1nBnRxhny" onclick="selectBrand('performance')" alt="Performance">
-          </div>
-
-          <div class="field-group">
-            <label for="mCategory">Category</label>
-            <input type="text" id="mCategory" placeholder="Category" list="categorySuggestions" oninput="markFormDirty()">
-          </div>
-        </div>
-      </div>
-
-      <!-- INFORMATION ELEMENT -->
-      <div class="info-element-wrapper">
-        <div class="field-group">
-          <label for="mName">Name</label>
-          <input type="text" id="mName" placeholder="Item name" oninput="markFormDirty()">
-        </div>
-
-        <div class="three-cols">
-          <div class="field-group" style="flex: 1;">
-            <label for="mSize">Size</label>
-            <input type="text" id="mSize" placeholder="Size" oninput="markFormDirty()">
-          </div>
-          <div class="field-group" style="flex: 1;">
-            <label for="mMadeIn">Made in</label>
-            <input type="text" id="mMadeIn" placeholder="Country" oninput="markFormDirty()">
-          </div>
-          <div class="field-group" style="flex: 1;">
-            <label for="mProduced">Production time</label>
-            <div class="icon-input-row">
-              <img src="https://lh3.googleusercontent.com/d/1C0naWRde39PV2fVvuN8VCmBBYK2Z_JGV" class="field-icon" alt="prod">
-              <input type="text" id="mProduced" placeholder="MM/YY" oninput="markFormDirty()">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRICE & MATERIALS ELEMENT -->
-      <div class="price-section">
-        <div class="materials-column">
-          <div class="field-group">
-            <label for="mMaterial">Materials</label>
-            <textarea id="mMaterial" placeholder="Materials..." oninput="markFormDirty()"></textarea>
-          </div>
-          <div class="field-group">
-            <label for="mLining">Lining</label>
-            <textarea id="mLining" placeholder="Lining..." oninput="markFormDirty()"></textarea>
-          </div>
-        </div>
-
-        <div class="price-right">
-          <div class="field-group">
-            <label for="mPurchasePrice">Purchase price</label>
-            <div class="icon-input-row">
-              <img src="https://lh3.googleusercontent.com/d/161MpMU1eBg3tkn6EEyzR8lCPmTur-SOY" class="field-icon" alt="purchase">
-              <input type="text" id="mPurchasePrice" placeholder="0,00 kr." oninput="markFormDirty()">
-            </div>
-          </div>
-
-          <!-- RESELLING / LISTED / SOLD ROW -->
-          <div class="reselling-sold-container">
-            <div class="resell-toggle-btn" onclick="toggleResellingState()">
-              <img id="btnReselling" src="https://lh3.googleusercontent.com/d/1ZgqEp1y0HhGzAgEuo3k7wsO649HFDkkq" alt="Reselling">
-              <span id="txtReselling" class="status-text">Reselling?</span>
-            </div>
-
-            <div class="sold-toggle-btn dimmed" id="soldToggleWrapper" onclick="toggleSoldState()">
-              <img id="btnSold" src="https://lh3.googleusercontent.com/d/1qrY7_DlZXQsGCG4XxSvVPB6sGR-SUigi" alt="Sold">
-              <span id="txtSold" class="status-text">SOLD?</span>
-            </div>
-          </div>
-
-          <!-- SALE PRICE FIELD -->
-          <div class="field-group sale-price-group dimmed" id="salePriceGroup">
-            <div class="icon-input-row">
-              <img src="https://lh3.googleusercontent.com/d/1AL23h0itXKmbWh_P4v_PL-J-AiXC1Nax" class="field-icon" alt="sale">
-              <input type="text" id="mSalePrice" placeholder="Sold for..." disabled oninput="markFormDirty()">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FOOTER ELEMENT -->
-      <div class="modal-footer">
-        <img src="https://lh3.googleusercontent.com/d/1bIswf5T_aL4D3FBBkKJzgrP2c3qv1aUp" class="footer-btn" onclick="closeModal()" alt="Cancel">
-        <div class="move-toggle-btn" onclick="toggleModalPageType()">
-          <img id="imgMoveBtn" src="https://lh3.googleusercontent.com/d/1XsICtNKjWCBHymS1GHLmU-zh8LCk0f5a" alt="Move">
-        </div>
-        <img src="https://lh3.googleusercontent.com/d/18Nxk5H4uAA2pAktW6TkC7l8WEpZVpvZT" class="footer-btn" onclick="saveData()" alt="Save">
-      </div>
-
+  <div class="modal modal-collect" id="modalCard">
+    
+    <!-- HEADER BANNER -->
+    <div class="modal-header-banner">
+      <img id="modalHeaderImg" src="" alt="Header">
     </div>
-  </div>
 
+    <!-- UPLOAD & TOP FIELDS -->
+    <div class="upload-section">
+      <div class="upload-btn" id="uploadPreview" onclick="document.getElementById('mImageFile').click()" style="background-image: url('');"></div>
+      <input type="file" id="mImageFile" accept="image/*" style="display:none;" onchange="handleImage(this)">
+      
+      <div class="upload-right">
+        <div class="field-group">
+          <label>Article number</label>
+          <div class="art-input">
+            <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
+            <input type="text" id="mArticle" placeholder="Article number" oninput="markFormDirty()">
+          </div>
+        </div>
+
+        <div class="brand-toggle">
+          <img id="imgOrigToggle" src="" onclick="selectBrand('originals')" alt="Originals">
+          <img id="imgPerfToggle" src="" onclick="selectBrand('performance')" alt="Performance">
+        </div>
+
+        <div class="field-group">
+          <label>Category</label>
+          <input type="text" id="mCategory" list="categorySuggestions" placeholder="Category" oninput="markFormDirty()">
+          <datalist id="categorySuggestions"></datalist>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAME -->
+    <div class="field-group">
+      <label>Name</label>
+      <input type="text" id="mName" placeholder="Item name" oninput="markFormDirty()">
+    </div>
+
+    <!-- SIZE, MADE IN, PRODUCTION TIME -->
+    <div class="three-cols">
+      <div class="field-group" style="flex: 1;">
+        <label>Size</label>
+        <input type="text" id="mSize" placeholder="Size" oninput="markFormDirty()">
+      </div>
+      <div class="field-group" style="flex: 1;">
+        <label>Made in</label>
+        <input type="text" id="mMadeIn" placeholder="Country" oninput="markFormDirty()">
+      </div>
+      <div class="field-group" style="flex: 1.2;">
+        <label>Production time</label>
+        <div class="icon-input-row">
+          <img src="https://lh3.googleusercontent.com/d/1C0naWRde39PV2fVvuN8VCmBBYK2Z_JGV" class="field-icon" alt="prod">
+          <input type="text" id="mProduced" placeholder="MM/YY" oninput="markFormDirty()">
+        </div>
+      </div>
+    </div>
+
+    <!-- TO-KOLONNE SEKTION FOR MATERIALS, PURCHASE PRICE, RESELLING, LINING & SOLD FOR -->
+    <div class="form-grid-row">
+      <!-- VENSTRE KOLONNE: Materials & Lining -->
+      <div class="form-col-left">
+        <div class="field-group">
+          <label>Materials</label>
+          <textarea id="mMaterial" class="materials-textarea" placeholder="Materials..." oninput="markFormDirty()"></textarea>
+        </div>
+        <div class="field-group">
+          <label>Lining</label>
+          <textarea id="mLining" class="lining-textarea" placeholder="Lining..." oninput="markFormDirty()"></textarea>
+        </div>
+      </div>
+
+      <!-- HØJRE KOLONNE: Purchase price, Reselling/Sold, Sold for... -->
+      <div class="form-col-right">
+        <div class="field-group">
+          <label>Purchase price</label>
+          <div class="icon-input-row">
+            <img src="https://lh3.googleusercontent.com/d/161MpMU1eBg3tkn6EEyzR8lCPmTur-SOY" class="field-icon" alt="purchase">
+            <input type="text" id="mPurchasePrice" placeholder="0,00 kr." oninput="markFormDirty()">
+          </div>
+        </div>
+
+        <div class="reselling-sold-container">
+          <div class="resell-toggle-btn" onclick="toggleResellingState()">
+            <img id="btnReselling" src="https://lh3.googleusercontent.com/d/1ZgqEp1y0HhGzAgEuo3k7wsO649HFDkkq" alt="Resell">
+            <span class="status-text" id="txtReselling">Reselling?</span>
+          </div>
+          <div class="sold-toggle-btn dimmed" id="soldToggleWrapper" onclick="toggleSoldState()">
+            <img id="btnSold" src="https://lh3.googleusercontent.com/d/1qrY7_DlZXQsGCG4XxSvVPB6sGR-SUigi" alt="Sold">
+            <span class="status-text" id="txtSold">SOLD?</span>
+          </div>
+        </div>
+
+        <div class="field-group" id="salePriceGroup">
+          <label>Sold for ..</label>
+          <div class="icon-input-row">
+            <img src="https://lh3.googleusercontent.com/d/1AL23h0itXKmbWh_P4v_PL-J-AiXC1Nax" class="field-icon" alt="sale">
+            <input type="text" id="mSalePrice" class="sale-price-input" placeholder="Sold for..." disabled oninput="markFormDirty()">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="modal-footer">
+      <img src="https://lh3.googleusercontent.com/d/1B65f2Et5kHbFkxHI8Q6cN3Uva6Ls0EKZ" class="footer-btn" onclick="closeModal()" alt="Cancel">
+      <div class="move-toggle-btn" onclick="toggleModalPageType()">
+        <img id="imgMoveBtn" src="" alt="Move to">
+      </div>
+      <img src="https://lh3.googleusercontent.com/d/19wTkumBvqWSzhakI3TRw6ACWI0jl2YCG" class="footer-btn" onclick="saveData()" alt="Save">
+    </div>
+
+  </div>
+</div>
+  
   <script src="app.js"></script>
 </body>
 </html>
