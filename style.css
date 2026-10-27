@@ -532,7 +532,7 @@ html, body {
   font-weight: bold;
 }
 
-/* POPUP MODAL DESIGN - OPTIMERET TIL PRÆCIS FLUGTNING */
+/* POPUP MODAL DESIGN - STIKT PRECIS MOCKUP FLUGTNING */
 .modal-bg {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -548,15 +548,16 @@ html, body {
 .modal {
   background: #ffffff;
   border-radius: 22px;
-  width: 410px;
+  width: 385px;
   max-width: 95vw;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 12px 16px 12px 16px;
+  padding: 12px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   gap: 6px;
+  height: auto !important;
 }
 
 .modal-collect {
@@ -575,12 +576,12 @@ html, body {
 
 .modal-header-banner {
   width: 100%;
-  height: 48px;
+  height: 46px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  margin-bottom: -2px;
+  margin-bottom: 2px;
 }
 
 .modal-header-banner img {
@@ -601,9 +602,10 @@ html, body {
   font-family: 'AvantGarde LT Book', sans-serif;
   font-size: 10px;
   font-weight: bold;
+  line-height: 1.1;
 }
 
-/* ALLE STANDARD TEKSTFELTER HAR NU PRÆCIS SAMME HØJDE (25px) */
+/* PINK LINJE: NØJAGTIG 25PX HØJDE PÅ ALLE STANDARD INPUTS */
 .modal input[type="text"] {
   width: 100% !important;
   height: 25px !important;
@@ -692,7 +694,7 @@ html, body {
   align-items: center !important;
   gap: 6px !important;
   width: 100% !important;
-  height: 46px !important;
+  height: 44px !important;
 }
 
 .brand-toggle img {
@@ -714,7 +716,7 @@ html, body {
   gap: 6px !important;
 }
 
-/* PRÆCIS FLUGTNING AF MATERIALS OG RESELLING/SOLD HØJDER (ORANGE LINIE 56px SAMLET HØJDE) */
+/* ORANGE LINJE: MATERIALS SAMT PURCHASE PRICE + RESELLING FLUGTNING (56PX) */
 .price-section {
   display: flex !important;
   gap: 10px !important;
@@ -730,12 +732,12 @@ html, body {
   gap: 6px;
 }
 
-/* Materials tekstfelt har nøjagtig 56px i højde, så det flugter perfekt med Purchase price + gap + Reselling/sold rækken */
+/* Materials feltet matcher nøjagtigt 56px i højde */
 .materials-column .field-group:first-child textarea {
   height: 56px !important;
 }
 
-/* Lining og Sold for.. har præcis samme standardhøjde (25px) og flugter i bunden */
+/* Lining og Sold for.. har begge nøjagtig 25px i højde og flugter perfekt */
 .materials-column .field-group:last-child textarea,
 .price-right .sale-price-group input {
   height: 25px !important;
@@ -759,16 +761,7 @@ html, body {
   width: 100% !important;
 }
 
-.resell-toggle-btn {
-  display: flex !important;
-  align-items: center !important;
-  gap: 3px !important;
-  cursor: pointer !important;
-  min-width: 78px !important;
-  flex-shrink: 0 !important;
-}
-
-.sold-toggle-btn {
+.resell-toggle-btn, .sold-toggle-btn {
   display: flex !important;
   align-items: center !important;
   gap: 3px !important;
@@ -776,8 +769,7 @@ html, body {
   flex-shrink: 0 !important;
 }
 
-.resell-toggle-btn img,
-.sold-toggle-btn img {
+.resell-toggle-btn img, .sold-toggle-btn img {
   height: 18px !important;
   width: auto !important;
   object-fit: contain;
@@ -797,19 +789,19 @@ html, body {
   transition: opacity 0.2s ease;
 }
 
-/* FOOTER STYRING - PRÆCISE DIMENSIONER (MOVE TO: 60px / CANCEL & SAVE: 20px) */
+/* FOOTER: MOVE TO (60PX, ew-resize) + CANCEL (20PX, w-resize) + SAVE (20PX, e-resize) */
 .modal-footer {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  height: 60px !important;            /* Højden matcher Move to.. knappen */
+  height: 60px !important;
   width: 100% !important;
   box-sizing: border-box !important;
   padding: 0 !important;
-  margin-top: 4px !important;
+  margin-top: 6px !important;
 }
 
-/* CANCEL: Præcis 20px høj (ca. 81.2px bred ud fra billedets forhold) og centreret vertikalt */
+/* Cancel: w-resize cursor */
 .modal-footer > img.footer-btn:first-child {
   height: 20px !important;
   width: auto !important;
@@ -819,26 +811,27 @@ html, body {
   flex-shrink: 0 !important;
 }
 
-/* MOVE TO..: Præcis 60px høj, fylder den centrale plads ud med 3.8px gap i siderne */
+/* Move to..: ew-resize cursor */
 .move-toggle-btn {
   height: 60px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   box-sizing: border-box !important;
-  margin: 0 3.8px !important;        /* Præcis 3.8px luft til hver side */
+  margin: 0 3.8px !important;
   flex-shrink: 0 !important;
+  cursor: ew-resize !important;
 }
 
 .move-toggle-btn img {
   height: 60px !important;
-  width: auto !important;            /* Bevarer det naturlige breddeforhold (ca. 185px) */
+  width: auto !important;
   object-fit: contain !important;
   cursor: ew-resize !important;
   display: block !important;
 }
 
-/* SAVE: Præcis 20px høj (ca. 81.2px bred) og centreret vertikalt */
+/* Save: e-resize cursor */
 .modal-footer > img.footer-btn:last-child {
   height: 20px !important;
   width: auto !important;
@@ -846,4 +839,32 @@ html, body {
   cursor: e-resize !important;
   align-self: center !important;
   flex-shrink: 0 !important;
+}
+
+/* SKALERING TIL MOBIL/SMÅ SKÆRME */
+@media (max-width: 480px) {
+  .modal {
+    padding: 10px !important;
+    gap: 4px !important;
+  }
+  .upload-section {
+    height: 105px !important;
+  }
+  .upload-btn {
+    width: 105px !important;
+    height: 105px !important;
+  }
+  .materials-column .field-group:first-child textarea {
+    height: 48px !important;
+  }
+  .modal-footer {
+    height: 48px !important;
+  }
+  .move-toggle-btn, .move-toggle-btn img {
+    height: 48px !important;
+  }
+  .modal-footer > img.footer-btn:first-child,
+  .modal-footer > img.footer-btn:last-child {
+    height: 16px !important;
+  }
 }
