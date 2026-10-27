@@ -317,6 +317,7 @@ function getRandomBubble(seedStr) {
   return BUBBLE_POOL[index];
 }
 
+// RETTET: Tilføjet 'seed' som 4. parameter i funktionen
 function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx, seed) {
   let sizeObj = null;
   for (let cat of SIZE_CATEGORIES) {
@@ -333,7 +334,7 @@ function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx, seed) {
     sizeObj = { key: sizeKey, l1: sizeKey, s1: 35, c1: "#000000", b1: "#ffffff" };
   }
 
-  // Bruger det unikke seed (fx varens ID) hvis det gives, ellers sizeKey
+  // RETTET: Bruger varens unike seed (fx varens ID eller vareniti/artikelnr), hvis det sendes med, så hver Onesize-vare får en ny boble
   const bubbleData = getRandomBubble(seed || sizeKey);
   const imgId = isSelected ? bubbleData.on : bubbleData.off;
   
@@ -624,8 +625,9 @@ function renderItems() {
       `;
 
       if (item.size) {
-        // Sender item.id med som unikt seed, så hver vare får sin egen tilfældige boble
-        const badgeCanvas = renderDynamicSizeBubbleCanvas(item.size, true, 40, item.id);
+        // RETTET: Sender en unik nøgle (varens ID eller navnet) med som 4. parameter (seed), så hver enkelt vare får sin helt egen tilfældige boble fra puljen
+        const uniqueItemSeed = item.id || item.articlenumber || (item.name + Math.random());
+        const badgeCanvas = renderDynamicSizeBubbleCanvas(item.size, true, 40, uniqueItemSeed);
         badgeCanvas.className = 'size-badge-canvas';
         card.querySelector('.image-wrapper').appendChild(badgeCanvas);
       }
