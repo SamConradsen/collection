@@ -330,7 +330,6 @@ function renderDynamicSizeBubbleCanvas(sizeKey, isSelected, targetPx, seed) {
     sizeObj = { key: sizeKey, l1: sizeKey, s1: 35, c1: "#000000", b1: "#ffffff" };
   }
 
-  // Tvinger brug af et unikt seed pr. vare (fx ID + art.nummer), så selvom størrelsen er den samme, vælges en anden boble
   const bubbleData = getRandomBubble(seed || sizeKey);
   const imgId = isSelected ? bubbleData.on : bubbleData.off;
   
@@ -577,7 +576,7 @@ function renderItems() {
           ${overlayHTML}
           <div class="size-badge-container"></div>
           <div class="article-badge">
-            <img src="https://lh3.googleusercontent.com/d/${1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1}" alt="a#">
+            <img src="https://lh3.googleusercontent.com/d/1k2UAsx1wDDB_nzxmmHjxAotoMZ5BQft1" alt="a#">
             <span>${item.articlenumber || ''}</span>
           </div>
         </div>
@@ -621,7 +620,6 @@ function renderItems() {
       `;
 
       if (item.size) {
-        // Her sikres et helt unikt seed pr. vare, så hver enkelt vare (også i Onesize) får sin egen tilfældige boble fra puljen
         const uniqueSeed = `${item.id || ''}_${item.articlenumber || ''}_${item.name || ''}`;
         const badgeCanvas = renderDynamicSizeBubbleCanvas(item.size, true, 40, uniqueSeed);
         badgeCanvas.className = 'size-badge-canvas';
