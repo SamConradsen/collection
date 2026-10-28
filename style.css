@@ -574,7 +574,7 @@ html, body {
   background-clip: padding-box, border-box;
 }
 
-/* HEADER BANNER: Forstørret, så den matcher dit mockup præcist */
+/* HEADER BANNER: Forstørret til præcis match med mockup */
 .modal-header-banner {
   width: 100%;
   height: 64px !important;
@@ -690,7 +690,7 @@ html, body {
   width: auto !important;
 }
 
-/* BRAND TOGGLE: Forstørret, så de matcher mockup-størrelsen (58px) */
+/* BRAND TOGGLE: Forstørret til præcis match med mockup */
 .brand-toggle {
   display: flex !important;
   justify-content: space-between !important;
@@ -798,7 +798,7 @@ html, body {
   transition: opacity 0.2s ease;
 }
 
-/* FOOTER: MOVE TO (60PX) + KORREKTE CANCEL & SAVE KNAPPER MED PRÆCISE CURSORS */
+/* FOOTER: MOVE TO (60PX) + KORREKTE CANCEL & SAVE BILLEDER MED PRÆCISE CURSORS */
 .modal-footer {
   display: flex !important;
   align-items: center !important;
@@ -811,7 +811,7 @@ html, body {
   flex-shrink: 0 !important;
 }
 
-/* Cancel: w-resize cursor */
+/* Cancel: w-resize cursor med det korrekte Image ID */
 .modal-footer > img.footer-btn:first-child {
   height: 22px !important;
   width: auto !important;
@@ -844,7 +844,7 @@ html, body {
   display: block !important;
 }
 
-/* Save: e-resize cursor */
+/* Save: e-resize cursor med det korrekte Image ID */
 .modal-footer > img.footer-btn:last-child {
   height: 22px !important;
   width: auto !important;
