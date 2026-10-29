@@ -21,9 +21,7 @@ html, body {
   -webkit-text-size-adjust: 100%;
 }
 
-/* ==========================================================
-   HEADER BANNER & STICKY MENU
-   ========================================================== */
+/* HEADER BANNER */
 .header-container {
   width: 100%;
   overflow: hidden;
@@ -37,6 +35,7 @@ html, body {
   display: block;
 }
 
+/* STICKY MENU */
 .sticky-menu-wrapper {
   position: sticky;
   top: 0;
@@ -135,9 +134,52 @@ html, body {
   margin: 0;
 }
 
-/* ==========================================================
-   MAIN CONTENT & ITEM GRID
-   ========================================================== */
+/* SIZE DROPDOWN OVERLAY (Gør at størrelses-boblermenuen LIGGER SKJULTI DROPDOWN, og ikke flyder ud over skærmen) */
+.size-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 150;
+  background: rgba(209, 227, 255, 0.85) !important;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1.5px solid rgba(42, 26, 111, 0.35);
+  border-radius: 20px;
+  padding: 8px 10px;
+  display: none; /* Skjult som standard */
+  box-shadow: 0 16px 40px rgba(42, 26, 111, 0.18);
+  width: 320px;
+  max-width: 95vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin-top: 4px;
+}
+
+.size-dropdown.active {
+  display: block !important;
+}
+
+.size-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 3px;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.size-grid-item {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1 !important;
+  cursor: pointer;
+  object-fit: contain;
+  box-sizing: border-box;
+  display: block;
+}
+
+/* MAIN CONTENT & GRID */
 .main-wrapper {
   display: flex;
   padding: 10px 20px 20px 20px;
@@ -207,10 +249,11 @@ html, body {
   position: relative;
 }
 
-/* ALFABET BOBLER SIDEBAR */
+/* SIDEBAR BOBLER NAV */
 .alphabet-nav {
   position: fixed;
   right: 20px;
+  top: 100px;
   z-index: 120;
   display: flex;
   flex-direction: column;
@@ -218,6 +261,7 @@ html, body {
   padding: 2px;
   box-sizing: border-box;
   overflow-y: auto;
+  max-height: calc(100vh - 120px);
 }
 
 .sidebar-bubble-item {
@@ -248,7 +292,7 @@ html, body {
 }
 
 /* ==========================================================
-   POPUP MODAL (PRÆCIS FLUGTNING OG RESPOSIVT DESIGN)
+   POPUP MODAL (MODAL KONTROL)
    ========================================================== */
 .modal-bg {
   position: fixed;
@@ -263,10 +307,14 @@ html, body {
   box-sizing: border-box;
 }
 
+.modal-bg.active {
+  display: flex !important;
+}
+
 .modal {
   background: #FFFFFF;
   border-radius: 22px;
-  width: 400px;
+  width: 420px;
   max-width: 95vw;
   box-sizing: border-box;
   display: flex;
@@ -274,7 +322,6 @@ html, body {
   padding: 14px 18px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
   gap: 6px;
-  height: auto !important;
   position: relative;
 }
 
@@ -292,25 +339,20 @@ html, body {
   background-clip: padding-box, border-box;
 }
 
-/* HEADER BANNER */
 .modal-header-banner {
   width: 100%;
-  height: 60px !important;
+  height: 55px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
-  margin-bottom: 4px;
 }
 
 .modal-header-banner img {
-  height: 60px !important;
-  width: auto !important;
-  max-width: 100%;
+  height: 100%;
+  width: auto;
   object-fit: contain;
 }
 
-/* FORM ELEMENTER */
 .field-group {
   display: flex;
   flex-direction: column;
@@ -318,157 +360,128 @@ html, body {
 }
 
 .field-group label {
-  color: #3647AE !important;
+  color: #3647AE;
   font-family: 'AvantGarde LT Book', sans-serif;
   font-size: 10px;
   font-weight: bold;
 }
 
 .modal input[type="text"] {
-  width: 100% !important;
-  height: 26px !important;
-  background-color: #E8EDFF !important;
-  border: 1px solid #B6C2FD !important;
-  border-radius: 6px !important;
-  padding: 0 8px !important;
-  box-sizing: border-box !important;
-  font-family: 'AvantGarde LT Medium', sans-serif !important;
-  font-size: 11px !important;
-  color: #000 !important;
-  outline: none !important;
+  width: 100%;
+  height: 26px;
+  background-color: #E8EDFF;
+  border: 1px solid #B6C2FD;
+  border-radius: 6px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-size: 11px;
+  color: #000;
+  outline: none;
 }
 
 .modal textarea {
-  width: 100% !important;
-  background-color: #E8EDFF !important;
-  border: 1px solid #B6C2FD !important;
-  border-radius: 6px !important;
-  padding: 5px 8px !important;
-  box-sizing: border-box !important;
-  font-family: 'AvantGarde LT Medium', sans-serif !important;
-  font-size: 11px !important;
-  color: #000 !important;
-  outline: none !important;
-  resize: none !important;
+  width: 100%;
+  background-color: #E8EDFF;
+  border: 1px solid #B6C2FD;
+  border-radius: 6px;
+  padding: 5px 8px;
+  box-sizing: border-box;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-size: 11px;
+  color: #000;
+  outline: none;
+  resize: none;
 }
 
-/* UPLOAD SEKTION */
 .upload-section {
-  display: flex !important;
-  gap: 12px !important;
-  align-items: stretch !important;
-  width: 100% !important;
-  height: 125px !important;
-  flex-shrink: 0;
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  width: 100%;
+  height: 120px;
 }
 
 .upload-btn {
-  width: 125px !important;
-  height: 125px !important;
-  border-radius: 12px !important;
-  background-size: cover !important;
-  background-position: center !important;
-  cursor: pointer !important;
-  flex-shrink: 0 !important;
-  border: 1px dashed #B6C2FD !important;
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: 1px dashed #B6C2FD;
 }
 
 .upload-right {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-  flex: 1 !important;
-  min-width: 0 !important;
-}
-
-.art-input {
-  display: flex !important;
-  align-items: center !important;
-  gap: 4px !important;
-}
-
-.art-input img {
-  height: 15px !important;
-  width: auto !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
 }
 
 .brand-toggle {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  gap: 6px !important;
-  width: 100% !important;
-  height: 52px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  height: 50px;
 }
 
 .brand-toggle img {
-  height: 52px !important;
-  width: 48% !important;
-  cursor: pointer !important;
-  object-fit: contain !important;
-}
-
-/* TRE KOLONNER (Size, Made in, Production time) */
-.three-cols {
-  display: flex !important;
-  gap: 6px !important;
-  width: 100% !important;
-}
-
-.three-cols .field-group { flex: 1 !important; }
-
-.icon-input-row {
-  display: flex !important;
-  align-items: center !important;
-  gap: 4px !important;
-}
-
-.field-icon {
-  height: 18px !important;
-  width: auto !important;
+  height: 50px;
+  width: 48%;
+  cursor: pointer;
   object-fit: contain;
-  flex-shrink: 0;
 }
 
-/* TO-KOLONNE FLUGTNING (Materials vs Purchase/Reselling) */
+.three-cols {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
+
+.three-cols .field-group { flex: 1; }
+
 .form-grid-row {
-  display: flex !important;
-  gap: 10px !important;
-  width: 100% !important;
-  align-items: flex-start !important;
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  align-items: flex-start;
 }
 
 .form-col-left, .form-col-right {
-  flex: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 6px !important;
-  min-width: 0 !important;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
 }
 
-/* Materials matcher Purchase price (26px) + gap (6px) + Reselling (26px) = 58px */
 .materials-textarea {
-  height: 58px !important;
+  height: 58px;
 }
 
 .reselling-sold-container {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  height: 26px !important;
-  width: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 26px;
+  width: 100%;
 }
 
 .resell-toggle-btn, .sold-toggle-btn {
-  display: flex !important;
-  align-items: center !important;
-  gap: 4px !important;
-  cursor: pointer !important;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
 }
 
 .resell-toggle-btn img, .sold-toggle-btn img {
-  height: 20px !important;
-  width: auto !important;
+  height: 20px;
+  width: auto;
   object-fit: contain;
 }
 
@@ -480,75 +493,41 @@ html, body {
 }
 
 .dimmed {
-  opacity: 0.35 !important;
-  pointer-events: none !important;
+  opacity: 0.35;
+  pointer-events: none;
 }
 
-/* FOOTER KNAPPER */
 .modal-footer {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  height: 55px !important;
-  width: 100% !important;
-  margin-top: 4px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  width: 100%;
+  margin-top: 4px;
 }
 
 .modal-footer > img.footer-btn:first-child {
-  height: 22px !important;
-  width: auto !important;
-  cursor: w-resize !important;
+  height: 22px;
+  width: auto;
+  cursor: w-resize;
 }
 
 .move-toggle-btn {
-  height: 55px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  cursor: ew-resize !important;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ew-resize;
 }
 
 .move-toggle-btn img {
-  height: 55px !important;
-  width: auto !important;
-  object-fit: contain !important;
+  height: 50px;
+  width: auto;
+  object-fit: contain;
 }
 
 .modal-footer > img.footer-btn:last-child {
-  height: 22px !important;
-  width: auto !important;
-  cursor: e-resize !important;
-}
-
-/* SKALERING TIL MOBIL/IPHONE */
-@media (max-width: 480px) {
-  .modal {
-    padding: 10px 12px !important;
-    gap: 4px !important;
-  }
-  .modal-header-banner {
-    height: 48px !important;
-  }
-  .upload-section {
-    height: 105px !important;
-  }
-  .upload-btn {
-    width: 105px !important;
-    height: 105px !important;
-  }
-  .brand-toggle {
-    height: 44px !important;
-  }
-  .brand-toggle img {
-    height: 44px !important;
-  }
-  .materials-textarea {
-    height: 50px !important;
-  }
-  .modal-footer {
-    height: 45px !important;
-  }
-  .move-toggle-btn, .move-toggle-btn img {
-    height: 45px !important;
-  }
+  height: 22px;
+  width: auto;
+  cursor: e-resize;
 }
