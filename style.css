@@ -22,7 +22,233 @@ html, body {
 }
 
 /* ==========================================================
-   BASIS MODAL STYLES & OVERLAY
+   HEADER BANNER & STICKY MENU
+   ========================================================== */
+.header-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+.header-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sticky-menu-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: #d1e3ff;
+}
+
+.sticky-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 20px;
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  z-index: 2;
+}
+
+.menu-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1;
+}
+
+.menu-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  z-index: 2;
+}
+
+.menu-item {
+  cursor: pointer;
+  height: 42px !important;
+  width: auto !important;
+  max-width: 110px;
+  display: block;
+  object-fit: contain;
+}
+
+.brand-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-filter-group img {
+  height: 42px !important;
+  width: auto !important;
+  cursor: pointer;
+  object-fit: contain;
+}
+
+.search-box {
+  position: relative;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  width: 220px;
+}
+
+.search-bg-img {
+  height: 42px !important;
+  width: 100% !important;
+  display: block;
+  object-fit: fill;
+}
+
+.search-box input {
+  position: absolute;
+  left: 15%;
+  top: 20%;
+  width: 78%;
+  height: 60%;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  font-size: 12px;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  color: #000;
+  padding: 0;
+  margin: 0;
+}
+
+/* ==========================================================
+   MAIN CONTENT & ITEM GRID
+   ========================================================== */
+.main-wrapper {
+  display: flex;
+  padding: 10px 20px 20px 20px;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.content-area {
+  flex: 1;
+  min-width: 0;
+  padding-right: 55px;
+}
+
+.category-section {
+  margin-bottom: 25px;
+}
+
+.category-title {
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 15px 0 10px 0;
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) { .item-grid { grid-template-columns: repeat(4, 1fr) !important; } }
+@media (max-width: 600px) { .item-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+
+.item-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  border: 1px dashed #000;
+  box-sizing: border-box;
+  background-color: #fff;
+  background-size: cover;
+  background-position: center;
+}
+
+.info-box {
+  margin-top: 4px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 6px 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 85px; 
+  position: relative;
+}
+
+/* ALFABET BOBLER SIDEBAR */
+.alphabet-nav {
+  position: fixed;
+  right: 20px;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 2px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.sidebar-bubble-item {
+  position: relative;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.sidebar-bubble-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 30px !important;
+  height: 30px !important;
+  object-fit: contain;
+}
+
+.sidebar-bubble-letter {
+  position: relative;
+  z-index: 2;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: #6C7CE7;
+}
+
+/* ==========================================================
+   POPUP MODAL (PRÆCIS FLUGTNING OG RESPOSIVT DESIGN)
    ========================================================== */
 .modal-bg {
   position: fixed;
@@ -33,347 +259,296 @@ html, body {
   justify-content: center;
   z-index: 200;
   backdrop-filter: blur(4px);
+  padding: 10px;
   box-sizing: border-box;
 }
 
 .modal {
   background: #FFFFFF;
   border-radius: 22px;
+  width: 400px;
+  max-width: 95vw;
   box-sizing: border-box;
-  position: relative !important;
-  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 18px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  gap: 6px;
+  height: auto !important;
+  position: relative;
 }
 
 .modal-collect {
-  border: 6pt solid transparent;
+  border: 4px solid transparent;
   background-image: linear-gradient(#fff, #fff), linear-gradient(135deg, #57ADF8, #7FF9DA);
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
 
 .modal-wishlist {
-  border: 6pt solid transparent;
+  border: 4px solid transparent;
   background-image: linear-gradient(#fff, #fff), linear-gradient(135deg, #3E8CFF, #5D43C3);
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
 
+/* HEADER BANNER */
+.modal-header-banner {
+  width: 100%;
+  height: 60px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin-bottom: 4px;
+}
 
-/* ==========================================================
-   1. MACBOOK PRO 13" (1280x800 px, DPI 72)
-   ========================================================== */
-@media screen and (min-width: 1025px) and (max-width: 1440px) and (-webkit-max-device-pixel-ratio: 1.5) {
+.modal-header-banner img {
+  height: 60px !important;
+  width: auto !important;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* FORM ELEMENTER */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.field-group label {
+  color: #3647AE !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.modal input[type="text"] {
+  width: 100% !important;
+  height: 26px !important;
+  background-color: #E8EDFF !important;
+  border: 1px solid #B6C2FD !important;
+  border-radius: 6px !important;
+  padding: 0 8px !important;
+  box-sizing: border-box !important;
+  font-family: 'AvantGarde LT Medium', sans-serif !important;
+  font-size: 11px !important;
+  color: #000 !important;
+  outline: none !important;
+}
+
+.modal textarea {
+  width: 100% !important;
+  background-color: #E8EDFF !important;
+  border: 1px solid #B6C2FD !important;
+  border-radius: 6px !important;
+  padding: 5px 8px !important;
+  box-sizing: border-box !important;
+  font-family: 'AvantGarde LT Medium', sans-serif !important;
+  font-size: 11px !important;
+  color: #000 !important;
+  outline: none !important;
+  resize: none !important;
+}
+
+/* UPLOAD SEKTION */
+.upload-section {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  height: 125px !important;
+  flex-shrink: 0;
+}
+
+.upload-btn {
+  width: 125px !important;
+  height: 125px !important;
+  border-radius: 12px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  border: 1px dashed #B6C2FD !important;
+}
+
+.upload-right {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.art-input {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.art-input img {
+  height: 15px !important;
+  width: auto !important;
+}
+
+.brand-toggle {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+  height: 52px !important;
+}
+
+.brand-toggle img {
+  height: 52px !important;
+  width: 48% !important;
+  cursor: pointer !important;
+  object-fit: contain !important;
+}
+
+/* TRE KOLONNER (Size, Made in, Production time) */
+.three-cols {
+  display: flex !important;
+  gap: 6px !important;
+  width: 100% !important;
+}
+
+.three-cols .field-group { flex: 1 !important; }
+
+.icon-input-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.field-icon {
+  height: 18px !important;
+  width: auto !important;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* TO-KOLONNE FLUGTNING (Materials vs Purchase/Reselling) */
+.form-grid-row {
+  display: flex !important;
+  gap: 10px !important;
+  width: 100% !important;
+  align-items: flex-start !important;
+}
+
+.form-col-left, .form-col-right {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  min-width: 0 !important;
+}
+
+/* Materials matcher Purchase price (26px) + gap (6px) + Reselling (26px) = 58px */
+.materials-textarea {
+  height: 58px !important;
+}
+
+.reselling-sold-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  height: 26px !important;
+  width: 100% !important;
+}
+
+.resell-toggle-btn, .sold-toggle-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  cursor: pointer !important;
+}
+
+.resell-toggle-btn img, .sold-toggle-btn img {
+  height: 20px !important;
+  width: auto !important;
+  object-fit: contain;
+}
+
+.status-text {
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  color: #7197FF;
+}
+
+.dimmed {
+  opacity: 0.35 !important;
+  pointer-events: none !important;
+}
+
+/* FOOTER KNAPPER */
+.modal-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  height: 55px !important;
+  width: 100% !important;
+  margin-top: 4px !important;
+}
+
+.modal-footer > img.footer-btn:first-child {
+  height: 22px !important;
+  width: auto !important;
+  cursor: w-resize !important;
+}
+
+.move-toggle-btn {
+  height: 55px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: ew-resize !important;
+}
+
+.move-toggle-btn img {
+  height: 55px !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+.modal-footer > img.footer-btn:last-child {
+  height: 22px !important;
+  width: auto !important;
+  cursor: e-resize !important;
+}
+
+/* SKALERING TIL MOBIL/IPHONE */
+@media (max-width: 480px) {
   .modal {
-    width: 384px !important;
-    height: 566.4px !important;
+    padding: 10px 12px !important;
+    gap: 4px !important;
   }
-
   .modal-header-banner {
-    position: absolute !important;
-    left: 70.5px !important; top: 1.3px !important;
-    width: 247.4px !important; height: 116.5px !important;
+    height: 48px !important;
   }
-  .modal-header-banner img { width: 100%; height: 100%; object-fit: contain; }
-
+  .upload-section {
+    height: 105px !important;
+  }
   .upload-btn {
-    position: absolute !important;
-    left: 16.4px !important; top: 123.3px !important;
-    width: 156.4px !important; height: 153.4px !important;
-    border-radius: 12px; border: 1.1pt dashed #B6C2FD; background-size: cover;
+    width: 105px !important;
+    height: 105px !important;
   }
-
-  .field-group.art-group { position: absolute !important; left: 187.3px !important; top: 123px !important; width: 148.4px !important; }
-  .field-group.art-group label { color: #3647AE; font-family: 'AvantGarde LT Book', sans-serif; font-size: 8.2pt; font-weight: bold; }
-  .art-input { position: relative !important; width: 148.4px !important; height: 24.9px !important; }
-  .art-input img { position: absolute !important; left: -31.9px !important; top: 4.1px !important; width: 28.9px !important; height: 15.9px !important; }
-  .art-input input { width: 148.4px !important; height: 24.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 7.9pt; color: #757575; }
-
-  .brand-toggle { position: absolute !important; left: 187.1px !important; top: 164.1px !important; width: 180.9px !important; height: 71.8px !important; display: flex; }
-  .brand-toggle img { width: 90.5px !important; height: 71.8px !important; cursor: pointer; object-fit: contain; }
-
-  .field-group.cat-group { position: absolute !important; left: 188.2px !important; top: 239.3px !important; width: 179.3px !important; }
-  .field-group.cat-group label { color: #3647AE; font-size: 8.2pt; font-weight: bold; }
-  .field-group.cat-group input { width: 179.3px !important; height: 24.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 7.9pt; }
-
-  .field-group.name-group { position: absolute !important; left: 16.9px !important; top: 290.3px !important; width: 350.6px !important; }
-  .field-group.name-group label { color: #3647AE; font-size: 8.2pt; font-weight: bold; }
-  .field-group.name-group input { width: 350.6px !important; height: 24.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 7.9pt; }
-
-  .field-group.size-group { position: absolute !important; left: 16.9px !important; top: 340.9px !important; width: 112.5px !important; }
-  .field-group.size-group label { color: #3647AE; font-size: 8.2pt; font-weight: bold; }
-  .field-group.size-group input { width: 112.5px !important; height: 24.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 7.9pt; }
-
-  .field-group.madein-group { position: absolute !important; left: 135.4px !important; top: 341.1px !important; width: 112.5px !important; }
-  .field-group.madein-group label { color: #3647AE; font-size: 8.2pt; font-weight: bold; }
-  .field-group.madein-group input { width: 112.5px !important; height: 24.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 7.9pt; }
-
-  .field-group.prod-group { position: absolute !important; left: 252.7px !important; top: 341.1px !important; width: 114.7px !important; }
-  .field-group.prod-group label { color: #3647AE; font-size: 8.2pt; font-weight: bold; }
-  .prod-group .field-icon { position: absolute !important; left: 1.4px !important; top: 12.3px !important; width: 24.9px !important; height: 24.9px !important; }
-  .field-group.prod-group input { position: absolute !important; left: 31.1px !important; top: 12px !important; width: 83.6px !important; height: 24.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 7.9pt; }
-
-  .field-group.mat-group { position: absolute !important; left: 16.9px !important; top: 390.9px !important; width: 169.3px !important; }
-  .field-group.mat-group label { color: #3647AE; font-size: 8.2pt; font-weight: bold; }
-  .field-group.mat-group textarea { width: 169.3px !important; height: 54.8px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 7.9pt; resize: none; }
-
-  .field-group.price-group { position: absolute !important; left: 195.3px !important; top: 390.9px !important; width: 172.2px !important; }
-  .field-group.price-group label { color: #3647AE; font-size: 8.2pt; font-weight: bold; }
-  .price-group img { position: absolute !important; left: 0px !important; top: 12.6px !important; width: 24.9px !important; height: 24.9px !important; }
-  .price-group input { position: absolute !important; left: 29.8px !important; top: 12.3px !important; width: 142.4px !important; height: 24.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 7.9pt; }
-
-  .reselling-sold-container { position: absolute !important; left: 195.3px !important; top: 433.6px !important; width: 172.4px !important; height: 24.9px !important; display: flex; }
-  .resell-toggle-btn { position: absolute !important; left: 1.2px !important; display: flex; align-items: center; gap: 5.3px; cursor: pointer; }
-  .resell-toggle-btn img { width: 24.9px !important; height: 24.9px !important; }
-  .resell-toggle-btn span { font-size: 10.8pt; color: #7197FF; font-weight: bold; }
-  .sold-toggle-btn { position: absolute !important; left: 103.7px !important; display: flex; align-items: center; gap: 5.3px; cursor: pointer; }
-  .sold-toggle-btn img { width: 24.9px !important; height: 24.9px !important; }
-  .sold-toggle-btn span { font-size: 10.8pt; color: #7197FF; font-weight: bold; }
-
-  .field-group.lining-group { position: absolute !important; left: 16.9px !important; top: 464.6px !important; width: 169.3px !important; }
-  .field-group.lining-group label { color: #3647AE; font-size: 8.2pt; font-weight: bold; }
-  .field-group.lining-group textarea { width: 169.3px !important; height: 24.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 7.9pt; resize: none; }
-
-  .field-group.soldfor-group { position: absolute !important; left: 195.3px !important; top: 464.4px !important; width: 172.2px !important; }
-  .field-group.soldfor-group label { color: #3647AE; font-size: 8.2pt; font-weight: bold; }
-  .soldfor-group img { position: absolute !important; left: 0px !important; top: 12.8px !important; width: 24.9px !important; height: 24.9px !important; }
-  .soldfor-group input { position: absolute !important; left: 29.8px !important; top: 12.5px !important; width: 142.4px !important; height: 24.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 7.9pt; }
-
-  .modal-footer > img.footer-btn:first-child { position: absolute !important; left: 16.5px !important; top: 526.4px !important; width: 80.9px !important; height: 19.9px !important; cursor: w-resize !important; }
-  .move-toggle-btn { position: absolute !important; left: 99.9px !important; top: 504.3px !important; width: 184.2px !important; height: 59.8px !important; cursor: ew-resize !important; }
-  .move-toggle-btn img { width: 100%; height: 100%; object-fit: contain; }
-  .modal-footer > img.footer-btn:last-child { position: absolute !important; left: 286.6px !important; top: 526.4px !important; width: 80.9px !important; height: 19.9px !important; cursor: e-resize !important; }
-}
-
-
-/* ==========================================================
-   2. MACBOOK 12" (2560x1600 px, DPI 144)
-   ========================================================== */
-@media screen and (min-width: 1441px) {
-  .modal {
-    width: 709.1px !important;
-    height: 1070px !important;
+  .brand-toggle {
+    height: 44px !important;
   }
-
-  .modal-header-banner { position: absolute !important; left: 126.5px !important; top: 7px !important; width: 464.2px !important; height: 218.6px !important; }
-  .modal-header-banner img { width: 100%; height: 100%; object-fit: contain; }
-
-  .upload-btn { position: absolute !important; left: 25px !important; top: 235.9px !important; width: 293.4px !important; height: 287.8px !important; border-radius: 12px; border: 1.1pt dashed #B6C2FD; }
-
-  .field-group.art-group { position: absolute !important; left: 345.7px !important; top: 235.3px !important; width: 278.4px !important; }
-  .field-group.art-group label { color: #3647AE; font-size: 15.5pt; font-weight: bold; }
-  .art-input { position: relative !important; width: 278.4px !important; height: 46.7px !important; }
-  .art-input img { position: absolute !important; left: -59.8px !important; top: 7.8px !important; width: 54.2px !important; height: 29.9px !important; }
-  .art-input input { width: 278.4px !important; height: 46.7px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 14.9pt; }
-
-  .brand-toggle { position: absolute !important; left: 345.3px !important; top: 312.6px !important; width: 339.4px !important; height: 134.8px !important; display: flex; }
-  .brand-toggle img { width: 169.7px !important; height: 134.8px !important; cursor: pointer; object-fit: contain; }
-
-  .field-group.cat-group { position: absolute !important; left: 347.4px !important; top: 453.7px !important; width: 336.4px !important; }
-  .field-group.cat-group label { color: #3647AE; font-size: 15.5pt; font-weight: bold; }
-  .field-group.cat-group input { width: 336.4px !important; height: 46.7px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 14.9pt; }
-
-  .field-group.name-group { position: absolute !important; left: 26px !important; top: 549.3px !important; width: 657.8px !important; }
-  .field-group.name-group label { color: #3647AE; font-size: 15.5pt; font-weight: bold; }
-  .field-group.name-group input { width: 657.8px !important; height: 46.7px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 14.9pt; }
-
-  .field-group.size-group { position: absolute !important; left: 26px !important; top: 667.7px !important; width: 211.2px !important; }
-  .field-group.size-group label { color: #3647AE; font-size: 15.5pt; font-weight: bold; }
-  .field-group.size-group input { width: 211.2px !important; height: 46.7px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 14.9pt; }
-
-  .field-group.madein-group { position: absolute !important; left: 248.4px !important; top: 644.6px !important; width: 211.2px !important; }
-  .field-group.madein-group label { color: #3647AE; font-size: 15.5pt; font-weight: bold; }
-  .field-group.madein-group input { width: 211.2px !important; height: 46.7px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 14.9pt; }
-
-  .field-group.prod-group { position: absolute !important; left: 468.5px !important; top: 644.6px !important; width: 215.3px !important; }
-  .field-group.prod-group label { color: #3647AE; font-size: 15.5pt; font-weight: bold; }
-  .prod-group .field-icon { position: absolute !important; left: 2.6px !important; top: 23.7px !important; width: 46.7px !important; height: 46.7px !important; }
-  .field-group.prod-group input { position: absolute !important; left: 58.3px !important; top: 23.1px !important; width: 157px !important; height: 46.7px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 14.9pt; }
-
-  .field-group.mat-group { position: absolute !important; left: 26px !important; top: 738.1px !important; width: 317.7px !important; }
-  .field-group.mat-group label { color: #3647AE; font-size: 15.5pt; font-weight: bold; }
-  .field-group.mat-group textarea { width: 317.7px !important; height: 102.8px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 14.9pt; resize: none; }
-
-  .field-group.price-group { position: absolute !important; left: 360.7px !important; top: 738.1px !important; width: 323.1px !important; }
-  .field-group.price-group label { color: #3647AE; font-size: 15.5pt; font-weight: bold; }
-  .price-group img { position: absolute !important; left: 0px !important; top: 23.7px !important; width: 46.7px !important; height: 46.7px !important; }
-  .price-group input { position: absolute !important; left: 55.9px !important; top: 23.1px !important; width: 267.2px !important; height: 46.7px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 14.9pt; }
-
-  .reselling-sold-container { position: absolute !important; left: 360.7px !important; top: 818.1px !important; width: 323.1px !important; height: 46.7px !important; display: flex; }
-  .resell-toggle-btn { position: absolute !important; left: 2.3px !important; display: flex; align-items: center; gap: 10px; cursor: pointer; }
-  .resell-toggle-btn img { width: 46.7px !important; height: 46.7px !important; }
-  .resell-toggle-btn span { font-size: 20.2pt; color: #7197FF; font-weight: bold; }
-  .sold-toggle-btn { position: absolute !important; left: 194.5px !important; display: flex; align-items: center; gap: 10px; cursor: pointer; }
-  .sold-toggle-btn img { width: 46.7px !important; height: 46.7px !important; }
-  .sold-toggle-btn span { font-size: 20.2pt; color: #7197FF; font-weight: bold; }
-
-  .field-group.lining-group { position: absolute !important; left: 26px !important; top: 876.4px !important; width: 317.7px !important; }
-  .field-group.lining-group label { color: #3647AE; font-size: 15.5pt; font-weight: bold; }
-  .field-group.lining-group textarea { width: 317.7px !important; height: 46.7px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 14.9pt; resize: none; }
-
-  .field-group.soldfor-group { position: absolute !important; left: 360.7px !important; top: 876.1px !important; width: 323.1px !important; }
-  .field-group.soldfor-group label { color: #3647AE; font-size: 15.5pt; font-weight: bold; }
-  .soldfor-group img { position: absolute !important; left: 0px !important; top: 24px !important; width: 46.7px !important; height: 46.7px !important; }
-  .soldfor-group input { position: absolute !important; left: 55.9px !important; top: 23.4px !important; width: 267.2px !important; height: 46.7px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 14.9pt; }
-
-  .modal-footer > img.footer-btn:first-child { position: absolute !important; left: 25.2px !important; top: 992.3px !important; width: 151.8px !important; height: 37.4px !important; cursor: w-resize !important; }
-  .move-toggle-btn { position: absolute !important; left: 181.6px !important; top: 950.9px !important; width: 345.7px !important; height: 112.1px !important; cursor: ew-resize !important; }
-  .move-toggle-btn img { width: 100%; height: 100%; object-fit: contain; }
-  .modal-footer > img.footer-btn:last-child { position: absolute !important; left: 532px !important; top: 992.3px !important; width: 151.8px !important; height: 37.4px !important; cursor: e-resize !important; }
-}
-
-
-/* ==========================================================
-   3. IPAD 10 (1640x2360 px, DPI 144)
-   ========================================================== */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  .modal {
-    width: 1069px !important;
-    height: 1570px !important;
+  .brand-toggle img {
+    height: 44px !important;
   }
-
-  .modal-header-banner { position: absolute !important; left: 198.3px !important; top: 5.7px !important; width: 684.4px !important; height: 322.4px !important; }
-  .modal-header-banner img { width: 100%; height: 100%; object-fit: contain; }
-
-  .upload-btn { position: absolute !important; left: 48.7px !important; top: 343.3px !important; width: 432.6px !important; height: 424.4px !important; border-radius: 12px; border: 1.1pt dashed #B6C2FD; }
-
-  .field-group.art-group { position: absolute !important; left: 521.4px !important; top: 342.4px !important; width: 498.5px !important; }
-  .field-group.art-group label { color: #3647AE; font-size: 22.8pt; font-weight: bold; }
-  .art-input { position: relative !important; width: 410.5px !important; height: 68.9px !important; }
-  .art-input img { position: absolute !important; left: -88.1px !important; top: 11.6px !important; width: 79.9px !important; height: 44.1px !important; }
-  .art-input input { position: absolute !important; left: 88px !important; top: 0px !important; width: 410.5px !important; height: 68.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 21.9pt; }
-
-  .brand-toggle { position: absolute !important; left: 520.9px !important; top: 456.3px !important; width: 500.6px !important; height: 198.7px !important; display: flex; }
-  .brand-toggle img { width: 250.3px !important; height: 198.7px !important; cursor: pointer; object-fit: contain; }
-
-  .field-group.cat-group { position: absolute !important; left: 524px !important; top: 664.3px !important; width: 496px !important; }
-  .field-group.cat-group label { color: #3647AE; font-size: 22.8pt; font-weight: bold; }
-  .field-group.cat-group input { width: 496px !important; height: 68.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 21.9pt; }
-
-  .field-group.name-group { position: absolute !important; left: 47.6px !important; top: 805.3px !important; width: 970px !important; }
-  .field-group.name-group label { color: #3647AE; font-size: 22.8pt; font-weight: bold; }
-  .field-group.name-group input { width: 970px !important; height: 68.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 21.9pt; }
-
-  .field-group.size-group { position: absolute !important; left: 47.6px !important; top: 945.4px !important; width: 311.3px !important; }
-  .field-group.size-group label { color: #3647AE; font-size: 22.8pt; font-weight: bold; }
-  .field-group.size-group input { width: 311.3px !important; height: 68.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 21.9pt; }
-
-  .field-group.madein-group { position: absolute !important; left: 377.2px !important; top: 945.9px !important; width: 312.1px !important; }
-  .field-group.madein-group label { color: #3647AE; font-size: 22.8pt; font-weight: bold; }
-  .field-group.madein-group input { width: 312.1px !important; height: 68.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 21.9pt; }
-
-  .field-group.prod-group { position: absolute !important; left: 706.4px !important; top: 945.9px !important; width: 313.5px !important; }
-  .field-group.prod-group label { color: #3647AE; font-size: 22.8pt; font-weight: bold; }
-  .prod-group .field-icon { position: absolute !important; left: 0px !important; top: 34.9px !important; width: 68.9px !important; height: 68.9px !important; }
-  .field-group.prod-group input { position: absolute !important; left: 82.1px !important; top: 34px !important; width: 231.4px !important; height: 68.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 21.9pt; }
-
-  .field-group.mat-group { position: absolute !important; left: 47.6px !important; top: 1083.7px !important; width: 468.4px !important; }
-  .field-group.mat-group label { color: #3647AE; font-size: 22.8pt; font-weight: bold; }
-  .field-group.mat-group textarea { width: 468.4px !important; height: 151px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 21.9pt; resize: none; }
-
-  .field-group.price-group { position: absolute !important; left: 543.5px !important; top: 1083.7px !important; width: 476.5px !important; }
-  .field-group.price-group label { color: #3647AE; font-size: 22.8pt; font-weight: bold; }
-  .price-group img { position: absolute !important; left: 0px !important; top: 34.9px !important; width: 68.9px !important; height: 68.9px !important; }
-  .price-group input { position: absolute !important; left: 82.5px !important; top: 34px !important; width: 394px !important; height: 68.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 21.9pt; }
-
-  .reselling-sold-container { position: absolute !important; left: 543.5px !important; top: 1201.7px !important; width: 476.5px !important; height: 68.9px !important; display: flex; }
-  .resell-toggle-btn { position: absolute !important; left: 3.5px !important; display: flex; align-items: center; gap: 15px; cursor: pointer; }
-  .resell-toggle-btn img { width: 68.9px !important; height: 68.9px !important; }
-  .resell-toggle-btn span { font-size: 29.8pt; color: #7197FF; font-weight: bold; }
-  .sold-toggle-btn { position: absolute !important; left: 286.9px !important; display: flex; align-items: center; gap: 15px; cursor: pointer; }
-  .sold-toggle-btn img { width: 68.9px !important; height: 68.9px !important; }
-  .sold-toggle-btn span { font-size: 29.8pt; color: #7197FF; font-weight: bold; }
-
-  .field-group.lining-group { position: absolute !important; left: 47.6px !important; top: 1287.6px !important; width: 468.4px !important; }
-  .field-group.lining-group label { color: #3647AE; font-size: 22.8pt; font-weight: bold; }
-  .field-group.lining-group textarea { width: 468.4px !important; height: 68.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 21.9pt; resize: none; }
-
-  .field-group.soldfor-group { position: absolute !important; left: 543.5px !important; top: 1287.1px !important; width: 476.5px !important; }
-  .field-group.soldfor-group label { color: #3647AE; font-size: 22.8pt; font-weight: bold; }
-  .soldfor-group img { position: absolute !important; left: 0px !important; top: 35.4px !important; width: 68.9px !important; height: 68.9px !important; }
-  .soldfor-group input { position: absolute !important; left: 82.5px !important; top: 34.5px !important; width: 394px !important; height: 68.9px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 21.9pt; }
-
-  .modal-footer > img.footer-btn:first-child { position: absolute !important; left: 47.6px !important; top: 1458.6px !important; width: 223.8px !important; height: 55.1px !important; cursor: w-resize !important; }
-  .move-toggle-btn { position: absolute !important; left: 279.6px !important; top: 1397.4px !important; width: 509.7px !important; height: 165.3px !important; cursor: ew-resize !important; }
-  .move-toggle-btn img { width: 100%; height: 100%; object-fit: contain; }
-  .modal-footer > img.footer-btn:last-child { position: absolute !important; left: 796.1px !important; top: 1458.6px !important; width: 223.8px !important; height: 55.1px !important; cursor: e-resize !important; }
-}
-
-
-/* ==========================================================
-   4. IPHONE 17 (1206x2622 px, DPI 144)
-   ========================================================== */
-@media screen and (max-width: 768px) {
-  .modal {
-    width: 1145.6px !important;
-    height: 1716.9px !important;
-    transform: scale(0.32); /* Skalerer præcist så det passer på iPhone skærmen uden at forskyde noget */
-    transform-origin: center center;
+  .materials-textarea {
+    height: 50px !important;
   }
-
-  .modal-header-banner { position: absolute !important; left: 205.8px !important; top: 10.7px !important; width: 747.1px !important; height: 351.9px !important; }
-  .modal-header-banner img { width: 100%; height: 100%; object-fit: contain; }
-
-  .upload-btn { position: absolute !important; left: 42.4px !important; top: 378.2px !important; width: 472.3px !important; height: 464.3px !important; border-radius: 12px; border: 1.1pt dashed #B6C2FD; }
-
-  .field-group.art-group { position: absolute !important; left: 558.5px !important; top: 378.2px !important; width: 544.2px !important; }
-  .field-group.art-group label { color: #3647AE; font-size: 24.9pt; font-weight: bold; }
-  .art-input { position: relative !important; width: 448.1px !important; height: 75.2px !important; }
-  .art-input img { position: absolute !important; left: -96.3px !important; top: 12.6px !important; width: 87.2px !important; height: 48.1px !important; }
-  .art-input input { position: absolute !important; left: 96.1px !important; top: 0px !important; width: 448.1px !important; height: 75.2px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 23.9pt; }
-
-  .brand-toggle { position: absolute !important; left: 557.9px !important; top: 502.6px !important; width: 546.4px !important; height: 216.9px !important; display: flex; }
-  .brand-toggle img { width: 273.2px !important; height: 216.9px !important; cursor: pointer; object-fit: contain; }
-
-  .field-group.cat-group { position: absolute !important; left: 561.3px !important; top: 729.6px !important; width: 541.4px !important; }
-  .field-group.cat-group label { color: #3647AE; font-size: 24.9pt; font-weight: bold; }
-  .field-group.cat-group input { width: 541.4px !important; height: 75.2px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 23.9pt; }
-
-  .field-group.name-group { position: absolute !important; left: 44px !important; top: 883.5px !important; width: 1058.7px !important; }
-  .field-group.name-group label { color: #3647AE; font-size: 24.9pt; font-weight: bold; }
-  .field-group.name-group input { width: 1058.7px !important; height: 75.2px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 23.9pt; }
-
-  .field-group.size-group { position: absolute !important; left: 44px !important; top: 1036.4px !important; width: 339.8px !important; }
-  .field-group.size-group label { color: #3647AE; font-size: 24.9pt; font-weight: bold; }
-  .field-group.size-group input { width: 339.8px !important; height: 75.2px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 23.9pt; }
-
-  .field-group.madein-group { position: absolute !important; left: 401.9px !important; top: 1036.9px !important; width: 339.8px !important; }
-  .field-group.madein-group label { color: #3647AE; font-size: 24.9pt; font-weight: bold; }
-  .field-group.madein-group input { width: 339.8px !important; height: 75.2px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 23.9pt; }
-
-  .field-group.prod-group { position: absolute !important; left: 756.2px !important; top: 1036.9px !important; width: 346.5px !important; }
-  .field-group.prod-group label { color: #3647AE; font-size: 24.9pt; font-weight: bold; }
-  .prod-group .field-icon { position: absolute !important; left: 4.2px !important; top: 38.2px !important; width: 75.2px !important; height: 75.2px !important; }
-  .field-group.prod-group input { position: absolute !important; left: 93.9px !important; top: 37.2px !important; width: 252.6px !important; height: 75.2px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 23.9pt; }
-
-  .field-group.mat-group { position: absolute !important; left: 44px !important; top: 1187.3px !important; width: 511.3px !important; }
-  .field-group.mat-group label { color: #3647AE; font-size: 24.9pt; font-weight: bold; }
-  .field-group.mat-group textarea { width: 511.3px !important; height: 165.4px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 23.9pt; resize: none; }
-
-  .field-group.price-group { position: absolute !important; left: 582.6px !important; top: 1187.3px !important; width: 520.1px !important; }
-  .field-group.price-group label { color: #3647AE; font-size: 24.9pt; font-weight: bold; }
-  .price-group img { position: absolute !important; left: 0px !important; top: 38.2px !important; width: 75.2px !important; height: 75.2px !important; }
-  .price-group input { position: absolute !important; left: 90px !important; top: 37.2px !important; width: 430.1px !important; height: 75.2px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 23.9pt; }
-
-  .reselling-sold-container { position: absolute !important; left: 582.6px !important; top: 1316.2px !important; width: 520.1px !important; height: 75.2px !important; display: flex; }
-  .resell-toggle-btn { position: absolute !important; left: 3.8px !important; display: flex; align-items: center; gap: 17px; cursor: pointer; }
-  .resell-toggle-btn img { width: 75.2px !important; height: 75.2px !important; }
-  .resell-toggle-btn span { font-size: 32.5pt; color: #7197FF; font-weight: bold; }
-  .sold-toggle-btn { position: absolute !important; left: 313.1px !important; display: flex; align-items: center; gap: 17px; cursor: pointer; }
-  .sold-toggle-btn img { width: 75.2px !important; height: 75.2px !important; }
-  .sold-toggle-btn span { font-size: 31.7pt; color: #7197FF; font-weight: bold; }
-
-  .field-group.lining-group { position: absolute !important; left: 44px !important; top: 1409.9px !important; width: 511.3px !important; }
-  .field-group.lining-group label { color: #3647AE; font-size: 24.9pt; font-weight: bold; }
-  .field-group.lining-group textarea { width: 511.3px !important; height: 75.2px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 23.9pt; resize: none; }
-
-  .field-group.soldfor-group { position: absolute !important; left: 582.6px !important; top: 1409.4px !important; width: 520.1px !important; }
-  .field-group.soldfor-group label { color: #3647AE; font-size: 24.9pt; font-weight: bold; }
-  .soldfor-group img { position: absolute !important; left: 0px !important; top: 38.7px !important; width: 75.2px !important; height: 75.2px !important; }
-  .soldfor-group input { position: absolute !important; left: 90px !important; top: 37.7px !important; width: 430.1px !important; height: 75.2px !important; background: #E8EDFF; border: 1.1pt solid #B6C2FD; border-radius: 6px; font-size: 23.9pt; }
-
-  .modal-footer > img.footer-btn:first-child { position: absolute !important; left: 42.7px !important; top: 1596.5px !important; width: 244.3px !important; height: 60.2px !important; cursor: w-resize !important; }
-  .move-toggle-btn { position: absolute !important; left: 294.5px !important; top: 1529.8px !important; width: 556.3px !important; height: 180.5px !important; cursor: ew-resize !important; }
-  .move-toggle-btn img { width: 100%; height: 100%; object-fit: contain; }
-  .modal-footer > img.footer-btn:last-child { position: absolute !important; left: 858.4px !important; top: 1596.5px !important; width: 244.3px !important; height: 60.2px !important; cursor: e-resize !important; }
+  .modal-footer {
+    height: 45px !important;
+  }
+  .move-toggle-btn, .move-toggle-btn img {
+    height: 45px !important;
+  }
 }
