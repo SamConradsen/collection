@@ -21,30 +21,29 @@ html, body {
   -webkit-text-size-adjust: 100%;
 }
 
-/* GENEREL MODAL CONTAINER (Standard desktop / Macbook Pro 13") */
+/* GENEREL MODAL CONTAINER (Macbook Pro 13" / Standard Desktop Layout) */
 .modal-bg {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0, 0, 0, 0.45);
   display: none;
-  align-items: center; justify-content: center;
+  align-items: center; 
+  justify-content: center;
   z-index: 200;
   backdrop-filter: blur(4px);
-  padding: 10px;
   box-sizing: border-box;
 }
 
+/* Modals indre mål ekskl. border, præcis efter dine specifikationer: W 384px, H 566.4px */
 .modal {
   background: #FFFFFF;
   border-radius: 22px;
-  width: 384px; /* Præcis fra Macbook Pro 13" spec */
+  width: 384px !important;
+  height: 566.4px !important;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  padding: 15px 16px;
+  position: relative !important;
+  overflow: hidden !important;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
-  position: relative;
 }
 
 .modal-collect {
@@ -61,15 +60,18 @@ html, body {
   background-clip: padding-box, border-box;
 }
 
-/* HEADER BANNER */
+/* ALLE ELEMENTER PLACERES ABSOLUT UD FRA MOCKUP-MÅL (Macbook Pro 13") */
+
+/* Title header (X: 70.5px, Y: 1.3px, W: 247.4px, H: 116.5px) */
 .modal-header-banner {
-  width: 247.4px;
-  height: 116.5px;
-  margin: 1.3px auto 10px auto;
+  position: absolute !important;
+  left: 70.5px !important;
+  top: 1.3px !important;
+  width: 247.4px !important;
+  height: 116.5px !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
 }
 
 .modal-header-banner img {
@@ -79,24 +81,60 @@ html, body {
   display: block;
 }
 
-/* FELTER & TYPOGRAFI */
-.field-group {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-bottom: 8px;
+/* Upload image button (X: 16.4px, Y: 123.3px, W: 156.4px, H: 153.4px) */
+.upload-btn {
+  position: absolute !important;
+  left: 16.4px !important;
+  top: 123.3px !important;
+  width: 156.4px !important;
+  height: 153.4px !important;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  border: 1.1pt dashed #B6C2FD;
+  box-sizing: border-box;
 }
 
-.field-group label {
+/* Article number title (X: 187.3px, Y: 123px, W: 78.6px, H: 8.3px) */
+.field-group.art-group {
+  position: absolute !important;
+  left: 187.3px !important;
+  top: 123px !important;
+  width: 148.4px !important;
+}
+
+.field-group.art-group label {
   color: #3647AE !important;
   font-family: 'AvantGarde LT Book', sans-serif;
   font-size: 8.2pt;
   font-weight: bold;
+  display: block;
+  margin-bottom: 2px;
 }
 
-.modal input[type="text"] {
-  width: 100%;
-  height: 24.9px;
+/* Article number text box (X: 219.1px, Y: 135.3px, W: 148.4px, H: 24.9px) + Icon (X: 187.2px, Y: 139.4px) */
+.art-input {
+  position: relative !important;
+  width: 148.4px !important;
+  height: 24.9px !important;
+}
+
+.art-input img {
+  position: absolute !important;
+  left: -31.9px !important; /* Relativt til art-input: 187.2 - 219.1 */
+  top: 4.1px !important;
+  width: 28.9px !important;
+  height: 15.9px !important;
+  object-fit: contain;
+}
+
+.art-input input[type="text"] {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 148.4px !important;
+  height: 24.9px !important;
   background-color: #E8EDFF !important;
   border: 1.1pt solid #B6C2FD !important;
   border-radius: 6px;
@@ -108,8 +146,217 @@ html, body {
   outline: none;
 }
 
-.modal textarea {
-  width: 100%;
+/* Brand toggles / Originals & Performance (X: 187.1px / 277.5px, Y: 164.1px, W: 90.5px, H: 71.8px) */
+.brand-toggle {
+  position: absolute !important;
+  left: 187.1px !important;
+  top: 164.1px !important;
+  width: 180.9px !important; /* 90.5 * 2 */
+  height: 71.8px !important;
+  display: flex;
+  gap: 0px;
+}
+
+.brand-toggle img {
+  width: 90.5px !important;
+  height: 71.8px !important;
+  cursor: pointer;
+  object-fit: contain;
+}
+
+/* Category title & text box (Title X: 187.6px, Y: 239.3px | Box X: 188.2px, Y: 251.8px, W: 179.3px, H: 24.9px) */
+.field-group.cat-group {
+  position: absolute !important;
+  left: 188.2px !important;
+  top: 239.3px !important;
+  width: 179.3px !important;
+}
+
+.field-group.cat-group label {
+  color: #3647AE !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-size: 8.2pt;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.field-group.cat-group input[type="text"] {
+  width: 179.3px !important;
+  height: 24.9px !important;
+  background-color: #E8EDFF !important;
+  border: 1.1pt solid #B6C2FD !important;
+  border-radius: 6px;
+  padding: 0 8.5px;
+  box-sizing: border-box;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-size: 7.9pt;
+  color: #757575;
+  outline: none;
+}
+
+/* Name title & text box (Title X: 16.6px, Y: 290.3px | Box X: 16.9px, Y: 302.6px, W: 350.6px, H: 24.9px) */
+.field-group.name-group {
+  position: absolute !important;
+  left: 16.9px !important;
+  top: 290.3px !important;
+  width: 350.6px !important;
+}
+
+.field-group.name-group label {
+  color: #3647AE !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-size: 8.2pt;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.field-group.name-group input[type="text"] {
+  width: 350.6px !important;
+  height: 24.9px !important;
+  background-color: #E8EDFF !important;
+  border: 1.1pt solid #B6C2FD !important;
+  border-radius: 6px;
+  padding: 0 8.5px;
+  box-sizing: border-box;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-size: 7.9pt;
+  color: #757575;
+  outline: none;
+}
+
+/* Size field (X: 16.9px, Y: 340.9px, W: 112.5px, H: 24.9px) */
+.field-group.size-group {
+  position: absolute !important;
+  left: 16.9px !important;
+  top: 340.9px !important;
+  width: 112.5px !important;
+}
+
+.field-group.size-group label {
+  color: #3647AE !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-size: 8.2pt;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.field-group.size-group input[type="text"] {
+  width: 112.5px !important;
+  height: 24.9px !important;
+  background-color: #E8EDFF !important;
+  border: 1.1pt solid #B6C2FD !important;
+  border-radius: 6px;
+  padding: 0 8.5px;
+  box-sizing: border-box;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-size: 7.9pt;
+  color: #757575;
+  outline: none;
+}
+
+/* Made in field (X: 135.4px, Y: 341.1px, W: 112.5px, H: 24.9px) */
+.field-group.madein-group {
+  position: absolute !important;
+  left: 135.4px !important;
+  top: 341.1px !important;
+  width: 112.5px !important;
+}
+
+.field-group.madein-group label {
+  color: #3647AE !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-size: 8.2pt;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.field-group.madein-group input[type="text"] {
+  width: 112.5px !important;
+  height: 24.9px !important;
+  background-color: #E8EDFF !important;
+  border: 1.1pt solid #B6C2FD !important;
+  border-radius: 6px;
+  padding: 0 8.5px;
+  box-sizing: border-box;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-size: 7.9pt;
+  color: #757575;
+  outline: none;
+}
+
+/* Production time field & icon (Title X: 252.7px, Y: 341.1px | Icon X: 254.1px, Y: 353.7px | Box X: 283.8px, Y: 353.4px, W: 83.6px, H: 24.9px) */
+.field-group.prod-group {
+  position: absolute !important;
+  left: 252.7px !important;
+  top: 341.1px !important;
+  width: 114.7px !important;
+}
+
+.field-group.prod-group label {
+  color: #3647AE !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-size: 8.2pt;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.icon-input-row {
+  position: relative;
+  width: 114.7px;
+  height: 24.9px;
+}
+
+.field-icon {
+  position: absolute !important;
+  left: 1.4px !important; /* 254.1 - 252.7 */
+  top: 0px !important;
+  width: 24.9px !important;
+  height: 24.9px !important;
+  object-fit: contain;
+}
+
+.field-group.prod-group input[type="text"] {
+  position: absolute !important;
+  left: 31.1px !important; /* 283.8 - 252.7 */
+  top: -0.3px !important;
+  width: 83.6px !important;
+  height: 24.9px !important;
+  background-color: #E8EDFF !important;
+  border: 1.1pt solid #B6C2FD !important;
+  border-radius: 6px;
+  padding: 0 8.5px;
+  box-sizing: border-box;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-size: 7.9pt;
+  color: #757575;
+  outline: none;
+}
+
+/* Materials title & textarea (Title X: 16.6px, Y: 390.9px | Box X: 16.9px, Y: 403.2px, W: 169.3px, H: 54.8px) */
+.field-group.mat-group {
+  position: absolute !important;
+  left: 16.9px !important;
+  top: 390.9px !important;
+  width: 169.3px !important;
+}
+
+.field-group.mat-group label {
+  color: #3647AE !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-size: 8.2pt;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.field-group.mat-group textarea {
+  width: 169.3px !important;
+  height: 54.8px !important;
   background-color: #E8EDFF !important;
   border: 1.1pt solid #B6C2FD !important;
   border-radius: 6px;
@@ -122,130 +369,106 @@ html, body {
   resize: none;
 }
 
-/* UPLOAD SEKTION & TOP TOGLE */
-.upload-section {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  width: 100%;
-  margin-bottom: 8px;
+/* Purchase price title, icon & box (Title X: 195.3px, Y: 390.9px | Icon X: 195.3px, Y: 403.5px | Box X: 225.1px, Y: 403.2px, W: 142.4px, H: 24.9px) */
+.field-group.price-group {
+  position: absolute !important;
+  left: 195.3px !important;
+  top: 390.9px !important;
+  width: 172.2px !important;
 }
 
-.upload-btn {
-  width: 156.4px;
-  height: 153.4px;
-  border-radius: 12px;
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  border: 1.1pt dashed #B6C2FD;
+.field-group.price-group label {
+  color: #3647AE !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-size: 8.2pt;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 2px;
 }
 
-.upload-right {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 0;
-}
-
-.art-input {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.art-input img {
-  width: 28.9px;
-  height: 15.9px;
-  object-fit: contain;
-}
-
-.brand-toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 6px;
-  width: 100%;
-  height: 71.8px;
-  margin: 4px 0;
-}
-
-.brand-toggle img {
-  width: 90.5px;
-  height: 71.8px;
-  cursor: pointer;
-  object-fit: contain;
-}
-
-/* TRE KOLONNER (Size, Made in, Production time) */
-.three-cols {
-  display: flex;
-  gap: 6px;
-  width: 100%;
-  margin-bottom: 8px;
-}
-
-.three-cols .field-group {
-  flex: 1;
-  margin-bottom: 0;
-}
-
-.icon-input-row {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.field-icon {
-  width: 24.9px;
+.price-input-row {
+  position: relative;
+  width: 172.2px;
   height: 24.9px;
+}
+
+.price-input-row img {
+  position: absolute !important;
+  left: 0px !important;
+  top: 0.3px !important;
+  width: 24.9px !important;
+  height: 24.9px !important;
   object-fit: contain;
-  flex-shrink: 0;
 }
 
-/* TO-KOLONNE GRID (Materials / Lining vs Price / Sold) */
-.form-grid-row {
-  display: flex;
-  gap: 12px;
-  width: 100%;
-  align-items: flex-start;
-  margin-bottom: 8px;
+.price-input-row input[type="text"] {
+  position: absolute !important;
+  left: 29.8px !important; /* 225.1 - 195.3 */
+  top: 0px !important;
+  width: 142.4px !important;
+  height: 24.9px !important;
+  background-color: #E8EDFF !important;
+  border: 1.1pt solid #B6C2FD !important;
+  border-radius: 6px;
+  padding: 0 8.5px;
+  box-sizing: border-box;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-size: 7.9pt;
+  color: #757575;
+  outline: none;
 }
 
-.form-col-left, .form-col-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.materials-textarea {
-  height: 54.8px !important;
-}
-
+/* Reselling & Sold toggles (Resell X: 196.5px, Y: 433.6px | Sold X: 299px, Y: 433.6px, W: 24.9px, H: 24.9px) */
 .reselling-sold-container {
+  position: absolute !important;
+  left: 195.3px !important;
+  top: 433.6px !important;
+  width: 172.4px !important;
+  height: 24.9px !important;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 24.9px;
-  margin: 4px 0;
 }
 
-.resell-toggle-btn, .sold-toggle-btn {
+.resell-toggle-btn {
+  position: absolute !important;
+  left: 1.2px !important; /* 196.5 - 195.3 */
+  top: 0px !important;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5.3px;
   cursor: pointer;
 }
 
-.resell-toggle-btn img, .sold-toggle-btn img {
-  width: 24.9px;
-  height: 24.9px;
+.resell-toggle-btn img {
+  width: 24.9px !important;
+  height: 24.9px !important;
   object-fit: contain;
 }
 
-.status-text {
+.resell-toggle-btn span {
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 10.8pt;
+  color: #7197FF;
+}
+
+.sold-toggle-btn {
+  position: absolute !important;
+  left: 103.7px !important; /* 299 - 195.3 */
+  top: 0px !important;
+  display: flex;
+  align-items: center;
+  gap: 5.3px;
+  cursor: pointer;
+}
+
+.sold-toggle-btn img {
+  width: 24.9px !important;
+  height: 24.9px !important;
+  object-fit: contain;
+}
+
+.sold-toggle-btn span {
   font-family: 'AvantGarde LT Book', sans-serif;
   font-weight: bold;
   font-size: 10.8pt;
@@ -257,26 +480,106 @@ html, body {
   pointer-events: none !important;
 }
 
-/* FOOTER / KNAPPER */
-.modal-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 59.8px;
-  width: 100%;
-  margin-top: 4px;
+/* Lining title & textarea (Title X: 16.7px, Y: 464.6px | Box X: 16.9px, Y: 476.9px, W: 169.3px, H: 24.9px) */
+.field-group.lining-group {
+  position: absolute !important;
+  left: 16.9px !important;
+  top: 464.6px !important;
+  width: 169.3px !important;
 }
 
+.field-group.lining-group label {
+  color: #3647AE !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-size: 8.2pt;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.field-group.lining-group textarea {
+  width: 169.3px !important;
+  height: 24.9px !important;
+  background-color: #E8EDFF !important;
+  border: 1.1pt solid #B6C2FD !important;
+  border-radius: 6px;
+  padding: 4px 8.5px;
+  box-sizing: border-box;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-size: 7.9pt;
+  color: #757575;
+  outline: none;
+  resize: none;
+}
+
+/* Sold for title, icon & box (Title X: 195.3px, Y: 464.4px | Icon X: 195.3px, Y: 477.2px | Box X: 225.1px, Y: 476.9px, W: 142.4px, H: 24.9px) */
+.field-group.soldfor-group {
+  position: absolute !important;
+  left: 195.3px !important;
+  top: 464.4px !important;
+  width: 172.2px !important;
+}
+
+.field-group.soldfor-group label {
+  color: #3647AE !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-size: 8.2pt;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.soldfor-input-row {
+  position: relative;
+  width: 172.2px;
+  height: 24.9px;
+}
+
+.soldfor-input-row img {
+  position: absolute !important;
+  left: 0px !important;
+  top: 0.3px !important;
+  width: 24.9px !important;
+  height: 24.9px !important;
+  object-fit: contain;
+}
+
+.soldfor-input-row input[type="text"] {
+  position: absolute !important;
+  left: 29.8px !important; /* 225.1 - 195.3 */
+  top: 0px !important;
+  width: 142.4px !important;
+  height: 24.9px !important;
+  background-color: #E8EDFF !important;
+  border: 1.1pt solid #B6C2FD !important;
+  border-radius: 6px;
+  padding: 0 8.5px;
+  box-sizing: border-box;
+  font-family: 'AvantGarde LT Medium', sans-serif;
+  font-size: 7.9pt;
+  color: #757575;
+  outline: none;
+}
+
+/* FOOTER KNAPPER */
+/* Cancel button (X: 16.5px, Y: 526.4px, W: 80.9px, H: 19.9px) */
 .modal-footer > img.footer-btn:first-child {
-  width: 80.9px;
-  height: 19.9px;
+  position: absolute !important;
+  left: 16.5px !important;
+  top: 526.4px !important;
+  width: 80.9px !important;
+  height: 19.9px !important;
   object-fit: contain;
   cursor: w-resize !important;
 }
 
+/* Move to button (X: 99.9px, Y: 504.3px, W: 184.2px, H: 59.8px) */
 .move-toggle-btn {
-  width: 184.2px;
-  height: 59.8px;
+  position: absolute !important;
+  left: 99.9px !important;
+  top: 504.3px !important;
+  width: 184.2px !important;
+  height: 59.8px !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -289,179 +592,13 @@ html, body {
   object-fit: contain;
 }
 
+/* Save button (X: 286.6px, Y: 526.4px, W: 80.9px, H: 19.9px) */
 .modal-footer > img.footer-btn:last-child {
-  width: 80.9px;
-  height: 19.9px;
+  position: absolute !important;
+  left: 286.6px !important;
+  top: 526.4px !important;
+  width: 80.9px !important;
+  height: 19.9px !important;
   object-fit: contain;
   cursor: e-resize !important;
-}
-
-
-/* ==========================================================
-   MEDIE-FORESPØRGSLER TIL MACBOOK 12", IPAD 10 OG IPHONE 17
-   ========================================================== */
-
-/* MACBOOK 12" (Skalerer modalen op til 709.1px bredde baseret på dine mål) */
-@media (min-width: 1281px) and (max-width: 2560px) {
-  .modal {
-    width: 709.1px !important;
-    padding: 20px 24px !important;
-  }
-  .modal-header-banner {
-    width: 464.2px !important;
-    height: 218.6px !important;
-  }
-  .upload-btn {
-    width: 293.4px !important;
-    height: 287.8px !important;
-  }
-  .brand-toggle {
-    height: 134.8px !important;
-  }
-  .brand-toggle img {
-    width: 169.7px !important;
-    height: 134.8px !important;
-  }
-  .modal input[type="text"], .modal textarea {
-    height: 46.7px !important;
-    font-size: 14.9pt !important;
-    padding: 0 15px !important;
-  }
-  .materials-textarea {
-    height: 102.8px !important;
-  }
-  .field-group label {
-    font-size: 15.5pt !important;
-  }
-  .field-icon {
-    width: 46.7px !important;
-    height: 46.7px !important;
-  }
-  .resell-toggle-btn img, .sold-toggle-btn img {
-    width: 46.7px !important;
-    height: 46.7px !important;
-  }
-  .status-text {
-    font-size: 20.2pt !important;
-  }
-  .modal-footer {
-    height: 112.1px !important;
-  }
-  .modal-footer > img.footer-btn:first-child,
-  .modal-footer > img.footer-btn:last-child {
-    width: 151.8px !important;
-    height: 37.4px !important;
-  }
-  .move-toggle-btn {
-    width: 345.7px !important;
-    height: 112.1px !important;
-  }
-}
-
-/* IPAD 10 (Skalerer til 1069px bredde baseret på dine iPad-mål) */
-@media (min-width: 769px) and (max-width: 1280px) {
-  .modal {
-    width: 1069px !important;
-    padding: 25px 30px !important;
-  }
-  .modal-header-banner {
-    width: 684.4px !important;
-    height: 322.4px !important;
-  }
-  .upload-btn {
-    width: 432.6px !important;
-    height: 424.4px !important;
-  }
-  .brand-toggle {
-    height: 198.7px !important;
-  }
-  .brand-toggle img {
-    width: 250.3px !important;
-    height: 198.7px !important;
-  }
-  .modal input[type="text"], .modal textarea {
-    height: 68.9px !important;
-    font-size: 21.9pt !important;
-    padding: 0 25px !important;
-  }
-  .materials-textarea {
-    height: 151px !important;
-  }
-  .field-group label {
-    font-size: 22.8pt !important;
-  }
-  .field-icon {
-    width: 68.9px !important;
-    height: 68.9px !important;
-  }
-  .resell-toggle-btn img, .sold-toggle-btn img {
-    width: 68.9px !important;
-    height: 68.9px !important;
-  }
-  .status-text {
-    font-size: 29.8pt !important;
-  }
-  .modal-footer {
-    height: 165.3px !important;
-  }
-  .modal-footer > img.footer-btn:first-child,
-  .modal-footer > img.footer-btn:last-child {
-    width: 223.8px !important;
-    height: 55.1px !important;
-  }
-  .move-toggle-btn {
-    width: 509.7px !important;
-    height: 165.3px !important;
-  }
-}
-
-/* IPHONE 17 (Skalerer til 1145.6px bredde baseret på dine mobile mål) */
-@media (max-width: 768px) {
-  .modal {
-    width: 95vw !important;
-    max-width: 500px !important;
-    padding: 12px 14px !important;
-  }
-  .modal-header-banner {
-    width: 100% !important;
-    height: auto !important;
-    max-height: 140px !important;
-  }
-  .upload-btn {
-    width: 110px !important;
-    height: 110px !important;
-  }
-  .brand-toggle {
-    height: 50px !important;
-  }
-  .brand-toggle img {
-    height: 50px !important;
-  }
-  .modal input[type="text"], .modal textarea {
-    height: 32px !important;
-    font-size: 11pt !important;
-    padding: 0 10px !important;
-  }
-  .materials-textarea {
-    height: 70px !important;
-  }
-  .field-group label {
-    font-size: 11pt !important;
-  }
-  .field-icon, .resell-toggle-btn img, .sold-toggle-btn img {
-    width: 26px !important;
-    height: 26px !important;
-  }
-  .modal-footer {
-    height: 50px !important;
-  }
-  .modal-footer > img.footer-btn:first-child,
-  .modal-footer > img.footer-btn:last-child {
-    width: 80px !important;
-    height: 22px !important;
-  }
-  .move-toggle-btn {
-    height: 50px !important;
-    flex: 1;
-  }
 }
