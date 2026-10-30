@@ -577,7 +577,7 @@ html, body {
 /* HEADER BANNER: Tvinger den til at være stor og høj uden at mases */
 .modal-header-banner {
   width: 100%;
-  height: 52px !important;
+  height: 100x !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -586,7 +586,7 @@ html, body {
 }
 
 .modal-header-banner img {
-  height: 52px !important;
+  height: 100px !important;
   width: auto !important;
   max-width: 100% !important;
   object-fit: contain !important;
@@ -655,13 +655,13 @@ html, body {
   gap: 10px !important;
   align-items: stretch !important;
   width: 100% !important;
-  height: 122px;
+  height: 150px;
   flex-shrink: 0;
 }
 
 .upload-btn {
-  width: 122px !important;
-  height: 122px !important;
+  width: 150px !important;
+  height: 150px !important;
   border-radius: 12px !important;
   background-size: cover !important;
   background-position: center !important;
@@ -697,12 +697,12 @@ html, body {
   align-items: center !important;
   gap: 6px !important;
   width: 100% !important;
-  height: 52px !important;
+  height: 78px !important;
   flex-shrink: 0 !important;
 }
 
 .brand-toggle img {
-  height: 52px !important;
+  height: 78px !important;
   width: auto !important;
   max-width: 48% !important;
   cursor: pointer !important;
@@ -735,7 +735,7 @@ html, body {
   flex: 1 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 6px !important;
+  gap: 9px !important;
   min-width: 0 !important;
 }
 
@@ -754,7 +754,11 @@ html, body {
 }
 
 /* LINING & SOLD FOR: Præcis højde (25px) */
-.lining-textarea,
+.lining-textarea {
+  height: 25px !important;
+  box-sizing: border-box !important;
+}
+
 .sale-price-input {
   height: 25px !important;
   box-sizing: border-box !important;
@@ -764,15 +768,15 @@ html, body {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
+  margin-top: 3px;
   gap: 4px !important;
   height: 25px !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
-
 .resell-toggle-btn, .sold-toggle-btn {
   display: flex !important;
-  align-items: center !important;
+  align-items: flex-end !important; /* Tvinger både ikon og tekst ned til samme bundlinje */
   gap: 3px !important;
   cursor: pointer !important;
   flex-shrink: 0 !important;
@@ -790,6 +794,8 @@ html, body {
   font-size: 11px;
   color: #2F47B1;
   white-space: nowrap;
+  line-height: 1; /* Fjerner ekstra luft i toppen af teksten */
+  margin-bottom: -2px; /* Skubber teksten den sidste millimeter ned på plads */
 }
 
 .dimmed {
@@ -811,11 +817,11 @@ html, body {
   flex-shrink: 0 !important;
 }
 
-/* Cancel: Fastlåst 22px højde og w-resize cursor */
+/* Cancel: Skaleret op i højde og max-width */
 .modal-footer > img.footer-btn:first-child {
-  height: 22px !important;
+  height: 32px !important; /* Øget fra 22px for at gøre knappen større */
   width: auto !important;
-  max-width: 28% !important;
+  max-width: 38% !important; /* Hævet fra 28% så den kan strække sig mod midten */
   object-fit: contain !important;
   cursor: w-resize !important;
   align-self: center !important;
@@ -844,11 +850,11 @@ html, body {
   display: block !important;
 }
 
-/* Save: Fastlåst 22px højde og e-resize cursor[cite: 22] */
+/* Save: Skaleret op i højde og max-width */
 .modal-footer > img.footer-btn:last-child {
-  height: 22px !important;
+  height: 32px !important; /* Øget fra 22px for at gøre knappen større */
   width: auto !important;
-  max-width: 28% !important;
+  max-width: 38% !important; /* Hævet fra 28% så den kan strække sig mod midten */
   object-fit: contain !important;
   cursor: e-resize !important;
   align-self: center !important;
