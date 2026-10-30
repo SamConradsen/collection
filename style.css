@@ -169,7 +169,7 @@ html, body {
   position: absolute;
   top: 100%;
   right: 0;
-  z-index: 160;
+  z-index: 150;
   background: rgba(209, 227, 255, 0.85) !important;
   backdrop-filter: blur(22px) saturate(190%) !important;
   -webkit-backdrop-filter: blur(22px) saturate(190%) !important;
@@ -207,7 +207,7 @@ html, body {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 150;
+  z-index: 9999 !important;
   background: rgba(209, 227, 255, 0.65) !important;
   backdrop-filter: blur(22px) saturate(190%) !important;
   -webkit-backdrop-filter: blur(22px) saturate(190%) !important;
@@ -226,11 +226,14 @@ html, body {
 
 @media (max-width: 600px) {
   .size-dropdown {
-    left: 10px !important;
-    right: auto !important;
-    width: calc(100vw - 20px) !important;
-    max-width: calc(100vw - 20px) !important;
-    padding: 6px 8px !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 92vw !important;
+    max-width: 92vw !important;
+    max-height: 75vh !important;
+    z-index: 99999 !important;
   }
 }
 
@@ -862,42 +865,14 @@ html, body {
   display: block !important;
 }
 
-/* SKALERING TIL MOBIL (Sikrer at intet presses fladt eller mases) */
+/* SKALERING TIL MOBIL (Renset for element-masning) */
 @media (max-width: 480px) {
   .modal {
-    padding: 8px 10px !important;
-    gap: 4px !important;
-  }
-  .modal-header-banner {
-    height: 44px !important;
-  }
-  .modal-header-banner img {
-    height: 44px !important;
-  }
-  .upload-section {
-    height: 100px !important;
-  }
-  .upload-btn {
-    width: 100px !important;
-    height: 100px !important;
-  }
-  .brand-toggle {
-    height: 44px !important;
-  }
-  .brand-toggle img {
-    height: 44px !important;
-  }
-  .materials-textarea {
-    height: 48px !important;
-  }
-  .modal-footer {
-    height: 48px !important;
-  }
-  .move-toggle-btn, .move-toggle-btn img {
-    height: 48px !important;
-  }
-  .modal-footer > img.footer-btn:first-child,
-  .modal-footer > img.footer-btn:last-child {
-    height: 18px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 4px !important;
+    padding: 10px 12px !important;
+    box-sizing: border-box !important;
+    /* Fjernede de hårde højdemasere, så elementerne beholder deres ægte størrelser */
   }
 }
