@@ -5,6 +5,7 @@ let showSold = false;
 let searchQuery = "";
 let currentImageBase64 = null;
 let currentEditId = null;
+let currentItemImageId = null;
 let isSaving = false;
 let isFormDirty = false;
 
@@ -681,6 +682,7 @@ function updateCategoryDatalist() {
 function openModal(type) {
   currentEditId = null;
   currentImageBase64 = null;
+  currentItemImageId = null;
   isFormDirty = false;
   
   const uploadPreview = document.getElementById('uploadPreview');
@@ -825,6 +827,7 @@ function editItem(id) {
   if (!item) return;
 
   currentEditId = item.id;
+  currentItemImageId = item.imageid || '';
   isFormDirty = false;
 
   const rawCollect = item.collect ? String(item.collect).toLowerCase().trim() : '';
@@ -872,6 +875,7 @@ function saveData() {
 
   const payload = {
     id: currentEditId,
+    imageid: currentItemImageId,
     collect: finalCollectValue,
     brand: formBrandState,
     reselling: formResellingState,
