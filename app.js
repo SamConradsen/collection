@@ -873,9 +873,19 @@ function saveData() {
 
   const finalCollectValue = (formCollectState === 'wish') ? 'wish' : 'collect';
 
+  // Hent billed-ID'et direkte fra den eksisterende vare, hvis vi redigerer, 
+  // så det aldrig kan blive overskrevet af en anden vare!
+  let safeImageId = '';
+  if (currentEditId) {
+    const existingItem = allItems.find(i => i && String(i.id) === String(currentEditId));
+    if (existingItem) {
+      safeImageId = existingItem.imageid || '';
+    }
+  }
+
   const payload = {
     id: currentEditId,
-    imageid: currentItemImageId,
+    imageid: safeImageId, // Bruger altid varens eget faste billed-ID
     collect: finalCollectValue,
     brand: formBrandState,
     reselling: formResellingState,
@@ -890,7 +900,7 @@ function saveData() {
     lining: document.getElementById('mLining').value,
     purchaseprice: document.getElementById('mPurchasePrice').value,
     saleprice: document.getElementById('mSalePrice').value,
-    imageBase64: currentImageBase64
+    imageBase64: currentImageBase64 // Kun sat hvis der er uploadet et NYT billede manuelt
   };
 
   fetch(APPS_SCRIPT_URL, {
