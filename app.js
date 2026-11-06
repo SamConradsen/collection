@@ -827,7 +827,7 @@ function editItem(id) {
   if (!item) return;
 
   currentEditId = item.id;
-  currentItemImageId = item.imageid || '';
+  currentImageBase64 = null; // <-- TILFØJ DENNE LINJE HER!
   isFormDirty = false;
 
   const rawCollect = item.collect ? String(item.collect).toLowerCase().trim() : '';
