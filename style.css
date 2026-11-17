@@ -306,21 +306,30 @@ html, body {
   margin: 15px 0 10px 0;
 }
 
-.category-title-grid {
-  grid-column: 1 / -1 !important;
-  font-family: 'AvantGarde LT Book', sans-serif;
-  font-weight: bold;
-  font-size: 24px;
-  margin: 25px 0 10px 0;
-  scroll-margin-top: 90px;
-}
-
 .item-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr) !important;
   gap: 15px;
   width: 100%;
   box-sizing: border-box;
+}
+
+.continuous-grid {
+  align-items: end;
+  row-gap: 24px;
+}
+
+.category-first-item {
+  scroll-margin-top: 75px;
+}
+
+.inline-category-title {
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 12px 0 10px 0;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 @media (max-width: 1024px) { .item-grid { grid-template-columns: repeat(4, 1fr) !important; } }
@@ -401,6 +410,7 @@ html, body {
 .item-card {
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   cursor: pointer;
   width: 100% !important;
   max-width: 100% !important;
