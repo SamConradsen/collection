@@ -306,6 +306,15 @@ html, body {
   margin: 15px 0 10px 0;
 }
 
+.category-title-grid {
+  grid-column: 1 / -1 !important;
+  font-family: 'AvantGarde LT Book', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 25px 0 10px 0;
+  scroll-margin-top: 90px;
+}
+
 .item-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr) !important;
@@ -580,7 +589,7 @@ html, body {
 /* HEADER BANNER: Tvinger den til at være stor og høj uden at mases */
 .modal-header-banner {
   width: 100%;
-  height: 100x !important;
+  height: 100px !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -779,7 +788,7 @@ html, body {
 }
 .resell-toggle-btn, .sold-toggle-btn {
   display: flex !important;
-  align-items: flex-end !important; /* Tvinger både ikon og tekst ned til samme bundlinje */
+  align-items: flex-end !important;
   gap: 3px !important;
   cursor: pointer !important;
   flex-shrink: 0 !important;
@@ -797,8 +806,8 @@ html, body {
   font-size: 11px;
   color: #2F47B1;
   white-space: nowrap;
-  line-height: 1; /* Fjerner ekstra luft i toppen af teksten */
-  margin-bottom: -2px; /* Skubber teksten den sidste millimeter ned på plads */
+  line-height: 1;
+  margin-bottom: -2px;
 }
 
 .dimmed {
@@ -822,9 +831,9 @@ html, body {
 
 /* Cancel: Skaleret op i højde og max-width */
 .modal-footer > img.footer-btn:first-child {
-  height: 32px !important; /* Øget fra 22px for at gøre knappen større */
+  height: 32px !important;
   width: auto !important;
-  max-width: 38% !important; /* Hævet fra 28% så den kan strække sig mod midten */
+  max-width: 38% !important;
   object-fit: contain !important;
   cursor: w-resize !important;
   align-self: center !important;
@@ -855,9 +864,9 @@ html, body {
 
 /* Save: Skaleret op i højde og max-width */
 .modal-footer > img.footer-btn:last-child {
-  height: 32px !important; /* Øget fra 22px for at gøre knappen større */
+  height: 32px !important;
   width: auto !important;
-  max-width: 38% !important; /* Hævet fra 28% så den kan strække sig mod midten */
+  max-width: 38% !important;
   object-fit: contain !important;
   cursor: e-resize !important;
   align-self: center !important;
@@ -873,6 +882,5 @@ html, body {
     margin: 0 4px !important;
     padding: 10px 12px !important;
     box-sizing: border-box !important;
-    /* Fjernede de hårde højdemasere, så elementerne beholder deres ægte størrelser */
   }
 }
