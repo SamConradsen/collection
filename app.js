@@ -22,6 +22,8 @@ const IMAGES = {
   deleteBtnCollect: "1r0y842sTWWQOpZKh11N1tYA1IK4D_9jR",
   deleteBtnWish: "1qQVrH6YBiVJK0rssap4qmZ5t0sFAIOk9",
 
+  resellingOverlay: "10iNsX-P_VWlAEgY9MG4AZsCjXghrbcqt",
+
   origTrue: "1phuiZ7Mh7kYKfAENbCw2ah78_Tem2NAM",
   origFalse: "152SiPw7Y39y_jeMaTdTZLXFkgR_Zu4cn",
   perfTrue: "1ycABFjAvKvRXOgnKJ77_fO2Y0zpAh6fG",
@@ -225,9 +227,11 @@ function handleSmartNavbarNavigation() {
 
   const stickyBottom = stickyWrapper ? stickyWrapper.getBoundingClientRect().bottom : 50;
   const topPos = Math.max(10, stickyBottom + 6);
+  // Sørg for at alfabet-nav stopper før den faste upload-knap i bunden
+  const maxH = window.innerHeight - topPos - 75;
 
   alphabetNav.style.top = `${topPos}px`;
-  alphabetNav.style.maxHeight = `calc(100vh - ${topPos + 10}px)`;
+  alphabetNav.style.maxHeight = `${maxH}px`;
 }
 
 function markFormDirty() {
@@ -658,35 +662,39 @@ function renderItems() {
 
   contentArea.appendChild(globalGrid);
 
-  // Tilføj mindre upload-knap i bunden af side-nav
-  if (alphabetNav) {
-    const uploadImgId = (PAGE_TYPE === 'wish') ? IMAGES.uploadBtnWish : IMAGES.uploadBtnCollect;
-    const sideUploadBtn = document.createElement('a');
-    sideUploadBtn.className = 'sidebar-bubble-item sidebar-upload-btn';
-    sideUploadBtn.href = '#';
-    sideUploadBtn.title = 'Upload ny vare';
-    sideUploadBtn.onclick = (e) => {
+  // Sørg for at den fastlåste upload-knap er uafhængig af alfabet-nav i DOM'en
+  const existingStickyUpload = document.querySelector('.sticky-side-upload-btn');
+  if (existingStickyUpload) existingStickyUpload.remove();
+
+  const uploadImgId = (PAGE_TYPE === 'wish') ? IMAGES.uploadBtnWish : IMAGES.uploadBtnCollect;
+  const stickyUploadBtn = document.createElement('a');
+  stickyUploadBtn.className = 'sidebar-bubble-item sidebar-upload-btn sticky-side-upload-btn';
+  stickyUploadBtn.href = '#';
+  stickyUploadBtn.title = 'Upload ny vare';
+  stickyUploadBtn.onclick = (e) => {
+    e.preventDefault();
+    const nav = document.getElementById('alphabetNav');
+    if (nav) nav.classList.remove('mobile-active');
+    openModal(PAGE_TYPE);
+  };
+  stickyUploadBtn.innerHTML = `
+    <img class="sidebar-bubble-bg" src="https://lh3.googleusercontent.com/d/${uploadImgId}" alt="Upload">
+  `;
+  
+  if (alphabetNav && alphabetNav.parentNode) {
+    alphabetNav.parentNode.appendChild(stickyUploadBtn);
+  }
+
+  if (alphabetNav && sortedCats.length > 0 && window.innerWidth <= 600) {
+    const closeBtn = document.createElement('a');
+    closeBtn.className = 'sidebar-bubble-item sidebar-close-btn';
+    closeBtn.onclick = (e) => {
       e.preventDefault();
       const nav = document.getElementById('alphabetNav');
       if (nav) nav.classList.remove('mobile-active');
-      openModal(PAGE_TYPE);
     };
-    sideUploadBtn.innerHTML = `
-      <img class="sidebar-bubble-bg" src="https://lh3.googleusercontent.com/d/${uploadImgId}" alt="Upload">
-    `;
-    alphabetNav.appendChild(sideUploadBtn);
-
-    if (sortedCats.length > 0 && window.innerWidth <= 600) {
-      const closeBtn = document.createElement('a');
-      closeBtn.className = 'sidebar-bubble-item sidebar-close-btn';
-      closeBtn.onclick = (e) => {
-        e.preventDefault();
-        const nav = document.getElementById('alphabetNav');
-        if (nav) nav.classList.remove('mobile-active');
-      };
-      closeBtn.innerHTML = `<span>X</span>`;
-      alphabetNav.appendChild(closeBtn);
-    }
+    closeBtn.innerHTML = `<span>X</span>`;
+    alphabetNav.appendChild(closeBtn);
   }
 
   handleSmartNavbarNavigation();
