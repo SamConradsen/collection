@@ -384,6 +384,15 @@ html, body {
   -webkit-text-stroke: 0.4px #4834DF;
 }
 
+.sidebar-upload-btn {
+  margin-top: 4px;
+  transition: transform 0.15s ease;
+}
+
+.sidebar-upload-btn:hover {
+  transform: scale(1.1);
+}
+
 .sidebar-close-btn {
   background: rgba(255,255,255,0.7);
   border-radius: 50%;
@@ -568,6 +577,7 @@ html, body {
 }
 
 .modal {
+  position: relative;
   background: #ffffff;
   border-radius: 22px;
   width: 385px;
@@ -580,6 +590,22 @@ html, body {
   overflow: hidden;
   gap: 6px;
   height: auto !important;
+}
+
+.modal-delete-btn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  height: 28px !important;
+  width: auto !important;
+  cursor: pointer;
+  z-index: 10;
+  object-fit: contain;
+  transition: transform 0.15s ease;
+}
+
+.modal-delete-btn:hover {
+  transform: scale(1.08);
 }
 
 .modal-collect {
