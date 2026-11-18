@@ -17,6 +17,11 @@ const IMAGES = {
   headerWish: "1jDUHm6gbM6adDlhTJVOFNG_MZo8_Xeuy",
   uploadPlaceholder: "17YobDkGOVX0dUIyLRVu_alxkMO2AnmxT",
   
+  uploadBtnCollect: "1dSzvU0Ee7ip3oyLtdoZXjoco9hVLFdXE",
+  uploadBtnWish: "1z7Fgxp7aF3LQkM8DV4SZ1exYVHDF1l1e",
+  deleteBtnCollect: "1r0y842sTWWQOpZKh11N1tYA1IK4D_9jR",
+  deleteBtnWish: "1qQVrH6YBiVJK0rssap4qmZ5t0sFAIOk9",
+
   origTrue: "1phuiZ7Mh7kYKfAENbCw2ah78_Tem2NAM",
   origFalse: "152SiPw7Y39y_jeMaTdTZLXFkgR_Zu4cn",
   perfTrue: "1ycABFjAvKvRXOgnKJ77_fO2Y0zpAh6fG",
@@ -653,16 +658,35 @@ function renderItems() {
 
   contentArea.appendChild(globalGrid);
 
-  if (alphabetNav && sortedCats.length > 0 && window.innerWidth <= 600) {
-    const closeBtn = document.createElement('a');
-    closeBtn.className = 'sidebar-bubble-item sidebar-close-btn';
-    closeBtn.onclick = (e) => {
+  // Tilføj mindre upload-knap i bunden af side-nav
+  if (alphabetNav) {
+    const uploadImgId = (PAGE_TYPE === 'wish') ? IMAGES.uploadBtnWish : IMAGES.uploadBtnCollect;
+    const sideUploadBtn = document.createElement('a');
+    sideUploadBtn.className = 'sidebar-bubble-item sidebar-upload-btn';
+    sideUploadBtn.href = '#';
+    sideUploadBtn.title = 'Upload ny vare';
+    sideUploadBtn.onclick = (e) => {
       e.preventDefault();
       const nav = document.getElementById('alphabetNav');
       if (nav) nav.classList.remove('mobile-active');
+      openModal(PAGE_TYPE);
     };
-    closeBtn.innerHTML = `<span>X</span>`;
-    alphabetNav.appendChild(closeBtn);
+    sideUploadBtn.innerHTML = `
+      <img class="sidebar-bubble-bg" src="https://lh3.googleusercontent.com/d/${uploadImgId}" alt="Upload">
+    `;
+    alphabetNav.appendChild(sideUploadBtn);
+
+    if (sortedCats.length > 0 && window.innerWidth <= 600) {
+      const closeBtn = document.createElement('a');
+      closeBtn.className = 'sidebar-bubble-item sidebar-close-btn';
+      closeBtn.onclick = (e) => {
+        e.preventDefault();
+        const nav = document.getElementById('alphabetNav');
+        if (nav) nav.classList.remove('mobile-active');
+      };
+      closeBtn.innerHTML = `<span>X</span>`;
+      alphabetNav.appendChild(closeBtn);
+    }
   }
 
   handleSmartNavbarNavigation();
@@ -681,6 +705,9 @@ function openModal(type) {
   currentItemImageId = null;
   isFormDirty = false;
   
+  const deleteBtn = document.getElementById('modalDeleteBtn');
+  if (deleteBtn) deleteBtn.style.display = 'none';
+
   const uploadPreview = document.getElementById('uploadPreview');
   if (uploadPreview) uploadPreview.style.backgroundImage = `url('https://lh3.googleusercontent.com/d/${IMAGES.uploadPlaceholder}')`;
 
@@ -716,15 +743,18 @@ function setPageType(type) {
   const card = document.getElementById('modalCard');
   const headerImg = document.getElementById('modalHeaderImg');
   const moveBtn = document.getElementById('imgMoveBtn');
+  const deleteBtn = document.getElementById('modalDeleteBtn');
 
   if (formCollectState === 'collect') {
     if (card) card.className = 'modal modal-collect';
     if (headerImg) headerImg.src = `https://lh3.googleusercontent.com/d/${IMAGES.headerCollect}`;
     if (moveBtn) moveBtn.src = `https://lh3.googleusercontent.com/d/${IMAGES.moveWish}`;
+    if (deleteBtn) deleteBtn.src = `https://lh3.googleusercontent.com/d/${IMAGES.deleteBtnCollect}`;
   } else {
     if (card) card.className = 'modal modal-wishlist';
     if (headerImg) headerImg.src = `https://lh3.googleusercontent.com/d/${IMAGES.headerWish}`;
     if (moveBtn) moveBtn.src = `https://lh3.googleusercontent.com/d/${IMAGES.moveCollect}`;
+    if (deleteBtn) deleteBtn.src = `https://lh3.googleusercontent.com/d/${IMAGES.deleteBtnWish}`;
   }
 }
 
@@ -826,6 +856,9 @@ function editItem(id) {
   currentImageBase64 = null;
   isFormDirty = false;
 
+  const deleteBtn = document.getElementById('modalDeleteBtn');
+  if (deleteBtn) deleteBtn.style.display = 'block';
+
   const rawCollect = item.collect ? String(item.collect).toLowerCase().trim() : '';
   const itemType = (rawCollect === 'wish') ? 'wish' : 'collect';
   
@@ -854,6 +887,31 @@ function editItem(id) {
   setSoldState(String(item.sold).toUpperCase());
 
   document.getElementById('modalBg').style.display = 'flex';
+}
+
+function deleteItem() {
+  if (!currentEditId || isSaving) return;
+  if (!confirm("Er du sikker på, at du vil slette denne vare permanent?")) return;
+
+  isSaving = true;
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'delete',
+      id: currentEditId
+    })
+  })
+  .then(res => res.json())
+  .then(() => {
+    isSaving = false;
+    closeModal();
+    fetchData();
+  })
+  .catch(err => {
+    isSaving = false;
+    console.error("Fejl ved sletning:", err);
+  });
 }
 
 function saveData() {
