@@ -335,7 +335,7 @@ html, body {
 @media (max-width: 1024px) { .item-grid { grid-template-columns: repeat(4, 1fr) !important; } }
 @media (max-width: 600px) { .item-grid { grid-template-columns: repeat(2, 1fr) !important; } }
 
-/* SIDEBAR ALFABET BOBLER OG FASTLÅST UPLOAD-KNAP */
+/* SIDEBAR ALFABET BOBLER (KUN BOGSTAVER - KAN SCROLLE HVIS NØDVENDIGT) */
 .alphabet-nav {
   position: fixed;
   right: 20px;
@@ -343,7 +343,7 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 2px 2px 45px 2px;
+  padding: 2px;
   box-sizing: border-box;
   overflow-y: auto;
 }
@@ -384,7 +384,7 @@ html, body {
   -webkit-text-stroke: 0.4px #4834DF;
 }
 
-/* FASTLÅST UPLOAD-KNAP I BUNDEN AF SKÆRMEN */
+/* PERMANENT FASTLÅST UPLOAD-KNAP I BUNDEN AF HØJRE HJØRNE */
 .sticky-side-upload-btn {
   position: fixed !important;
   right: 20px !important;
@@ -450,7 +450,7 @@ html, body {
 .reselling-gray-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: url('https://lh3.googleusercontent.com/d/10iNsX-P_VWlAEgY9MG4AZsCjXghrbcqt') no-repeat center/cover;
+  background: url('https://lh3.googleusercontent.com/d/10iNsX-P_VWlAEgY9MG4AZsCjXghrbcqt') no-referer center/cover;
   pointer-events: none;
   z-index: 2;
 }
