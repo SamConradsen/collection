@@ -51,6 +51,9 @@
       </div>
 
       <div class="menu-right">
+        <!-- Fast Upload Knap i Top Menu -->
+        <img src="https://lh3.googleusercontent.com/d/1dSzvU0Ee7ip3oyLtdoZXjoco9hVLFdXE" class="menu-item" onclick="openModal('collect')" alt="Upload Collection">
+
         <!-- Mobile Dropdown Fold Out Button -->
         <div class="mobile-foldout-trigger" onclick="toggleMobileDropdown(event)">
           <img src="https://lh3.googleusercontent.com/d/12kTHcKnkMJSGLnuDeuSdsu1NO1W1ZXpP" class="menu-item" alt="Menu">
@@ -92,6 +95,9 @@
   <div class="modal-bg" id="modalBg" onclick="handleBackdropClick(event)">
   <div class="modal modal-collect" id="modalCard">
     
+    <!-- DELETE KNAP (Vises kun ved redigering) -->
+    <img id="modalDeleteBtn" class="modal-delete-btn" src="https://lh3.googleusercontent.com/d/1r0y842sTWWQOpZKh11N1tYA1IK4D_9jR" onclick="deleteItem()" alt="Delete" style="display: none;">
+
     <!-- HEADER BANNER -->
     <div class="modal-header-banner">
       <img id="modalHeaderImg" src="" alt="Header">
@@ -196,12 +202,12 @@
 
     <!-- FOOTER -->
     <div class="modal-footer">
-  <img src="https://lh3.googleusercontent.com/d/1ezJe2_NICuZT07YFN_1pRIQC8yiWAOHc" class="footer-btn" onclick="closeModal()" alt="Cancel">
-  <div class="move-toggle-btn" onclick="toggleModalPageType()">
-    <img id="imgMoveBtn" src="" alt="Move to">
-  </div>
-  <img src="https://lh3.googleusercontent.com/d/1AjppabQ9us5pA44AK5LGZdV9MJ1YDXrC" class="footer-btn" onclick="saveData()" alt="Save">
-</div>
+      <img src="https://lh3.googleusercontent.com/d/1ezJe2_NICuZT07YFN_1pRIQC8yiWAOHc" class="footer-btn" onclick="closeModal()" alt="Cancel">
+      <div class="move-toggle-btn" onclick="toggleModalPageType()">
+        <img id="imgMoveBtn" src="" alt="Move to">
+      </div>
+      <img src="https://lh3.googleusercontent.com/d/1AjppabQ9us5pA44AK5LGZdV9MJ1YDXrC" class="footer-btn" onclick="saveData()" alt="Save">
+    </div>
 
   </div>
 </div>
