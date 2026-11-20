@@ -276,13 +276,41 @@ function setupMaterialAutocomplete(textareaId) {
   sugBox.style.cssText = 'position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #B1C3FF; border-radius:6px; max-height:120px; overflow-y:auto; z-index:999; display:none; box-shadow:0 4px 12px rgba(0,0,0,0.15);';
   container.appendChild(sugBox);
 
+  let selectedIndex = -1;
+
   textarea.addEventListener('input', () => {
     markFormDirty();
-    showMaterialSuggestions(textarea, sugBox, textareaId);
+    selectedIndex = -1;
+    showMaterialSuggestions(textarea, sugBox, textareaId, selectedIndex);
   });
 
   textarea.addEventListener('focus', () => {
-    showMaterialSuggestions(textarea, sugBox, textareaId);
+    selectedIndex = -1;
+    showMaterialSuggestions(textarea, sugBox, textareaId, selectedIndex);
+  });
+
+  textarea.addEventListener('keydown', (e) => {
+    if (sugBox.style.display === 'block') {
+      const items = sugBox.querySelectorAll('.sug-item');
+      if (items.length > 0) {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          selectedIndex = (selectedIndex + 1) % items.length;
+          updateHighlight(items, selectedIndex);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+          updateHighlight(items, selectedIndex);
+        } else if (e.key === 'Enter' || e.key === 'Tab') {
+          if (selectedIndex >= 0 && selectedIndex < items.length) {
+            e.preventDefault();
+            items[selectedIndex].click();
+          }
+        } else if (e.key === 'Escape') {
+          sugBox.style.display = 'none';
+        }
+      }
+    }
   });
 
   document.addEventListener('click', (e) => {
@@ -292,7 +320,18 @@ function setupMaterialAutocomplete(textareaId) {
   });
 }
 
-function showMaterialSuggestions(textarea, sugBox, textareaId) {
+function updateHighlight(items, index) {
+  items.forEach((item, idx) => {
+    if (idx === index) {
+      item.style.background = '#E7EDFF';
+      item.scrollIntoView({ block: 'nearest' });
+    } else {
+      item.style.background = '#fff';
+    }
+  });
+}
+
+function showMaterialSuggestions(textarea, sugBox, textareaId, selectedIndex) {
   const allTexts = allItems.map(item => item[textareaId === 'mMaterial' ? 'material' : 'lining']).filter(Boolean);
   let uniqueMats = new Set();
 
@@ -304,7 +343,7 @@ function showMaterialSuggestions(textarea, sugBox, textareaId) {
     });
   });
 
-  ["polyester", "polyester (recycled)", "polypropylene", "cotton", "elastane", "nylon"].forEach(m => uniqueMats.add(m));
+  ["polyester", "polyester (recycled)", "polypropylene", "cotton", "elastane", "nylon", "viscose"].forEach(m => uniqueMats.add(m));
 
   const val = textarea.value;
   const lines = val.split('\n');
@@ -317,7 +356,6 @@ function showMaterialSuggestions(textarea, sugBox, textareaId) {
     return;
   }
 
-  // Find materialer der ER brugt på DE ANDRE linjer i samme tekstfelt, så vi udelukker dem
   const alreadyUsedInOtherLines = new Set();
   lines.forEach((l, idx) => {
     if (idx !== lines.length - 1) {
@@ -327,7 +365,7 @@ function showMaterialSuggestions(textarea, sugBox, textareaId) {
   });
 
   const filtered = [...uniqueMats].filter(m => {
-    if (alreadyUsedInOtherLines.has(m)) return false; // Udeluk hvis den allerede er brugt ovenfor
+    if (alreadyUsedInOtherLines.has(m)) return false;
     return m.includes(textQuery);
   });
 
@@ -337,13 +375,18 @@ function showMaterialSuggestions(textarea, sugBox, textareaId) {
   }
 
   sugBox.innerHTML = '';
-  filtered.forEach(mat => {
+  filtered.forEach((mat, idx) => {
     const itemDiv = document.createElement('div');
-    itemDiv.style.cssText = 'padding:6px 10px; font-size:11px; font-family:\'AvantGarde LT Medium\', sans-serif; cursor:pointer; border-bottom:1px solid #eee; color:#000;';
+    itemDiv.className = 'sug-item';
+    itemDiv.style.cssText = 'padding:6px 10px; font-size:11px; font-family:\'AvantGarde LT Medium\', sans-serif; cursor:pointer; border-bottom:1px solid #eee; color:#000; background:' + (idx === selectedIndex ? '#E7EDFF' : '#fff') + ';';
     itemDiv.textContent = mat;
     
-    itemDiv.onmouseover = () => itemDiv.style.background = '#E7EDFF';
-    itemDiv.onmouseout = () => itemDiv.style.background = '#fff';
+    itemDiv.onmouseover = () => {
+      itemDiv.style.background = '#E7EDFF';
+    };
+    itemDiv.onmouseout = () => {
+      if (idx !== selectedIndex) itemDiv.style.background = '#fff';
+    };
     
     itemDiv.onclick = () => {
       const matchPercent = rawCurrentLine.match(/^(\d+%\s*)/);
