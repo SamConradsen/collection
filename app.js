@@ -310,7 +310,6 @@ function showMaterialSuggestions(textarea, sugBox, textareaId) {
   const lines = val.split('\n');
   const rawCurrentLine = lines[lines.length - 1];
   
-  // Ignorer eventuel procentdel foran, så vi kun søger på selve materialenavnet (f.eks. "pol" i "87% pol")
   const textQuery = rawCurrentLine.replace(/^\d+%\s*/, '').toLowerCase().trim();
 
   if (!textQuery) {
@@ -337,7 +336,6 @@ function showMaterialSuggestions(textarea, sugBox, textareaId) {
     itemDiv.onmouseout = () => itemDiv.style.background = '#fff';
     
     itemDiv.onclick = () => {
-      // Bevar eventuel procentdel der er skrevet foran (f.eks. "87% "), og indsæt kun det valgte materiale efter
       const matchPercent = rawCurrentLine.match(/^(\d+%\s*)/);
       const prefix = matchPercent ? matchPercent[1] : '';
       
@@ -1017,14 +1015,21 @@ function handleImage(input) {
   if (input.files && input.files[0]) {
     markFormDirty();
     const file = input.files[0];
-    const fileName = file.name;
+    const fileName = file.name || '';
 
-    const nameWithoutExt = fileName.substring(0, fileName.lastIndexOf('.')) || fileName;
-    const isStandardCamPhoto = /^img_|screenshot|dsc|image|photo/i.test(nameWithoutExt);
+    // Robust udtrækning af filnavn uden endelse
+    let nameWithoutExt = fileName;
+    const lastDotIndex = fileName.lastIndexOf('.');
+    if (lastDotIndex !== -1) {
+      nameWithoutExt = fileName.substring(0, lastDotIndex);
+    }
+
+    // Tjek om det er et standard kameranavn (f.eks. IMG_9377, screenshot, DSC, foto osv.)
+    const isStandardCamPhoto = /^(img_|screenshot|dsc|image|photo|pigeon|capture)/i.test(nameWithoutExt);
 
     if (!isStandardCamPhoto && nameWithoutExt.trim().length > 0) {
       const artInput = document.getElementById('mArticle');
-      if (artInput && !artInput.value.trim()) {
+      if (artInput) {
         artInput.value = nameWithoutExt.trim().toUpperCase();
       }
     }
