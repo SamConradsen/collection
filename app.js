@@ -767,6 +767,18 @@ function renderItems() {
     categories[cat].push(item);
   });
 
+  // Sorter varerne inden i hver kategori alfabetisk efter navn, så ens varer placeres ved siden af hinanden
+  Object.keys(categories).forEach(cat => {
+    categories[cat].sort((a, b) => {
+      const nameA = a.name ? String(a.name).toLowerCase().trim() : '';
+      const nameB = b.name ? String(b.name).toLowerCase().trim() : '';
+      const comp = nameA.localeCompare(nameB, 'da', { sensitivity: 'base' });
+      if (comp !== 0) return comp;
+      // Hvis navnet er fuldstændig ens, sorteres der på ID eller artikelnummer
+      return String(a.id || '').localeCompare(String(b.id || ''), 'da', { numeric: true });
+    });
+  });
+
   const sortedCats = Object.keys(categories).sort((a, b) => a.localeCompare(b, 'da', { sensitivity: 'base' }));
 
   const globalGrid = document.createElement('div');
