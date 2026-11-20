@@ -450,16 +450,15 @@ html, body {
 .reselling-gray-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: url('https://lh3.googleusercontent.com/d/10iNsX-P_VWlAEgY9MG4AZsCjXghrbcqt') no-referer center/cover;
-  pointer-events: none;
-  z-index: 2;
+  background: rgba(128, 128, 128, 0.45) url('https://lh3.googleusercontent.com/d/10iNsX-P_VWlAEgY9MG4AZsCjXghrbcqt') no-repeat center/cover;
+  z-index: 2; /* Sat højere for at sikre den ligger øverst på billedet */
 }
 
 .sold-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background: url('https://lh3.googleusercontent.com/d/1aI-Sx4t3iTxtWBZ8tTBECgleesVGC5hX') no-repeat center/cover;
-  z-index: 2;
+  z-index: 5;
 }
 
 .size-badge-canvas {
