@@ -300,7 +300,7 @@ function showMaterialSuggestions(textarea, sugBox, textareaId) {
     const lines = String(txt).split('\n');
     lines.forEach(line => {
       let clean = line.replace(/^\d+%\s*/, '').trim();
-      if (clean) uniqueMats.add(clean);
+      if (clean) uniqueMats.add(clean.toLowerCase());
     });
   });
 
@@ -317,7 +317,19 @@ function showMaterialSuggestions(textarea, sugBox, textareaId) {
     return;
   }
 
-  const filtered = [...uniqueMats].filter(m => m.toLowerCase().includes(textQuery));
+  // Find materialer der ER brugt på DE ANDRE linjer i samme tekstfelt, så vi udelukker dem
+  const alreadyUsedInOtherLines = new Set();
+  lines.forEach((l, idx) => {
+    if (idx !== lines.length - 1) {
+      let cleanOther = l.replace(/^\d+%\s*/, '').toLowerCase().trim();
+      if (cleanOther) alreadyUsedInOtherLines.add(cleanOther);
+    }
+  });
+
+  const filtered = [...uniqueMats].filter(m => {
+    if (alreadyUsedInOtherLines.has(m)) return false; // Udeluk hvis den allerede er brugt ovenfor
+    return m.includes(textQuery);
+  });
 
   if (filtered.length === 0) {
     sugBox.style.display = 'none';
@@ -328,8 +340,6 @@ function showMaterialSuggestions(textarea, sugBox, textareaId) {
   filtered.forEach(mat => {
     const itemDiv = document.createElement('div');
     itemDiv.style.cssText = 'padding:6px 10px; font-size:11px; font-family:\'AvantGarde LT Medium\', sans-serif; cursor:pointer; border-bottom:1px solid #eee; color:#000;';
-    
-    // Vis KUN selve materialenavnet i forslagene (ingen 100% tvang)
     itemDiv.textContent = mat;
     
     itemDiv.onmouseover = () => itemDiv.style.background = '#E7EDFF';
@@ -1017,14 +1027,12 @@ function handleImage(input) {
     const file = input.files[0];
     const fileName = file.name || '';
 
-    // Robust udtrækning af filnavn uden endelse
     let nameWithoutExt = fileName;
     const lastDotIndex = fileName.lastIndexOf('.');
     if (lastDotIndex !== -1) {
       nameWithoutExt = fileName.substring(0, lastDotIndex);
     }
 
-    // Tjek om det er et standard kameranavn (f.eks. IMG_9377, screenshot, DSC, foto osv.)
     const isStandardCamPhoto = /^(img_|screenshot|dsc|image|photo|pigeon|capture)/i.test(nameWithoutExt);
 
     if (!isStandardCamPhoto && nameWithoutExt.trim().length > 0) {
