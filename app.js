@@ -171,6 +171,55 @@ let formResellingState = 'FALSE';
 let formSoldState = 'FALSE';
 const PAGE_TYPE = typeof PAGE_MODE !== 'undefined' ? PAGE_MODE : 'collect';
 
+const COUNTRY_FLAGS = {
+  "china": "🇨🇳", "kina": "🇨🇳",
+  "cambodia": "🇰🇭", "cambodja": "🇰🇭",
+  "vietnam": "🇻🇳",
+  "indonesia": "🇮🇩", "indonesien": "🇮🇩",
+  "bangladesh": "🇧🇩",
+  "india": "🇮🇳",
+  "pakistan": "🇵🇰",
+  "turkey": "🇹🇷", "tyrkiet": "🇹🇷",
+  "portugal": "🇵🇹",
+  "italy": "🇮🇹", "italien": "🇮🇹",
+  "germany": "🇩🇪", "tyskland": "🇩🇪",
+  "france": "🇫🇷", "frankrig": "🇫🇷",
+  "tunisia": "🇹🇳", "tunesien": "🇹🇳",
+  "thailand": "🇹🇭",
+  "philippines": "🇵🇭", "filippinerne": "🇵🇭",
+  "sri lanka": "🇱🇰",
+  "myanmar": "🇲🇲",
+  "egypt": "🇪🇬", "egypten": "🇪🇬",
+  "taiwan": "🇹🇼",
+  "korea": "🇰🇷",
+  "japan": "🇯🇵",
+  "madagascar": "🇲🇬",
+  "mauritius": "🇲🇺",
+  "el salvador": "🇸🇻",
+  "honduras": "🇭🇳",
+  "nicaragua": "🇳🇮",
+  "guatemala": "🇬🇹",
+  "mexico": "🇲🇽",
+  "colombia": "🇨🇴",
+  "peru": "🇵🇪",
+  "brazil": "🇧🇷", "brasilien": "🇧🇷"
+};
+
+function getCountryWithFlag(countryStr) {
+  if (!countryStr) return "";
+  const clean = String(countryStr).trim();
+  const lower = clean.toLowerCase();
+  for (let key in COUNTRY_FLAGS) {
+    if (lower.includes(key)) {
+      if (!clean.includes(COUNTRY_FLAGS[key])) {
+        return `${clean} ${COUNTRY_FLAGS[key]}`;
+      }
+      return clean;
+    }
+  }
+  return clean;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   renderSizeMenuUI();
   fetchData();
@@ -193,6 +242,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  setupMaterialAutocomplete('mMaterial');
+  setupMaterialAutocomplete('mLining');
+
   document.addEventListener('click', (e) => {
     const dropdown = document.getElementById('sizeDropdown');
     const trigger = document.querySelector('.size-menu-trigger');
@@ -212,6 +264,95 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+function setupMaterialAutocomplete(textareaId) {
+  const textarea = document.getElementById(textareaId);
+  if (!textarea) return;
+
+  let container = textarea.parentNode;
+  container.style.position = 'relative';
+
+  let sugBox = document.createElement('div');
+  sugBox.className = 'custom-suggestions-box';
+  sugBox.style.cssText = 'position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #B1C3FF; border-radius:6px; max-height:120px; overflow-y:auto; z-index:999; display:none; box-shadow:0 4px 12px rgba(0,0,0,0.15);';
+  container.appendChild(sugBox);
+
+  textarea.addEventListener('input', () => {
+    markFormDirty();
+    showMaterialSuggestions(textarea, sugBox, textareaId);
+  });
+
+  textarea.addEventListener('focus', () => {
+    showMaterialSuggestions(textarea, sugBox, textareaId);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!container.contains(e.target)) {
+      sugBox.style.display = 'none';
+    }
+  });
+}
+
+function showMaterialSuggestions(textarea, sugBox, textareaId) {
+  const allTexts = allItems.map(item => item[textareaId === 'mMaterial' ? 'material' : 'lining']).filter(Boolean);
+  let uniqueMats = new Set();
+
+  allTexts.forEach(txt => {
+    const lines = String(txt).split('\n');
+    lines.forEach(line => {
+      let clean = line.replace(/^\d+%\s*/, '').trim();
+      if (clean) uniqueMats.add(clean);
+    });
+  });
+
+  ["polyester", "polyester (recycled)", "polypropylene", "cotton", "elastane", "nylon"].forEach(m => uniqueMats.add(m));
+
+  const val = textarea.value;
+  const lines = val.split('\n');
+  const rawCurrentLine = lines[lines.length - 1];
+  
+  // Ignorer eventuel procentdel foran, så vi kun søger på selve materialenavnet (f.eks. "pol" i "87% pol")
+  const textQuery = rawCurrentLine.replace(/^\d+%\s*/, '').toLowerCase().trim();
+
+  if (!textQuery) {
+    sugBox.style.display = 'none';
+    return;
+  }
+
+  const filtered = [...uniqueMats].filter(m => m.toLowerCase().includes(textQuery));
+
+  if (filtered.length === 0) {
+    sugBox.style.display = 'none';
+    return;
+  }
+
+  sugBox.innerHTML = '';
+  filtered.forEach(mat => {
+    const itemDiv = document.createElement('div');
+    itemDiv.style.cssText = 'padding:6px 10px; font-size:11px; font-family:\'AvantGarde LT Medium\', sans-serif; cursor:pointer; border-bottom:1px solid #eee; color:#000;';
+    
+    // Vis KUN selve materialenavnet i forslagene (ingen 100% tvang)
+    itemDiv.textContent = mat;
+    
+    itemDiv.onmouseover = () => itemDiv.style.background = '#E7EDFF';
+    itemDiv.onmouseout = () => itemDiv.style.background = '#fff';
+    
+    itemDiv.onclick = () => {
+      // Bevar eventuel procentdel der er skrevet foran (f.eks. "87% "), og indsæt kun det valgte materiale efter
+      const matchPercent = rawCurrentLine.match(/^(\d+%\s*)/);
+      const prefix = matchPercent ? matchPercent[1] : '';
+      
+      lines[lines.length - 1] = prefix + mat;
+      textarea.value = lines.join('\n');
+      sugBox.style.display = 'none';
+      textarea.focus();
+      markFormDirty();
+    };
+    sugBox.appendChild(itemDiv);
+  });
+
+  sugBox.style.display = 'block';
+}
+
 function formatPurchasePriceInput(inputEl) {
   let val = inputEl.value.trim();
   if (!val) return;
@@ -227,7 +368,6 @@ function handleSmartNavbarNavigation() {
 
   const stickyBottom = stickyWrapper ? stickyWrapper.getBoundingClientRect().bottom : 50;
   const topPos = Math.max(10, stickyBottom + 6);
-  // Sørg for at alfabet-nav stopper før den faste upload-knap i bunden
   const maxH = window.innerHeight - topPos - 75;
 
   alphabetNav.style.top = `${topPos}px`;
@@ -261,10 +401,44 @@ function fetchData() {
       }
       
       updateCategoryDatalist();
+      updateMadeInDatalist();
       renderItems();
       handleSmartNavbarNavigation();
     })
     .catch(err => console.error("Fejl ved data-hentning:", err));
+}
+
+function updateMadeInDatalist() {
+  let datalist = document.getElementById('madeInSuggestions');
+  if (!datalist) {
+    datalist = document.createElement('datalist');
+    datalist.id = 'madeInSuggestions';
+    document.body.appendChild(datalist);
+    const madeInInput = document.getElementById('mMadeIn');
+    if (madeInInput) madeInInput.setAttribute('list', 'madeInSuggestions');
+  }
+
+  const countries = [...new Set(allItems.map(item => item ? item.madein : null).filter(Boolean))];
+  ["China", "Cambodia", "Vietnam", "Indonesia", "Turkey", "Portugal", "Bangladesh"].forEach(c => countries.push(c));
+  
+  const uniqueCountries = [...new Set(countries)].sort((a, b) => a.localeCompare(b, 'da', { sensitivity: 'base' }));
+  datalist.innerHTML = uniqueCountries.map(c => `<option value="${String(c).replace(/[\u{1F000}-\u{1F6FF}|[\u{1F900}-\u{1F9FF}]/gu, '').trim()}">`).join('');
+}
+
+function updateCategoryDatalist() {
+  const datalists = document.querySelectorAll('datalist#categorySuggestions');
+  if (!datalists.length) return;
+  
+  const categories = [...new Set(
+    allItems
+      .map(item => item && item.category ? String(item.category).trim() : null)
+      .filter(Boolean)
+  )].sort((a, b) => a.localeCompare(b, 'da', { sensitivity: 'base' }));
+
+  const optionsHTML = categories.map(cat => `<option value="${cat}">`).join('');
+  datalists.forEach(dl => {
+    dl.innerHTML = optionsHTML;
+  });
 }
 
 function handleButtonA() {
@@ -542,7 +716,7 @@ function renderItems() {
     categories[cat].push(item);
   });
 
-  const sortedCats = Object.keys(categories).sort();
+  const sortedCats = Object.keys(categories).sort((a, b) => a.localeCompare(b, 'da', { sensitivity: 'base' }));
 
   const globalGrid = document.createElement('div');
   globalGrid.className = 'item-grid continuous-grid';
@@ -584,7 +758,8 @@ function renderItems() {
       const purchaseFormatted = formatDanishPrice(item.purchaseprice);
       const saleFormatted = formatDanishPrice(item.saleprice);
 
-      const hasMadeIn = item.madein && String(item.madein).trim() !== '';
+      const madeInFormatted = item.madein ? getCountryWithFlag(item.madein) : '';
+      const hasMadeIn = madeInFormatted !== '';
       const hasProduced = item.produced && String(item.produced).trim() !== '';
       const hasPurchase = item.purchaseprice && String(item.purchaseprice).trim() !== '';
       const hasSale = isSold && item.saleprice && String(item.saleprice).trim() !== '';
@@ -619,7 +794,7 @@ function renderItems() {
             ${hasMadeIn ? `
               <div class="info-row-left">
                 <span>Made in</span>
-                <span class="val">${item.madein}</span>
+                <span class="val">${madeInFormatted}</span>
               </div>
             ` : '<div></div>'}
             
@@ -662,7 +837,6 @@ function renderItems() {
 
   contentArea.appendChild(globalGrid);
 
-  // Sørg for at den fastlåste upload-knap er uafhængig af alfabet-nav i DOM'en
   const existingStickyUpload = document.querySelector('.sticky-side-upload-btn');
   if (existingStickyUpload) existingStickyUpload.remove();
 
@@ -700,13 +874,6 @@ function renderItems() {
   handleSmartNavbarNavigation();
 }
 
-function updateCategoryDatalist() {
-  const datalist = document.getElementById('categorySuggestions');
-  if (!datalist) return;
-  const categories = [...new Set(allItems.map(item => item ? item.category : null).filter(Boolean))];
-  datalist.innerHTML = categories.map(cat => `<option value="${cat}">`).join('');
-}
-
 function openModal(type) {
   currentEditId = null;
   currentImageBase64 = null;
@@ -731,6 +898,8 @@ function openModal(type) {
     if (el) el.value = '';
   });
 
+  updateMadeInDatalist();
+  updateCategoryDatalist();
   document.getElementById('modalBg').style.display = 'flex';
 }
 
@@ -847,12 +1016,25 @@ function setSoldState(state) {
 function handleImage(input) {
   if (input.files && input.files[0]) {
     markFormDirty();
+    const file = input.files[0];
+    const fileName = file.name;
+
+    const nameWithoutExt = fileName.substring(0, fileName.lastIndexOf('.')) || fileName;
+    const isStandardCamPhoto = /^img_|screenshot|dsc|image|photo/i.test(nameWithoutExt);
+
+    if (!isStandardCamPhoto && nameWithoutExt.trim().length > 0) {
+      const artInput = document.getElementById('mArticle');
+      if (artInput && !artInput.value.trim()) {
+        artInput.value = nameWithoutExt.trim().toUpperCase();
+      }
+    }
+
     const reader = new FileReader();
     reader.onload = function(e) {
       currentImageBase64 = e.target.result;
       document.getElementById('uploadPreview').style.backgroundImage = `url('${e.target.result}')`;
     };
-    reader.readAsDataURL(input.files[0]);
+    reader.readAsDataURL(file);
   }
 }
 
@@ -885,7 +1067,13 @@ function editItem(id) {
   document.getElementById('mCategory').value = item.category || '';
   document.getElementById('mSize').value = item.size || '';
   document.getElementById('mProduced').value = item.produced || '';
-  document.getElementById('mMadeIn').value = item.madein || '';
+  
+  let rawCountry = item.madein || '';
+  for (let key in COUNTRY_FLAGS) {
+    rawCountry = rawCountry.replace(COUNTRY_FLAGS[key], '').trim();
+  }
+  document.getElementById('mMadeIn').value = rawCountry;
+
   document.getElementById('mMaterial').value = item.material || '';
   document.getElementById('mLining').value = item.lining || '';
   document.getElementById('mPurchasePrice').value = item.purchaseprice || '';
@@ -894,6 +1082,8 @@ function editItem(id) {
   setResellingState(String(item.reselling).toUpperCase());
   setSoldState(String(item.sold).toUpperCase());
 
+  updateMadeInDatalist();
+  updateCategoryDatalist();
   document.getElementById('modalBg').style.display = 'flex';
 }
 
